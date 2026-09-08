@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Домашка: моя семья · китайский</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f7f4ea; --card:#fffdf8; --ink:#2c3226; --soft:#6b7362;
+  --green:#5b8c3e; --green-d:#3d6b2c; --green-l:#e8f0dc; --bamboo:#8db86a;
+  --teal:#2fb0aa; --teal-l:#dcf3f1; --gold:#d99a2b; --gold-l:#fdf0d6;
+  --red:#c0503f; --red-l:#fbe6e1; --line:#e4ddc9;
+  --mom:#7a6bb5; --mom-l:#eee9f8;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--paper);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.5;padding:0 14px 60px}
+.zh{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif}
+.wrap{max-width:660px;margin:0 auto}
+
+header{text-align:center;padding:24px 0 12px}
+header .p{font-size:3rem;line-height:1}
+header .zhbig{font-family:'Noto Sans SC',sans-serif;font-size:1.5rem;color:var(--bamboo);letter-spacing:.1em}
+header h1{font-size:1.55rem;color:var(--green-d);margin-top:4px}
+header .date{color:var(--soft);font-size:.9rem;margin-top:6px}
+
+.stars{position:sticky;top:0;z-index:20;background:rgba(247,244,234,.95);backdrop-filter:blur(8px);
+  padding:10px 0;text-align:center;font-weight:800;color:var(--gold);font-size:1.2rem;
+  border-bottom:2px solid var(--line);margin-bottom:16px}
+
+.warn{display:none;background:var(--gold-l);border:2px solid #e9cd8e;border-radius:16px;
+  padding:14px 16px;margin-bottom:16px;font-size:.92rem;color:#7a5a12}
+.warn.show{display:block}
+
+/* блок для мамы */
+.momtop{background:var(--mom-l);border:2px solid #cfc4ea;border-radius:20px;padding:16px 18px;margin-bottom:20px}
+.momtop h2{color:var(--mom);font-size:1.05rem;margin-bottom:8px}
+.momtop ol{margin-left:18px;font-size:.93rem}
+.momtop li{margin-bottom:6px}
+.momtop b{color:var(--ink)}
+
+details.mom{background:var(--mom-l);border:2px solid #cfc4ea;border-radius:16px;margin-top:14px;overflow:hidden}
+details.mom summary{cursor:pointer;padding:11px 15px;font-weight:800;color:var(--mom);font-size:.92rem;list-style:none}
+details.mom summary::-webkit-details-marker{display:none}
+details.mom summary::before{content:"▸ ";font-weight:800}
+details.mom[open] summary::before{content:"▾ "}
+details.mom .in{padding:0 15px 14px;font-size:.92rem;color:#3f3a52}
+details.mom .in p{margin-bottom:9px}
+details.mom .in b{color:#2c2740}
+.say{background:#fff;border:1px solid #d8cff0;border-radius:11px;padding:9px 12px;margin:8px 0}
+.say .cn{font-family:'Noto Sans SC',sans-serif;font-size:1.15rem;font-weight:700;color:var(--green-d)}
+.say .tr{color:var(--mom);font-weight:700;font-size:.88rem}
+.say .ru{color:var(--soft);font-size:.88rem}
+.err{background:#fff4f1;border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:8px 12px;margin-top:8px;font-size:.9rem}
+
+.game{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 16px 20px;margin-bottom:20px}
+.game h2{font-size:1.12rem;color:var(--green-d);display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.game h2 .n{width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:.95rem;flex-shrink:0}
+.game .sub{color:var(--soft);font-size:.9rem;margin:0 0 14px 39px}
+.game .new{background:var(--gold-l);color:#8a6416;font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:20px;margin-left:auto}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+.card{border:3px solid var(--line);background:var(--paper);border-radius:18px;padding:12px 6px;cursor:pointer;font-family:inherit;text-align:center;transition:.12s}
+.card:active{transform:scale(.94)}
+.card .emo{font-size:1.8rem;display:block;line-height:1.1}
+.card .hz{font-family:'Noto Sans SC',sans-serif;font-size:1.5rem;font-weight:700;display:block;margin:2px 0}
+.card .py{font-size:.75rem;color:var(--teal);font-weight:700;display:block}
+.card .ru{font-size:.78rem;color:var(--soft);font-weight:700;display:block}
+.card.on{border-color:var(--teal);background:var(--teal-l)}
+
+.play{width:100%;border:none;border-radius:20px;background:var(--teal);color:#fff;font-family:inherit;
+  font-weight:800;font-size:1.35rem;padding:20px;cursor:pointer;box-shadow:0 5px 0 #1d8a85;margin-bottom:14px}
+.play:active{transform:translateY(3px);box-shadow:0 2px 0 #1d8a85}
+.play.small{font-size:1.05rem;padding:13px}
+
+.opts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{border:3px solid var(--line);background:var(--paper);border-radius:18px;padding:15px 6px;cursor:pointer;font-family:inherit;text-align:center;transition:.12s}
+.opt:active{transform:scale(.95)}
+.opt .emo{font-size:2rem;display:block;line-height:1.1}
+.opt .hz{font-family:'Noto Sans SC',sans-serif;font-size:1.4rem;font-weight:700;display:block}
+.opt .py{font-size:.75rem;color:var(--teal);font-weight:700;display:block}
+.opt .ru{font-size:.8rem;color:var(--soft);font-weight:700;display:block;margin-top:2px}
+.opt .big{font-size:2.2rem;display:block;line-height:1.2}
+.opt.ok{border-color:var(--green);background:var(--green-l)}
+.opt.no{border-color:var(--red);background:var(--red-l);opacity:.6}
+
+.show{background:var(--green-l);border:3px dashed var(--bamboo);border-radius:20px;padding:18px;text-align:center;margin-bottom:14px}
+.show .emo{font-size:3rem;line-height:1.1}
+.show .people{font-size:2.3rem;letter-spacing:.05em;line-height:1.3}
+.show .q{font-family:'Noto Sans SC',sans-serif;font-size:1.35rem;font-weight:700;color:var(--green-d)}
+.show .qpy{color:var(--teal);font-size:.85rem;font-weight:700}
+.show .ru{font-weight:800;color:var(--green-d);font-size:1rem;margin-top:4px}
+
+.msg{text-align:center;font-weight:800;font-size:1rem;min-height:26px;margin-top:12px}
+.msg.good{color:var(--green)}
+.msg.bad{color:var(--red)}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:12px}
+.dots i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.dots i.ok{background:var(--green)}
+.dots i.no{background:var(--red)}
+.again{display:block;margin:12px auto 0;border:2px solid var(--bamboo);background:var(--card);color:var(--green-d);
+  border-radius:14px;padding:10px 20px;font-family:inherit;font-weight:800;cursor:pointer;font-size:.95rem}
+
+/* говорилка */
+.pickrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;justify-content:center}
+.pick{border:3px solid var(--line);background:var(--paper);border-radius:14px;padding:8px 12px;cursor:pointer;font-family:inherit;text-align:center}
+.pick .hz{font-family:'Noto Sans SC',sans-serif;font-size:1.15rem;font-weight:700;display:block}
+.pick .ru{font-size:.74rem;color:var(--soft);font-weight:700}
+.pick.on{border-color:var(--green);background:var(--green-l)}
+.result{background:var(--green-l);border:2px solid var(--bamboo);border-radius:18px;padding:16px;text-align:center;margin-top:6px}
+.result .line{font-family:'Noto Sans SC',sans-serif;font-size:1.35rem;font-weight:700;color:var(--green-d);line-height:1.6}
+.result .py{color:var(--teal);font-size:.85rem;font-weight:700}
+.result .ru{color:var(--soft);font-size:.88rem;margin-top:6px}
+
+.finish{background:linear-gradient(135deg,var(--green-d),var(--green));color:#fff;border-radius:22px;padding:24px;text-align:center;display:none}
+.finish.show{display:block}
+.finish .big{font-size:2.6rem}
+.finish h3{font-size:1.2rem;margin:6px 0}
+
+footer{text-align:center;color:var(--soft);font-size:.85rem;margin-top:24px}
+footer .zh{color:var(--green);font-size:1.2rem;display:block}
+.conf{position:fixed;inset:0;pointer-events:none;z-index:50}
+.conf i{position:absolute;width:10px;height:14px;border-radius:2px;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="p">🐼</div>
+    <div class="zhbig">我家有几口人？</div>
+    <h1>Домашка: моя семья</h1>
+    <div class="date">Урок 8 · новое: 有 / 没有, 两, 个 · повторение: члены семьи</div>
+  </header>
+
+  <div class="stars" id="stars">⭐ 0</div>
+
+  <div class="warn" id="warn">
+    🔇 На этом устройстве не нашёлся китайский голос — слова не будут звучать.
+    Откройте страницу в браузере <b>Chrome</b> или <b>Edge</b> на компьютере, там голос есть.
+  </div>
+
+  <div class="momtop">
+    <h2>👩 Памятка для мамы — прочитайте один раз</h2>
+    <ol>
+      <li><b>5–10 минут в день</b> достаточно. Лучше каждый день понемногу, чем один раз долго.</li>
+      <li>Под каждым заданием есть кнопка <b>«Для мамы: как помочь»</b> — там написано, что именно тренируется, как это звучит русскими буквами и какая ошибка бывает чаще всего. Китайский знать не нужно.</li>
+      <li><b>Главное правило: Аскар должен говорить вслух</b>, а не только нажимать. Услышал — повторил. Без этого толку почти нет.</li>
+      <li>Ошибся — не страшно. Скажите «слушай ещё раз» и нажмите кнопку 🔊 повторно.</li>
+      <li>Звук включается после первого касания экрана — это нормально, так работают браузеры.</li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <section class="game">
+    <h2><span class="n">1</span> Кто есть в семье</h2>
+    <p class="sub">Нажимай на карточку, слушай и повторяй вслух.</p>
+    <div class="cards" id="g1"></div>
+    <details class="mom"><summary>Для мамы: как помочь</summary><div class="in">
+      <p><b>Что тренируем:</b> семь слов о членах семьи. Аскар их уже знает — здесь просто разогрев, чтобы вспомнить звучание.</p>
+      <p><b>Как звучит</b> (русскими буквами, приблизительно):</p>
+      <div class="say"><span class="cn">爸爸</span> <span class="tr">бА-ба</span> <span class="ru">— папа</span></div>
+      <div class="say"><span class="cn">妈妈</span> <span class="tr">мА-ма</span> <span class="ru">— мама</span></div>
+      <div class="say"><span class="cn">哥哥</span> <span class="tr">гЭ-гэ</span> <span class="ru">— старший брат</span></div>
+      <div class="say"><span class="cn">弟弟</span> <span class="tr">ди-ди</span> <span class="ru">— младший брат (коротко, резко)</span></div>
+      <div class="say"><span class="cn">姐姐</span> <span class="tr">цзе-цзе</span> <span class="ru">— старшая сестра</span></div>
+      <div class="say"><span class="cn">妹妹</span> <span class="tr">мэй-мэй</span> <span class="ru">— младшая сестра</span></div>
+      <div class="say"><span class="cn">我</span> <span class="tr">во</span> <span class="ru">— я</span></div>
+      <div class="err"><b>Частая ошибка:</b> Аскар путает 姐姐 (старшая сестра) и 妹妹 (младшая). Подсказка-запоминалка: у знака 姐 справа «шкафчик», у 妹 — «платьице». Старшая сестра достала из шкафа платье и отдала младшей.</div>
+      <p><b>Спросите его:</b> «А ты для своего брата кто — 哥哥 или 弟弟?» Правильный ответ: Аскар — 哥哥 (старший брат), а брат для него — 弟弟.</p>
+    </div></details>
+  </section>
+
+  <!-- 2 -->
+  <section class="game">
+    <h2><span class="n">2</span> Слушай и угадай</h2>
+    <p class="sub">Панда назовёт слово — нажми на нужную картинку.</p>
+    <button class="play" id="p2">🔊 Слушать</button>
+    <div class="opts" id="o2"></div>
+    <div class="dots" id="d2"></div>
+    <div class="msg" id="m2">&nbsp;</div>
+    <details class="mom"><summary>Для мамы: как помочь</summary><div class="in">
+      <p><b>Что тренируем:</b> понимание на слух. Это сильная сторона Аскара, на уроке он делает 6 из 6.</p>
+      <p><b>Если ошибся:</b> не подсказывайте сразу. Нажмите 🔊 «Слушать» ещё раз и дайте вторую попытку.</p>
+      <p><b>После каждого верного ответа</b> просите повторить слово вслух — именно это закрепляет.</p>
+    </div></details>
+  </section>
+
+  <!-- 3 -->
+  <section class="game">
+    <h2><span class="n">3</span> Есть или нету?<span class="new">новое</span></h2>
+    <p class="sub">Панда говорит про картинку. Она сказала правильно? Жми ✅ или ❌.</p>
+    <div class="show" id="s3"></div>
+    <button class="play small" id="p3">🔊 Послушать ещё раз</button>
+    <div class="opts two" id="o3">
+      <button class="opt" data-a="yes"><span class="big">✅</span><span class="ru">правильно</span></button>
+      <button class="opt" data-a="no"><span class="big">❌</span><span class="ru">неправильно</span></button>
+    </div>
+    <div class="dots" id="d3"></div>
+    <div class="msg" id="m3">&nbsp;</div>
+    <details class="mom"><summary>Для мамы: как помочь — это новая тема</summary><div class="in">
+      <p><b>Что тренируем:</b> два слова, которые в китайском значат «есть» и «нет».</p>
+      <div class="say"><span class="cn">我有…</span> <span class="tr">во ёу</span> <span class="ru">— у меня есть…</span></div>
+      <div class="say"><span class="cn">我没有…</span> <span class="tr">во мэй ёу</span> <span class="ru">— у меня нет…</span></div>
+      <p>То есть чтобы получилось «нет», перед словом «есть» добавляется маленькое <b>没 (мэй)</b>. Всё.</p>
+      <p><b>Как объяснить ребёнку на пальцах</b> — этот приём мы делали на уроке, он работает лучше всего:</p>
+      <p>Дайте Аскару в руку любой предмет (ручку, игрушку) и попросите сказать <span class="zh">我有…</span> («во ёу…»). Потом пусть положит предмет и с пустыми руками скажет <span class="zh">我没有…</span> («во мэй ёу…»). Повторите 3–4 раза с разными предметами.</p>
+      <div class="err"><b>Частая ошибка:</b> ребёнок проглатывает 没 и говорит «во ёу» вместо «во мэй ёу» — то есть получается противоположный смысл. Слушайте, чтобы «мэй» звучало отчётливо.</div>
+      <p><b>В этом задании</b> на картинке либо есть предмет, либо рука пустая. Панда произносит фразу. Задача — понять, совпадает ли сказанное с картинкой.</p>
+    </div></details>
+  </section>
+
+  <!-- 4 -->
+  <section class="game">
+    <h2><span class="n">4</span> 两 или 二?<span class="new">новое</span></h2>
+    <p class="sub">Оба слова значат «два». Но говорят их в разных случаях. Выбери правильное.</p>
+    <div class="show" id="s4"></div>
+    <div class="opts two" id="o4"></div>
+    <div class="dots" id="d4"></div>
+    <div class="msg" id="m4">&nbsp;</div>
+    <details class="mom"><summary>Для мамы: как помочь — это новая тема</summary><div class="in">
+      <p><b>Что тренируем:</b> в китайском «два» — это два разных слова, и они не взаимозаменяемы.</p>
+      <div class="say"><span class="cn">二</span> <span class="tr">эр</span> <span class="ru">— когда просто считаем: раз, два, три… или называем число (двенадцать, двадцать)</span></div>
+      <div class="say"><span class="cn">两</span> <span class="tr">лян</span> <span class="ru">— когда считаем предметы или людей: два человека, две ручки</span></div>
+      <p><b>Простое правило для ребёнка:</b> «Считаю вслух — говорю ЭР. Считаю кого-то или что-то — говорю ЛЯН».</p>
+      <div class="say"><span class="cn">一、二、三</span> <span class="tr">и, эр, сань</span> <span class="ru">— раз, два, три</span></div>
+      <div class="say"><span class="cn">两个人</span> <span class="tr">лян гэ жэнь</span> <span class="ru">— два человека</span></div>
+      <div class="say"><span class="cn">两口人</span> <span class="tr">лян коу жэнь</span> <span class="ru">— два человека в семье</span></div>
+      <div class="err"><b>Частая ошибка:</b> сказать 二个人 («эр гэ жэнь»). Так не говорят никогда. Если услышали — просто скажите: «людей считаем через ЛЯН».</div>
+      <p><b>Заодно про 个 (гэ):</b> это словечко-помощник, которое китайцы ставят между числом и предметом. По-русски похоже на «две ШТУКИ ручек», «пять ГОЛОВ скота». В китайском такое обязательно почти всегда. Для людей в семье используется другой помощник — 口 (коу), он же «рот»: сколько ртов за столом.</p>
+    </div></details>
+  </section>
+
+  <!-- 5 -->
+  <section class="game">
+    <h2><span class="n">5</span> Сколько человек в семье?</h2>
+    <p class="sub">Посчитай людей на картинке и выбери ответ.</p>
+    <div class="show" id="s5"></div>
+    <button class="play small" id="p5">🔊 你家有几口人？</button>
+    <div class="opts" id="o5"></div>
+    <div class="dots" id="d5"></div>
+    <div class="msg" id="m5">&nbsp;</div>
+    <details class="mom"><summary>Для мамы: как помочь</summary><div class="in">
+      <p><b>Что тренируем:</b> главный вопрос темы и ответ на него.</p>
+      <div class="say"><span class="cn">你家有几口人？</span> <span class="tr">ни цзя ёу цзи коу жэнь?</span> <span class="ru">— Сколько человек в твоей семье?</span></div>
+      <div class="say"><span class="cn">我家有四口人。</span> <span class="tr">во цзя ёу сы коу жэнь</span> <span class="ru">— В моей семье четыре человека.</span></div>
+      <p><b>Числа:</b> 一 и (1), 二 эр (2), 三 сань (3), 四 сы (4), 五 у (5), 六 лиу (6), 七 ци (7).<br>
+      Но «два человека» — 两口人 «лян коу жэнь», см. задание 4.</p>
+      <div class="err"><b>Частая ошибка:</b> сказать «сы жэнь» без 口 («коу»). Слово 口 пропускать нельзя. Напомните: «не забудь коу».</div>
+      <p><b>Обязательно спросите его про вашу настоящую семью:</b> «Сколько у нас человек? Скажи по-китайски». Пусть ответит полной фразой 我家有…口人.</p>
+    </div></details>
+  </section>
+
+  <!-- 6 -->
+  <section class="game">
+    <h2><span class="n">6</span> Расскажи про свою семью</h2>
+    <p class="sub">Выбери, кто есть у тебя дома. Панда прочитает готовый рассказ — повтори за ней.</p>
+    <div class="pickrow" id="picks"></div>
+    <div class="result" id="res"></div>
+    <button class="play small" id="p6" style="margin-top:12px">🔊 Прочитать мой рассказ</button>
+    <details class="mom"><summary>Для мамы: как помочь — самое важное задание</summary><div class="in">
+      <p><b>Что тренируем:</b> связную речь о себе. Это цель всей темы: не отдельные слова, а рассказ из нескольких предложений.</p>
+      <p><b>Как делать:</b> Аскар отмечает членов своей настоящей семьи, панда произносит фразу целиком. Задача — <b>повторить за пандой вслух, а потом сказать самому без кнопки</b>.</p>
+      <p><b>Что должно получиться</b> (пример для семьи из четырёх человек):</p>
+      <div class="say"><span class="cn">我家有四口人：爸爸、妈妈、弟弟和我。</span><br>
+      <span class="tr">во цзя ёу сы коу жэнь: ба-ба, ма-ма, ди-ди хэ во</span><br>
+      <span class="ru">В моей семье четыре человека: папа, мама, младший брат и я.</span></div>
+      <p>Словечко <span class="zh">和</span> («хэ») значит «и» и ставится только перед последним в списке — как в русском.</p>
+      <p><b>Если получится — снимите короткое видео</b> и отправьте учителю. Для ребёнка это отличная мотивация, а для нас — запись его прогресса.</p>
+    </div></details>
+  </section>
+
+  <!-- 7 -->
+  <section class="game">
+    <h2><span class="n">7</span> Бонус: старшие в семье</h2>
+    <p class="sub">Эти слова мы узнали недавно. Нажимай и слушай.</p>
+    <div class="cards" id="g7"></div>
+    <details class="mom"><summary>Для мамы: как помочь</summary><div class="in">
+      <p><b>Что тренируем:</b> дедушек и дядю. В китайском важно, с чьей стороны родственник — папиной или маминой, и слова для них разные.</p>
+      <div class="say"><span class="cn">爷爷</span> <span class="tr">е-е</span> <span class="ru">— дедушка, папа папы</span></div>
+      <div class="say"><span class="cn">外公</span> <span class="tr">вай-гун</span> <span class="ru">— дедушка, папа мамы</span></div>
+      <div class="say"><span class="cn">叔叔</span> <span class="tr">шу-шу</span> <span class="ru">— дядя</span></div>
+      <p><b>Подсказка:</b> слог <b>外 (вай)</b> значит «внешний». Родня со стороны мамы для китайцев «внешняя» — отсюда 外公. Если запомнить эту логику, половина родственников запоминается сама.</p>
+      <p>Это задание необязательное — если Аскар устал, пропустите. Оно на узнавание, а не на заучивание.</p>
+    </div></details>
+  </section>
+
+  <section class="finish" id="fin">
+    <div class="big">🏆</div>
+    <h3>Всё сделано!</h3>
+    <p id="fintext"></p>
+  </section>
+
+  <footer>
+    <span class="zh">加油！💪</span>
+    Домашнее задание к уроку 8 · тема «Члены семьи» 家庭成员
+  </footer>
+</div>
+
+<script>
+var FAM = [
+  {zh:'爸爸', py:'bàba',   ru:'папа',           emo:'👨'},
+  {zh:'妈妈', py:'māma',   ru:'мама',           emo:'👩'},
+  {zh:'哥哥', py:'gēge',   ru:'старший брат',   emo:'👦'},
+  {zh:'弟弟', py:'dìdi',   ru:'младший брат',   emo:'🧒'},
+  {zh:'姐姐', py:'jiějie', ru:'старшая сестра', emo:'👧'},
+  {zh:'妹妹', py:'mèimei', ru:'младшая сестра', emo:'👶'},
+  {zh:'我',   py:'wǒ',     ru:'я',              emo:'🙋'}
+];
+var OLDER = [
+  {zh:'爷爷', py:'yéye',    ru:'дедушка (папа папы)', emo:'👴'},
+  {zh:'外公', py:'wàigōng', ru:'дедушка (папа мамы)', emo:'🧓'},
+  {zh:'叔叔', py:'shūshu',  ru:'дядя',                emo:'👨‍🦰'},
+  {zh:'大人', py:'dàrén',   ru:'взрослый',            emo:'🧑'}
+];
+var THINGS = [
+  {zh:'手机', py:'shǒujī', ru:'телефон', ru2:'телефона', emo:'📱'},
+  {zh:'苹果', py:'píngguǒ', ru:'яблоко', ru2:'яблока',   emo:'🍎'},
+  {zh:'书',   py:'shū',    ru:'книга',   ru2:'книги',    emo:'📕'},
+  {zh:'球',   py:'qiú',    ru:'мяч',     ru2:'мяча',     emo:'⚽'}
+];
+var NUM = [
+  {n:2, zh:'两口人', say:'两口人'},
+  {n:3, zh:'三口人', say:'三口人'},
+  {n:4, zh:'四口人', say:'四口人'},
+  {n:5, zh:'五口人', say:'五口人'},
+  {n:6, zh:'六口人', say:'六口人'}
+];
+var FACES = ['👨','👩','👦','👧','🧒','👶','👴','👵'];
+
+/* пары вопросов для 两 / 二 */
+var LIANG = [
+  {ru:'Считаем вслух: 一, ?, 三', a:'二', b:'两', say:'一二三', why:'Просто счёт — говорим 二 (эр).'},
+  {ru:'Два человека', a:'两个人', b:'二个人', say:'两个人', why:'Считаем людей — говорим 两 (лян).'},
+  {ru:'В семье два человека', a:'两口人', b:'二口人', say:'两口人', why:'Считаем людей в семье — 两口人.'},
+  {ru:'Число двенадцать', a:'十二', b:'十两', say:'十二', why:'В числах — всегда 二 (эр).'},
+  {ru:'Два яблока', a:'两个苹果', b:'二个苹果', say:'两个苹果', why:'Считаем предметы — 两 (лян).'},
+  {ru:'Число двадцать', a:'二十', b:'两十', say:'二十', why:'В числах — 二 (эр).'}
+];
+
+/* ====== ЗВУК ====== */
+var VOICE = null, HAS_ZH = false, AUDIO_ON = false;
+function pickVoice(){
+  if(!window.speechSynthesis) return;
+  var v = speechSynthesis.getVoices();
+  if(!v.length) return;
+  VOICE = null;
+  for(var i=0;i<v.length;i++){ if(/云夏|Yunxia/i.test(v[i].name)){ VOICE=v[i]; break; } }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/晓晓|Xiaoxiao/i.test(v[i].name)){ VOICE=v[i]; break; } }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/zh[-_]CN/i.test(v[i].lang)){ VOICE=v[i]; break; } }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/^zh/i.test(v[i].lang)){ VOICE=v[i]; break; } }
+  HAS_ZH = !!VOICE;
+  if(HAS_ZH) document.getElementById('warn').className = 'warn';
+}
+function checkVoice(){
+  pickVoice();
+  if(!HAS_ZH) document.getElementById('warn').className = 'warn show';
+}
+if(window.speechSynthesis){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+setTimeout(checkVoice, 1500);
+setTimeout(checkVoice, 4000);
+['pointerdown','keydown','touchstart'].forEach(function(e){
+  document.addEventListener(e, function(){ AUDIO_ON = true; }, {once:true});
+});
+function speak(text){
+  if(!window.speechSynthesis || !AUDIO_ON) return;
+  try{
+    speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(String(text).replace(/[。？！、：]/g,' '));
+    u.lang='zh-CN'; u.rate=0.78; u.pitch=1.05;
+    if(VOICE) u.voice = VOICE;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+var AC=null;
+function beep(f,d,t){
+  try{
+    AC = AC || new (window.AudioContext||window.webkitAudioContext)();
+    var o=AC.createOscillator(), g=AC.createGain();
+    o.type=t||'sine'; o.frequency.value=f;
+    g.gain.setValueAtTime(.13,AC.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);
+    o.connect(g); g.connect(AC.destination); o.start(); o.stop(AC.currentTime+d);
+  }catch(e){}
+}
+function sndOK(){ beep(660,.12); setTimeout(function(){ beep(880,.18); },110); }
+function sndNO(){ beep(200,.2,'triangle'); }
+function sndWin(){ [523,659,784,1047].forEach(function(f,i){ setTimeout(function(){ beep(f,.22); }, i*110); }); }
+
+function $(id){ return document.getElementById(id); }
+function shuffle(a){ return a.slice().sort(function(){ return Math.random()-0.5; }); }
+function rnd(a){ return a[Math.floor(Math.random()*a.length)]; }
+function el(t,c,h){ var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e; }
+function confetti(){
+  var box=el('div','conf'); document.body.appendChild(box);
+  var cols=['#5b8c3e','#d99a2b','#2fb0aa','#c0503f','#7a6bb5'];
+  for(var i=0;i<50;i++){
+    var p=el('i');
+    p.style.left=Math.random()*100+'vw';
+    p.style.top=(-10-Math.random()*15)+'vh';
+    p.style.background=rnd(cols);
+    p.style.animationDelay=(Math.random()*.6)+'s';
+    box.appendChild(p);
+  }
+  setTimeout(function(){ box.remove(); },3200);
+}
+var TOTAL=0, DONE={g2:false,g3:false,g4:false,g5:false};
+function star(){ TOTAL++; $('stars').textContent='⭐ '+TOTAL; }
+function checkFinish(){
+  if(DONE.g2&&DONE.g3&&DONE.g4&&DONE.g5){
+    $('fin').className='finish show';
+    $('fintext').textContent='Собрано звёздочек: '+TOTAL+'. Теперь расскажи маме про свою семью по-китайски!';
+    sndWin(); confetti();
+  }
+}
+function makeDots(box,n){ box.innerHTML=''; for(var i=0;i<n;i++) box.appendChild(el('i')); }
+
+/* 1 — карточки семьи */
+(function(){
+  var box=$('g1');
+  FAM.forEach(function(w){
+    var b=el('button','card',
+      '<span class="emo">'+w.emo+'</span><span class="hz zh">'+w.zh+'</span>'+
+      '<span class="py">'+w.py+'</span><span class="ru">'+w.ru+'</span>');
+    b.onclick=function(){ speak(w.zh); b.className='card on'; setTimeout(function(){ b.className='card'; },600); };
+    box.appendChild(b);
+  });
+})();
+
+/* 7 — старшие */
+(function(){
+  var box=$('g7');
+  OLDER.forEach(function(w){
+    var b=el('button','card',
+      '<span class="emo">'+w.emo+'</span><span class="hz zh">'+w.zh+'</span>'+
+      '<span class="py">'+w.py+'</span><span class="ru">'+w.ru+'</span>');
+    b.onclick=function(){ speak(w.zh); b.className='card on'; setTimeout(function(){ b.className='card'; },600); };
+    box.appendChild(b);
+  });
+})();
+
+/* 2 — слушай и угадай */
+(function(){
+  var R=6,i=0,ok=0,lock=false,target=null;
+  var order=shuffle(FAM).slice(0,R);
+  var opts=$('o2'),msg=$('m2'),dots=$('d2');
+  makeDots(dots,R);
+  function round(){
+    if(i>=R){
+      opts.innerHTML='';
+      msg.className='msg good'; msg.textContent='Готово! '+ok+' из '+R+' 🎉';
+      var b=el('button','again','Играть ещё раз');
+      b.onclick=function(){ i=0;ok=0;order=shuffle(FAM).slice(0,R);makeDots(dots,R);msg.innerHTML='&nbsp;';round(); };
+      opts.appendChild(b);
+      if(!DONE.g2){ DONE.g2=true; checkFinish(); }
+      return;
+    }
+    lock=false; target=order[i];
+    var others=shuffle(FAM.filter(function(w){ return w.zh!==target.zh; })).slice(0,2);
+    var three=shuffle(others.concat([target]));
+    opts.innerHTML='';
+    three.forEach(function(w){
+      var b=el('button','opt','<span class="emo">'+w.emo+'</span><span class="ru">'+w.ru+'</span>');
+      b.onclick=function(){ choose(b,w); };
+      opts.appendChild(b);
+    });
+    msg.className='msg'; msg.innerHTML='&nbsp;';
+    setTimeout(function(){ speak(target.zh); },300);
+  }
+  function choose(btn,w){
+    if(lock) return; lock=true;
+    var d=dots.children[i];
+    if(w.zh===target.zh){
+      btn.className='opt ok'; d.className='ok'; ok++; sndOK(); star();
+      msg.className='msg good'; msg.textContent='Верно! '+target.zh+' — '+target.ru+'. Повтори вслух!';
+    } else {
+      btn.className='opt no'; d.className='no'; sndNO();
+      msg.className='msg bad'; msg.textContent='Панда сказала: '+target.zh+' — '+target.ru;
+      for(var k=0;k<opts.children.length;k++){
+        if(opts.children[k].textContent.indexOf(target.ru)>=0) opts.children[k].className='opt ok';
+      }
+    }
+    i++; setTimeout(round,1800);
+  }
+  $('p2').onclick=function(){ if(target) speak(target.zh); };
+  round();
+})();
+
+/* 3 — есть / нету */
+(function(){
+  var R=6,i=0,ok=0,lock=false;
+  var thing=null, hasIt=false, saidHas=false;
+  var show=$('s3'),msg=$('m3'),dots=$('d3'),opts=$('o3');
+  makeDots(dots,R);
+  function phrase(){ return (saidHas?'我有':'我没有') + thing.zh; }
+  function round(){
+    if(i>=R){
+      msg.className='msg good'; msg.textContent='Готово! '+ok+' из '+R+' 🎉';
+      show.innerHTML='<div class="emo">🐼</div><div class="ru">Ты понял 有 и 没有!</div>';
+      var b=el('button','again','Играть ещё раз');
+      b.onclick=function(){ i=0;ok=0;makeDots(dots,R);msg.innerHTML='&nbsp;';round(); };
+      show.appendChild(b);
+      if(!DONE.g3){ DONE.g3=true; checkFinish(); }
+      return;
+    }
+    lock=false;
+    thing=rnd(THINGS);
+    hasIt=Math.random()<0.5;
+    saidHas=Math.random()<0.5;
+    show.innerHTML = hasIt
+      ? '<div class="emo">🖐️ '+thing.emo+'</div><div class="ru">У мальчика ЕСТЬ '+thing.ru+'</div>'
+      : '<div class="emo">✋</div><div class="ru">У мальчика НЕТ '+thing.ru2+' (руки пустые)</div>';
+    msg.className='msg'; msg.innerHTML='&nbsp;';
+    setTimeout(function(){ speak(phrase()); },350);
+  }
+  function answer(yes){
+    if(lock) return; lock=true;
+    var right = (saidHas===hasIt);
+    var d=dots.children[i];
+    var said = phrase();
+    var trans = saidHas ? ('«у меня есть '+thing.ru+'»') : ('«у меня нет '+thing.ru2+'»');
+    if(yes===right){
+      d.className='ok'; ok++; sndOK(); star();
+      msg.className='msg good'; msg.textContent='Верно! Панда сказала '+said+' — '+trans;
+    } else {
+      d.className='no'; sndNO();
+      msg.className='msg bad'; msg.textContent='Панда сказала '+said+' — '+trans+'. Послушай ещё раз!';
+    }
+    i++; setTimeout(round,2400);
+  }
+  for(var k=0;k<opts.children.length;k++){
+    (function(btn){ btn.onclick=function(){ answer(btn.getAttribute('data-a')==='yes'); }; })(opts.children[k]);
+  }
+  $('p3').onclick=function(){ if(thing) speak(phrase()); };
+  round();
+})();
+
+/* 4 — 两 или 二 */
+(function(){
+  var order=shuffle(LIANG), R=order.length, i=0, ok=0, lock=false, cur=null;
+  var show=$('s4'),opts=$('o4'),msg=$('m4'),dots=$('d4');
+  makeDots(dots,R);
+  function round(){
+    if(i>=R){
+      opts.innerHTML='';
+      show.innerHTML='<div class="emo">🐼</div><div class="ru">Теперь ты знаешь разницу!</div>';
+      msg.className='msg good'; msg.textContent='Готово! '+ok+' из '+R+' 🎉';
+      var b=el('button','again','Ещё раз');
+      b.onclick=function(){ i=0;ok=0;order=shuffle(LIANG);makeDots(dots,R);msg.innerHTML='&nbsp;';round(); };
+      opts.appendChild(b);
+      if(!DONE.g4){ DONE.g4=true; checkFinish(); }
+      return;
+    }
+    lock=false; cur=order[i];
+    show.innerHTML='<div class="ru">Как сказать?</div><div class="q" style="font-family:Nunito,sans-serif;font-size:1.15rem">'+cur.ru+'</div>';
+    var pair=shuffle([{t:cur.a,good:true},{t:cur.b,good:false}]);
+    opts.innerHTML='';
+    pair.forEach(function(p){
+      var b=el('button','opt','<span class="hz zh">'+p.t+'</span>');
+      b.onclick=function(){ choose(b,p); };
+      opts.appendChild(b);
+    });
+    msg.className='msg'; msg.innerHTML='&nbsp;';
+  }
+  function choose(btn,p){
+    if(lock) return; lock=true;
+    var d=dots.children[i];
+    if(p.good){
+      btn.className='opt ok'; d.className='ok'; ok++; sndOK(); star(); speak(cur.say);
+      msg.className='msg good'; msg.textContent='Верно! '+cur.why;
+    } else {
+      btn.className='opt no'; d.className='no'; sndNO(); speak(cur.say);
+      msg.className='msg bad'; msg.textContent='Правильно: '+cur.a+'. '+cur.why;
+      for(var k=0;k<opts.children.length;k++){
+        if(opts.children[k].textContent===cur.a) opts.children[k].className='opt ok';
+      }
+    }
+    i++; setTimeout(round,2600);
+  }
+  round();
+})();
+
+/* 5 — сколько человек */
+(function(){
+  var R=5,i=0,ok=0,lock=false,cnt=0;
+  var show=$('s5'),opts=$('o5'),msg=$('m5'),dots=$('d5');
+  makeDots(dots,R);
+  function round(){
+    if(i>=R){
+      opts.innerHTML='';
+      show.innerHTML='<div class="emo">🐼</div><div class="ru">Ты умеешь считать семью!</div>';
+      msg.className='msg good'; msg.textContent='Готово! '+ok+' из '+R+' 🎉';
+      var b=el('button','again','Ещё раз');
+      b.onclick=function(){ i=0;ok=0;makeDots(dots,R);msg.innerHTML='&nbsp;';round(); };
+      opts.appendChild(b);
+      if(!DONE.g5){ DONE.g5=true; checkFinish(); }
+      return;
+    }
+    lock=false;
+    cnt=2+Math.floor(Math.random()*5);
+    show.innerHTML='<div class="people">'+shuffle(FACES).slice(0,cnt).join(' ')+'</div>'+
+      '<div class="q zh">你家有几口人？</div><div class="qpy">nǐ jiā yǒu jǐ kǒu rén?</div>';
+    var right=null;
+    for(var k=0;k<NUM.length;k++){ if(NUM[k].n===cnt) right=NUM[k]; }
+    var three=shuffle(shuffle(NUM.filter(function(x){ return x.n!==cnt; })).slice(0,2).concat([right]));
+    opts.innerHTML='';
+    three.forEach(function(x){
+      var b=el('button','opt','<span class="hz zh">'+x.zh+'</span><span class="ru">'+x.n+' чел.</span>');
+      b.onclick=function(){ choose(b,x,right); };
+      opts.appendChild(b);
+    });
+    msg.className='msg'; msg.innerHTML='&nbsp;';
+    setTimeout(function(){ speak('你家有几口人'); },300);
+  }
+  function choose(btn,x,right){
+    if(lock) return; lock=true;
+    var d=dots.children[i];
+    if(x.n===cnt){
+      btn.className='opt ok'; d.className='ok'; ok++; sndOK(); star();
+      speak('我家有'+x.say);
+      msg.className='msg good'; msg.textContent='Верно! Повтори: 我家有'+x.zh+'。';
+    } else {
+      btn.className='opt no'; d.className='no'; sndNO();
+      msg.className='msg bad'; msg.textContent='Посчитай ещё раз ✋ Правильно: '+right.zh;
+      for(var k=0;k<opts.children.length;k++){
+        if(opts.children[k].textContent.indexOf(right.zh)>=0) opts.children[k].className='opt ok';
+      }
+    }
+    i++; setTimeout(round,2200);
+  }
+  $('p5').onclick=function(){ speak('你家有几口人'); };
+  round();
+})();
+
+/* 6 — рассказ о своей семье */
+(function(){
+  var members=FAM.filter(function(w){ return w.zh!=='我'; });
+  var chosen={};
+  var picks=$('picks'), res=$('res');
+  members.forEach(function(m){
+    var b=el('button','pick','<span class="hz zh">'+m.zh+'</span><span class="ru">'+m.emo+' '+m.ru+'</span>');
+    b.onclick=function(){
+      if(chosen[m.zh]){ delete chosen[m.zh]; b.className='pick'; }
+      else { chosen[m.zh]=true; b.className='pick on'; }
+      build();
+    };
+    picks.appendChild(b);
+  });
+  var text='', pyText='', rewarded=false;
+  function plural(n){
+    var d=n%10, dd=n%100;
+    if(d===1 && dd!==11) return 'человек';
+    if(d>=2 && d<=4 && (dd<12||dd>14)) return 'человека';
+    return 'человек';
+  }
+  var NZ=['零','一','两','三','四','五','六','七','八','九','十'];
+  var NPY=['','и','лян','сань','сы','у','лиу','ци','ба','цзиу','ши'];
+  var PY={'爸爸':'ба-ба','妈妈':'ма-ма','哥哥':'гэ-гэ','弟弟':'ди-ди','姐姐':'цзе-цзе','妹妹':'мэй-мэй'};
+  function build(){
+    var list=members.filter(function(m){ return chosen[m.zh]; });
+    var total=list.length+1;
+    var nz=NZ[total]||String(total);
+    var npy=NPY[total]||String(total);
+    if(list.length){
+      text='我家有'+nz+'口人：'+list.map(function(m){ return m.zh; }).join('、')+'和我。';
+      pyText='во цзя ёу '+npy+' коу жэнь: '+list.map(function(m){ return PY[m.zh]; }).join(', ')+' хэ во';
+      res.innerHTML='<div class="line zh">'+text+'</div>'+
+        '<div class="py">'+pyText+'</div>'+
+        '<div class="ru">В моей семье '+total+' '+plural(total)+': '+list.map(function(m){ return m.ru; }).join(', ')+' и я.</div>';
+    } else {
+      text='';
+      res.innerHTML='<div class="ru">Нажми на тех, кто есть в твоей семье ☝️</div>';
+    }
+  }
+  $('p6').onclick=function(){
+    if(!text){ res.innerHTML='<div class="ru">Сначала выбери, кто есть в семье ☝️</div>'; return; }
+    speak(text);
+    if(!rewarded){ rewarded=true; star(); }
+  };
+  build();
+})();
+</script>
+</body>
+</html>
