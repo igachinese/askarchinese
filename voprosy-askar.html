@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мама спрашивает · вопросы для Аскара</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f2ea; --card:#fffdf8; --ink:#241f1a; --soft:#6d6459; --line:#e3dccd;
+  --jade:#2f8f6a; --jade-d:#1f6b4e; --jade-l:#e2f2ea;
+  --cin:#c04a35; --cin-l:#fbe8e3;
+  --gold:#d99a2b; --gold-l:#fdf1d9;
+  --blue:#3a6fa8; --blue-l:#e4eefa;
+  --mom:#7a6bb5; --mom-l:#eee9f8;
+  --sh:0 3px 14px rgba(70,60,40,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;line-height:1.5;padding:0 12px 70px}
+.zh{font-family:'Noto Sans SC','PingFang SC','Microsoft YaHei',sans-serif}
+.wrap{max-width:720px;margin:0 auto}
+
+header{text-align:center;padding:24px 0 12px}
+header .p{font-size:2.6rem;line-height:1}
+header h1{font-size:1.5rem;margin-top:6px}
+header .zhh{font-family:'Noto Sans SC',sans-serif;font-size:1.3rem;color:var(--jade-d)}
+header .py{color:var(--gold);font-weight:800;font-size:.88rem}
+header p{color:var(--soft);font-size:.92rem;margin-top:6px}
+
+.momtop{background:var(--mom-l);border:2px solid #cfc4ea;border-radius:20px;padding:16px 18px;margin-bottom:14px}
+.momtop h3{color:var(--mom);font-size:1rem;margin-bottom:8px}
+.momtop ol{margin-left:18px;font-size:.92rem}
+.momtop li{margin-bottom:6px}
+
+details.set{background:var(--card);border:2px solid var(--line);border-radius:20px;margin-bottom:14px;box-shadow:var(--sh);overflow:hidden}
+details.set summary{cursor:pointer;padding:14px 16px;font-weight:900;color:var(--blue);list-style:none}
+details.set summary::-webkit-details-marker{display:none}
+details.set summary::before{content:"▸ "}
+details.set[open] summary::before{content:"▾ "}
+.setin{padding:0 16px 16px;display:grid;gap:12px}
+.setin label{font-weight:800;font-size:.9rem;display:block;margin-bottom:5px}
+.setin select,.setin input{border:2px solid var(--line);border-radius:12px;padding:9px 12px;font-family:inherit;font-size:1rem;background:var(--bg);width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.picks{display:flex;flex-wrap:wrap;gap:7px}
+.pick{border:2px solid var(--line);background:var(--bg);border-radius:12px;padding:7px 11px;cursor:pointer;font-family:inherit;font-weight:800;font-size:.86rem}
+.pick .zh{font-size:1rem;margin-right:4px}
+.pick.on{border-color:var(--jade);background:var(--jade-l);color:var(--jade-d)}
+.note{font-size:.8rem;color:var(--soft)}
+
+.modes{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+.mode{border:2px solid var(--line);background:var(--card);border-radius:15px;padding:9px 13px;cursor:pointer;
+  font-family:inherit;font-weight:800;font-size:.88rem;color:var(--soft);white-space:nowrap;flex-shrink:0}
+.mode .ic{display:block;font-size:1.2rem;text-align:center}
+.mode.on{background:var(--jade);border-color:var(--jade);color:#fff}
+
+.box{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:18px 16px;margin-bottom:16px;box-shadow:var(--sh)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:2px solid var(--line);background:var(--bg);border-radius:20px;padding:5px 11px;cursor:pointer;font-family:inherit;font-weight:800;font-size:.8rem;color:var(--soft)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+
+.prog{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:.86rem;color:var(--soft);margin-bottom:8px}
+.pbar{height:10px;border-radius:8px;background:#e8e2d5;overflow:hidden;margin-bottom:14px}
+.pbar i{display:block;height:100%;background:var(--jade);transition:width .3s}
+
+.qcard{background:var(--blue-l);border:3px solid var(--blue);border-radius:22px;padding:18px 14px;text-align:center;position:relative}
+.qcard .who{font-size:.8rem;font-weight:900;color:var(--blue);text-transform:uppercase;letter-spacing:.06em}
+.acard{background:var(--jade-l);border:3px solid var(--jade);border-radius:22px;padding:18px 14px;text-align:center;margin-top:12px;position:relative}
+.acard .who{font-size:.8rem;font-weight:900;color:var(--jade-d);text-transform:uppercase;letter-spacing:.06em}
+.zhl{font-family:'Noto Sans SC',sans-serif;font-size:1.9rem;font-weight:900;line-height:1.3;margin-top:4px}
+.pyl{font-size:1.1rem;font-weight:900;color:var(--gold)}
+.trl{font-size:1rem;font-weight:800;color:var(--mom)}
+.rul{font-size:.98rem;font-weight:700;color:var(--soft);margin-top:4px}
+.tip{background:#fff;border:1px dashed var(--line);border-radius:12px;padding:8px 12px;margin-top:10px;font-size:.86rem;color:var(--soft);text-align:left}
+.tip b{color:var(--ink)}
+.say{border:none;border-radius:14px;padding:10px 16px;font-family:inherit;font-weight:900;font-size:.95rem;cursor:pointer;margin-top:10px;
+  background:var(--blue);color:#fff;box-shadow:0 3px 0 #27568a}
+.acard .say{background:var(--jade);box-shadow:0 3px 0 var(--jade-d)}
+.say:active{transform:translateY(2px);box-shadow:none}
+
+.big{width:100%;border:none;border-radius:20px;background:var(--gold);color:#fff;font-family:inherit;font-weight:900;
+  font-size:1.35rem;padding:18px;cursor:pointer;box-shadow:0 5px 0 #b47f16;margin-top:14px}
+.big:active{transform:translateY(3px);box-shadow:0 2px 0 #b47f16}
+.row{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.btn{border:none;border-radius:15px;padding:13px 14px;font-family:inherit;font-weight:900;font-size:1rem;cursor:pointer;
+  background:var(--jade);color:#fff;box-shadow:0 4px 0 var(--jade-d);flex:1;min-width:130px}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--jade-d)}
+.btn.red{background:var(--cin);box-shadow:0 4px 0 #8f3626}
+.btn.ghost{background:var(--card);color:var(--jade-d);border:2px solid var(--jade);box-shadow:0 3px 0 var(--line)}
+
+.multi{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px}
+.mbtn{border:2px solid var(--jade);background:#fff;border-radius:14px;padding:8px 12px;cursor:pointer;font-family:inherit;text-align:center}
+.mbtn .zh{font-size:1.15rem;font-weight:700;display:block}
+.mbtn .p{font-size:.8rem;color:var(--gold);font-weight:900;display:block}
+.mbtn .t{font-size:.76rem;color:var(--mom);font-weight:800;display:block}
+
+/* рассказ */
+.line{display:flex;gap:10px;align-items:center;border:2px solid var(--line);border-radius:16px;padding:11px 12px;margin-bottom:9px;background:var(--bg)}
+.line .n{width:28px;height:28px;border-radius:50%;background:var(--jade);color:#fff;font-weight:900;display:grid;place-items:center;flex-shrink:0;font-size:.85rem}
+.line .mid{flex:1;min-width:0}
+.line .z{font-family:'Noto Sans SC',sans-serif;font-size:1.3rem;font-weight:700}
+.line .p{font-size:.92rem;color:var(--gold);font-weight:900}
+.line .t{font-size:.86rem;color:var(--mom);font-weight:800}
+.line .r{font-size:.84rem;color:var(--soft)}
+.line button{background:var(--gold-l);border:none;border-radius:12px;width:40px;height:40px;cursor:pointer;font-size:1.1rem;flex-shrink:0}
+.line.on{border-color:var(--gold);background:var(--gold-l)}
+
+/* шпаргалка */
+.sh h4{color:var(--blue);font-size:1rem;margin:14px 0 8px}
+.qa{border:2px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px;background:var(--bg)}
+.qa .q,.qa .a{display:flex;gap:8px;align-items:flex-start}
+.qa .a{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line)}
+.qa .lab{font-weight:900;font-size:.75rem;padding:2px 7px;border-radius:8px;flex-shrink:0;margin-top:3px}
+.qa .q .lab{background:var(--blue-l);color:var(--blue)}
+.qa .a .lab{background:var(--jade-l);color:var(--jade-d)}
+.qa .tx{flex:1;min-width:0}
+.qa .z{font-family:'Noto Sans SC',sans-serif;font-size:1.1rem;font-weight:700}
+.qa .p{font-size:.85rem;color:var(--gold);font-weight:900}
+.qa .t{font-size:.8rem;color:var(--mom);font-weight:800}
+.qa .r{font-size:.8rem;color:var(--soft)}
+.qa button{background:var(--gold-l);border:none;border-radius:10px;width:34px;height:34px;cursor:pointer;flex-shrink:0}
+
+.done{background:linear-gradient(135deg,var(--jade-d),var(--jade));color:#fff;border-radius:22px;padding:24px;text-align:center}
+.done .b{font-size:2.6rem}
+.done h3{font-size:1.25rem;margin:6px 0}
+.done ul{list-style:none;margin:12px 0;text-align:left;background:rgba(255,255,255,.12);border-radius:14px;padding:10px 14px}
+.done li{padding:4px 0;font-size:.92rem}
+.done .zh{font-weight:700}
+
+.warn{display:none;background:var(--gold-l);border:2px solid #f0d79b;border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:.9rem;color:#7a5a12}
+.warn.show{display:block}
+footer{text-align:center;color:var(--soft);font-size:.85rem;margin-top:22px}
+footer .zh{color:var(--jade);font-size:1.2rem;display:block}
+.conf{position:fixed;inset:0;pointer-events:none;z-index:60}
+.conf i{position:absolute;width:10px;height:14px;border-radius:2px;animation:fall 2.2s linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
+@media print{.modes,.momtop,details.set,header p,.warn,.qa button{display:none}.box{box-shadow:none;border:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding-top:14px}
+.pnav a{border:2px solid var(--line);background:var(--card);border-radius:20px;padding:6px 14px;font-weight:800;font-size:.86rem;color:var(--soft);text-decoration:none}
+.pnav a.on{background:var(--mom);border-color:var(--mom);color:#fff}
+@media print{.pnav{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="pnav">
+    <a href="index.html">🐼 Домашка: моя семья</a>
+    <a href="voprosy-askar.html" class="on" aria-current="page">👩‍👦 Мама спрашивает</a>
+  </nav>
+
+  <header>
+    <div class="p">👩‍👦</div>
+    <div class="zhh">妈妈问，阿斯凯回答</div>
+    <div class="py">Māma wèn, Āsīkǎi huídá</div>
+    <h1>Мама спрашивает — Аскар отвечает</h1>
+    <p>Вопросы по всем пройденным темам. У каждого — озвучка, пиньинь и чтение русскими буквами.</p>
+  </header>
+
+  <div class="warn" id="warn">
+    🔇 Китайский голос не найден — фразы не будут звучать. Откройте страницу в браузере <b>Chrome</b> или <b>Edge</b> на компьютере.
+  </div>
+
+  <div class="momtop">
+    <h3>👩 Как заниматься</h3>
+    <ol>
+      <li><b>Один раз проверьте настройки ниже</b> — возраст, день рождения, кто в семье. Ответы подстроятся под Аскара.</li>
+      <li><b>Задайте вопрос:</b> прочитайте строку «по-русски буквами» или нажмите 🔊 — вопрос прочитает китаянка.</li>
+      <li><b>Дайте Аскару ответить самому</b>, не торопите. Только потом нажмите «Показать ответ» и проверьте.</li>
+      <li>Ответил сам — «✅ Ответил». Запнулся — «🔄 Ещё учим»: такие вопросы в конце можно повторить отдельно.</li>
+      <li>Во вкладке <b>«Рассказ о себе»</b> все ответы собраны в один рассказ — цель, чтобы Аскар мог рассказать его целиком.</li>
+    </ol>
+  </div>
+
+  <details class="set" id="setbox">
+    <summary>⚙️ Настройки: данные Аскара (проверьте один раз)</summary>
+    <div class="setin">
+      <div class="two">
+        <div><label>Сколько лет</label><select id="sAge"></select></div>
+        <div><label>Любимая команда</label><select id="sTeam"></select></div>
+      </div>
+      <div class="two">
+        <div><label>День рождения — месяц</label><select id="sMon"></select></div>
+        <div><label>День рождения — число</label><select id="sDay"></select></div>
+      </div>
+      <div><label>Где живём</label><select id="sCity"></select></div>
+      <div>
+        <label>Кто живёт в семье (кроме Аскара)</label>
+        <div class="picks" id="sFam"></div>
+      </div>
+      <div>
+        <label>Домашний телефон (по желанию)</label>
+        <input id="sPhone" inputmode="numeric" placeholder="только цифры, например 87011234567">
+        <div class="note">Если указать, появится вопрос про номер телефона. Номер никуда не отправляется — остаётся только на этом устройстве.</div>
+      </div>
+    </div>
+  </details>
+
+  <div class="modes" id="modes"></div>
+  <div id="pane"></div>
+
+  <footer>
+    <span class="zh">加油！💪</span>
+    Вопросы по пройденным темам · абонементы №1 и №2
+  </footer>
+</div>
+
+<script>
+/* ============ ЧИСЛА ============ */
+var DZ=['零','一','二','三','四','五','六','七','八','九'];
+var DP=['líng','yī','èr','sān','sì','wǔ','liù','qī','bā','jiǔ'];
+var DT=['лин','и','эр','сань','сы','у','лиу','ци','ба','цзиу'];
+function num(n){
+  if(n<10) return {zh:DZ[n],py:DP[n],tr:DT[n]};
+  if(n===10) return {zh:'十',py:'shí',tr:'ши'};
+  var t=Math.floor(n/10), u=n%10;
+  var zh=(t>1?DZ[t]:'')+'十'+(u?DZ[u]:'');
+  var py=(t>1?DP[t]:'')+'shí'+(u?((u===2?"'":'')+DP[u]):'');
+  var tr=(t>1?DT[t]+'-':'')+'ши'+(u?'-'+DT[u]:'');
+  return {zh:zh,py:py,tr:tr};
+}
+/* количество людей: 2 = 两 */
+function cnt(n){ return n===2 ? {zh:'两',py:'liǎng',tr:'лян'} : num(n); }
+var RU_MON=['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+var WEEK=[
+  {zh:'星期天',py:'xīngqītiān',tr:'син-ци-тянь',ru:'воскресенье'},
+  {zh:'星期一',py:'xīngqīyī',tr:'син-ци-и',ru:'понедельник'},
+  {zh:'星期二',py:'xīngqī\'èr',tr:'син-ци-эр',ru:'вторник'},
+  {zh:'星期三',py:'xīngqīsān',tr:'син-ци-сань',ru:'среда'},
+  {zh:'星期四',py:'xīngqīsì',tr:'син-ци-сы',ru:'четверг'},
+  {zh:'星期五',py:'xīngqīwǔ',tr:'син-ци-у',ru:'пятница'},
+  {zh:'星期六',py:'xīngqīliù',tr:'син-ци-лиу',ru:'суббота'}
+];
+
+/* ============ СЛОВАРИКИ ДЛЯ НАСТРОЕК ============ */
+var CITIES=[
+  {zh:'阿斯塔纳',py:'Āsītǎnà',tr:'а-сы-та-на',ru:'Астана',ruIn:'в Астане'},
+  {zh:'阿拉木图',py:'Ālāmùtú',tr:'а-ла-му-ту',ru:'Алматы',ruIn:'в Алматы'},
+  {zh:'莫斯科',py:'Mòsīkē',tr:'мо-сы-кэ',ru:'Москва',ruIn:'в Москве'},
+  {zh:'北京',py:'Běijīng',tr:'бэй-цзин',ru:'Пекин',ruIn:'в Пекине'}
+];
+var TEAMS=[
+  {zh:'英国',py:'Yīngguó',tr:'ин-го',ru:'Англии'},
+  {zh:'阿根廷',py:'Āgēntíng',tr:'а-гэнь-тин',ru:'Аргентины'},
+  {zh:'西班牙',py:'Xībānyá',tr:'си-бань-я',ru:'Испании'},
+  {zh:'巴西',py:'Bāxī',tr:'ба-си',ru:'Бразилии'},
+  {zh:'葡萄牙',py:'Pútáoyá',tr:'пу-тао-я',ru:'Португалии'},
+  {zh:'法国',py:'Fǎguó',tr:'фа-го',ru:'Франции'}
+];
+var FAM=[
+  {k:'baba',zh:'爸爸',py:'bàba',tr:'ба-ба',ru:'папа'},
+  {k:'mama',zh:'妈妈',py:'māma',tr:'ма-ма',ru:'мама'},
+  {k:'gege',zh:'哥哥',py:'gēge',tr:'гэ-гэ',ru:'старший брат'},
+  {k:'didi',zh:'弟弟',py:'dìdi',tr:'ди-ди',ru:'младший брат'},
+  {k:'jiejie',zh:'姐姐',py:'jiějie',tr:'цзе-цзе',ru:'старшая сестра'},
+  {k:'meimei',zh:'妹妹',py:'mèimei',tr:'мэй-мэй',ru:'младшая сестра'},
+  {k:'yeye',zh:'爷爷',py:'yéye',tr:'е-е',ru:'дедушка (папа папы)'},
+  {k:'waigong',zh:'外公',py:'wàigōng',tr:'вай-гун',ru:'дедушка (папа мамы)'}
+];
+
+/* ============ НАСТРОЙКИ (сохраняются только в этом браузере) ============ */
+var S={age:7, mon:9, day:10, city:0, team:0, fam:['baba','mama','didi'], phone:''};
+try{ var saved=JSON.parse(localStorage.getItem('askarQA')||'null'); if(saved) for(var k in saved) S[k]=saved[k]; }catch(e){}
+function save(){ try{ localStorage.setItem('askarQA',JSON.stringify(S)); }catch(e){} }
+
+/* ============ ВОПРОСЫ ============ */
+/* q: вопрос; a(): ответ под настройки; multi(): несколько вариантов ответа */
+function famList(){ return FAM.filter(function(f){ return S.fam.indexOf(f.k)>=0; }); }
+function has(k){ return S.fam.indexOf(k)>=0; }
+function yesNo(k){
+  var f=FAM.filter(function(x){ return x.k===k; })[0];
+  return {
+    topic:'Семья',
+    q:{zh:'你有'+f.zh+'吗？',py:'Nǐ yǒu '+f.py+' ma?',tr:'ни йоу '+f.tr+' ма',ru:'У тебя есть '+f.ru+'?'},
+    a:function(){
+      return has(k)
+        ? {zh:'有，我有'+f.zh+'。',py:'Yǒu, wǒ yǒu '+f.py+'.',tr:'йоу, во йоу '+f.tr,ru:'Да, у меня есть '+f.ru+'.'}
+        : {zh:'没有，我没有'+f.zh+'。',py:'Méiyǒu, wǒ méiyǒu '+f.py+'.',tr:'мэй-йоу, во мэй-йоу '+f.tr,ru:'Нет, у меня нет '+f.ru+'.'};
+    },
+    tip:'<b>有</b> «йоу» — есть, <b>没有</b> «мэй-йоу» — нет. Частица <b>吗</b> «ма» в конце делает вопрос «да или нет?». Отвечать можно коротко: просто «йоу» или «мэй-йоу».'
+  };
+}
+
+var QUESTIONS=[
+  {topic:'Знакомство',
+   q:{zh:'你好！',py:'Nǐ hǎo!',tr:'ни хао',ru:'Привет!'},
+   a:function(){ return {zh:'你好！',py:'Nǐ hǎo!',tr:'ни хао',ru:'Привет!'}; },
+   tip:'Можно ответить и «нинь хао» 您好 — так вежливо здороваются со взрослыми.'},
+  {topic:'Знакомство',
+   q:{zh:'你叫什么名字？',py:'Nǐ jiào shénme míngzi?',tr:'ни цзяо шэнь-мэ мин-цзы',ru:'Как тебя зовут?'},
+   a:function(){ return {zh:'我叫阿斯凯。',py:'Wǒ jiào Āsīkǎi.',tr:'во цзяо а-сы-кай',ru:'Меня зовут Аскар.'}; },
+   tip:'<b>阿斯凯</b> «а-сы-кай» — так имя Аскар звучит по-китайски. Можно отвечать и просто «во цзяо Аскар».'},
+  {topic:'Возраст и даты',
+   q:{zh:'你今年几岁？',py:'Nǐ jīnnián jǐ suì?',tr:'ни цзинь-нянь цзи суй',ru:'Сколько тебе лет?'},
+   a:function(){ var n=num(S.age); return {zh:'我今年'+n.zh+'岁。',py:'Wǒ jīnnián '+n.py+' suì.',tr:'во цзинь-нянь '+n.tr+' суй',ru:'Мне '+S.age+' лет.'}; },
+   tip:'<b>岁</b> «суй» — «лет». <b>今年</b> «цзинь-нянь» — «в этом году». Короткий ответ тоже правильный: «ци суй».'},
+  {topic:'Возраст и даты',
+   q:{zh:'你的生日是几月几号？',py:'Nǐ de shēngrì shì jǐ yuè jǐ hào?',tr:'ни дэ шэн-жи ши цзи юэ цзи хао',ru:'Когда у тебя день рождения?'},
+   a:function(){ var m=num(S.mon), d=num(S.day);
+     return {zh:'我的生日是'+m.zh+'月'+d.zh+'号。',py:'Wǒ de shēngrì shì '+m.py+' yuè '+d.py+' hào.',
+             tr:'во дэ шэн-жи ши '+m.tr+' юэ '+d.tr+' хао',ru:'Мой день рождения '+S.day+' '+RU_MON[S.mon-1]+'.'}; },
+   tip:'В китайском сначала <b>месяц</b> (月 «юэ»), потом <b>число</b> (号 «хао») — наоборот, чем в русском. Месяц — это просто номер: сентябрь = «цзиу юэ», девятый месяц.'},
+  {topic:'Возраст и даты', dyn:'date',
+   q:{zh:'今天几月几号？',py:'Jīntiān jǐ yuè jǐ hào?',tr:'цзинь-тянь цзи юэ цзи хао',ru:'Какое сегодня число?'},
+   a:function(){ var t=new Date(), m=num(t.getMonth()+1), d=num(t.getDate());
+     return {zh:'今天'+m.zh+'月'+d.zh+'号。',py:'Jīntiān '+m.py+' yuè '+d.py+' hào.',tr:'цзинь-тянь '+m.tr+' юэ '+d.tr+' хао',
+             ru:'Сегодня '+t.getDate()+' '+RU_MON[t.getMonth()]+'.'}; },
+   tip:'Ответ меняется каждый день — сайт сам берёт сегодняшнюю дату. Хорошая разминка с календарём в руках.'},
+  {topic:'Возраст и даты', dyn:'week',
+   q:{zh:'今天星期几？',py:'Jīntiān xīngqī jǐ?',tr:'цзинь-тянь син-ци цзи',ru:'Какой сегодня день недели?'},
+   a:function(){ var w=WEEK[new Date().getDay()];
+     return {zh:'今天'+w.zh+'。',py:'Jīntiān '+w.py+'.',tr:'цзинь-тянь '+w.tr,ru:'Сегодня '+w.ru+'.'}; },
+   tip:'Дни недели — это «неделя + номер»: понедельник = «син-ци-и» (неделя-один), вторник = «син-ци-эр»… Только воскресенье особенное: «син-ци-тянь».'},
+  {topic:'Где живу',
+   q:{zh:'你住在哪儿？',py:'Nǐ zhù zài nǎr?',tr:'ни чжу цзай нар',ru:'Где ты живёшь?'},
+   a:function(){ var c=CITIES[S.city];
+     return {zh:'我住在'+c.zh+'。',py:'Wǒ zhù zài '+c.py+'.',tr:'во чжу цзай '+c.tr,ru:'Я живу '+c.ruIn+'.'}; },
+   tip:'<b>住在</b> «чжу цзай» — «жить в». На уроке Аскар ещё говорил «во бу чжу цзай…» — «я не живу в…». Спросите его про другой город, пусть ответит «нет, не живу».'},
+  {topic:'Где живу',
+   q:{zh:'你住在北京吗？',py:'Nǐ zhù zài Běijīng ma?',tr:'ни чжу цзай бэй-цзин ма',ru:'Ты живёшь в Пекине?'},
+   a:function(){ var c=CITIES[S.city];
+     return S.city===3
+       ? {zh:'对，我住在北京。',py:'Duì, wǒ zhù zài Běijīng.',tr:'дуй, во чжу цзай бэй-цзин',ru:'Да, я живу в Пекине.'}
+       : {zh:'不，我不住在北京。我住在'+c.zh+'。',py:'Bù, wǒ bú zhù zài Běijīng. Wǒ zhù zài '+c.py+'.',tr:'бу, во бу чжу цзай бэй-цзин. во чжу цзай '+c.tr,ru:'Нет, я не живу в Пекине. Я живу '+c.ruIn+'.'}; },
+   tip:'<b>不</b> «бу» — «не». Ставится прямо перед глаголом: «во <b>бу</b> чжу цзай…» — «я <b>не</b> живу в…».'},
+  {topic:'Семья',
+   q:{zh:'你家有几口人？',py:'Nǐ jiā yǒu jǐ kǒu rén?',tr:'ни цзя йоу цзи коу жэнь',ru:'Сколько человек в твоей семье?'},
+   a:function(){ var n=famList().length+1, c=cnt(n);
+     return {zh:'我家有'+c.zh+'口人。',py:'Wǒ jiā yǒu '+c.py+' kǒu rén.',tr:'во цзя йоу '+c.tr+' коу жэнь',ru:'В моей семье '+n+' '+(n>=2&&n<=4?'человека':'человек')+'.'}; },
+   tip:'Главная ошибка — пропустить <b>口</b> «коу». Сказать «сы жэнь» неправильно, нужно «сы <b>коу</b> жэнь». Аскар считает себя тоже!'},
+  {topic:'Семья',
+   q:{zh:'你家有谁？',py:'Nǐ jiā yǒu shéi?',tr:'ни цзя йоу шэй',ru:'Кто есть в твоей семье?'},
+   a:function(){
+     var l=famList();
+     if(!l.length) return {zh:'我家有我。',py:'Wǒ jiā yǒu wǒ.',tr:'во цзя йоу во',ru:'В моей семье я.'};
+     return {zh:'我家有'+l.map(function(f){return f.zh;}).join('、')+'和我。',
+             py:'Wǒ jiā yǒu '+l.map(function(f){return f.py;}).join(', ')+' hé wǒ.',
+             tr:'во цзя йоу '+l.map(function(f){return f.tr;}).join(', ')+' хэ во',
+             ru:'В моей семье '+l.map(function(f){return f.ru;}).join(', ')+' и я.'}; },
+   tip:'<b>和</b> «хэ» — «и». Ставится только перед последним, как в русском: «папа, мама <b>и</b> я».'},
+  yesNo('gege'), yesNo('didi'), yesNo('jiejie'), yesNo('meimei'),
+  {topic:'Семья', multi:true,
+   q:{zh:'这是谁？',py:'Zhè shì shéi?',tr:'чжэ ши шэй',ru:'Кто это? (покажите фото)'},
+   a:function(){ return {zh:'这是我……',py:'Zhè shì wǒ …',tr:'чжэ ши во…',ru:'Это мой / моя…'}; },
+   opts:function(){ return famList().map(function(f){
+     return {zh:'这是我'+f.zh+'。',py:'Zhè shì wǒ '+f.py+'.',tr:'чжэ ши во '+f.tr,ru:f.ru}; }); },
+   tip:'<b>Возьмите семейное фото</b> и показывайте пальцем на разных людей. Ниже — готовые ответы для каждого, нажмите нужный, чтобы проверить.'},
+  {topic:'Футбол',
+   q:{zh:'你喜欢足球吗？',py:'Nǐ xǐhuan zúqiú ma?',tr:'ни си-хуань цзу-цю ма',ru:'Тебе нравится футбол?'},
+   a:function(){ return {zh:'喜欢！我喜欢足球。',py:'Xǐhuan! Wǒ xǐhuan zúqiú.',tr:'си-хуань! во си-хуань цзу-цю',ru:'Нравится! Я люблю футбол.'}; },
+   tip:'<b>足球</b> «цзу-цю»: 足 — нога, 球 — мяч. Аскар знает это слово хорошо.'},
+  {topic:'Футбол',
+   q:{zh:'你喜欢哪个队？',py:'Nǐ xǐhuan nǎge duì?',tr:'ни си-хуань на-гэ дуй',ru:'Какая команда тебе нравится?'},
+   a:function(){ var t=TEAMS[S.team];
+     return {zh:'我喜欢'+t.zh+'队。',py:'Wǒ xǐhuan '+t.py+' duì.',tr:'во си-хуань '+t.tr+' дуй',ru:'Мне нравится сборная '+t.ru+'.'}; },
+   tip:'<b>队</b> «дуй» — команда. Название страны + «дуй» = сборная.'},
+  {topic:'Футбол',
+   q:{zh:'你有球吗？',py:'Nǐ yǒu qiú ma?',tr:'ни йоу цю ма',ru:'У тебя есть мяч?'},
+   a:function(){ return {zh:'有，我有球。',py:'Yǒu, wǒ yǒu qiú.',tr:'йоу, во йоу цю',ru:'Да, у меня есть мяч.'}; },
+   tip:'Аскар сам сказал это на уроке про свой мяч. Спросите ещё: «ни йоу цю-мэнь ма?» — «у тебя есть ворота?» Ответ: «йоу, во йоу цю-мэнь».'},
+  {topic:'Футбол',
+   q:{zh:'门将是什么？',py:'Ménjiàng shì shénme?',tr:'мэнь-цзян ши шэнь-мэ',ru:'Что такое «мэнь-цзян»?'},
+   a:function(){ return {zh:'门将',py:'ménjiàng',tr:'мэнь-цзян',ru:'Вратарь!'}; },
+   tip:'Здесь Аскар отвечает по-русски — это проверка, помнит ли он слово. Буквально «охранник ворот».'},
+  {topic:'Телефон', needPhone:true,
+   q:{zh:'你家的电话号码是多少？',py:'Nǐ jiā de diànhuà hàomǎ shì duōshao?',tr:'ни цзя дэ дянь-хуа хао-ма ши до-шао',ru:'Какой у вас номер телефона?'},
+   a:function(){
+     var d=(S.phone||'').replace(/\D/g,'').split('');
+     var zh=d.map(function(x){ return x==='1'?'幺':DZ[+x]; }).join('');
+     var py=d.map(function(x){ return x==='1'?'yāo':DP[+x]; }).join(' ');
+     var tr=d.map(function(x){ return x==='1'?'яо':DT[+x]; }).join(' ');
+     return {zh:'我家的电话号码是'+zh+'。',py:'Wǒ jiā de diànhuà hàomǎ shì '+py+'.',tr:'во цзя дэ дянь-хуа хао-ма ши '+tr,ru:'Наш номер: '+d.join('')+'.'}; },
+   tip:'В номерах телефона единицу читают не «и», а <b>«яо» 幺</b> — чтобы не путать с семёркой. Аскар это помнит с июля! Цифры называются по одной.'},
+  {topic:'Знакомство',
+   q:{zh:'再见！',py:'Zàijiàn!',tr:'цзай-цзянь',ru:'До свидания!'},
+   a:function(){ return {zh:'再见！',py:'Zàijiàn!',tr:'цзай-цзянь',ru:'До свидания!'}; },
+   tip:'Хороший вопрос, чтобы закончить занятие.'}
+];
+function activeQ(){ return QUESTIONS.filter(function(q){ return !q.needPhone || (S.phone||'').replace(/\D/g,'').length>=4; }); }
+
+/* ============ ЗВУК ============ */
+var VOICE=null, HAS_ZH=false, AUDIO_ON=false;
+function pickVoice(){
+  if(!window.speechSynthesis) return;
+  var v=speechSynthesis.getVoices(); if(!v.length) return;
+  VOICE=null;
+  for(var i=0;i<v.length;i++){ if(/云夏|Yunxia/i.test(v[i].name)){VOICE=v[i];break;} }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/晓晓|Xiaoxiao/i.test(v[i].name)){VOICE=v[i];break;} }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/zh[-_]CN/i.test(v[i].lang)){VOICE=v[i];break;} }
+  if(!VOICE) for(var i=0;i<v.length;i++){ if(/^zh/i.test(v[i].lang)){VOICE=v[i];break;} }
+  HAS_ZH=!!VOICE;
+  if(HAS_ZH) document.getElementById('warn').className='warn';
+}
+function checkVoice(){ pickVoice(); if(!HAS_ZH) document.getElementById('warn').className='warn show'; }
+if(window.speechSynthesis){ pickVoice(); speechSynthesis.onvoiceschanged=pickVoice; }
+setTimeout(checkVoice,1500); setTimeout(checkVoice,4000);
+['pointerdown','keydown','touchstart'].forEach(function(e){
+  document.addEventListener(e,function(){ AUDIO_ON=true; },{once:true});
+});
+function speak(t,onend){
+  if(!window.speechSynthesis||!AUDIO_ON){ if(onend) setTimeout(onend,300); return; }
+  try{
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(String(t).replace(/[。？！、：……]/g,' '));
+    u.lang='zh-CN'; u.rate=0.72; u.pitch=1.05;
+    if(VOICE) u.voice=VOICE;
+    if(onend){ u.onend=onend; u.onerror=onend; }
+    speechSynthesis.speak(u);
+  }catch(e){ if(onend) onend(); }
+}
+var AC=null;
+function beep(f,d,t){
+  try{
+    AC=AC||new (window.AudioContext||window.webkitAudioContext)();
+    var o=AC.createOscillator(),g=AC.createGain();
+    o.type=t||'sine'; o.frequency.value=f;
+    g.gain.setValueAtTime(.12,AC.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);
+    o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d);
+  }catch(e){}
+}
+function sOK(){ beep(660,.12); setTimeout(function(){beep(880,.16);},100); }
+function sWIN(){ [523,659,784,1047].forEach(function(f,i){ setTimeout(function(){beep(f,.2);},i*95); }); }
+
+function $(id){ return document.getElementById(id); }
+function shuffle(a){ return a.slice().sort(function(){ return Math.random()-0.5; }); }
+function el(t,c,h){ var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e; }
+function confetti(){
+  var box=el('div','conf'); document.body.appendChild(box);
+  var cols=['#2f8f6a','#d99a2b','#3a6fa8','#c04a35','#7a6bb5'];
+  for(var i=0;i<55;i++){
+    var p=el('i');
+    p.style.left=Math.random()*100+'vw'; p.style.top=(-10-Math.random()*15)+'vh';
+    p.style.background=cols[i%5]; p.style.animationDelay=(Math.random()*.6)+'s';
+    box.appendChild(p);
+  }
+  setTimeout(function(){ box.remove(); },3200);
+}
+function phrase(o,cls){
+  return '<div class="zhl zh">'+o.zh+'</div><div class="pyl">'+o.py+'</div>'+
+         '<div class="trl">по-русски: «'+o.tr+'»</div><div class="rul">'+o.ru+'</div>';
+}
+
+/* ============ НАСТРОЙКИ: UI ============ */
+(function(){
+  var sAge=$('sAge'); for(var a=5;a<=12;a++){ var o=el('option',null,a+' — '+num(a).zh+'岁'); o.value=a; sAge.appendChild(o); }
+  var sMon=$('sMon'); for(var m=1;m<=12;m++){ var o2=el('option',null,RU_MON[m-1]+' — '+num(m).zh+'月'); o2.value=m; sMon.appendChild(o2); }
+  var sDay=$('sDay'); for(var d=1;d<=31;d++){ var o3=el('option',null,d+' — '+num(d).zh+'号'); o3.value=d; sDay.appendChild(o3); }
+  var sCity=$('sCity'); CITIES.forEach(function(c,i){ var o4=el('option',null,c.ru+' — '+c.zh); o4.value=i; sCity.appendChild(o4); });
+  var sTeam=$('sTeam'); TEAMS.forEach(function(t,i){ var o5=el('option',null,t.zh+'队 — сборная '+t.ru); o5.value=i; sTeam.appendChild(o5); });
+  sAge.value=S.age; sMon.value=S.mon; sDay.value=S.day; sCity.value=S.city; sTeam.value=S.team; $('sPhone').value=S.phone||'';
+  function upd(){ S.age=+sAge.value; S.mon=+sMon.value; S.day=+sDay.value; S.city=+sCity.value; S.team=+sTeam.value; S.phone=$('sPhone').value; save(); render(); }
+  [sAge,sMon,sDay,sCity,sTeam].forEach(function(x){ x.onchange=upd; });
+  $('sPhone').oninput=upd;
+  var box=$('sFam');
+  FAM.forEach(function(f){
+    var b=el('button','pick'+(S.fam.indexOf(f.k)>=0?' on':''),'<span class="zh">'+f.zh+'</span>'+f.ru);
+    b.onclick=function(){
+      var i=S.fam.indexOf(f.k);
+      if(i>=0) S.fam.splice(i,1); else S.fam.push(f.k);
+      b.className='pick'+(S.fam.indexOf(f.k)>=0?' on':'');
+      speak(f.zh); save(); render();
+    };
+    box.appendChild(b);
+  });
+})();
+
+/* ============ РЕЖИМЫ ============ */
+var MODES=[{id:'ask',ic:'❓',name:'Вопрос — ответ'},{id:'story',ic:'🎤',name:'Рассказ о себе'},{id:'sheet',ic:'📋',name:'Шпаргалка'}];
+var mode='ask', topic='Все';
+var session=null;
+
+(function(){
+  var box=$('modes');
+  MODES.forEach(function(m){
+    var b=el('button','mode'+(m.id===mode?' on':''),'<span class="ic">'+m.ic+'</span>'+m.name);
+    b.onclick=function(){
+      mode=m.id;
+      for(var i=0;i<box.children.length;i++) box.children[i].className='mode';
+      b.className='mode on'; render();
+    };
+    box.appendChild(b);
+  });
+})();
+
+function topicChips(){
+  var topics=['Все']; activeQ().forEach(function(q){ if(topics.indexOf(q.topic)<0) topics.push(q.topic); });
+  var box=el('div','chips');
+  topics.forEach(function(t){
+    var c=el('button','chip'+(t===topic?' on':''),t);
+    c.onclick=function(){ topic=t; session=null; render(); };
+    box.appendChild(c);
+  });
+  return box;
+}
+function render(){
+  var p=$('pane'); p.innerHTML='';
+  if(mode==='ask') p.appendChild(viewAsk());
+  else if(mode==='story') p.appendChild(viewStory());
+  else p.appendChild(viewSheet());
+}
+
+/* ---------- 1. Вопрос — ответ ---------- */
+function newSession(list){
+  return {list:list, i:0, ok:[], learn:[]};
+}
+function viewAsk(){
+  var box=el('div','box');
+  box.appendChild(topicChips());
+  if(!session){
+    var src=activeQ().filter(function(q){ return topic==='Все' || q.topic===topic; });
+    session=newSession(shuffle(src));
+  }
+  var s=session;
+  if(s.i>=s.list.length) { box.appendChild(viewDone()); return box; }
+
+  var q=s.list[s.i];
+  var pr=el('div','prog','<span>Вопрос '+(s.i+1)+' из '+s.list.length+'</span><span>✅ '+s.ok.length+' · 🔄 '+s.learn.length+'</span>');
+  var pb=el('div','pbar','<i style="width:'+(s.i/s.list.length*100)+'%"></i>');
+  box.append(pr,pb);
+
+  var qc=el('div','qcard','<div class="who">👩 Мама спрашивает · '+q.topic+'</div>'+phrase(q.q));
+  var qs=el('button','say','🔊 Прочитать вопрос'); qs.onclick=function(){ speak(q.q.zh); };
+  qc.appendChild(qs);
+  box.appendChild(qc);
+
+  var show=el('button','big','👀 Показать ответ');
+  var ans=el('div');
+  var row=el('div','row');
+  var okB=el('button','btn','✅ Ответил сам');
+  var lrB=el('button','btn red','🔄 Ещё учим');
+  row.append(okB,lrB); row.style.display='none';
+
+  show.onclick=function(){
+    var a=q.a();
+    var ac=el('div','acard','<div class="who">🧒 Аскар отвечает</div>'+phrase(a));
+    var as=el('button','say','🔊 Послушать ответ'); as.onclick=function(){ speak(a.zh); };
+    ac.appendChild(as);
+    if(q.multi){
+      var ml=el('div','multi');
+      var list=q.opts();
+      if(!list.length) ml.innerHTML='<div class="note">Отметьте в настройках, кто есть в семье.</div>';
+      list.forEach(function(o){
+        var b=el('button','mbtn','<span class="zh">'+o.zh+'</span><span class="p">'+o.py+'</span><span class="t">«'+o.tr+'»</span>');
+        b.onclick=function(){ speak(o.zh); };
+        ml.appendChild(b);
+      });
+      ac.appendChild(ml);
+    }
+    if(q.tip) ac.appendChild(el('div','tip','💡 '+q.tip));
+    ans.appendChild(ac);
+    speak(a.zh);
+    show.style.display='none';
+    row.style.display='flex';
+  };
+  okB.onclick=function(){ s.ok.push(q); s.i++; sOK(); render(); };
+  lrB.onclick=function(){ s.learn.push(q); s.i++; render(); };
+
+  box.append(show,ans,row);
+  setTimeout(function(){ speak(q.q.zh); },300);
+  return box;
+}
+function viewDone(){
+  var s=session;
+  var d=el('div','done');
+  var perfect=s.learn.length===0;
+  d.innerHTML='<div class="b">'+(perfect?'🏆':'⭐')+'</div>'+
+    '<h3>'+(perfect?'太棒了！Все ответы сам!':'Готово! Молодец!')+'</h3>'+
+    '<div>Ответил сам: <b>'+s.ok.length+'</b> из '+s.list.length+'</div>';
+  if(s.learn.length){
+    var ul=el('ul'); s.learn.forEach(function(q){ ul.appendChild(el('li',null,'🔄 <span class="zh">'+q.q.zh+'</span> — '+q.q.ru)); });
+    d.appendChild(el('div',null,'<div style="margin-top:10px;font-weight:800">Ещё учим:</div>'));
+    d.appendChild(ul);
+  }
+  var row=el('div','row');
+  if(s.learn.length){
+    var rep=el('button','btn ghost','🔄 Повторить только эти');
+    rep.onclick=function(){ session=newSession(shuffle(s.learn)); render(); };
+    row.appendChild(rep);
+  }
+  var again=el('button','btn ghost','↺ Все вопросы заново');
+  again.onclick=function(){ session=null; render(); };
+  row.appendChild(again);
+  d.appendChild(row);
+  setTimeout(function(){ sWIN(); if(perfect) confetti(); },200);
+  return d;
+}
+
+/* ---------- 2. Рассказ о себе ---------- */
+function storyLines(){
+  var get=function(zh){ return QUESTIONS.filter(function(q){ return q.q.zh===zh; })[0].a(); };
+  var L=[
+    {zh:'你好！',py:'Nǐ hǎo!',tr:'ни хао',ru:'Привет!'},
+    get('你叫什么名字？'),
+    get('你今年几岁？'),
+    get('你的生日是几月几号？'),
+    get('你住在哪儿？'),
+    get('你家有几口人？'),
+    get('你家有谁？'),
+    get('你喜欢足球吗？'),
+    get('你喜欢哪个队？'),
+    {zh:'谢谢！再见！',py:'Xièxie! Zàijiàn!',tr:'се-се! цзай-цзянь',ru:'Спасибо! До свидания!'}
+  ];
+  return L;
+}
+function viewStory(){
+  var box=el('div','box');
+  box.appendChild(el('div',null,'<div style="font-weight:900;color:var(--jade-d);font-size:1.05rem">🎤 Рассказ о себе</div>'+
+    '<div class="note" style="margin:4px 0 14px">Все ответы в одном рассказе. Цель — чтобы Аскар рассказал его сам, целиком, как девочка в видео.</div>'));
+  var lines=storyLines();
+  var rows=[];
+  lines.forEach(function(o,i){
+    var r=el('div','line');
+    r.innerHTML='<div class="n">'+(i+1)+'</div><div class="mid"><div class="z zh">'+o.zh+'</div><div class="p">'+o.py+'</div>'+
+      '<div class="t">«'+o.tr+'»</div><div class="r">'+o.ru+'</div></div>';
+    var b=el('button',null,'🔊'); b.onclick=function(){ speak(o.zh); };
+    r.appendChild(b);
+    box.appendChild(r); rows.push(r);
+  });
+  var all=el('button','big','▶️ Прослушать весь рассказ');
+  var playing=false;
+  all.onclick=function(){
+    if(playing) return; playing=true;
+    var i=0;
+    (function step(){
+      rows.forEach(function(r){ r.className='line'; });
+      if(i>=lines.length){ playing=false; return; }
+      rows[i].className='line on';
+      rows[i].scrollIntoView({block:'nearest',behavior:'smooth'});
+      speak(lines[i].zh,function(){ i++; setTimeout(step,500); });
+    })();
+  };
+  box.appendChild(all);
+  box.appendChild(el('div','tip',
+    '💡 <b>Как тренировать:</b> день 1 — слушаем и повторяем по строчке. День 2 — мама читает русский перевод, Аскар говорит по-китайски. '+
+    'День 3 — Аскар рассказывает сам, мама смотрит в текст. <b>Получилось — снимите видео и пришлите учителю!</b> 🎬'));
+  return box;
+}
+
+/* ---------- 3. Шпаргалка ---------- */
+function viewSheet(){
+  var box=el('div','box sh');
+  box.appendChild(el('div',null,'<div style="font-weight:900;color:var(--jade-d);font-size:1.05rem">📋 Все вопросы и ответы</div>'+
+    '<div class="note" style="margin-top:4px">Можно распечатать (Ctrl+P) и держать под рукой.</div>'));
+  var by={};
+  activeQ().forEach(function(q){ (by[q.topic]=by[q.topic]||[]).push(q); });
+  Object.keys(by).forEach(function(t){
+    box.appendChild(el('h4',null,t));
+    by[t].forEach(function(q){
+      var a=q.a();
+      var qa=el('div','qa');
+      function part(cls,lab,o){
+        var w=el('div',cls,'<span class="lab">'+lab+'</span><div class="tx"><div class="z zh">'+o.zh+'</div><div class="p">'+o.py+'</div>'+
+          '<div class="t">«'+o.tr+'»</div><div class="r">'+o.ru+'</div></div>');
+        var b=el('button',null,'🔊'); b.onclick=function(){ speak(o.zh); };
+        w.appendChild(b); return w;
+      }
+      qa.appendChild(part('q','Мама',q.q));
+      qa.appendChild(part('a','Аскар',a));
+      box.appendChild(qa);
+    });
+  });
+  return box;
+}
+
+render();
+</script>
+</body>
+</html>
