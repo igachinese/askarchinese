@@ -126,10 +126,19 @@ footer .zh{color:var(--green);font-size:1.2rem;display:block}
 .conf i{position:absolute;width:10px;height:14px;border-radius:2px;animation:fall 2.2s linear forwards}
 @keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.pnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding-top:14px}
+.pnav a{border:2px solid var(--line);background:var(--card);border-radius:20px;padding:6px 14px;font-weight:800;font-size:.86rem;color:var(--soft);text-decoration:none}
+.pnav a.on{background:var(--mom);border-color:var(--mom);color:#fff}
+@media print{.pnav{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
+
+  <nav class="pnav">
+    <a href="index.html" class="on" aria-current="page">🐼 Домашка: моя семья</a>
+    <a href="voprosy-askar.html">👩‍👦 Мама спрашивает</a>
+  </nav>
 
   <header>
     <div class="p">🐼</div>
