@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Урок 9: Профессии (职业) · Тетрадка Аскара</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --paper-bg: #fbfbf8;
+  --grid-line: rgba(148, 163, 184, 0.18);
+  --card-bg: #ffffff;
+  --card-subtle: #f8fafc;
+  --border: #e2e8f0;
+  --border-focus: #cbd5e1;
+  
+  --ink: #1e293b;
+  --ink-soft: #475569;
+  --ink-light: #94a3b8;
+
+  /* Pastel palette (calm, elegant, modern) */
+  --sage: #4a7c59;
+  --sage-l: #eef5f0;
+  --sage-border: #c2dccb;
+
+  --denim: #3d5a80;
+  --denim-l: #edf3f8;
+  --denim-border: #bfd4e6;
+
+  --honey: #b88a3b;
+  --honey-l: #faf5eb;
+  --honey-border: #eedebf;
+
+  --lavender: #70638e;
+  --lavender-l: #f3f0f7;
+  --lavender-border: #dad2e9;
+
+  --rose: #b95c65;
+  --rose-l: #fdf2f2;
+  --rose-border: #f6c8cc;
+
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --shadow-card: 0 4px 12px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--paper-bg);
+  /* Школьная тетрадь в клетку */
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--ink);
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding: 16px 12px 70px;
+}
+
+.zh {
+  font-family: 'Noto Sans SC', sans-serif;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Unbounded', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Big Child-friendly Back Button */
+.top-nav-bar, .bottom-nav-bar {
+  display: flex;
+  justify-content: center;
+}
+.big-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  color: #ffffff !important;
+  text-decoration: none !important;
+  padding: 14px 24px;
+  border-radius: 20px;
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  box-shadow: 0 6px 0 #047857, 0 10px 20px rgba(5, 150, 105, 0.25);
+  border: 2px solid #34d399;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+}
+.big-back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #047857, 0 14px 24px rgba(5, 150, 105, 0.35);
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+}
+.big-back-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #047857;
+}
+
+/* Notebook Header Card */
+.notebook-header {
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.notebook-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.notebook-title-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.notebook-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: var(--sage-l);
+  border: 2px solid var(--sage-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+.notebook-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.notebook-sub {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+/* Stars Badge */
+.stars-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--honey-l);
+  color: var(--honey);
+  border: 2px solid var(--honey-border);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  box-shadow: 0 3px 0 #eedebf;
+}
+
+/* Voice Selector Control */
+.voice-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: var(--card-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 0.88rem;
+}
+.voice-select {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--ink);
+}
+.voice-test-btn {
+  background: var(--denim-l);
+  color: var(--denim);
+  border: 1px solid var(--denim-border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+.voice-test-btn:hover {
+  background: #dbe8f3;
+}
+
+/* Navigation Tabs */
+.tabs-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--border);
+  padding: 10px 18px;
+  border-radius: 16px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.84rem;
+  font-weight: 800;
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  box-shadow: 0 3px 0 var(--border);
+}
+.tab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--border-focus);
+}
+.tab-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border-focus);
+}
+.tab-btn.active {
+  background: var(--sage);
+  border-color: #3d6b47;
+  color: #ffffff;
+  box-shadow: 0 4px 0 #2e5337;
+}
+
+/* Notebook Page Container */
+.notebook-page {
+  background: #ffffff;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Section Header */
+.sec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 2px dashed var(--border);
+}
+.sec-tag {
+  display: inline-block;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+.tag-sage { background: var(--sage-l); color: var(--sage); border: 1px solid var(--sage-border); }
+.tag-denim { background: var(--denim-l); color: var(--denim); border: 1px solid var(--denim-border); }
+.tag-honey { background: var(--honey-l); color: var(--honey); border: 1px solid var(--honey-border); }
+.tag-lavender { background: var(--lavender-l); color: var(--lavender); border: 1px solid var(--lavender-border); }
+
+.sec-title {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-top: 4px;
+}
+.sec-desc {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+/* Filters for Flashcards */
+.card-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  background: var(--card-subtle);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.filter-btn.active {
+  background: var(--honey);
+  border-color: #9d732c;
+  color: #ffffff;
+}
+
+/* Flashcards Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.flashcard-item {
+  height: 200px;
+  perspective: 1000px;
+  cursor: pointer;
+  user-select: none;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s ease;
+  transform-style: preserve-3d;
+}
+.flashcard-item.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+.card-front, .card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+.card-front {
+  background: linear-gradient(145deg, #ffffff 0%, #faf8f5 100%);
+  border: 2px solid #e5e3dc;
+}
+.flashcard-item:hover .card-front {
+  border-color: var(--sage);
+  transform: translateY(-2px);
+}
+.card-back {
+  background: linear-gradient(145deg, #475569 0%, #334155 100%);
+  color: #ffffff;
+  border: 2px solid #475569;
+  transform: rotateY(180deg);
+}
+.cf-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.cf-hanzi {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.cf-pinyin {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--honey);
+  margin-top: 4px;
+}
+.cf-hint {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--ink-light);
+  margin-top: 8px;
+}
+.cb-ru {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #fde047;
+  margin-bottom: 4px;
+}
+.cb-pinyin {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+.cb-ex {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+/* SECTION 2: WORD FAMILIES */
+.quiz-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.quiz-row {
+  background: var(--card-subtle);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.quiz-word-btn {
+  background: none;
+  border: none;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--sage);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.quiz-word-btn:hover {
+  color: #2e5337;
+}
+.quiz-opts {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.quiz-opt-btn {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.quiz-opt-btn:hover {
+  background: var(--sage-l);
+  border-color: var(--sage-border);
+}
+
+/* SECTION 3: DETECTIVE STORY & YES/NO */
+.detective-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .detective-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.story-card {
+  background: var(--denim-l);
+  border: 2px solid var(--denim-border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.story-line {
+  background: #ffffff;
+  border: 1px solid var(--denim-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.story-line:hover {
+  border-color: var(--denim);
+  transform: translateX(3px);
+}
+.story-cn {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--denim);
+}
+.story-ru {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.questions-card {
+  background: #ffffff;
+  border: 2px solid var(--honey-border);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.det-question-row {
+  background: var(--honey-l);
+  border: 1px solid var(--honey-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.det-q-text {
+  cursor: pointer;
+}
+.det-q-cn {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+.det-q-ru {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.det-btn {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 0.82rem;
+  padding: 7px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.det-btn.yes {
+  background: var(--sage-l);
+  color: var(--sage);
+  border-color: var(--sage-border);
+}
+.det-btn.yes:hover {
+  background: #d1fae5;
+}
+.det-btn.no {
+  background: var(--rose-l);
+  color: var(--rose);
+  border-color: var(--rose-border);
+}
+.det-btn.no:hover {
+  background: #fee2e2;
+}
+
+/* SECTION 4: THIEF CAT */
+.cat-board-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #ffffff;
+  border: 2px solid var(--lavender-border);
+  border-radius: 20px;
+  padding: 22px;
+}
+.cat-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 580px) {
+  .cat-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.cat-card-item {
+  height: 64px;
+  background: var(--card-subtle);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+.cat-card-item:hover {
+  background: var(--lavender-l);
+  border-color: var(--lavender-border);
+}
+.cat-card-item.hidden-word {
+  background: var(--rose-l);
+  border: 2px dashed var(--rose);
+  color: var(--rose);
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(0.97); }
+}
+
+.cat-play-btn {
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 14px 22px;
+  border-radius: 16px;
+  border: 2px solid #a78bfa;
+  box-shadow: 0 5px 0 #6d28d9;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  width: fit-content;
+  margin: 0 auto;
+}
+.cat-play-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 #6d28d9;
+}
+.cat-play-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #6d28d9;
+}
+
+.cat-choices-box {
+  background: var(--lavender-l);
+  border: 2px dashed var(--lavender-border);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cat-choices-btns {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.cat-choice-btn {
+  background: #ffffff;
+  border: 2px solid var(--lavender-border);
+  border-radius: 14px;
+  padding: 10px 20px;
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.cat-choice-btn:hover {
+  border-color: var(--lavender);
+  background: #ffffff;
+}
+
+/* SECTION 5: MOM MEMO */
+.mom-memo-card {
+  background: var(--honey-l);
+  border: 2px solid var(--honey-border);
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mom-memo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.mom-memo-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--honey);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOP BACK BUTTON (SUPER PROMINENT) -->
+  <div class="top-nav-bar">
+    <a href="index.html" class="big-back-btn">
+      <span>🏠</span>
+      <span>← ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ (ДАШБОРД)</span>
+    </a>
+  </div>
+
+  <!-- NOTEBOOK HEADER -->
+  <header class="notebook-header">
+    <div class="notebook-header-top">
+      <div class="notebook-title-box">
+        <div class="notebook-icon">✏️</div>
+        <div>
+          <h1 class="notebook-title">Урок 9: Профессии (职业 zhíyè)</h1>
+          <p class="notebook-sub">Тетрадка домашних заданий и тренажёров для Аскара и мамы</p>
+        </div>
+      </div>
+      <div class="stars-badge">
+        <span>⭐ Звёзды:</span>
+        <span id="starCount">0</span>
+      </div>
+    </div>
+
+    <!-- Voice selector -->
+    <div class="voice-bar">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="font-weight:800;color:var(--denim);"><i class="fa-solid fa-volume-high"></i> Китайский голос (TTS):</span>
+        <select id="voiceSelector" onchange="onVoiceSelectChange()" class="voice-select">
+          <option value="">Загрузка голосов...</option>
+        </select>
+      </div>
+      <button onclick="testSelectedVoice()" class="voice-test-btn">Проверить голос 🔊</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs-scroll">
+      <button onclick="switchTab('cards')" id="tab-cards" class="tab-btn active">
+        <span>📇</span> 1. Карточки профессий
+      </button>
+      <button onclick="switchTab('families')" id="tab-families" class="tab-btn">
+        <span>🐑</span> 2. Семейки слов
+      </button>
+      <button onclick="switchTab('detective')" id="tab-detective" class="tab-btn">
+        <span>🕵️</span> 3. Детектив Да Шэн (Да/Нет)
+      </button>
+      <button onclick="switchTab('cat')" id="tab-cat" class="tab-btn">
+        <span>🐱</span> 4. Котик-воришка
+      </button>
+      <button onclick="switchTab('mom')" id="tab-mom" class="tab-btn">
+        <span>👩‍👦</span> Памятка для мамы
+      </button>
+    </div>
+  </header>
+
+  <!-- TAB 1: FLASHCARDS -->
+  <main id="sec-cards" class="notebook-page">
+    <div class="sec-header">
+      <div>
+        <span class="sec-tag tag-sage">Этап 1 • Слушай и повторяй</span>
+        <h2 class="sec-title">Нажми на карточку, чтобы перевернуть и услышать!</h2>
+        <p class="sec-desc">Нажимай пальчиком: карточка покажет перевод и произнесёт слово по-китайски.</p>
+      </div>
+      <div class="card-filters">
+        <button onclick="filterCards('all')" id="filter-all" class="filter-btn active">Все (15)</button>
+        <button onclick="filterCards('jobs')" id="filter-jobs" class="filter-btn">Профессии (9)</button>
+        <button onclick="filterCards('lesson')" id="filter-lesson" class="filter-btn">С урока 01.11 (3)</button>
+        <button onclick="filterCards('review')" id="filter-review" class="filter-btn">Повторение (3)</button>
+      </div>
+    </div>
+
+    <div id="flashcardsGrid" class="cards-grid">
+      <!-- Populated via JS -->
+    </div>
+  </main>
+
+  <!-- TAB 2: WORD FAMILIES -->
+  <main id="sec-families" class="notebook-page" style="display:none;">
+    <div class="sec-header">
+      <div>
+        <span class="sec-tag tag-sage">Задание из рабочей тетради</span>
+        <h2 class="sec-title">🐑 Семейки слов: угадай перевод!</h2>
+        <p class="sec-desc">Нажми на китайское слово, послушай, как оно звучит, и выбери правильный перевод.</p>
+      </div>
+    </div>
+
+    <div class="quiz-list" id="wordFamilyQuiz">
+      <!-- Populated via JS -->
+    </div>
+  </main>
+
+  <!-- TAB 3: DETECTIVE YES/NO -->
+  <main id="sec-detective" class="notebook-page" style="display:none;">
+    <div class="sec-header">
+      <div>
+        <span class="sec-tag tag-denim">Детектив Даша и Да Шэн</span>
+        <h2 class="sec-title">🕵️ Правда или нет про семью Да Шэна?</h2>
+        <p class="sec-desc">Представь, что ты Да Шэн на паспортном контроле! Отвечай <b>是 (Да)</b> или <b>不是 (Нет)</b>.</p>
+      </div>
+    </div>
+
+    <div class="detective-grid">
+      <!-- Story -->
+      <div class="story-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.82rem;font-weight:800;color:var(--denim);text-transform:uppercase;">Рассказ Да Шэна</span>
+          <button onclick="speakChinese('我叫大生。我家有四口人：爸爸、妈妈、姐姐和我。我爸爸工作。我妈妈也工作。我爸爸是律师。我妈妈是老师。我们一家人住在上海。')" style="background:var(--denim);color:#fff;border:none;padding:5px 10px;border-radius:8px;font-weight:700;font-size:0.78rem;cursor:pointer;">
+            <i class="fa-solid fa-play"></i> Послушать весь рассказ
+          </button>
+        </div>
+
+        <div class="story-line" onclick="speakChinese('我叫大生。')">
+          <div class="story-cn">1. 我叫大生 (Wǒ jiào Dàshēng) 🔊</div>
+          <div class="story-ru">Меня зовут Да Шэн.</div>
+        </div>
+        <div class="story-line" onclick="speakChinese('我家有四口人：爸爸、妈妈、姐姐和我。')">
+          <div class="story-cn">2. 我家有四口人 🔊</div>
+          <div class="story-ru">В моей семье 4 человека: папа, мама, старшая сестра и я.</div>
+        </div>
+        <div class="story-line" onclick="speakChinese('我爸爸工作。我妈妈也工作。')">
+          <div class="story-cn">3. 我爸爸工作。我妈妈也工作 🔊</div>
+          <div class="story-ru">Мой папа работает. Моя мама тоже работает.</div>
+        </div>
+        <div class="story-line" onclick="speakChinese('我爸爸是律师。我妈妈是老师。')">
+          <div class="story-cn">4. 我爸爸是律师。我妈妈是老师 🔊</div>
+          <div class="story-ru">Мой папа — юрист. Моя мама — учитель.</div>
+        </div>
+        <div class="story-line" onclick="speakChinese('我们一家人住在上海。')">
+          <div class="story-cn">5. 我们一家人住在上海 🔊</div>
+          <div class="story-ru">Наша семья живёт в Шанхае.</div>
+        </div>
+      </div>
+
+      <!-- Questions -->
+      <div class="questions-card">
+        <div style="font-weight:800;font-size:0.96rem;color:var(--honey);margin-bottom:4px;">
+          ⚖️ Вопросы инспектора на контроле:
+        </div>
+        <div id="detectiveQuestions" style="display:flex;flex-direction:column;gap:10px;">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 4: THIEF CAT -->
+  <main id="sec-cat" class="notebook-page" style="display:none;">
+    <div class="sec-header">
+      <div>
+        <span class="sec-tag tag-lavender">Игра на внимание и память</span>
+        <h2 class="sec-title">🐱 Какое слово украл Котик?</h2>
+        <p class="sec-desc">Посмотри на 12 карточек, нажми кнопку — кот утащит одно слово. Догадайся, какое!</p>
+      </div>
+    </div>
+
+    <div class="cat-board-wrap">
+      <div id="catCardsBoard" class="cat-cards-grid">
+        <!-- 12 cards populated via JS -->
+      </div>
+
+      <div style="text-align:center;">
+        <button onclick="startThiefCatRound()" class="cat-play-btn">
+          🐾 Кот, прячь слово! (+3 звезды ⭐)
+        </button>
+      </div>
+
+      <div id="catChoicesBox" class="cat-choices-box" style="display:none;">
+        <div id="catStatusText" style="font-weight:800;font-size:0.98rem;color:var(--lavender);">
+          Ой! Котик утащил одну карточку! Какую именно?
+        </div>
+        <div id="catChoicesBtns" class="cat-choices-btns"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 5: MOM MEMO -->
+  <main id="sec-mom" class="notebook-page" style="display:none;">
+    <div class="sec-header">
+      <div>
+        <span class="sec-tag tag-honey">Подсказка родителям</span>
+        <h2 class="sec-title">👩‍👦 Как маме позаниматься с Аскаром (10–15 минут)</h2>
+        <p class="sec-desc">Простой сценарий, чтобы повторить урок весело и без скуки.</p>
+      </div>
+    </div>
+
+    <div class="mom-memo-card">
+      <div class="mom-memo-item">
+        <span class="mom-memo-num">1</span>
+        <div>
+          <b>Карточки профессий (3-4 минуты):</b><br>
+          Откройте вкладку 1, нажмите на <code>律师</code> (юрист) и спросите Аскара: «Помнишь, как запомнили юриста? Весы 6-7!». Проверьте произношение: губы в трубочку на звуке <code>ü</code> (<i>lǜshī</i>, без «лю»).
+        </div>
+      </div>
+
+      <div class="mom-memo-item">
+        <span class="mom-memo-num">2</span>
+        <div>
+          <b>Детектив Да Шэн (5 минут):</b><br>
+          Вкладка 3 — это та самая игра про фальшивый паспорт, где Аскар сажал нарушителя на 40 лет! Пусть он послушает вопрос и нажмёт <code>是</code> (Да) или <code>不是</code> (Нет).
+        </div>
+      </div>
+
+      <div class="mom-memo-item">
+        <span class="mom-memo-num">3</span>
+        <div>
+          <b>Котик-воришка (3-5 минут):</b><br>
+          Вкладка 4 — любимая игра Аскара на внимание. Он с лёгкостью находит пропавшее слово и зарабатывает звёзды!
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BOTTOM BACK BUTTON -->
+  <div class="bottom-nav-bar">
+    <a href="index.html" class="big-back-btn">
+      <span>🏠</span>
+      <span>← ВЕРНУТЬСЯ В ГЛАВНОЕ МЕНЮ К ОСТАЛЬНЫМ ЗАДАНИЯМ</span>
+    </a>
+  </div>
+
+</div>
+
+<script>
+let stars = 0;
+function addStars(amount) {
+  stars += amount;
+  const el = document.getElementById('starCount');
+  if (el) {
+    el.textContent = stars;
+    el.style.transform = 'scale(1.3)';
+    setTimeout(() => el.style.transform = 'scale(1)', 250);
+  }
+}
+
+// ================= TTS CHINESE VOICES =================
+let zhVoices = [];
+let selectedZhVoice = null;
+
+function loadChineseVoices() {
+  if (!('speechSynthesis' in window)) return;
+  const allVoices = window.speechSynthesis.getVoices();
+  zhVoices = allVoices.filter(v =>
+    v.lang.toLowerCase().includes('zh') ||
+    v.lang.toLowerCase().includes('cmn') ||
+    v.name.toLowerCase().includes('chinese')
+  );
+
+  const selector = document.getElementById('voiceSelector');
+  if (!selector) return;
+  selector.innerHTML = '';
+
+  if (zhVoices.length === 0) {
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'Стандартный китайский (браузер)';
+    selector.appendChild(opt);
+    return;
+  }
+
+  // Приоритет детских голосов
+  let bestVoice =
+    zhVoices.find(v => v.name.toLowerCase().includes('xiaoshuang')) ||
+    zhVoices.find(v => v.name.toLowerCase().includes('yunxia')) ||
+    zhVoices.find(v => v.name.toLowerCase().includes('xiaoyi')) ||
+    zhVoices.find(v => v.lang === 'zh-CN') ||
+    zhVoices[0];
+
+  selectedZhVoice = bestVoice;
+
+  zhVoices.forEach(v => {
+    const opt = document.createElement('option');
+    opt.value = v.name;
+    let label = v.name;
+    if (v.name.toLowerCase().includes('xiaoshuang')) label += ' 👧 (Детский голос)';
+    else if (v.name.toLowerCase().includes('yunxia')) label += ' 👦 (Детский голос)';
+    else if (v.name.toLowerCase().includes('xiaoyi')) label += ' ✨ (Звонкий)';
+    opt.textContent = label;
+    if (v === bestVoice) opt.selected = true;
+    selector.appendChild(opt);
+  });
+}
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = loadChineseVoices;
+  loadChineseVoices();
+}
+
+function onVoiceSelectChange() {
+  const sel = document.getElementById('voiceSelector');
+  selectedZhVoice = zhVoices.find(v => v.name === sel.value) || null;
+}
+
+function testSelectedVoice() {
+  speakChinese('你好，阿斯凯！我是你的中文老师。');
+}
+
+function speakChinese(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  if (zhVoices.length === 0) loadChineseVoices();
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = 'zh-CN';
+
+  if (selectedZhVoice) {
+    utter.voice = selectedZhVoice;
+    const vName = selectedZhVoice.name.toLowerCase();
+    if (vName.includes('xiaoshuang') || vName.includes('yunxia') || vName.includes('xiaoyi')) {
+      utter.pitch = 1.0;
+      utter.rate = 0.9;
+    } else {
+      utter.pitch = 1.25;
+      utter.rate = 0.88;
+    }
+  } else {
+    utter.pitch = 1.25;
+    utter.rate = 0.88;
+  }
+
+  window.speechSynthesis.speak(utter);
+}
+
+// ================= TABS SWITCHER =================
+function switchTab(tabId) {
+  const allTabs = ['cards', 'families', 'detective', 'cat', 'mom'];
+  allTabs.forEach(t => {
+    const page = document.getElementById('sec-' + t);
+    const btn = document.getElementById('tab-' + t);
+    if (page) page.style.display = (t === tabId) ? 'flex' : 'none';
+    if (btn) {
+      if (t === tabId) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+  });
+}
+
+// ================= 1. FLASHCARDS DATA =================
+const flashcardsData = [
+  { hanzi: '老师', pinyin: 'lǎoshī', ru: 'Учитель', icon: '👩‍🏫', cat: 'jobs', ex: '我妈妈是老师 (Мама — учитель)' },
+  { hanzi: '医生', pinyin: 'yīshēng', ru: 'Врач', icon: '🩺', cat: 'jobs', ex: '他是医生 (Он — врач)' },
+  { hanzi: '律师', pinyin: 'lǜshī', ru: 'Юрист', icon: '⚖️', cat: 'jobs', ex: '我爸爸是律师 (Папа — юрист)' },
+  { hanzi: '商人', pinyin: 'shāngrén', ru: 'Бизнесмен', icon: '💼', cat: 'jobs', ex: '她是商人 (Она — бизнесмен)' },
+  { hanzi: '护士', pinyin: 'hùshi', ru: 'Медсестра', icon: '🩹', cat: 'jobs', ex: '你妈妈是护士吗？' },
+  { hanzi: '司机', pinyin: 'sījī', ru: 'Водитель', icon: '🚗', cat: 'jobs', ex: '他是司机 (Он — водитель)' },
+  { hanzi: '秘书', pinyin: 'mìshū', ru: 'Секретарь', icon: '💻', cat: 'jobs', ex: '她是秘书 (Она — секретарь)' },
+  { hanzi: '经理', pinyin: 'jīnglǐ', ru: 'Менеджер', icon: '📊', cat: 'jobs', ex: '他是经理 (Он — менеджер)' },
+  { hanzi: '工作', pinyin: 'gōngzuò', ru: 'Работать / Работа', icon: '🏢', cat: 'jobs', ex: '我爸爸工作 (Мой папа работает)' },
+  // Words from 01.11 lesson with Askar
+  { hanzi: '师傅', pinyin: 'shīfu', ru: 'Мастер (как Шифу)', icon: '🥋', cat: 'lesson', ex: '功夫师傅 (Мастер кунг-фу)' },
+  { hanzi: '数学', pinyin: 'shùxué', ru: 'Математика', icon: '📏', cat: 'lesson', ex: '数学老师 (Учитель математики)' },
+  { hanzi: '螃蟹', pinyin: 'pángxiè', ru: 'Краб (бизнесмен)', icon: '🦀', cat: 'lesson', ex: '商人卖螃蟹 (Продаёт крабов)' },
+  // Review words
+  { hanzi: '小学生', pinyin: 'xiǎoxuéshēng', ru: 'Ученик 1 класса', icon: '🎒', cat: 'review', ex: '我是小学生' },
+  { hanzi: '四口人', pinyin: 'sì kǒu rén', ru: '4 человека в семье', icon: '👨‍👩‍👧‍👦', cat: 'review', ex: '我家有四口人' },
+  { hanzi: '上海', pinyin: 'Shànghǎi', ru: 'Шанхай', icon: '🏙️', cat: 'review', ex: '我们住在上海' }
+];
+
+function renderFlashcards(filter = 'all') {
+  const grid = document.getElementById('flashcardsGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const list = (filter === 'all') ? flashcardsData : flashcardsData.filter(c => c.cat === filter);
+
+  list.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'flashcard-item';
+    card.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="cf-icon">${item.icon}</div>
+          <div class="cf-hanzi">${item.hanzi}</div>
+          <div class="cf-pinyin">${item.pinyin}</div>
+          <div class="cf-hint">Нажми: перевод + звук 🔊</div>
+        </div>
+        <div class="card-back">
+          <div class="cb-ru">${item.ru}</div>
+          <div class="cb-pinyin">${item.hanzi} (${item.pinyin})</div>
+          <div class="cb-ex">${item.ex}</div>
+        </div>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+      speakChinese(item.hanzi);
+      if (!card.dataset.seen) {
+        card.dataset.seen = '1';
+        addStars(1);
+      }
+    });
+    grid.appendChild(card);
+  });
+}
+
+function filterCards(cat) {
+  ['all', 'jobs', 'lesson', 'review'].forEach(c => {
+    const btn = document.getElementById('filter-' + c);
+    if (btn) {
+      if (c === cat) btn.classList.add('active');
+      else btn.classList.remove('active');
+    }
+  });
+  renderFlashcards(cat);
+}
+
+// ================= 2. WORD FAMILIES QUIZ =================
+const wordFamiliesData = [
+  { hanzi: '小学生 (xiǎoxuéshēng)', correct: 'Ученик начальной школы', options: ['Студент', 'Ученик начальной школы', 'Учитель'] },
+  { hanzi: '出生 (chūshēng)', correct: 'Родиться', options: ['Родиться', 'День рождения', 'Возраст'] },
+  { hanzi: '一家人 (yìjiārén)', correct: 'Вся семья', options: ['Вся семья', 'Где живут?', 'Один человек'] },
+  { hanzi: '人口 (rénkǒu)', correct: 'Людей в семье / Население', options: ['Взрослый', 'Людей в семье / Население', 'Большой рот'] },
+  { hanzi: '明天 (míngtiān)', correct: 'Завтра', options: ['Вчера', 'Сегодня', 'Завтра'] }
+];
+
+function renderWordFamilies() {
+  const box = document.getElementById('wordFamilyQuiz');
+  if (!box) return;
+  box.innerHTML = '';
+  wordFamiliesData.forEach((item, idx) => {
+    const row = document.createElement('div');
+    row.className = 'quiz-row';
+
+    const wordBtn = document.createElement('button');
+    wordBtn.className = 'quiz-word-btn';
+    wordBtn.innerHTML = `<span>🔊</span> <span>${item.hanzi}</span>`;
+    wordBtn.onclick = () => speakChinese(item.hanzi.split(' ')[0]);
+
+    const optsWrap = document.createElement('div');
+    optsWrap.className = 'quiz-opts';
+
+    item.options.forEach(opt => {
+      const b = document.createElement('button');
+      b.className = 'quiz-opt-btn';
+      b.textContent = opt;
+      b.onclick = () => {
+        if (opt === item.correct) {
+          b.style.background = '#10b981';
+          b.style.color = '#fff';
+          b.style.borderColor = '#059669';
+          speakChinese('对！');
+          addStars(2);
+        } else {
+          b.style.background = '#f87171';
+          b.style.color = '#fff';
+        }
+      };
+      optsWrap.appendChild(b);
+    });
+
+    row.appendChild(wordBtn);
+    row.appendChild(optsWrap);
+    box.appendChild(row);
+  });
+}
+
+// ================= 3. DETECTIVE YES/NO =================
+const detectiveData = [
+  { q: '你爸爸是律师吗？', ru: 'Твой папа юрист? (по рассказу Да Шэна)', ans: true },
+  { q: '你妈妈是老师吗？', ru: 'Твоя мама учитель? (по рассказу Да Шэна)', ans: true },
+  { q: '你爸爸是商人吗？', ru: 'Твой папа бизнесмен?', ans: false },
+  { q: '你妈妈是护士吗？', ru: 'Твоя мама медсестра?', ans: false },
+  { q: '你妈妈是医生吗？', ru: 'Твоя мама врач?', ans: false },
+  { q: '你爸爸是司机吗？', ru: 'Твой папа водитель?', ans: false }
+];
+
+function renderDetective() {
+  const box = document.getElementById('detectiveQuestions');
+  if (!box) return;
+  box.innerHTML = '';
+  detectiveData.forEach((item, idx) => {
+    const row = document.createElement('div');
+    row.className = 'det-question-row';
+
+    const textDiv = document.createElement('div');
+    textDiv.className = 'det-q-text';
+    textDiv.innerHTML = `
+      <div class="det-q-cn">${idx + 1}. ${item.q} 🔊</div>
+      <div class="det-q-ru">${item.ru}</div>
+    `;
+    textDiv.onclick = () => speakChinese(item.q);
+
+    const btnWrap = document.createElement('div');
+    btnWrap.style.display = 'flex';
+    btnWrap.style.gap = '8px';
+    btnWrap.id = 'det-btns-' + idx;
+
+    btnWrap.innerHTML = `
+      <button onclick="checkDetective(${idx}, true)" class="det-btn yes">✓ 是 (Да)</button>
+      <button onclick="checkDetective(${idx}, false)" class="det-btn no">✗ 不是 (Нет)</button>
+    `;
+
+    row.appendChild(textDiv);
+    row.appendChild(btnWrap);
+    box.appendChild(row);
+  });
+}
+
+function checkDetective(idx, userChoice) {
+  const item = detectiveData[idx];
+  const wrap = document.getElementById('det-btns-' + idx);
+  if (userChoice === item.ans) {
+    speakChinese(userChoice ? '是！' : '不是！');
+    wrap.innerHTML = `<span style="background:#10b981;color:#fff;font-weight:900;padding:6px 12px;border-radius:10px;font-size:0.84rem;">🌟 Верно! (${userChoice ? '是' : '不是'})</span>`;
+    addStars(2);
+  } else {
+    speakChinese('不对');
+    wrap.innerHTML = `<span style="background:#ef4444;color:#fff;font-weight:900;padding:6px 12px;border-radius:10px;font-size:0.84rem;">Правильно: ${item.ans ? '是' : '不是'}</span>`;
+  }
+}
+
+// ================= 4. THIEF CAT =================
+const catWords = ['中学', '没有', '中国', '年级', '那', '电话', '星期', '昨天', '今年', '哪儿', '多少', '这'];
+let stolenWord = null;
+
+function renderCatBoard(hideWord = null) {
+  const board = document.getElementById('catCardsBoard');
+  if (!board) return;
+  board.innerHTML = '';
+  catWords.forEach(w => {
+    const div = document.createElement('div');
+    div.className = 'cat-card-item' + (w === hideWord ? ' hidden-word' : '');
+    if (w === hideWord) {
+      div.textContent = '🐾 ?';
+    } else {
+      div.textContent = w;
+      div.onclick = () => speakChinese(w);
+    }
+    board.appendChild(div);
+  });
+}
+
+function startThiefCatRound() {
+  stolenWord = catWords[Math.floor(Math.random() * catWords.length)];
+  renderCatBoard(stolenWord);
+
+  const box = document.getElementById('catChoicesBox');
+  const btns = document.getElementById('catChoicesBtns');
+  const status = document.getElementById('catStatusText');
+
+  box.style.display = 'flex';
+  status.textContent = '🐾 Ой! Котик утащил одну карточку! Нажми на слово, которое пропало:';
+  btns.innerHTML = '';
+
+  const distractors = catWords.filter(w => w !== stolenWord).sort(() => 0.5 - Math.random()).slice(0, 3);
+  const choices = [stolenWord, ...distractors].sort(() => 0.5 - Math.random());
+
+  choices.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'cat-choice-btn';
+    b.textContent = c;
+    b.onclick = () => {
+      if (c === stolenWord) {
+        speakChinese(c);
+        addStars(3);
+        status.textContent = `🎉 УРА! Ты поймал слово «${c}»! +3 звезды ⭐`;
+        renderCatBoard(null);
+        setTimeout(() => { box.style.display = 'none'; }, 2200);
+      } else {
+        b.style.background = '#f87171';
+        b.style.color = '#fff';
+      }
+    };
+    btns.appendChild(b);
+  });
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+  renderFlashcards('all');
+  renderWordFamilies();
+  renderDetective();
+  renderCatBoard(null);
+});
+</script>
+
+</body>
+</html>
