@@ -1,853 +1,887 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panda Explorer · Тренажёр Аскара</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@400;600;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="trainer.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тренажёр слов · Аскар (HSK 1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;900&family=Nunito:wght@400;600;700;800;900&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trainer.css">
 </head>
 <body>
-<!-- STICKY TOP BACK BUTTON -->
-<div class="top-nav-bar" style="position: sticky; top: 0; z-index: 100; background: rgba(251, 251, 248, 0.96); backdrop-filter: blur(10px); padding: 12px 16px; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-  <a href="index.html" class="big-back-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); color: #ffffff !important; text-decoration: none !important; padding: 12px 24px; border-radius: 18px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 900; font-size: 1.05rem; box-shadow: 0 5px 0 #047857, 0 8px 16px rgba(5, 150, 105, 0.25); border: 2px solid #34d399; transition: transform 0.12s ease;">
-    <span>⬅️</span>
-    <span>Вернуться назад в Главное меню</span>
-  </a>
-</div>
-<div class="wrap">
 
-<header>
-  <a href="index.html" class="mascot-link" title="Вернуться в Главное меню (Дашборд)">
-  <svg class="mascot" viewBox="0 0 64 64" aria-hidden="true">
-    <ellipse cx="17" cy="21" rx="8" ry="8" fill="#23201F"/>
-    <ellipse cx="47" cy="21" rx="8" ry="8" fill="#23201F"/>
-    <ellipse cx="32" cy="36" rx="21" ry="19" fill="#fff" stroke="#23201F" stroke-width="2.4"/>
-    <ellipse cx="24" cy="35" rx="6" ry="7" fill="#23201F"/>
-    <ellipse cx="40" cy="35" rx="6" ry="7" fill="#23201F"/>
-    <circle cx="25" cy="34" r="2.2" fill="#fff"/><circle cx="41" cy="34" r="2.2" fill="#fff"/>
-    <ellipse cx="32" cy="44" rx="3.4" ry="2.6" fill="#23201F"/>
-    <path d="M8 20 Q32 10 56 20 Q32 25 8 20Z" fill="#3E7B5E"/>
-    <path d="M20 20 Q32 2 44 20Z" fill="#3E7B5E"/>
-    <path d="M20 17 Q32 13 44 17" stroke="#D6402C" stroke-width="3" fill="none"/>
-  </svg></a>
-  <div class="brand">Panda Explorer<small id="whoLine">Загрузка…</small></div>
-  <div class="hdr-right" style="display:flex;align-items:center;gap:8px">
-    <button class="streak" id="sndBtn" title="Звук">🔊 Звук</button>
-    <div class="streak" id="streak">🔥 0</div>
+  <div class="app-wrapper">
+    <!-- Top Sticky Navigation -->
+    <header class="top-nav">
+      <a href="index.html" class="btn-back-hub" title="Перейти на главную страницу">
+        <span style="font-size: 1.15rem;">←</span> Вернуться в личный кабинет
+      </a>
+
+      <div class="app-brand">
+        <span class="brand-icon">🐼</span>
+        <div>
+          <div class="brand-title">Тренажёр слов Аскара</div>
+          <div class="brand-subtitle">Easy Steps to Chinese 1 · HSK 1</div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <button id="btnSpeed" class="btn-audio-speed" title="Скорость произношения">Скорость: 0.85x</button>
+      </div>
+    </header>
+
+    <!-- Hero / Summary Banner -->
+    <section class="hero-card">
+      <div class="hero-info">
+        <h1><span>📖</span> Личный тренажёр слов</h1>
+        <p>Изучай слова по темам уроков или тренируй экзаменационные форматы HSK 1: аудирование на слух, ловушки, быстрый блиц и угадывание тонов.</p>
+      </div>
+      <div class="stats-badges">
+        <div class="stat-pill">
+          <span class="num" id="statTotalWords">249</span>
+          <span class="lbl">Слов в базе</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num" id="statTopics">20</span>
+          <span class="lbl">Тем</span>
+        </div>
+        <div class="stat-pill">
+          <span class="num" id="statMastered">0</span>
+          <span class="lbl">Изучено</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mode Selector Tabs -->
+    <nav class="mode-tabs">
+      <button class="mode-tab-btn active" data-mode="topics">
+        <span>🏷️</span> По темам
+      </button>
+      <button class="mode-tab-btn" data-mode="quiz">
+        <span>📝</span> Выбор перевода
+      </button>
+      <button class="mode-tab-btn" data-mode="listening">
+        <span>🎧</span> Аудирование
+      </button>
+      <button class="mode-tab-btn" data-mode="traps">
+        <span>🎯</span> Ловушки
+      </button>
+      <button class="mode-tab-btn" data-mode="tones">
+        <span>🎵</span> Угадай тон
+      </button>
+      <button class="mode-tab-btn" data-mode="blitz">
+        <span>⚡</span> Блиц (60с)
+      </button>
+    </nav>
+
+    <!-- VIEW 1: TOPICS GRID -->
+    <main id="viewTopics" class="mode-view">
+      <div class="section-title-wrap">
+        <h2 class="section-title"><span>📚</span> Темы из словарика Аскара</h2>
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Выбери тему для тренировки:</span>
+      </div>
+      <div class="topics-grid" id="topicsGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </main>
+
+    <!-- VIEW: TOPIC DRILL (Sub-view of topics) -->
+    <section id="viewTopicDrill" class="topic-view-container">
+      <div class="topic-view-nav">
+        <button id="btnBackToTopics" class="btn-back-topics">
+          ← Все темы
+        </button>
+        <div id="topicDrillHeader" style="text-align: center;">
+          <h2 id="topicDrillTitle" style="font-family: var(--font-head); font-size: 1.25rem;">Название темы</h2>
+          <div id="topicDrillSubtitle" style="font-size: 0.85rem; color: var(--text-muted);">15 слов</div>
+        </div>
+        <div class="topic-subtabs">
+          <button class="topic-subtab active" data-tab="list">Словарь</button>
+          <button class="topic-subtab" data-tab="flashcards">Карточки</button>
+          <button class="topic-subtab" data-tab="test">Тест</button>
+        </div>
+      </div>
+
+      <!-- Subtab 1: Word list -->
+      <div id="tabTopicList" class="topic-subtab-pane">
+        <div class="word-cards-list" id="topicWordsList">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- Subtab 2: Flashcards -->
+      <div id="tabTopicFlashcards" class="topic-subtab-pane" style="display: none;">
+        <div class="flashcard-arena">
+          <div class="flashcard" id="activeFlashcard">
+            <span class="flashcard-hint">Нажми, чтобы перевернуть</span>
+            <div class="flashcard-hz" id="fcHz">字</div>
+            <div class="flashcard-py" id="fcPy">zì</div>
+            <div class="flashcard-ru" id="fcRu" style="display: none;">иероглиф</div>
+          </div>
+          <div class="flashcard-controls">
+            <button class="btn-fc-action btn-fc-repeat" id="btnFcNext">Следующее слово →</button>
+            <button class="btn-fc-action btn-fc-know" id="btnFcAudio">🔊 Озвучить</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subtab 3: Topic Test -->
+      <div id="tabTopicTest" class="topic-subtab-pane" style="display: none;">
+        <div class="quiz-arena" id="topicTestArena">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 2: QUIZ (GENERAL VOCABULARY TEST) -->
+    <section id="viewQuiz" class="mode-view" style="display: none;">
+      <div class="quiz-arena">
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-bar" id="quizBar"></div>
+        </div>
+        <div class="quiz-stats-header">
+          <span id="quizCounter">Вопрос 1</span>
+          <span id="quizScore">Счёт: 0</span>
+        </div>
+        <div class="quiz-question-box">
+          <div class="quiz-hz" id="quizHz">字</div>
+          <div class="quiz-py" id="quizPy">zì</div>
+        </div>
+        <div class="options-grid" id="quizOptions">
+          <!-- 4 option buttons -->
+        </div>
+        <button id="btnQuizSpeak" class="btn-back-topics" style="margin: 0 auto;">
+          🔊 Послушать слово
+        </button>
+      </div>
+    </section>
+
+    <!-- VIEW 3: LISTENING (АУДИРОВАНИЕ) -->
+    <section id="viewListening" class="mode-view" style="display: none;">
+      <div class="quiz-arena">
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-bar" id="listenBar"></div>
+        </div>
+        <div class="quiz-stats-header">
+          <span id="listenCounter">Вопрос 1</span>
+          <span id="listenScore">Верно: 0</span>
+        </div>
+        <div class="quiz-question-box">
+          <div class="quiz-audio-cue">🎧</div>
+          <p class="quiz-prompt-text">Послушай произношение и выбери правильный перевод:</p>
+          <button id="btnListenReplay" class="btn-fc-action btn-fc-know" style="padding: 10px 20px;">
+            🔊 Послушать ещё раз
+          </button>
+        </div>
+        <div class="options-grid" id="listenOptions">
+          <!-- Options -->
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 4: TRAPS (ЛОВУШКИ АСКАРА) -->
+    <section id="viewTraps" class="mode-view" style="display: none;">
+      <div class="section-title-wrap">
+        <h2 class="section-title"><span>🎯</span> Ловушки и похожие слова</h2>
+        <span style="font-size: 0.9rem; color: var(--text-muted);">Разборы сложных пар с уроков Аскара</span>
+      </div>
+      <div id="trapsContainer">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- VIEW 5: TONES DRILL (УГАДАЙ ТОН НА СЛУХ) -->
+    <section id="viewTones" class="mode-view" style="display: none;">
+      <div class="quiz-arena">
+        <div class="quiz-stats-header">
+          <span>🎵 Тренажёр слуховых тонов</span>
+          <span id="toneScore">Верно: 0 / 0</span>
+        </div>
+        <div class="quiz-question-box">
+          <div class="quiz-audio-cue">🔊</div>
+          <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-cn);" id="toneHzDisplay">？</div>
+          <p class="quiz-prompt-text" id="tonePrompt">Слушай слог и определи, какой тон звучит:</p>
+          <button id="btnToneReplay" class="btn-back-topics">
+            🔊 Повторить слог
+          </button>
+        </div>
+        <div class="tone-buttons-grid">
+          <button class="tone-btn" data-tone="1">
+            <span class="tone-symbol">—</span>
+            <span class="tone-desc">1-й тон (Высокий)</span>
+          </button>
+          <button class="tone-btn" data-tone="2">
+            <span class="tone-symbol">↗</span>
+            <span class="tone-desc">2-й тон (Вверх)</span>
+          </button>
+          <button class="tone-btn" data-tone="3">
+            <span class="tone-symbol">∨</span>
+            <span class="tone-desc">3-й тон (Ямка)</span>
+          </button>
+          <button class="tone-btn" data-tone="4">
+            <span class="tone-symbol">↘</span>
+            <span class="tone-desc">4-й тон (Вниз)</span>
+          </button>
+        </div>
+        <div id="toneFeedback" style="margin-top: 18px; font-weight: 700; min-height: 24px;"></div>
+      </div>
+    </section>
+
+    <!-- VIEW 6: BLITZ (60 SECONDS DRILL) -->
+    <section id="viewBlitz" class="mode-view" style="display: none;">
+      <div class="quiz-arena">
+        <div class="quiz-stats-header">
+          <span class="blitz-timer">⏱️ <span id="blitzTime">60</span>с</span>
+          <span style="font-weight: 800; color: var(--primary);">Очки: <span id="blitzScore">0</span></span>
+        </div>
+        <div id="blitzStartBox">
+          <h2 style="font-family: var(--font-head); margin-bottom: 12px;">⚡ Режим «Блиц-Молния»</h2>
+          <p style="color: var(--text-muted); margin-bottom: 24px;">За 60 секунд отвечай: верно ли указан перевод для иероглифа. Быстро думай и ставь новые рекорды!</p>
+          <button id="btnStartBlitz" class="btn-fc-action btn-fc-know" style="font-size: 1.15rem; padding: 16px 36px;">
+            🚀 Начать Блиц!
+          </button>
+        </div>
+        <div id="blitzActiveBox" style="display: none;">
+          <div class="blitz-pair-box">
+            <div style="font-family: var(--font-cn); font-size: 3.8rem; font-weight: 700;" id="blitzHz">字</div>
+            <div style="font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 8px;" id="blitzPy">zì</div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: #0f172a;" id="blitzRu">«иероглиф»</div>
+          </div>
+          <div class="blitz-decision-grid">
+            <button class="btn-blitz-no" id="btnBlitzNo">❌ Неверно</button>
+            <button class="btn-blitz-yes" id="btnBlitzYes">✅ Верно</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-</header>
 
-<section id="home">
-  <div id="focus"></div>
-  <p class="section-label" id="homeLabel">Выбери тему</p>
-  <div class="grid" id="topicGrid"></div>
-</section>
+  <div id="toast" class="toast-notice">Отлично!</div>
 
-<section id="modes" class="hide">
-  <button class="back" data-go="home">← Все темы</button>
-  <h2 id="modeTitle"></h2>
-  <p class="hint" id="modeSub"></p>
-  <div class="modes" id="modeList"></div>
-</section>
+  <!-- EMBEDDED DATA FALLBACK -->
+  <script>
+    window.ASKAR_DATA_FALLBACK = {"name": "Аскар", "book": "Easy Steps to Chinese 1 · HSK 1", "showPinyin": true, "modes": ["listen", "truefalse", "trap", "tones", "sounds", "speak", "cards", "choice", "memory", "blitz", "hearsent", "sent", "fill", "pinyin"], "focus": {"date": "18.10", "title": "Рейс 008 Астана → Пекин ✈️", "note": "Собери оставшиеся 3 печати! Запомни: когда отвечаешь, меняй 你 на 我 — 你家有几口人？→ 我家有四口人。А в номерах телефона 1 — это 幺 yāo.", "tasks": [{"topic": "me", "mode": "sent", "label": "Паспортный контроль: собери ответ"}, {"topic": "me", "mode": "speak", "label": "Скажи сам: рассказ о себе"}, {"topic": "brother", "mode": "sent", "label": "Задание от Панды: про братика (他)"}, {"topic": "traps", "mode": "trap", "label": "Ловушки: 13/60, 姐姐/妹妹, 你/我"}, {"topic": "t7", "mode": "listen", "label": "Кто летит вместе? Семья на слух"}, {"topic": "t2", "mode": "truefalse", "label": "Числа: верно или нет?"}]}, "topics": [{"id": "t2", "lesson": 2, "em": "🔢", "t": "Числа", "cn": "数字", "w": [["一", "yī", "один"], ["二", "èr", "два"], ["三", "sān", "три"], ["四", "sì", "четыре"], ["五", "wǔ", "пять"], ["六", "liù", "шесть"], ["七", "qī", "семь"], ["八", "bā", "восемь"], ["九", "jiǔ", "девять"], ["十", "shí", "десять"], ["十二", "shí'èr", "двенадцать"], ["二十", "èrshí", "двадцать"], ["十八", "shíbā", "восемнадцать"], ["百", "bǎi", "сто"], ["一百", "yìbǎi", "сто"], ["五百", "wǔbǎi", "пятьсот"], ["十三", "shísān", "тринадцать"], ["六十", "liùshí", "шестьдесят"]]}, {"id": "t3", "lesson": 3, "em": "👋", "t": "Приветствия и вежливость", "cn": "问候", "w": [["您", "nín", "Вы (вежливо)"], ["好", "hǎo", "хороший; хорошо"], ["您好", "nín hǎo", "здравствуйте"], ["你", "nǐ", "ты"], ["你好", "nǐ hǎo", "привет"], ["再", "zài", "снова, опять"], ["见", "jiàn", "видеть"], ["再见", "zàijiàn", "до свидания"], ["对不起", "duìbuqǐ", "извини"], ["没关系", "méi guānxi", "ничего страшного"], ["谢谢", "xièxie", "спасибо"], ["不客气", "bú kèqi", "не за что"], ["早上好", "zǎoshang hǎo", "доброе утро"], ["晚上好", "wǎnshang hǎo", "добрый вечер"]]}, {"id": "t4", "lesson": 4, "em": "📅", "t": "Даты и дни недели", "cn": "日期", "w": [["一月", "yī yuè", "январь"], ["星", "xīng", "звезда"], ["期", "qī", "период времени"], ["星期", "xīngqī", "неделя"], ["天", "tiān", "небо; день"], ["星期一", "xīngqī yī", "понедельник"], ["日", "rì", "солнце; день"], ["星期天", "xīngqī tiān", "воскресенье"], ["月", "yuè", "месяц"], ["新年", "xīnnián", "Новый год"], ["妇女节", "fùnǚjié", "Женский день (8 марта)"], ["儿童节", "értóngjié", "День детей (1 июня)"], ["劳动节", "láodòngjié", "День труда (1 мая)"]]}, {"id": "t5", "lesson": 5, "em": "🎂", "t": "Возраст и день рождения", "cn": "年龄", "w": [["在", "zài", "в; на (в …году)"], ["出", "chū", "выходить"], ["出生", "chūshēng", "родиться"], ["的", "de", "притяжательная частица"], ["生日", "shēngrì", "день рождения"], ["岁", "suì", "лет; возраст"], ["几岁", "jǐ suì", "сколько лет (до 10)"], ["多大", "duō dà", "сколько лет (старше 10)"]]}, {"id": "t6", "lesson": 6, "em": "📞", "t": "Телефон и контакты", "cn": "电话号码", "w": [["家", "jiā", "семья; дом"], ["电", "diàn", "электричество"], ["电话", "diànhuà", "телефон"], ["话", "huà", "слово; речь"], ["码", "mǎ", "номер"], ["号码", "hàomǎ", "номер"], ["少", "shǎo", "мало"], ["多少", "duōshao", "сколько"], ["幺", "yāo", "«1» в номерах телефона"], ["礼貌", "lǐmào", "вежливость"], ["外卖", "wàimài", "доставка еды"]]}, {"id": "t7", "lesson": 7, "em": "👨‍👩‍👧", "t": "Семья", "cn": "家庭", "w": [["有", "yǒu", "иметь; есть"], ["口", "kǒu", "рот; счётное слово для людей"], ["人", "rén", "человек"], ["爸爸", "bàba", "папа"], ["妈妈", "māma", "мама"], ["哥哥", "gēge", "старший брат"], ["姐姐", "jiějie", "старшая сестра"], ["妹妹", "mèimei", "младшая сестра"], ["弟弟", "dìdi", "младший брат"], ["和", "hé", "и"]]}, {"id": "t7x", "lesson": 7, "em": "👴", "t": "Родственники и люди", "cn": "亲戚", "w": [["爷爷", "yéye", "дедушка (папа папы)"], ["外公", "wàigōng", "дедушка (папа мамы)"], ["叔叔", "shūshu", "дядя"], ["谁", "shéi", "кто"], ["这个", "zhège", "этот"], ["两", "liǎng", "два (перед счётным словом)"], ["个", "gè", "счётное слово (самое частое)"], ["两个人", "liǎng gè rén", "два человека"], ["大人", "dàrén", "взрослый"], ["女", "nǚ", "женщина, девушка"], ["生日快乐", "shēngrì kuàilè", "С днём рождения!"], ["蛋糕", "dàngāo", "торт"]]}, {"id": "me", "lesson": 8, "tag": "Урок 8 · 11.10–18.10", "em": "🙋", "t": "О себе и анкета", "cn": "自我介绍", "w": [["九月", "jiǔ yuè", "сентябрь"], ["十号", "shí hào", "10-е число"], ["吗", "ma", "вопрос?"], ["该你了", "gāi nǐ le", "твоя очередь"], ["汉字", "hànzì", "иероглиф"], ["相信", "xiāngxìn", "верить"], ["我不相信你", "wǒ bù xiāngxìn nǐ", "я тебе не верю"]]}, {"id": "brother", "lesson": 8, "tag": "Задание от Панды", "em": "👦", "t": "О братике", "cn": "我弟弟", "w": [["他叫", "tā jiào", "его зовут"], ["他几岁", "tā jǐ suì", "сколько ему лет?"], ["他的生日", "tā de shēngrì", "его день рождения"], ["八月", "bā yuè", "август"], ["十七号", "shíqī hào", "17-е число"]]}, {"id": "t8", "lesson": 8, "em": "🏫", "t": "Школа и класс", "cn": "学生", "w": [["没", "méi", "не; нет"], ["没有", "méiyǒu", "не иметь; нет"], ["兄", "xiōng", "старший брат"], ["兄弟姐妹", "xiōngdì jiěmèi", "братья и сёстры"], ["中", "zhōng", "средний; середина"], ["学", "xué", "учиться"], ["学生", "xuésheng", "ученик"], ["中学生", "zhōngxuéshēng", "ученик средней школы"], ["上", "shàng", "идти (в школу); подниматься"], ["级", "jí", "класс (уровень)"], ["年级", "niánjí", "класс (год обучения)"]]}, {"id": "t9", "lesson": 9, "em": "💼", "t": "Профессии и работа", "cn": "职业", "w": [["工", "gōng", "работа"], ["作", "zuò", "делать"], ["工作", "gōngzuò", "работа; работать"], ["也", "yě", "тоже"], ["律师", "lǜshī", "юрист"], ["老", "lǎo", "старый; опытный"], ["老师", "lǎoshī", "учитель"], ["们", "men", "суффикс мн. числа"], ["我们", "wǒmen", "мы"], ["一家人", "yìjiārén", "члены одной семьи"], ["商人", "shāngrén", "бизнесмен"], ["护士", "hùshi", "медсестра"], ["医生", "yīshēng", "врач"], ["司机", "sījī", "водитель"], ["扎马步", "zhǎmǎbù", "стойка всадника (кунг-фу)"], ["螃蟹", "pángxiè", "краб (бизнесмен)"], ["师傅", "shīfu", "мастер (Шифу)"], ["数学", "shùxué", "математика"], ["老板", "lǎobǎn", "начальник, босс"], ["忘", "wàng", "забыть"], ["五十", "wǔshí", "пятьдесят"], ["秘书", "mìshū", "секретарь"], ["经理", "jīnglǐ", "менеджер, управляющий"], ["牙医", "yáyī", "стоматолог"]]}, {"id": "t10", "lesson": 10, "em": "⏰", "t": "Время и часы", "cn": "时间", "w": [["点", "diǎn", "час (на часах)"], ["零", "líng", "ноль"], ["分", "fēn", "минута"], ["刻", "kè", "четверть часа"], ["现在", "xiànzài", "сейчас"]]}, {"id": "countries", "lesson": 0, "tag": "Где ты живёшь", "em": "🌍", "t": "Страны мира", "cn": "国家", "w": [["住", "zhù", "жить"], ["住在", "zhù zài", "жить в…"], ["不住在", "bù zhù zài", "не живу в…"], ["哪儿", "nǎr", "где?"], ["国", "guó", "страна"], ["中国", "Zhōngguó", "Китай"], ["俄罗斯", "Éluósī", "Россия"], ["日本", "Rìběn", "Япония"], ["韩国", "Hánguó", "Южная Корея"], ["加拿大", "Jiānádà", "Канада"], ["乌克兰", "Wūkèlán", "Украина"], ["哈萨克斯坦", "Hāsàkèsītǎn", "Казахстан"], ["西班牙", "Xībānyá", "Испания"], ["葡萄牙", "Pútáoyá", "Португалия"], ["英国", "Yīngguó", "Англия"], ["法国", "Fǎguó", "Франция"], ["德国", "Déguó", "Германия"], ["巴西", "Bāxī", "Бразилия"], ["阿根廷", "Āgēntíng", "Аргентина"]]}, {"id": "cities", "lesson": 0, "tag": "Где ты живёшь", "em": "🏙️", "t": "Города и места", "cn": "城市", "w": [["北京", "Běijīng", "Пекин"], ["上海", "Shànghǎi", "Шанхай"], ["深圳", "Shēnzhèn", "Шэньчжэнь"], ["香港", "Xiānggǎng", "Гонконг"], ["东京", "Dōngjīng", "Токио"], ["纽约", "Niǔyuē", "Нью-Йорк"], ["巴黎", "Bālí", "Париж"], ["伦敦", "Lúndūn", "Лондон"], ["阿斯塔纳", "Āsītǎnà", "Астана"], ["莫斯科", "Mòsīkē", "Москва"], ["柏林", "Bólín", "Берлин"], ["旧金山", "Jiùjīnshān", "Сан-Франциско"], ["长城", "Chángchéng", "Великая стена"], ["天坛", "Tiāntán", "Храм Неба"], ["塔", "tǎ", "башня"], ["塔桥", "Tǎqiáo", "Тауэрский мост"], ["金门大桥", "Jīnmén Dàqiáo", "мост Золотые Ворота"], ["拜特列克", "Bàitèlièkè", "Байтерек"]]}, {"id": "football", "lesson": 0, "tag": "Сверх учебника", "em": "⚽", "t": "Футбол и спорт", "cn": "足球", "w": [["足球", "zúqiú", "футбол"], ["足球卡", "zúqiú kǎ", "футбольная карточка"], ["球", "qiú", "мяч"], ["球门", "qiúmén", "ворота"], ["门将", "ménjiàng", "вратарь"], ["队", "duì", "команда"], ["英国队", "Yīngguó duì", "сборная Англии"], ["进球", "jìnqiú", "гол"], ["球员", "qiúyuán", "игрок"], ["加油", "jiāyóu", "давай! вперёд!"], ["喜欢", "xǐhuan", "нравиться, любить"], ["赢", "yíng", "выиграть"], ["我们赢了", "wǒmen yíng le", "мы выиграли!"]]}, {"id": "water", "lesson": 0, "tag": "Урок 04.10", "em": "🦫", "t": "Вода и животные", "cn": "水", "w": [["喝", "hē", "пить"], ["水", "shuǐ", "вода"], ["喝水", "hē shuǐ", "пить воду"], ["水豚", "shuǐtún", "капибара"], ["水母", "shuǐmǔ", "медуза"], ["史莱姆", "shǐláimǔ", "слайм"]]}, {"id": "things", "lesson": 0, "tag": "Сверх учебника", "em": "📦", "t": "Предметы и вещи", "cn": "东西", "w": [["手", "shǒu", "рука"], ["机", "jī", "устройство"], ["手机", "shǒujī", "мобильный телефон"], ["杯子", "bēizi", "кружка"], ["瓶子", "píngzi", "бутылка"], ["包子", "bāozi", "баоцзы (булочки)"], ["商店", "shāngdiàn", "магазин"], ["火锅", "huǒguō", "хого (котёл)"], ["恐龙", "kǒnglóng", "динозавр"], ["龙", "lóng", "дракон"], ["鱼", "yú", "рыба"], ["时间", "shíjiān", "время"], ["没有时间", "méiyǒu shíjiān", "нет времени"], ["太棒了", "tài bàng le", "класс! отлично!"], ["没事", "méishì", "ничего страшного"], ["饺子", "jiǎozi", "пельмени"], ["左", "zuǒ", "лево"], ["右", "yòu", "право"], ["东方明珠", "Dōngfāng Míngzhū", "телебашня «Жемчужина Востока»"], ["犯人", "fànrén", "заключённый"], ["一百个汉字", "yìbǎi gè hànzì", "100 иероглифов"]]}, {"id": "chess", "lesson": 0, "em": "♟️", "t": "Шахматы", "cn": "下棋", "w": [["下棋", "xià qí", "играть в шахматы"], ["王", "wáng", "король"], ["后", "hòu", "ферзь"], ["王后", "wánghòu", "королева"], ["车", "chē", "ладья"], ["象", "xiàng", "слон"], ["马", "mǎ", "конь"], ["兵", "bīng", "пешка"], ["走", "zǒu", "ходить (сделать ход)"], ["吃", "chī", "бить («съесть» фигуру)"], ["大象", "dàxiàng", "слон (животное)"]]}, {"id": "lego", "lesson": 0, "em": "🦸", "t": "Лего и герои", "cn": "我们的词", "w": [["黑魔", "hēimó", "Тёмный маг"], ["石头", "shítou", "Камень"], ["生气", "shēngqì", "злиться"], ["海南", "Hǎinán", "Хайнань"], ["走吧", "zǒu ba", "пойдём!"], ["哪里", "nǎlǐ", "где; куда"], ["苹果", "píngguǒ", "яблоко"]]}, {"id": "base", "lesson": 0, "em": "🧩", "t": "Базовые слова", "cn": "基础词", "w": [["我", "wǒ", "я"], ["他", "tā", "он"], ["她", "tā", "она"], ["是", "shì", "быть (это/есть)"], ["什么", "shénme", "что; какой"], ["几", "jǐ", "сколько; какой"], ["叫", "jiào", "зваться"], ["名字", "míngzi", "имя"], ["大", "dà", "большой"], ["小", "xiǎo", "маленький"], ["今天", "jīntiān", "сегодня"], ["昨天", "zuótiān", "вчера"], ["明天", "míngtiān", "завтра"], ["年", "nián", "год"], ["今年", "jīnnián", "этот год"], ["号", "hào", "число (дата)"]]}], "traps": [{"t": "姐姐 или 弟弟?", "note": "j читается «цз», а не «д»: 姐姐 jiějie = «цзе-цзе», 弟弟 dìdi = «ди-ди».", "w": [["姐姐", "jiějie", "старшая сестра"], ["弟弟", "dìdi", "младший брат"]]}, {"t": "弟弟 или 叔叔?", "note": "弟弟 dìdi — младший брат, коротко и вниз. 叔叔 shūshu — дядя, «шу-шу».", "w": [["弟弟", "dìdi", "младший брат"], ["叔叔", "shūshu", "дядя"]]}, {"t": "12 или 20?", "note": "Важен порядок: 十二 = 10 + 2, 二十 = 2 × 10. В числах всегда 二, а не 两.", "w": [["十二", "shí'èr", "двенадцать"], ["二十", "èrshí", "двадцать"]]}, {"t": "8 или 18?", "note": "Слушай начало: есть ли «ши» (十) перед «ба»?", "w": [["八", "bā", "восемь"], ["十八", "shíbā", "восемнадцать"]]}, {"t": "Мяч или девять?", "note": "球 qiú — 2-й тон, вверх ↗. 九 jiǔ — 3-й тон, ямка ∨.", "w": [["球", "qiú", "мяч"], ["九", "jiǔ", "девять"]]}, {"t": "Он или башня?", "note": "他 tā — 1-й тон, ровно. 塔 tǎ — 3-й тон, ямка.", "w": [["他", "tā", "он"], ["塔", "tǎ", "башня"]]}, {"t": "Испания или Португалия?", "note": "葡萄 pútáo — «виноград» → Португалия «виноградная» 🍇", "w": [["西班牙", "Xībānyá", "Испания"], ["葡萄牙", "Pútáoyá", "Португалия"]]}, {"t": "7 или 1?", "note": "七 qī и 一 yī похожи, поэтому в номерах телефона 1 читают 幺 yāo.", "w": [["七", "qī", "семь"], ["一", "yī", "один"], ["幺", "yāo", "«1» в номерах"]]}, {"t": "13 или 60?", "note": "十三 shísān = 10 + 3 (сначала «ши»). 六十 liùshí = 6 × 10 (сначала «лю»).", "w": [["十三", "shísān", "тринадцать"], ["六十", "liùshí", "шестьдесят"]]}, {"t": "Старшая или младшая сестра?", "note": "姐姐 jiějie — старшая («цзе-цзе»). 妹妹 mèimei — младшая («мэй-мэй»).", "w": [["姐姐", "jiějie", "старшая сестра"], ["妹妹", "mèimei", "младшая сестра"]]}, {"t": "Ты или я?", "note": "В ответе меняем 你 на 我: 你家有几口人？→ 我家有四口人。", "w": [["你", "nǐ", "ты"], ["我", "wǒ", "я"]]}, {"t": "Пельмени или булочки?", "note": "饺子 jiǎozi — пельмени (j = «цз»). 包子 bāozi — булочки на пару.", "w": [["饺子", "jiǎozi", "пельмени"], ["包子", "bāozi", "баоцзы"]]}], "sentences": [{"lesson": 3, "tk": ["你", "好"], "ru": "Привет!"}, {"lesson": 5, "tk": ["我", "六", "岁", "了"], "ru": "Мне шесть лет."}, {"lesson": 5, "tk": ["你", "几", "岁"], "ru": "Сколько тебе лет?"}, {"lesson": 5, "tk": ["我", "的", "生日", "是", "三月", "十", "号"], "ru": "Мой день рождения — 10 марта."}, {"lesson": 6, "tk": ["你", "家", "的", "电话", "号码", "是", "多少"], "ru": "Какой у тебя домашний телефон?"}, {"lesson": 7, "tk": ["我", "家", "有", "五", "口", "人"], "ru": "В моей семье пять человек."}, {"lesson": 7, "tk": ["叔叔", "去", "中国"], "ru": "Дядя едет в Китай."}, {"lesson": 8, "tk": ["我", "没有", "兄弟姐妹"], "ru": "У меня нет братьев и сестёр."}, {"lesson": 8, "tk": ["我", "是", "学生"], "ru": "Я ученик."}, {"lesson": 9, "tk": ["我", "妈妈", "是", "老师"], "ru": "Моя мама учитель."}, {"lesson": 9, "tk": ["我", "爸爸", "是", "医生"], "ru": "Мой папа врач."}, {"lesson": 10, "tk": ["现在", "几", "点"], "ru": "Сколько сейчас времени?"}, {"lesson": 0, "tk": ["马", "走"], "ru": "Конь ходит.", "topic": "chess"}, {"lesson": 0, "tk": ["吃", "兵"], "ru": "Бить пешку.", "topic": "chess"}, {"lesson": 0, "tk": ["我", "吃", "苹果"], "ru": "Я ем яблоко.", "topic": "lego"}, {"lesson": 0, "tk": ["走", "吧"], "ru": "Пойдём!", "topic": "lego"}, {"lesson": 0, "tk": ["去", "哪里"], "ru": "Куда идём?", "topic": "lego"}, {"lesson": 0, "tk": ["我", "生气"], "ru": "Я злюсь.", "topic": "lego"}, {"lesson": 4, "tk": ["三月", "八", "号"], "ru": "8 марта."}, {"lesson": 4, "tk": ["新年", "是", "一月", "一", "号"], "ru": "Новый год — 1 января."}, {"lesson": 7, "tk": ["你", "家", "有", "几", "口", "人"], "ru": "Сколько человек в твоей семье?"}, {"lesson": 7, "tk": ["我", "家", "有", "三", "口", "人"], "ru": "В моей семье три человека."}, {"lesson": 7, "tk": ["这个", "人", "是", "谁"], "ru": "Кто этот человек?"}, {"lesson": 7, "tk": ["两", "个", "大人"], "ru": "Двое взрослых."}, {"lesson": 7, "tk": ["生日快乐", "，", "弟弟"], "ru": "С днём рождения, братик!"}, {"lesson": 7, "tk": ["我", "有", "叔叔"], "ru": "У меня есть дядя."}, {"lesson": 0, "topic": "countries", "tk": ["你", "住", "在", "哪儿"], "ru": "Где ты живёшь?"}, {"lesson": 0, "topic": "countries", "tk": ["我", "住", "在", "哈萨克斯坦"], "ru": "Я живу в Казахстане."}, {"lesson": 0, "topic": "countries", "tk": ["我", "不", "住", "在", "俄罗斯"], "ru": "Я не живу в России."}, {"lesson": 0, "topic": "countries", "tk": ["我", "喜欢", "阿根廷"], "ru": "Мне нравится Аргентина."}, {"lesson": 0, "topic": "cities", "tk": ["我", "住", "在", "阿斯塔纳"], "ru": "Я живу в Астане."}, {"lesson": 0, "topic": "cities", "tk": ["她", "住", "在", "伦敦"], "ru": "Она живёт в Лондоне."}, {"lesson": 0, "topic": "cities", "tk": ["我", "住", "在", "莫斯科"], "ru": "Я живу в Москве."}, {"lesson": 0, "topic": "football", "tk": ["我", "有", "球"], "ru": "У меня есть мяч."}, {"lesson": 0, "topic": "football", "tk": ["我", "有", "球门"], "ru": "У меня есть ворота."}, {"lesson": 0, "topic": "football", "tk": ["我", "喜欢", "足球"], "ru": "Я люблю футбол."}, {"lesson": 0, "topic": "football", "tk": ["我", "喜欢", "英国队"], "ru": "Мне нравится сборная Англии."}, {"lesson": 0, "topic": "football", "tk": ["我们", "赢", "了"], "ru": "Мы выиграли!"}, {"lesson": 0, "topic": "football", "tk": ["两", "个", "球员"], "ru": "Два игрока."}, {"lesson": 0, "topic": "water", "tk": ["我", "喝", "水"], "ru": "Я пью воду."}, {"lesson": 0, "topic": "water", "tk": ["早上", "好"], "ru": "Доброе утро!"}, {"lesson": 0, "topic": "water", "tk": ["他", "是", "医生"], "ru": "Он врач."}, {"lesson": 0, "topic": "things", "tk": ["我", "有", "手机"], "ru": "У меня есть телефон."}, {"lesson": 0, "topic": "things", "tk": ["我", "没有", "手机"], "ru": "У меня нет телефона."}, {"lesson": 0, "topic": "things", "tk": ["商店", "在", "哪儿"], "ru": "Где магазин?"}, {"lesson": 0, "topic": "things", "tk": ["太", "棒", "了"], "ru": "Класс!"}, {"lesson": 0, "topic": "things", "tk": ["我", "没有", "时间"], "ru": "У меня нет времени."}, {"lesson": 8, "topic": "me", "tk": ["我", "叫", "阿斯凯"], "ru": "Меня зовут Аскар."}, {"lesson": 8, "topic": "me", "tk": ["我", "七", "岁"], "ru": "Мне семь лет."}, {"lesson": 8, "topic": "me", "tk": ["我", "的", "生日", "是", "九月", "十", "号"], "ru": "Мой день рождения — 10 сентября."}, {"lesson": 8, "topic": "me", "tk": ["我", "家", "有", "四", "口", "人"], "ru": "В моей семье четыре человека."}, {"lesson": 8, "topic": "me", "tk": ["爸爸", "、", "妈妈", "、", "弟弟", "和", "我"], "ru": "Папа, мама, братик и я."}, {"lesson": 8, "topic": "me", "tk": ["我", "住", "在", "阿斯塔纳"], "ru": "Я живу в Астане."}, {"lesson": 8, "topic": "me", "tk": ["我", "喜欢", "足球"], "ru": "Я люблю футбол."}, {"lesson": 8, "topic": "me", "tk": ["你", "叫", "什么", "名字"], "ru": "Как тебя зовут?"}, {"lesson": 8, "topic": "me", "tk": ["你", "家", "有", "几", "口", "人"], "ru": "Сколько человек в твоей семье?"}, {"lesson": 8, "topic": "me", "tk": ["我", "有", "弟弟"], "ru": "У меня есть братик."}, {"lesson": 8, "topic": "me", "tk": ["该", "你", "了"], "ru": "Твоя очередь!"}, {"lesson": 8, "topic": "me", "tk": ["我", "不", "相信", "你"], "ru": "Я тебе не верю!"}, {"lesson": 8, "topic": "brother", "tk": ["他", "是", "我", "弟弟"], "ru": "Это мой братик."}, {"lesson": 8, "topic": "brother", "tk": ["他", "几", "岁"], "ru": "Сколько ему лет?"}, {"lesson": 8, "topic": "brother", "tk": ["他", "的", "生日", "是", "八月", "十七", "号"], "ru": "Его день рождения — 17 августа."}, {"lesson": 8, "topic": "brother", "tk": ["他", "也", "住", "在", "阿斯塔纳"], "ru": "Он тоже живёт в Астане."}, {"lesson": 8, "topic": "brother", "tk": ["他", "也", "喜欢", "足球"], "ru": "Он тоже любит футбол."}, {"lesson": 8, "topic": "brother", "tk": ["生日快乐", "，", "弟弟"], "ru": "С днём рождения, братик!"}, {"lesson": 0, "topic": "things", "tk": ["我", "喜欢", "饺子"], "ru": "Я люблю пельмени."}], "student": "Аскар"};
+  </script>
 
-<section id="play" class="hide">
-  <button class="back" data-go="modes">← Другой режим</button>
-  <div class="progress-row">
-    <div class="pbar"><i id="pbar"></i></div>
-    <div class="count" id="count"></div>
-  </div>
-  <div class="stage" id="stage"></div>
-  <div class="actions" id="actions"></div>
-</section>
+  <!-- APPLICATION ENGINE -->
+  <script>
+    (function() {
+      let data = window.ASKAR_DATA_FALLBACK;
+      let allWords = [];
+      let speechRate = 0.85;
 
-<section id="results" class="hide">
-  <div class="stage results-stage">
-    <div class="score" id="scoreLine"></div>
-    <p class="hint" id="scoreSub"></p>
-    <div class="mistakes hide" id="mistakes"><p class="section-label">Повторить</p><ul></ul></div>
-    <div class="actions">
-      <button class="btn" id="again">Ещё раз</button>
-      <button class="btn ghost" data-go="modes">Другой режим</button>
-      <button class="btn ghost" data-go="home">К темам</button>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<script>
-/* ================= настройки режимов ================= */
-const MODES=[
- {id:"cards",    cn:"认字", t:"Карточки",        d:"Смотришь иероглиф, вспоминаешь сам. Без счёта очков."},
- {id:"choice",   cn:"选择", t:"Выбери перевод",  d:"Иероглиф → четыре варианта. Быстрая проверка."},
- {id:"listen",   cn:"听力", t:"На слух",         d:"Слушаешь озвучку и находишь нужное слово."},
- {id:"truefalse",cn:"对不对",t:"Верно или нет?", d:"Видишь перевод, слышишь слово. Совпало — 对, нет — 不对."},
- {id:"trap",     cn:"易混", t:"Ловушки",         d:"Похожие слова, которые легко перепутать. Слушай и выбирай.", only:"traps"},
- {id:"tones",    cn:"声调", t:"Тоны",            d:"Слушаешь слово и выбираешь, с какими тонами оно звучит.", needs:"tones"},
- {id:"sounds",   cn:"声母", t:"Звуки",           d:"j или zh? q или ch? Слушаешь и выбираешь верный пиньинь.", needs:"sounds"},
- {id:"speak",    cn:"说",   t:"Скажи сам",       d:"Говоришь слово в микрофон — панда проверяет произношение."},
- {id:"pinyin",   cn:"拼音", t:"Впиши пиньинь",   d:"Печатаешь чтение. Тоны ставить не обязательно."},
- {id:"sent",     cn:"造句", t:"Собери фразу",    d:"Расставь слова в правильном порядке.", needsSent:true},
- {id:"fill",     cn:"填空", t:"Вставь слово",    d:"В фразе пропуск — найди слово, которого не хватает.", needsSent:true},
- {id:"hearsent", cn:"听句", t:"Фраза на слух",   d:"Слушаешь целую фразу и выбираешь её перевод.", needsSent:true},
- {id:"blitz",    cn:"闪电", t:"Молния · 60 сек", d:"Сколько слов успеешь за минуту? Есть рекорд."},
- {id:"memory",   cn:"配对", t:"Пары",            d:"Найди иероглиф и его перевод. Игра на память."}
-];
-
-/* ================= хранилище ================= */
-const mem={};
-const store={
-  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return k in mem?mem[k]:d}},
-  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){mem[k]=v}}
-};
-
-/* ================= озвучка ================= */
-let zhVoice=null;
-/* приоритет голосов: 云夏 (детский) → 晓晓 → любой zh-CN → любой китайский */
-const VOICE_RANK=[
-  v=>/yunxia|云夏/i.test(v.name),
-  v=>/xiaoxiao|晓晓/i.test(v.name),
-  v=>/yunxi|云希/i.test(v.name),
-  v=>v.lang==='zh-CN',
-  v=>v.lang&&v.lang.toLowerCase().startsWith('zh')
-];
-function pickVoice(){
-  const vs=speechSynthesis.getVoices();
-  for(const test of VOICE_RANK){const hit=vs.find(test);if(hit){zhVoice=hit;return}}
-  zhVoice=null;
-}
-if('speechSynthesis' in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
-
-let SOUND=true;
-function speak(t){
-  if(!SOUND||!t||!('speechSynthesis' in window))return;
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance(t);
-  u.lang='zh-CN';u.rate=.8;if(zhVoice)u.voice=zhVoice;
-  speechSynthesis.speak(u);
-}
-/* небольшая пауза, чтобы озвучка не наложилась на отрисовку */
-function autoSay(t,ms){setTimeout(()=>speak(t),ms||280)}
-
-/* ================= распознавание речи ================= */
-const SR=window.SpeechRecognition||window.webkitSpeechRecognition||null;
-let SR_OK=!!SR;
-
-/* ================= утилиты ================= */
-const $=s=>document.querySelector(s);
-const shuffle=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(p=>p[1]);
-const strip=s=>s.normalize('NFD').replace(/[̀-̏]/g,'').replace(/[\s']/g,'').toLowerCase();
-const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const pykey=p=>p.toLowerCase().replace(/[\s'-]/g,'');
-const hasZh=s=>/[一-鿿]/.test(s);
-const PY=()=>!!(DB&&DB.showPinyin);
-/* иероглиф + пиньинь мелко (для тех, кто пока не читает иероглифы) */
-const hz=w=>`<span class="zh">${w[0]}</span>`+(PY()&&w[1]?`<small class="py">${w[1]}</small>`:'');
-const pyLine=w=>PY()?`<div class="pinyin">${w[1]}</div>`:'';
-
-/* ---------- тоны ---------- */
-const TV={a:'āáǎà',e:'ēéěè',i:'īíǐì',o:'ōóǒò',u:'ūúǔù',ü:'ǖǘǚǜ',A:'ĀÁǍÀ',E:'ĒÉĚÈ',O:'ŌÓǑÒ'};
-const T2B={};
-Object.entries(TV).forEach(([b,str])=>[...str].forEach((c,i)=>T2B[c]=[b,i+1]));
-const tonesOf=p=>[...p].filter(c=>T2B[c]).map(c=>T2B[c][1]);
-function retone(p,ts){let k=0;return [...p].map(c=>T2B[c]?TV[T2B[c][0]][ts[k++]-1]:c).join('')}
-/* как слово реально звучит: 3+3 → 2+3 */
-function sandhi(ts){const r=ts.slice();for(let i=0;i<r.length-1;i++)if(ts[i]===3&&ts[i+1]===3)r[i]=2;return r}
-const sameArr=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
-function toneOptions(p){
-  const ts=tonesOf(p), real=sandhi(ts), set=new Set([p]);
-  if(ts.length===1)[1,2,3,4].forEach(t=>set.add(retone(p,[t])));
-  else for(let g=0;set.size<4&&g<80;g++){
-    const v=ts.slice(), k=Math.floor(Math.random()*v.length);
-    let nt;do{nt=1+Math.floor(Math.random()*4)}while(nt===v[k]);
-    v[k]=nt;
-    if(g>30){const k2=Math.floor(Math.random()*v.length);v[k2]=1+Math.floor(Math.random()*4)}
-    if(sameArr(v,ts)||sameArr(v,real))continue;
-    set.add(retone(p,v));
-  }
-  return shuffle([...set]);
-}
-const TONE_SIGN=['','—','↗','∨','↘'];
-const toneLabel=p=>tonesOf(p).map(t=>t+TONE_SIGN[t]).join(' · ');
-
-/* ---------- звуки (начальные согласные) ---------- */
-const VOW='aeiouüāáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜ';
-const isV=c=>!!c&&VOW.includes(c.toLowerCase());
-const I_SET='iīíǐì', U_SET='uūúǔù', A_SET='aāáǎà', O_SET='oōóǒò';
-const I2E={i:'e',ī:'ē',í:'é',ǐ:'ě',ì:'è'}, E2I={e:'i',ē:'ī',é:'í',ě:'ǐ',è:'ì'};
-const E2O={e:'o',ē:'ō',é:'ó',ě:'ǒ',è:'ò'}, O2E={o:'e',ō:'ē',ó:'é',ǒ:'ě',ò:'è'};
-/* пары, которые путают русскоязычные ученики */
-const CONF={j:['zh','z','d'],q:['ch','c','t'],x:['sh','s'],zh:['z','j'],ch:['c','q'],sh:['s','x'],
-  z:['zh','j'],c:['ch','q'],s:['sh','x'],d:['t','j'],t:['d','q'],b:['p'],p:['b'],g:['k'],k:['g'],n:['l'],l:['n']};
-const PAL=['j','q','x'];
-/* меняем согласную и подправляем гласную, чтобы получился настоящий слог */
-function swapRest(from,to,rest){
-  const r0=rest[0], r1=rest[1];
-  const fromPal=PAL.includes(from), toPal=PAL.includes(to);
-  if(fromPal===toPal)return rest;
-  if(fromPal){                                   /* j/q/x → zh/z/d… */
-    if(U_SET.includes(r0)){                      /* ü пишется как u */
-      if(to==='d'||to==='t')return rest;
-      return E2O[r1]?r0+E2O[r1]+rest.slice(2):rest;
-    }
-    if(!I_SET.includes(r0))return null;
-    if(to==='d'||to==='t')return (r1==='n'&&rest[2]!=='g')?null:rest;
-    if(isV(r1))return rest.slice(1);             /* jiě → zhě, xiǎo → shǎo */
-    if(r1==='n')return I2E[r0]+rest.slice(1);   /* jīn → zhēn, xìng → shèng */
-    return rest;                                 /* qī → chī */
-  }
-  /* zh/z/d… → j/q/x */
-  if(I_SET.includes(r0))return rest;             /* shì → xì, diàn → jiàn */
-  if(E2I[r0]&&r1==='n')return E2I[r0]+rest.slice(1);       /* zhēn → jīn */
-  if(E2I[r0])return (r1==='i'||r1==='r')?null:'i'+rest;    /* zhè → jiè */
-  if(A_SET.includes(r0))return r1==='i'?null:'i'+rest;     /* shàng → xiàng */
-  if(O_SET.includes(r0))return rest.slice(1,3)==='ng'?'i'+rest:null;
-  if(U_SET.includes(r0)){
-    if(O2E[r1])return r0+O2E[r1]+rest.slice(2);            /* shuō → xuē */
-    if(A_SET.includes(r1))return (rest[2]==='n'&&rest[3]!=='g')?rest:null;
-    return isV(r1)?null:rest;                               /* zhù → jù */
-  }
-  return null;
-}
-function soundVariants(p){
-  const cap=p[0]!==p[0].toLowerCase();
-  const s=cap?p[0].toLowerCase()+p.slice(1):p;
-  const m=s.match(/^(zh|ch|sh|[bpdtgkjqxzcsnl])(.*)$/);
-  if(!m||!isV(m[2][0]))return[];
-  const out=new Set();
-  (CONF[m[1]]||[]).forEach(to=>{
-    const r=swapRest(m[1],to,m[2]);if(r==null)return;
-    let v=to+r;if(cap)v=v[0].toUpperCase()+v.slice(1);
-    if(v!==p)out.add(v);
-  });
-  return [...out];
-}
-
-/* ---------- числа для распознавания речи (12 → 十二) ---------- */
-function cnNum(s){
-  const D={零:0,一:1,二:2,两:2,三:3,四:4,五:5,六:6,七:7,八:8,九:9};
-  if(!/^[零一二两三四五六七八九十百]+$/.test(s))return null;
-  let total=0,cur=0;
-  for(const ch of s){
-    if(ch in D)cur=D[ch];
-    else if(ch==='十'){total+=(cur||1)*10;cur=0}
-    else if(ch==='百'){total+=(cur||1)*100;cur=0}
-  }
-  return total+cur;
-}
-
-/* ================= состояние ================= */
-let DB=null, SID='lera', ALL=[], TRAPS=null, PYMAP={}, HOMO={};
-let S={topic:null,mode:null,queue:[],i:0,ok:0,wrong:[],locked:false,timer:null};
-/* номер запуска: отложенные таймеры старого режима не трогают новый */
-let RUN=0;
-const later=(fn,ms)=>{const r=RUN;setTimeout(()=>{if(r===RUN)fn()},ms)};
-
-function show(id){['home','modes','play','results'].forEach(s=>$('#'+s).classList.toggle('hide',s!==id));
-  window.scrollTo({top:0,behavior:'smooth'})}
-function stopTimers(){RUN++;if(S.timer){clearInterval(S.timer);S.timer=null}}
-document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');
-  if(g){stopTimers();show(g.dataset.go);if(g.dataset.go==='home')renderHome()}});
-
-const topics=()=>TRAPS?[TRAPS,...DB.topics]:DB.topics;
-const findTopic=id=>topics().find(t=>t.id===id);
-
-/* ================= загрузка ================= */
-(async function boot(){
-  SID='askar';
-  try{
-    const r=await fetch('data/askar.json');
-    if(!r.ok)throw 0;
-    DB=await r.json();
-  }catch(e){
-    $('#whoLine').textContent='ошибка';
-    $('#topicGrid').innerHTML='<p class="hint">Не удалось загрузить словарь <b>data/askar.json</b>. Если открываешь файл с диска — нужен локальный сервер или GitHub Pages.</p>';
-    return;
-  }
-  ALL=DB.topics.flatMap(t=>t.w);
-  if(DB.traps&&DB.traps.length){
-    const seen=new Set(), w=[];
-    DB.traps.forEach(g=>g.w.forEach(x=>{if(!seen.has(x[0])){seen.add(x[0]);w.push(x)}}));
-    TRAPS={id:'traps',lesson:0,tag:'Похожие слова',em:'🎯',t:'Ловушки',cn:'易混词',w,isTraps:true};
-  }
-  [...ALL,...(TRAPS?TRAPS.w:[])].forEach(w=>{
-    if(!PYMAP[w[0]])PYMAP[w[0]]=w[1];
-    const k=pykey(w[1]);(HOMO[k]=HOMO[k]||new Set()).add(w[0]);
-  });
-  $('#whoLine').textContent=DB.name+' · '+DB.book;
-  document.title='Panda Explorer · '+DB.name;
-  $('#homeLabel').textContent='Выбери тему · '+DB.topics.length+' тем · '+ALL.length+' слов';
-  renderHome();
-})();
-
-/* ================= стрик ================= */
-function touchStreak(){const today=new Date().toISOString().slice(0,10);
-  const st=store.get('pe_streak',{last:null,n:0});if(st.last===today)return;
-  const y=new Date(Date.now()-864e5).toISOString().slice(0,10);
-  st.n=st.last===y?st.n+1:1;st.last=today;store.set('pe_streak',st)}
-function paintStreak(){$('#streak').textContent='🔥 '+store.get('pe_streak',{n:0}).n}
-
-SOUND=store.get('pe_sound',true);
-function paintSound(){$('#sndBtn').textContent=SOUND?'🔊 Звук':'🔇 Тихо'}
-$('#sndBtn').onclick=()=>{SOUND=!SOUND;store.set('pe_sound',SOUND);paintSound();
-  if(!SOUND&&'speechSynthesis' in window)speechSynthesis.cancel()};
-paintSound();
-
-/* ================= главный экран ================= */
-const K=n=>'pe_'+SID+'_'+n;
-const tagOf=t=>t.tag||(t.lesson?'Урок '+t.lesson:'Сверх учебника');
-function renderHome(){
-  paintStreak();renderFocus();
-  const best=store.get(K('best'),{});
-  $('#topicGrid').innerHTML=topics().map(t=>{
-    const p=best[t.id]||0;
-    return `<button class="topic${t.isTraps?' trap':''}" data-topic="${t.id}">
-      <span class="row1"><span class="em">${t.em}</span><span class="lesson">${esc(tagOf(t))}</span></span>
-      <span class="t">${esc(t.t)}</span><span class="cn zh">${t.cn}</span>
-      <span class="meta"><span>${t.w.length} слов</span>
-      <span class="bar"><i style="width:${p}%"></i></span><span>${p}%</span></span>
-    </button>`}).join('');
-  $('#topicGrid').querySelectorAll('[data-topic]').forEach(b=>b.onclick=()=>openTopic(b.dataset.topic));
-}
-
-/* ---------- задания от учителя ---------- */
-function focusDone(){
-  const f=DB.focus, st=store.get(K('focus'),{});
-  return st.date===f.date?st:{date:f.date,d:{}};
-}
-function renderFocus(){
-  const f=DB.focus, box=$('#focus');
-  if(!f||!f.tasks||!f.tasks.length){box.innerHTML='';return}
-  const st=focusDone();
-  const items=f.tasks.map((t,i)=>({t,i,m:MODES.find(x=>x.id===t.mode),tp:findTopic(t.topic)})).filter(x=>x.m&&x.tp);
-  const n=items.filter(x=>st.d[x.t.topic+'|'+x.t.mode]).length;
-  box.innerHTML=`<div class="focus">
-    <div class="focus-hd"><span class="focus-tag">Задания от учителя${f.date?' · '+esc(f.date):''}</span>
-      <b>${esc(f.title||'')}</b></div>
-    ${f.note?`<p class="hint">${esc(f.note)}</p>`:''}
-    <div class="focus-list">${items.map(({t,i,m,tp},k)=>{
-      const ok=st.d[t.topic+'|'+t.mode];
-      return `<button class="ftask${ok?' done':''}" data-i="${i}">
-        <span class="fcheck">${ok?'✓':k+1}</span>
-        <span class="ftxt"><b>${esc(t.label||m.t)}</b><small>${tp.em} ${esc(tp.t)} · ${m.t}</small></span></button>`}).join('')}
-    </div>
-    <p class="hint">${n===items.length?'Всё сделано! 很棒！':`Сделано ${n} из ${items.length}`}</p></div>`;
-  box.querySelectorAll('.ftask').forEach(b=>b.onclick=()=>{
-    const t=f.tasks[+b.dataset.i];openTopic(t.topic);start(t.mode)});
-}
-function markFocus(){
-  const f=DB.focus;if(!f||!f.tasks||!S.topic)return;
-  const key=S.topic.id+'|'+S.mode;
-  if(!f.tasks.some(t=>t.topic+'|'+t.mode===key))return;
-  const st=focusDone();st.d[key]=true;store.set(K('focus'),st);
-}
-
-/* фразы темы: привязанные через "topic" или по номеру урока */
-function sentsFor(t){
-  if(!DB.sentences||t.isTraps)return[];
-  return DB.sentences.filter(s=>s.topic?s.topic===t.id:(t.lesson?s.lesson===t.lesson:s.lesson===0));
-}
-const toneWords=t=>t.w.filter(w=>tonesOf(w[1]).length);
-const soundWords=t=>t.w.filter(w=>soundVariants(w[1]).length);
-
-function modeList(t){
-  let list=MODES.filter(m=>!m.only||(m.only==='traps'&&t.isTraps));
-  if(DB.modes){const ord=id=>{const i=DB.modes.indexOf(id);return i<0?99:i};
-    list=list.slice().sort((a,b)=>ord(a.id)-ord(b.id))}
-  if(t.isTraps)list=[...list.filter(m=>m.id==='trap'),...list.filter(m=>m.id!=='trap')];
-  return list;
-}
-function offReason(m,t,ns){
-  if(m.needsSent&&ns===0)return 'Для этой темы фраз пока нет';
-  if(m.id==='hearsent'&&DB.sentences.length<4)return 'Нужно хотя бы 4 фразы';
-  if(m.needs==='tones'&&!toneWords(t).length)return 'Для этой темы нет подходящих слов';
-  if(m.needs==='sounds'&&!soundWords(t).length)return 'Для этой темы нет подходящих слов';
-  return '';
-}
-
-function openTopic(id){
-  S.topic=findTopic(id);
-  const t=S.topic, ns=sentsFor(t).length;
-  $('#modeTitle').innerHTML=`${t.em} ${esc(t.t)} <span class="zh cnbig">${t.cn}</span>`;
-  $('#modeSub').textContent=tagOf(t)+' · '+
-    (t.isTraps?`${DB.traps.length} ловушек · `:'')+`${t.w.length} слов`+(ns?` · ${ns} фраз`:'');
-  const blitzBest=store.get(K('blitz'),0), memBest=store.get(K('mem_'+t.id),0);
-  $('#modeList').innerHTML=modeList(t).map(m=>{
-    const why=offReason(m,t,ns);
-    const extra=m.id==='blitz'&&blitzBest?`<u>рекорд ${blitzBest}</u>`:
-                m.id==='memory'&&memBest?`<u>лучший ход ${memBest}</u>`:'';
-    return `<button class="mode${why?' off':''}${m.only?' trapmode':''}" data-mode="${m.id}"${why?' disabled':''}>
-      <b><span class="zh">${m.cn}</span> · ${m.t}</b>
-      <span>${why||m.d}</span>${extra}</button>`}).join('');
-  $('#modeList').querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>start(b.dataset.mode));
-  show('modes');
-}
-
-/* ================= запуск ================= */
-$('#again').onclick=()=>start(S.mode);
-function start(mode){
-  stopTimers();S.mode=mode;S.i=0;S.ok=0;S.wrong=[];S.locked=false;
-  $('#stage').classList.remove('flat');
-  $('#pbar').style.background='';$('#pbar').style.width='0%';
-  show('play');
-  if(mode==='blitz')return blitzStart();
-  if(mode==='memory')return memoryStart();
-  S.queue=shuffle(
-    ['sent','fill','hearsent'].includes(mode)?sentsFor(S.topic).slice():
-    mode==='trap'?DB.traps.flatMap(g=>g.w.map(w=>({g,w}))):
-    mode==='tones'?toneWords(S.topic):
-    mode==='sounds'?soundWords(S.topic):
-    S.topic.w.slice());
-  next();
-}
-
-function next(){
-  if(S.i>=S.queue.length)return finish();
-  S.locked=false;
-  $('#count').textContent=`${S.i+1} / ${S.queue.length}`;
-  $('#pbar').style.width=(S.i/S.queue.length*100)+'%';
-  ({cards:qCards,choice:qChoice,listen:qListen,pinyin:qPinyin,sent:qSent,truefalse:qTrueFalse,
-    tones:qTones,sounds:qSounds,speak:qSpeak,fill:qFill,hearsent:qHearSent,trap:qTrap})[S.mode]();
-}
-
-function stamp(good){
-  const el=document.createElement('div');
-  el.className='seal show'+(good?'':' wrong');
-  el.innerHTML=`<div class="seal-box zh">${good?'对':'错'}</div>`;
-  $('#stage').appendChild(el);setTimeout(()=>el.remove(),1100);
-}
-function judge(good,item,say,wait){
-  if(S.locked)return;S.locked=true;
-  if(good)S.ok++;else S.wrong.push(item);
-  stamp(good);if(say)speak(say);
-  later(()=>{S.i++;next()},wait||(good?900:1800));
-}
-/* общий обработчик для кнопок-вариантов */
-function bindOpts(isRight,onPick){
-  const bs=[...$('#actions').querySelectorAll('.opt')];
-  bs.forEach((b,n)=>b.onclick=()=>{
-    if(S.locked)return;
-    const good=isRight(n);
-    bs.forEach((x,k)=>{x.disabled=true;if(isRight(k))x.classList.add('ok')});
-    if(!good)b.classList.add('no');
-    onPick(good,n);
-  });
-}
-
-/* ---------- 1. карточки ---------- */
-function qCards(){
-  const w=S.queue[S.i];
-  $('#stage').innerHTML=`<button class="sound" title="Озвучить">🔊</button>
-    <div class="hanzi zh">${w[0]}</div>${pyLine(w)}
-    <div class="hint">${PY()?'Вспомни перевод':'Вспомни чтение и перевод'}</div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  $('#actions').innerHTML=`<button class="btn" id="flip">Показать ответ</button>`;
-  $('#flip').onclick=()=>{
-    speak(w[0]);
-    $('#stage').innerHTML=`<button class="sound">🔊</button><div class="hanzi zh">${w[0]}</div>
-      <div class="pinyin">${w[1]}</div><div class="ru">${esc(w[2])}</div>`;
-    $('#stage .sound').onclick=()=>speak(w[0]);
-    $('#actions').innerHTML=`<button class="btn ghost" id="bad">Ещё не помню</button>
-      <button class="btn" id="good">Знаю</button>`;
-    $('#good').onclick=()=>{S.ok++;S.i++;next()};
-    $('#bad').onclick=()=>{S.wrong.push(w);S.i++;next()};
-  };
-}
-
-/* ---------- 2. выбери перевод ---------- */
-function qChoice(){
-  const w=S.queue[S.i];
-  const pool=S.topic.w.filter(x=>x[2]!==w[2]);
-  const opts=shuffle([w,...shuffle(pool).slice(0,3)]);
-  $('#stage').innerHTML=`<button class="sound">🔊</button><div class="hanzi zh">${w[0]}</div>${pyLine(w)}
-    <div class="hint">Что это значит?</div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  $('#actions').innerHTML=`<div class="opts">${opts.map((o,n)=>
-    `<button class="opt" data-n="${n}">${esc(o[2])}</button>`).join('')}</div>`;
-  bindOpts(n=>opts[n][2]===w[2],good=>judge(good,w,w[0]));
-}
-
-/* ---------- 3. на слух ---------- */
-function qListen(){
-  const w=S.queue[S.i];
-  /* омофоны (他/她) на слух не различить — не даём их вместе */
-  const pool=S.topic.w.filter(x=>x[0]!==w[0]&&pykey(x[1])!==pykey(w[1]));
-  const opts=shuffle([w,...shuffle(pool).slice(0,3)]);
-  $('#stage').innerHTML=`<div class="bigemoji">🎧</div>
-    <div class="hint">Послушай и выбери слово</div>`;
-  $('#actions').innerHTML=`<button class="btn" id="pl">🔊 Послушать ещё раз</button>
-    <div class="opts">${opts.map((o,n)=>`<button class="opt" data-n="${n}">${hz(o)}</button>`).join('')}</div>`;
-  $('#pl').onclick=()=>speak(w[0]);
-  setTimeout(()=>speak(w[0]),350);
-  bindOpts(n=>opts[n][0]===w[0],good=>{
-    $('#stage').innerHTML=`<div class="hanzi zh">${w[0]}</div>
-      <div class="pinyin">${w[1]}</div><div class="ru">${esc(w[2])}</div>`;
-    judge(good,w,null);
-  });
-}
-
-/* ---------- 4. верно или нет ---------- */
-function qTrueFalse(){
-  const w=S.queue[S.i];
-  const pool=S.topic.w.filter(x=>x[0]!==w[0]&&x[2]!==w[2]&&pykey(x[1])!==pykey(w[1]));
-  const said=(Math.random()<.5||!pool.length)?w:pool[Math.floor(Math.random()*pool.length)];
-  const match=said===w;
-  $('#stage').innerHTML=`<div class="bigemoji">🎧</div><div class="ru big-ru">${esc(w[2])}</div>
-    <div class="hint">Прозвучало именно это слово?</div>`;
-  $('#actions').innerHTML=`<button class="btn ghost" id="pl">🔊 Ещё раз</button>
-    <div class="opts"><button class="opt tf"><span class="zh">对</span>Верно</button>
-    <button class="opt tf"><span class="zh">不对</span>Неверно</button></div>`;
-  $('#pl').onclick=()=>speak(said[0]);
-  autoSay(said[0],350);
-  bindOpts(n=>(n===0)===match,good=>{
-    $('#stage').innerHTML=`<div class="hanzi zh">${w[0]}</div>
-      <div class="pinyin">${w[1]}</div><div class="ru">${esc(w[2])}</div>
-      ${match?'':`<div class="hint note">А прозвучало: <b class="zh">${said[0]}</b> ${said[1]} — ${esc(said[2])}</div>`}`;
-    judge(good,w,null,good?1000:2600);
-  });
-}
-
-/* ---------- 5. тоны ---------- */
-function qTones(){
-  const w=S.queue[S.i];
-  const opts=toneOptions(w[1]);
-  $('#stage').innerHTML=`<button class="sound">🔊</button>
-    <div class="hanzi zh">${w[0]}</div><div class="ru">${esc(w[2])}</div>
-    <div class="hint">Послушай: с какими тонами звучит слово?<br>
-      <span class="tonekey">1 — ровно · 2 ↗ вверх · 3 ∨ ямка · 4 ↘ вниз</span></div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  $('#actions').innerHTML=`<div class="opts">${opts.map(o=>
-    `<button class="opt"><span class="pyopt">${o}</span><small class="tn">${toneLabel(o)}</small></button>`).join('')}</div>`;
-  bindOpts(n=>opts[n]===w[1],good=>judge(good,w,w[0]));
-}
-
-/* ---------- 6. звуки ---------- */
-function qSounds(){
-  const w=S.queue[S.i];
-  const opts=shuffle([w[1],...shuffle(soundVariants(w[1])).slice(0,3)]);
-  $('#stage').innerHTML=`<button class="sound">🔊</button>
-    <div class="hanzi zh">${w[0]}</div><div class="ru">${esc(w[2])}</div>
-    <div class="hint">Послушай внимательно начало слова. Как оно пишется?</div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  $('#actions').innerHTML=`<div class="opts">${opts.map(o=>
-    `<button class="opt"><span class="pyopt">${o}</span></button>`).join('')}</div>`;
-  bindOpts(n=>opts[n]===w[1],good=>judge(good,w,w[0],good?900:2000));
-}
-
-/* ---------- 7. скажи сам ---------- */
-function heardOk(a,w){
-  const n=a.replace(/[\s，。！？、,.!?…·'"“”]/g,'');
-  if(!n)return false;
-  const targets=[w[0],...(HOMO[pykey(w[1])]||[])];
-  if(targets.some(h=>n.includes(h)))return true;
-  const num=cnNum(w[0]);
-  return num!==null&&n.includes(String(num));
-}
-function qSpeak(){
-  const w=S.queue[S.i];let tries=0;
-  $('#stage').innerHTML=`<button class="sound">🔊</button>
-    <div class="hanzi zh">${w[0]}</div><div class="pinyin">${w[1]}</div><div class="ru">${esc(w[2])}</div>
-    <div class="hint heard" id="heard">${SR_OK?'Послушай, потом нажми 🎤 и скажи слово':'Послушай и повтори вслух'}</div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  const heard=$('#heard');
-  const selfCheck=msg=>{
-    heard.innerHTML=msg||'Повтори вслух два раза. Получилось похоже?';
-    $('#actions').innerHTML=`<button class="btn ghost" id="bad">Пока не получается</button>
-      <button class="btn" id="good">Получилось</button>`;
-    $('#good').onclick=()=>judge(true,w,null);
-    $('#bad').onclick=()=>judge(false,w,w[0]);
-  };
-  if(!SR_OK)return selfCheck();
-  $('#actions').innerHTML=`<button class="btn ghost" id="skip">Пропустить</button>
-    <button class="btn mic" id="mic">🎤 Сказать</button>`;
-  $('#skip').onclick=()=>judge(false,w,w[0]);
-  const mic=$('#mic');
-  mic.onclick=()=>{
-    if(S.locked)return;
-    if('speechSynthesis' in window)speechSynthesis.cancel();
-    const r=new SR();
-    r.lang='zh-CN';r.interimResults=false;r.maxAlternatives=5;
-    mic.disabled=true;mic.textContent='🎙️ Слушаю…';mic.classList.add('rec');
-    r.onresult=e=>{
-      if(S.locked)return;
-      const alts=[...e.results[0]].map(a=>a.transcript);
-      heard.innerHTML='Панда услышала: <b class="zh">'+esc(alts[0]||'…')+'</b>';
-      if(alts.some(a=>heardOk(a,w)))return judge(true,w,null,1100);
-      if(++tries>=3)return judge(false,w,w[0],2200);
-      heard.innerHTML+='<br>Почти! Послушай ещё раз и повтори.';
-      speak(w[0]);
-    };
-    r.onerror=e=>{
-      if(S.locked)return;
-      if(e.error==='not-allowed'||e.error==='service-not-allowed'){
-        SR_OK=false;return selfCheck('Нет доступа к микрофону — проверь себя сам: повтори вслух два раза.');}
-      heard.textContent=e.error==='no-speech'?'Ничего не слышно — скажи погромче.':'Микрофон не сработал — попробуй ещё раз.';
-    };
-    r.onend=()=>{if(!S.locked){mic.disabled=false;mic.textContent='🎤 Сказать';mic.classList.remove('rec')}};
-    try{r.start()}catch(err){SR_OK=false;selfCheck()}
-  };
-}
-
-/* ---------- 8. впиши пиньинь ---------- */
-function qPinyin(){
-  const w=S.queue[S.i];
-  $('#stage').innerHTML=`<button class="sound">🔊</button><div class="hanzi zh">${w[0]}</div>
-    <div class="ru">${esc(w[2])}</div>
-    <div class="type-row"><input type="text" id="inp" placeholder="ni hao"
-      autocomplete="off" autocapitalize="off" spellcheck="false"></div>
-    <div class="hint">Тоны ставить не обязательно</div>`;
-  $('#stage .sound').onclick=()=>speak(w[0]);
-  autoSay(w[0]);
-  $('#actions').innerHTML=`<button class="btn" id="chk">Проверить</button>`;
-  const inp=$('#inp');inp.focus();
-  const check=()=>{
-    if(S.locked)return;
-    const good=strip(inp.value)===strip(w[1]);
-    inp.classList.add(good?'ok':'no');inp.disabled=true;
-    $('#stage').insertAdjacentHTML('beforeend',`<div class="pinyin">${w[1]}</div>`);
-    judge(good,w,w[0]);
-  };
-  $('#chk').onclick=check;
-  inp.onkeydown=e=>{if(e.key==='Enter')check()};
-}
-
-/* ---------- 9. собери фразу ---------- */
-function qSent(){
-  const s=S.queue[S.i];
-  const chips=shuffle(s.tk.map((x,n)=>({x,n})));
-  let built=[];
-  $('#stage').innerHTML=`<div class="ru sent-ru">${esc(s.ru)}</div>
-    <div class="built" id="built"><span class="hint">Нажимай слова по порядку</span></div>
-    <div class="chips" id="chips"></div>`;
-  $('#actions').innerHTML=`<button class="btn ghost" id="say">🔊 Послушать фразу</button>
-    <button class="btn ghost" id="clr">Сбросить</button>
-    <button class="btn" id="chk">Проверить</button>`;
-  $('#say').onclick=()=>speak(s.tk.join(''));
-  autoSay(s.tk.join(''),450);
-  const chip=(x,attr,cls)=>`<button class="chip zh${cls||''}" ${attr}>${x}${
-    PY()&&PYMAP[x]?`<small class="py">${PYMAP[x]}</small>`:''}</button>`;
-  const paint=()=>{
-    $('#built').innerHTML=built.length
-      ? built.map((b,i)=>chip(b.x,`data-i="${i}"`,' built-chip')).join('')
-      : '<span class="hint">Нажимай слова по порядку</span>';
-    $('#chips').innerHTML=chips.map(c=>
-      chip(c.x,`data-n="${c.n}"${built.some(b=>b.n===c.n)?' disabled':''}`)).join('');
-    $('#chips').querySelectorAll('.chip:not([disabled])').forEach(b=>b.onclick=()=>{
-      const c=chips.find(c=>c.n==b.dataset.n);
-      if(hasZh(c.x))speak(c.x);
-      built.push(c);paint()});
-    $('#built').querySelectorAll('.built-chip').forEach(b=>b.onclick=()=>{
-      built.splice(+b.dataset.i,1);paint()});
-  };
-  paint();
-  $('#clr').onclick=()=>{built=[];paint()};
-  $('#chk').onclick=()=>{
-    if(S.locked)return;
-    if(built.length!==s.tk.length)return;
-    const line=built.map(b=>b.x).join('');
-    const good=line===s.tk.join('');
-    $('#stage').innerHTML=`<div class="ru sent-ru">${esc(s.ru)}</div>
-      <div class="answer zh">${s.tk.join('')}。</div>
-      ${good?'':`<div class="hint">Ты собрал: ${line}</div>`}`;
-    $('#actions').innerHTML='';
-    judge(good,{0:s.tk.join(''),1:'',2:s.ru},s.tk.join(''));
-  };
-}
-
-/* ---------- 10. вставь слово ---------- */
-function qFill(){
-  const s=S.queue[S.i], line=s.tk.join('');
-  const idxs=s.tk.map((x,i)=>i).filter(i=>hasZh(s.tk[i]));
-  /* лучше пропускать слово из словаря, а не служебную частицу */
-  const known=idxs.filter(i=>PYMAP[s.tk[i]]&&s.tk[i].length>1);
-  const pick=(known.length?known:idxs)[Math.floor(Math.random()*(known.length||idxs.length))];
-  const right=s.tk[pick];
-  const pool=[...new Set([...S.topic.w.map(w=>w[0]),...sentsFor(S.topic).flatMap(x=>x.tk),...ALL.map(w=>w[0])])]
-    .filter(x=>hasZh(x)&&x!==right&&!s.tk.includes(x));
-  const near=pool.filter(x=>x.length===right.length);
-  const opts=shuffle([right,...shuffle(near.length>=3?near:pool).slice(0,3)]);
-  const shown=s.tk.map((x,i)=>i===pick?'<span class="gap">？</span>':x).join('');
-  $('#stage').innerHTML=`<div class="ru sent-ru">${esc(s.ru)}</div>
-    <div class="fill-line zh">${shown}</div><div class="hint">Какого слова не хватает?</div>`;
-  $('#actions').innerHTML=`<div class="opts">${opts.map(o=>
-    `<button class="opt">${hz([o,PYMAP[o]||''])}</button>`).join('')}</div>`;
-  bindOpts(n=>opts[n]===right,good=>{
-    $('#stage').innerHTML=`<div class="ru sent-ru">${esc(s.ru)}</div><div class="answer zh">${line}。</div>`;
-    judge(good,{0:line,1:'',2:s.ru},line,good?1300:2200);
-  });
-}
-
-/* ---------- 11. фраза на слух ---------- */
-function qHearSent(){
-  const s=S.queue[S.i], line=s.tk.join('');
-  const own=shuffle(sentsFor(S.topic).filter(x=>x.ru!==s.ru));
-  const rest=shuffle(DB.sentences.filter(x=>x.ru!==s.ru&&!own.includes(x)));
-  const opts=shuffle([s,...[...own,...rest].filter((x,i,a)=>a.findIndex(y=>y.ru===x.ru)===i).slice(0,3)]);
-  $('#stage').innerHTML=`<div class="bigemoji">👂</div><div class="hint">Послушай фразу и выбери перевод</div>`;
-  $('#actions').innerHTML=`<button class="btn" id="pl">🔊 Послушать ещё раз</button>
-    <button class="btn ghost" id="slow">🐢 Медленно</button>
-    <div class="opts">${opts.map(o=>`<button class="opt">${esc(o.ru)}</button>`).join('')}</div>`;
-  $('#pl').onclick=()=>speak(line);
-  $('#slow').onclick=()=>{
-    if(!SOUND||!('speechSynthesis' in window))return;
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(s.tk.join(' '));u.lang='zh-CN';u.rate=.55;if(zhVoice)u.voice=zhVoice;
-    speechSynthesis.speak(u);
-  };
-  autoSay(line,400);
-  bindOpts(n=>opts[n].ru===s.ru,good=>{
-    $('#stage').innerHTML=`<div class="answer zh">${line}。</div><div class="ru sent-ru">${esc(s.ru)}</div>`;
-    judge(good,{0:line,1:'',2:s.ru},null,good?1200:2400);
-  });
-}
-
-/* ---------- 12. ловушки ---------- */
-function qTrap(){
-  const {g,w}=S.queue[S.i];
-  const opts=shuffle(g.w.slice());
-  $('#stage').innerHTML=`<div class="bigemoji">🎯</div><div class="ru">${esc(g.t)}</div>
-    <div class="hint">Послушай и выбери, какое слово прозвучало</div>`;
-  $('#actions').innerHTML=`<button class="btn" id="pl">🔊 Послушать ещё раз</button>
-    <div class="opts">${opts.map(o=>`<button class="opt"><span class="zh">${o[0]}</span>
-      <small class="py">${o[1]}</small><small class="tr">${esc(o[2])}</small></button>`).join('')}</div>`;
-  $('#pl').onclick=()=>speak(w[0]);
-  autoSay(w[0],350);
-  bindOpts(n=>opts[n][0]===w[0],good=>{
-    $('#stage').innerHTML=`<div class="hanzi zh">${w[0]}</div><div class="pinyin">${w[1]}</div>
-      <div class="ru">${esc(w[2])}</div>${g.note?`<div class="hint note">💡 ${esc(g.note)}</div>`:''}`;
-    judge(good,w,good?null:w[0],good?1500:3400);
-  });
-}
-
-/* ---------- 13. молния (60 сек) ---------- */
-function blitzStart(){
-  let left=60,score=0,tries=0;
-  const deck=()=>shuffle(S.topic.w.slice());
-  let pool=deck();
-  const ask=()=>{
-    if(!pool.length)pool=deck();
-    const w=pool.pop();
-    const others=shuffle(ALL.filter(x=>x[2]!==w[2])).slice(0,3);
-    const opts=shuffle([w,...others]);
-    $('#stage').innerHTML=`<div class="hanzi zh">${w[0]}</div>${pyLine(w)}`;
-    speak(w[0]);
-    $('#actions').innerHTML=`<div class="opts">${opts.map((o,n)=>
-      `<button class="opt" data-n="${n}">${esc(o[2])}</button>`).join('')}</div>`;
-    $('#actions').querySelectorAll('.opt').forEach(b=>b.onclick=()=>{
-      tries++;
-      const good=opts[b.dataset.n][2]===w[2];
-      if(good)score++;else S.wrong.push(w);
-      b.classList.add(good?'ok':'no');
-      $('#count').textContent=score+' ✔';
-      later(ask,good?120:520);
-    });
-  };
-  $('#count').textContent='0 ✔';
-  ask();
-  const tick=()=>{
-    left--;
-    $('#pbar').style.width=(left/60*100)+'%';
-    $('#pbar').style.background=left<=10?'var(--cinnabar)':'';
-    if(left<=0){
-      stopTimers();
-      const best=store.get(K('blitz'),0);
-      if(score>best)store.set(K('blitz'),score);
-      S.ok=score;S.queue={length:tries||1};
-      finishCustom(`${score} ✔`,
-        `За минуту · точность ${tries?Math.round(score/tries*100):0}%` +
-        (score>best?`<br><b>Новый рекорд!</b> Было ${best}`:`<br>Рекорд: ${Math.max(best,score)}`));
-    }
-  };
-  $('#pbar').style.width='100%';
-  S.timer=setInterval(tick,1000);
-}
-
-/* ---------- 14. пары ---------- */
-function memoryStart(){
-  const picks=shuffle(S.topic.w.slice()).slice(0,Math.min(6,S.topic.w.length));
-  const cards=shuffle(picks.flatMap((w,i)=>[
-    {p:i,face:w[0],zh:true,w},{p:i,face:w[2],zh:false,w}]));
-  let open=[],done=0,moves=0;
-  $('#count').textContent='0 ходов';
-  $('#pbar').style.width='0%';
-  $('#stage').classList.add('flat');
-  $('#actions').innerHTML='';
-  const paint=()=>{
-    $('#stage').innerHTML=`<div class="mem">${cards.map((c,i)=>{
-      const st=c.matched?'matched':(open.includes(i)?'open':'');
-      return `<button class="mcard ${st}" data-i="${i}">
-        <span class="${c.zh?'zh mzh':'mru'}">${st?esc(c.face):''}${
-          st&&c.zh&&PY()?`<small class="py">${c.w[1]}</small>`:''}</span></button>`}).join('')}</div>`;
-    $('#stage').querySelectorAll('.mcard:not(.matched):not(.open)').forEach(b=>b.onclick=()=>flip(+b.dataset.i));
-  };
-  const flip=i=>{
-    if(open.length>=2||open.includes(i))return;
-    open.push(i);
-    if(cards[i].zh)speak(cards[i].face);
-    paint();
-    if(open.length===2){
-      moves++;$('#count').textContent=moves+' ходов';
-      const [a,b]=open;
-      if(cards[a].p===cards[b].p){
-        cards[a].matched=cards[b].matched=true;done++;
-        $('#pbar').style.width=(done/picks.length*100)+'%';
-        open=[];paint();
-        if(done===picks.length){
-          const best=store.get(K('mem_'+S.topic.id),0);
-          if(!best||moves<best)store.set(K('mem_'+S.topic.id),moves);
-          S.ok=picks.length;S.queue={length:picks.length};
-          later(()=>{$('#stage').classList.remove('flat');
-            finishCustom(`${moves} ходов`,
-              `Все ${picks.length} пар найдены.`+
-              (!best||moves<best?`<br><b>Лучший результат!</b>`:`<br>Твой рекорд: ${best}`))},600);
+      // Extract all words from topics
+      function processData() {
+        allWords = [];
+        if (data.topics) {
+          data.topics.forEach(t => {
+            if (t.w) {
+              t.w.forEach(w => {
+                allWords.push({
+                  hz: w[0],
+                  py: w[1] || '',
+                  ru: w[2] || '',
+                  topicId: t.id,
+                  topicName: t.t
+                });
+              });
+            }
+          });
         }
-      }else later(()=>{open=[];paint()},900);
-    }
-  };
-  paint();
-}
+        document.getElementById('statTotalWords').textContent = allWords.length;
+        document.getElementById('statTopics').textContent = data.topics ? data.topics.length : 20;
+      }
 
-/* ================= итоги ================= */
-function finishCustom(big,sub){
-  stopTimers();touchStreak();paintStreak();markFocus();
-  $('#scoreLine').textContent=big;
-  $('#scoreSub').innerHTML=sub;
-  const m=$('#mistakes');
-  if(S.wrong.length){m.classList.remove('hide');
-    m.querySelector('ul').innerHTML=S.wrong.map(w=>
-      `<li><span class="zh">${w[0]}</span><em>${w[1]||''}</em><s>${esc(w[2])}</s></li>`).join('')}
-  else m.classList.add('hide');
-  show('results');
-}
+      // Web Speech API
+      function speak(text) {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'zh-CN';
+        utter.rate = speechRate;
+        window.speechSynthesis.speak(utter);
+      }
 
-function finish(){
-  $('#pbar').style.width='100%';
-  const total=S.queue.length;
-  if(!total)return finishCustom('0 / 0','Для этого режима здесь пока нет заданий.');
-  const pct=Math.round(S.ok/total*100);
-  const best=store.get(K('best'),{});
-  if(pct>(best[S.topic.id]||0)){best[S.topic.id]=pct;store.set(K('best'),best)}
-  const n=pct>=90?3:pct>=70?2:pct>=40?1:0;
-  const stars=`<span class="stars">${'★'.repeat(n)}${'☆'.repeat(3-n)}</span>`;
-  finishCustom(`${S.ok} / ${total}`, stars+'<br>'+
-    (pct>=90?'很厉害！Почти всё без ошибок.':
-     pct>=70?'Хорошо. Осталось добить несколько слов.':
-     pct>=40?'Половина есть. Прогони тему ещё раз.':'Тема ещё сырая — начни с карточек.'));
-}
-</script>
-<div style="display: flex; justify-content: center; margin: 30px 0 20px;">
-  <a href="index.html" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(180deg, #10b981 0%, #059669 100%); color: #ffffff !important; text-decoration: none !important; padding: 12px 24px; border-radius: 18px; font-family: 'Nunito', system-ui, sans-serif; font-weight: 900; font-size: 1.05rem; box-shadow: 0 5px 0 #047857, 0 8px 16px rgba(5, 150, 105, 0.25); border: 2px solid #34d399;">
-    <span>⬅️</span>
-    <span>Вернуться назад в Главное меню</span>
-  </a>
-</div>
+      // Audio Speed Toggle
+      const btnSpeed = document.getElementById('btnSpeed');
+      btnSpeed.addEventListener('click', () => {
+        if (speechRate === 0.85) {
+          speechRate = 1.0;
+          btnSpeed.textContent = 'Скорость: 1.0x';
+        } else if (speechRate === 1.0) {
+          speechRate = 0.7;
+          btnSpeed.textContent = 'Скорость: 0.7x (медленно)';
+        } else {
+          speechRate = 0.85;
+          btnSpeed.textContent = 'Скорость: 0.85x';
+        }
+      });
+
+      // Show Toast
+      function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1500);
+      }
+
+      // Mode Navigation
+      const modeTabs = document.querySelectorAll('.mode-tab-btn');
+      const views = {
+        topics: document.getElementById('viewTopics'),
+        quiz: document.getElementById('viewQuiz'),
+        listening: document.getElementById('viewListening'),
+        traps: document.getElementById('viewTraps'),
+        tones: document.getElementById('viewTones'),
+        blitz: document.getElementById('viewBlitz')
+      };
+      const viewTopicDrill = document.getElementById('viewTopicDrill');
+
+      modeTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          modeTabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const mode = btn.dataset.mode;
+
+          // Hide all views
+          Object.values(views).forEach(v => v.style.display = 'none');
+          viewTopicDrill.style.display = 'none';
+
+          if (views[mode]) {
+            views[mode].style.display = 'block';
+          }
+
+          // Trigger view setup
+          if (mode === 'quiz') startGeneralQuiz();
+          if (mode === 'listening') startListeningQuiz();
+          if (mode === 'traps') renderTraps();
+          if (mode === 'tones') startToneQuiz();
+        });
+      });
+
+      // ==========================================
+      // SECTION 1: TOPICS GRID & DRILL
+      // ==========================================
+      function renderTopicsGrid() {
+        const grid = document.getElementById('topicsGrid');
+        grid.innerHTML = '';
+        if (!data.topics) return;
+
+        data.topics.forEach(t => {
+          const card = document.createElement('div');
+          card.className = 'topic-card';
+          card.innerHTML = `
+            <div>
+              <div class="topic-card-header">
+                <span class="topic-emoji">${t.em || '📖'}</span>
+                <div>
+                  <div class="topic-card-title">${t.t || 'Тема'}</div>
+                  <div class="topic-card-cn">${t.cn || ''}</div>
+                </div>
+              </div>
+            </div>
+            <div class="topic-card-footer">
+              <span>Урок ${t.lesson || '—'}</span>
+              <span class="topic-count-pill">${t.w ? t.w.length : 0} слов</span>
+            </div>
+          `;
+          card.addEventListener('click', () => openTopicDrill(t));
+          grid.appendChild(card);
+        });
+      }
+
+      let currentTopic = null;
+      let currentTopicIndex = 0;
+      let fcFlipped = false;
+
+      function openTopicDrill(t) {
+        currentTopic = t;
+        currentTopicIndex = 0;
+        fcFlipped = false;
+
+        views.topics.style.display = 'none';
+        viewTopicDrill.style.display = 'block';
+
+        document.getElementById('topicDrillTitle').textContent = `${t.em || ''} ${t.t} (${t.cn || ''})`;
+        document.getElementById('topicDrillSubtitle').textContent = `${t.w.length} слов из базы`;
+
+        // Switch to list subtab by default
+        switchTopicSubtab('list');
+        renderTopicWordList(t);
+        setupFlashcard(t);
+      }
+
+      document.getElementById('btnBackToTopics').addEventListener('click', () => {
+        viewTopicDrill.style.display = 'none';
+        views.topics.style.display = 'block';
+      });
+
+      // Subtabs inside topic
+      const topicSubtabs = document.querySelectorAll('.topic-subtab');
+      topicSubtabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          switchTopicSubtab(btn.dataset.tab);
+        });
+      });
+
+      function switchTopicSubtab(tabName) {
+        topicSubtabs.forEach(b => b.classList.toggle('active', b.dataset.tab === tabName));
+        document.getElementById('tabTopicList').style.display = tabName === 'list' ? 'block' : 'none';
+        document.getElementById('tabTopicFlashcards').style.display = tabName === 'flashcards' ? 'block' : 'none';
+        document.getElementById('tabTopicTest').style.display = tabName === 'test' ? 'block' : 'none';
+
+        if (tabName === 'test' && currentTopic) {
+          startTopicTest(currentTopic);
+        }
+      }
+
+      function renderTopicWordList(t) {
+        const container = document.getElementById('topicWordsList');
+        container.innerHTML = '';
+        t.w.forEach(w => {
+          const item = document.createElement('div');
+          item.className = 'word-card-item';
+          item.innerHTML = `
+            <div class="word-hz-py">
+              <span class="word-hz">${w[0]}</span>
+              <span class="word-py">${w[1] || ''}</span>
+              <span class="word-ru">${w[2] || ''}</span>
+            </div>
+            <button class="btn-speak" title="Прослушать">🔊</button>
+          `;
+          item.querySelector('.btn-speak').addEventListener('click', () => speak(w[0]));
+          container.appendChild(item);
+        });
+      }
+
+      function setupFlashcard(t) {
+        if (!t.w || t.w.length === 0) return;
+        const w = t.w[currentTopicIndex];
+        const card = document.getElementById('activeFlashcard');
+        const hz = document.getElementById('fcHz');
+        const py = document.getElementById('fcPy');
+        const ru = document.getElementById('fcRu');
+
+        hz.textContent = w[0];
+        py.textContent = w[1];
+        ru.textContent = w[2];
+        ru.style.display = 'none';
+        fcFlipped = false;
+      }
+
+      document.getElementById('activeFlashcard').addEventListener('click', () => {
+        const ru = document.getElementById('fcRu');
+        fcFlipped = !fcFlipped;
+        ru.style.display = fcFlipped ? 'block' : 'none';
+      });
+
+      document.getElementById('btnFcNext').addEventListener('click', () => {
+        if (!currentTopic || !currentTopic.w.length) return;
+        currentTopicIndex = (currentTopicIndex + 1) % currentTopic.w.length;
+        setupFlashcard(currentTopic);
+      });
+
+      document.getElementById('btnFcAudio').addEventListener('click', () => {
+        if (currentTopic && currentTopic.w.length) {
+          speak(currentTopic.w[currentTopicIndex][0]);
+        }
+      });
+
+      // Topic Test
+      function startTopicTest(t) {
+        const arena = document.getElementById('topicTestArena');
+        if (!t.w || t.w.length < 2) {
+          arena.innerHTML = '<p>В этой теме слишком мало слов для теста.</p>';
+          return;
+        }
+
+        let qIndex = 0;
+        let score = 0;
+        const words = [...t.w].sort(() => Math.random() - 0.5);
+
+        function renderQ() {
+          if (qIndex >= words.length) {
+            arena.innerHTML = `
+              <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+              <h3 style="font-family: var(--font-head); font-size: 1.4rem; margin-bottom: 8px;">Тема пройдена!</h3>
+              <p style="color: var(--text-muted); margin-bottom: 20px;">Твой результат: <b>${score} из ${words.length}</b></p>
+              <button class="btn-fc-action btn-fc-know" onclick="startTopicTest(currentTopic)">Повторить тест ↺</button>
+            `;
+            return;
+          }
+
+          const cur = words[qIndex];
+          // Pick 3 distractors from allWords
+          const distractors = allWords
+            .filter(w => w.ru !== cur[2])
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3)
+            .map(w => w.ru);
+          const options = [cur[2], ...distractors].sort(() => Math.random() - 0.5);
+
+          arena.innerHTML = `
+            <div class="quiz-stats-header">
+              <span>Вопрос ${qIndex + 1} из ${words.length}</span>
+              <span>Счёт: ${score}</span>
+            </div>
+            <div class="quiz-question-box">
+              <div class="quiz-hz">${cur[0]}</div>
+              <div class="quiz-py">${cur[1]}</div>
+            </div>
+            <div class="options-grid" id="ttOptions"></div>
+            <button class="btn-back-topics" id="ttSpeak" style="margin: 0 auto;">🔊 Озвучить</button>
+          `;
+
+          document.getElementById('ttSpeak').addEventListener('click', () => speak(cur[0]));
+          speak(cur[0]);
+
+          const optContainer = document.getElementById('ttOptions');
+          options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.textContent = opt;
+            btn.addEventListener('click', () => {
+              const allBtns = optContainer.querySelectorAll('.option-btn');
+              allBtns.forEach(b => b.disabled = true);
+              if (opt === cur[2]) {
+                btn.classList.add('correct');
+                score++;
+                showToast('Правильно! ✓');
+              } else {
+                btn.classList.add('wrong');
+                allBtns.forEach(b => {
+                  if (b.textContent === cur[2]) b.classList.add('correct');
+                });
+                showToast('Попробуй запомнить!');
+              }
+              setTimeout(() => {
+                qIndex++;
+                renderQ();
+              }, 900);
+            });
+            optContainer.appendChild(btn);
+          });
+        }
+
+        renderQ();
+      }
+
+      // ==========================================
+      // SECTION 2: GENERAL VOCABULARY TEST (QUIZ)
+      // ==========================================
+      let quizScore = 0;
+      let quizTotal = 0;
+      let currentQuizWord = null;
+
+      function startGeneralQuiz() {
+        quizScore = 0;
+        quizTotal = 0;
+        nextGeneralQuizQuestion();
+      }
+
+      function nextGeneralQuizQuestion() {
+        if (!allWords.length) return;
+        quizTotal++;
+        currentQuizWord = allWords[Math.floor(Math.random() * allWords.length)];
+
+        document.getElementById('quizCounter').textContent = `Вопрос ${quizTotal}`;
+        document.getElementById('quizScore').textContent = `Счёт: ${quizScore}`;
+        document.getElementById('quizHz').textContent = currentQuizWord.hz;
+        document.getElementById('quizPy').textContent = currentQuizWord.py;
+
+        // Distractors
+        const distractors = allWords
+          .filter(w => w.ru !== currentQuizWord.ru)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(w => w.ru);
+        const options = [currentQuizWord.ru, ...distractors].sort(() => Math.random() - 0.5);
+
+        const optContainer = document.getElementById('quizOptions');
+        optContainer.innerHTML = '';
+        options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = opt;
+          btn.addEventListener('click', () => {
+            const btns = optContainer.querySelectorAll('.option-btn');
+            btns.forEach(b => b.disabled = true);
+            if (opt === currentQuizWord.ru) {
+              btn.classList.add('correct');
+              quizScore++;
+              document.getElementById('quizScore').textContent = `Счёт: ${quizScore}`;
+              showToast('Молодец! 🎯');
+            } else {
+              btn.classList.add('wrong');
+              btns.forEach(b => {
+                if (b.textContent === currentQuizWord.ru) b.classList.add('correct');
+              });
+            }
+            setTimeout(nextGeneralQuizQuestion, 900);
+          });
+          optContainer.appendChild(btn);
+        });
+
+        speak(currentQuizWord.hz);
+      }
+
+      document.getElementById('btnQuizSpeak').addEventListener('click', () => {
+        if (currentQuizWord) speak(currentQuizWord.hz);
+      });
+
+      // ==========================================
+      // SECTION 3: LISTENING (АУДИРОВАНИЕ)
+      // ==========================================
+      let listenScore = 0;
+      let listenTotal = 0;
+      let currentListenWord = null;
+
+      function startListeningQuiz() {
+        listenScore = 0;
+        listenTotal = 0;
+        nextListenQuestion();
+      }
+
+      function nextListenQuestion() {
+        if (!allWords.length) return;
+        listenTotal++;
+        currentListenWord = allWords[Math.floor(Math.random() * allWords.length)];
+
+        document.getElementById('listenCounter').textContent = `Вопрос ${listenTotal}`;
+        document.getElementById('listenScore').textContent = `Верно: ${listenScore}`;
+
+        const distractors = allWords
+          .filter(w => w.ru !== currentListenWord.ru)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(w => w.ru);
+        const options = [currentListenWord.ru, ...distractors].sort(() => Math.random() - 0.5);
+
+        const optContainer = document.getElementById('listenOptions');
+        optContainer.innerHTML = '';
+        options.forEach(opt => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = opt;
+          btn.addEventListener('click', () => {
+            const btns = optContainer.querySelectorAll('.option-btn');
+            btns.forEach(b => b.disabled = true);
+            if (opt === currentListenWord.ru) {
+              btn.classList.add('correct');
+              listenScore++;
+              document.getElementById('listenScore').textContent = `Верно: ${listenScore}`;
+              showToast('Отличный слух! 🎧');
+            } else {
+              btn.classList.add('wrong');
+              btns.forEach(b => {
+                if (b.textContent === currentListenWord.ru) b.classList.add('correct');
+              });
+            }
+            setTimeout(nextListenQuestion, 1000);
+          });
+          optContainer.appendChild(btn);
+        });
+
+        speak(currentListenWord.hz);
+      }
+
+      document.getElementById('btnListenReplay').addEventListener('click', () => {
+        if (currentListenWord) speak(currentListenWord.hz);
+      });
+
+      // ==========================================
+      // SECTION 4: TRAPS (ЛОВУШКИ)
+      // ==========================================
+      function renderTraps() {
+        const container = document.getElementById('trapsContainer');
+        container.innerHTML = '';
+        const traps = data.traps || [];
+
+        traps.forEach(trap => {
+          const card = document.createElement('div');
+          card.className = 'traps-card';
+          card.innerHTML = `
+            <div class="trap-title"><span>⚠️</span> ${trap.t}</div>
+            <div class="trap-note">${trap.note || ''}</div>
+            <div class="trap-words-compare">
+              ${trap.w.map(w => `
+                <div class="trap-word-box" onclick="window.appSpeak('${w[0]}')">
+                  <div class="trap-word-hz">${w[0]}</div>
+                  <div class="trap-word-py">${w[1]}</div>
+                  <div class="trap-word-ru">${w[2]}</div>
+                  <div style="font-size: 0.8rem; color: var(--primary); margin-top: 6px;">🔊 Послушать</div>
+                </div>
+              `).join('')}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      window.appSpeak = speak;
+
+      // ==========================================
+      // SECTION 5: TONE DRILL
+      // ==========================================
+      const toneSamples = [
+        { hz: '妈', py: 'mā', tone: 1 },
+        { hz: '麻', py: 'má', tone: 2 },
+        { hz: '马', py: 'mǎ', tone: 3 },
+        { hz: '骂', py: 'mà', tone: 4 },
+        { hz: '一', py: 'yī', tone: 1 },
+        { hz: '球', py: 'qiú', tone: 2 },
+        { hz: '九', py: 'jiǔ', tone: 3 },
+        { hz: '四', py: 'sì', tone: 4 },
+        { hz: '八', py: 'bā', tone: 1 },
+        { hz: '十', py: 'shí', tone: 2 },
+        { hz: '五', py: 'wǔ', tone: 3 },
+        { hz: '二', py: 'èr', tone: 4 },
+        { hz: '哥', py: 'gē', tone: 1 },
+        { hz: '国', py: 'guó', tone: 2 },
+        { hz: '水', py: 'shuǐ', tone: 3 },
+        { hz: '弟', py: 'dì', tone: 4 }
+      ];
+
+      let currentToneItem = null;
+      let toneCorrect = 0;
+      let toneTotal = 0;
+
+      function startToneQuiz() {
+        toneCorrect = 0;
+        toneTotal = 0;
+        nextToneQuestion();
+      }
+
+      function nextToneQuestion() {
+        toneTotal++;
+        document.getElementById('toneFeedback').textContent = '';
+        currentToneItem = toneSamples[Math.floor(Math.random() * toneSamples.length)];
+        document.getElementById('toneHzDisplay').textContent = currentToneItem.hz;
+        speak(currentToneItem.hz);
+      }
+
+      document.getElementById('btnToneReplay').addEventListener('click', () => {
+        if (currentToneItem) speak(currentToneItem.hz);
+      });
+
+      document.querySelectorAll('.tone-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const chosenTone = parseInt(btn.dataset.tone);
+          const feedback = document.getElementById('toneFeedback');
+          if (chosenTone === currentToneItem.tone) {
+            toneCorrect++;
+            feedback.style.color = 'var(--emerald)';
+            feedback.textContent = `Верно! ${currentToneItem.hz} (${currentToneItem.py}) — ${currentToneItem.tone}-й тон! 🎉`;
+            showToast('В точку!');
+          } else {
+            feedback.style.color = 'var(--rose)';
+            feedback.textContent = `Ошибка. ${currentToneItem.hz} (${currentToneItem.py}) — это ${currentToneItem.tone}-й тон!`;
+          }
+          document.getElementById('toneScore').textContent = `Верно: ${toneCorrect} / ${toneTotal}`;
+          setTimeout(nextToneQuestion, 1400);
+        });
+      });
+
+      // ==========================================
+      // SECTION 6: BLITZ (60s)
+      // ==========================================
+      let blitzTimer = null;
+      let blitzTimeLeft = 60;
+      let blitzScoreCount = 0;
+      let blitzCurrentPair = null;
+
+      document.getElementById('btnStartBlitz').addEventListener('click', () => {
+        document.getElementById('blitzStartBox').style.display = 'none';
+        document.getElementById('blitzActiveBox').style.display = 'block';
+        blitzTimeLeft = 60;
+        blitzScoreCount = 0;
+        document.getElementById('blitzScore').textContent = '0';
+        document.getElementById('blitzTime').textContent = '60';
+
+        blitzTimer = setInterval(() => {
+          blitzTimeLeft--;
+          document.getElementById('blitzTime').textContent = blitzTimeLeft;
+          if (blitzTimeLeft <= 0) {
+            clearInterval(blitzTimer);
+            endBlitz();
+          }
+        }, 1000);
+
+        nextBlitzRound();
+      });
+
+      function nextBlitzRound() {
+        if (!allWords.length) return;
+        const w1 = allWords[Math.floor(Math.random() * allWords.length)];
+        const isCorrect = Math.random() > 0.5;
+        let displayedRu = w1.ru;
+
+        if (!isCorrect) {
+          const w2 = allWords.filter(w => w.ru !== w1.ru)[Math.floor(Math.random() * (allWords.length - 1))];
+          displayedRu = w2.ru;
+        }
+
+        blitzCurrentPair = { word: w1, displayedRu, isCorrect };
+
+        document.getElementById('blitzHz').textContent = w1.hz;
+        document.getElementById('blitzPy').textContent = w1.py;
+        document.getElementById('blitzRu').textContent = `«${displayedRu}»`;
+      }
+
+      function handleBlitzChoice(choice) {
+        if (!blitzCurrentPair) return;
+        if (choice === blitzCurrentPair.isCorrect) {
+          blitzScoreCount += 10;
+          showToast('+10 очков! ⚡');
+        } else {
+          blitzScoreCount = Math.max(0, blitzScoreCount - 5);
+          showToast('-5 очков');
+        }
+        document.getElementById('blitzScore').textContent = blitzScoreCount;
+        nextBlitzRound();
+      }
+
+      document.getElementById('btnBlitzYes').addEventListener('click', () => handleBlitzChoice(true));
+      document.getElementById('btnBlitzNo').addEventListener('click', () => handleBlitzChoice(false));
+
+      function endBlitz() {
+        document.getElementById('blitzActiveBox').style.display = 'none';
+        const startBox = document.getElementById('blitzStartBox');
+        startBox.style.display = 'block';
+        startBox.innerHTML = `
+          <div style="font-size: 3rem; margin-bottom: 12px;">🏆</div>
+          <h2 style="font-family: var(--font-head); margin-bottom: 8px;">Время вышло!</h2>
+          <p style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 20px;">
+            Твой финальный счёт: ${blitzScoreCount} очков!
+          </p>
+          <button class="btn-fc-action btn-fc-know" onclick="location.reload()">Сыграть ещё раз ↺</button>
+        `;
+      }
+
+      // ==========================================
+      // INITIALIZATION (FETCH REMOTE OR FALLBACK)
+      // ==========================================
+      async function init() {
+        try {
+          const res = await fetch('data/askar.json');
+          if (res.ok) {
+            const remoteData = await res.json();
+            if (remoteData && remoteData.topics) {
+              data = remoteData;
+              console.log('Loaded remote data/askar.json successfully.');
+            }
+          }
+        } catch (e) {
+          console.warn('Using embedded data fallback:', e);
+        }
+
+        processData();
+        renderTopicsGrid();
+      }
+
+      window.addEventListener('DOMContentLoaded', init);
+    })();
+  </script>
 </body>
 </html>
