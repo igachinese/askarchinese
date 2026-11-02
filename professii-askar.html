@@ -997,11 +997,15 @@ function loadChineseVoices() {
     return;
   }
 
-  // Приоритет детских голосов
+  // Приоритет детских голосов Edge / Windows / Chrome
   let bestVoice =
+    zhVoices.find(v => v.name.toLowerCase().includes('yunxi')) ||
+    zhVoices.find(v => v.name.toLowerCase().includes('xiaoxiao')) ||
     zhVoices.find(v => v.name.toLowerCase().includes('xiaoshuang')) ||
     zhVoices.find(v => v.name.toLowerCase().includes('yunxia')) ||
     zhVoices.find(v => v.name.toLowerCase().includes('xiaoyi')) ||
+    zhVoices.find(v => v.name.toLowerCase().includes('kangkang')) ||
+    zhVoices.find(v => v.name.toLowerCase().includes('natural')) ||
     zhVoices.find(v => v.lang === 'zh-CN') ||
     zhVoices[0];
 
@@ -1011,9 +1015,14 @@ function loadChineseVoices() {
     const opt = document.createElement('option');
     opt.value = v.name;
     let label = v.name;
-    if (v.name.toLowerCase().includes('xiaoshuang')) label += ' 👧 (Детский голос)';
-    else if (v.name.toLowerCase().includes('yunxia')) label += ' 👦 (Детский голос)';
-    else if (v.name.toLowerCase().includes('xiaoyi')) label += ' ✨ (Звонкий)';
+    const lower = v.name.toLowerCase();
+    if (lower.includes('yunxi')) label += ' 👦 (Edge Детский голос)';
+    else if (lower.includes('xiaoxiao')) label += ' 👧 (Edge Детский голос)';
+    else if (lower.includes('xiaoshuang')) label += ' 👧 (Детский голос)';
+    else if (lower.includes('yunxia')) label += ' 👦 (Детский голос)';
+    else if (lower.includes('xiaoyi')) label += ' ✨ (Звонкий Edge)';
+    else if (lower.includes('kangkang')) label += ' 👦 (Детский голос)';
+    else if (lower.includes('natural')) label += ' 🌟 (Natural Online)';
     opt.textContent = label;
     if (v === bestVoice) opt.selected = true;
     selector.appendChild(opt);
@@ -1044,18 +1053,10 @@ function speakChinese(text) {
 
   if (selectedZhVoice) {
     utter.voice = selectedZhVoice;
-    const vName = selectedZhVoice.name.toLowerCase();
-    if (vName.includes('xiaoshuang') || vName.includes('yunxia') || vName.includes('xiaoyi')) {
-      utter.pitch = 1.0;
-      utter.rate = 0.9;
-    } else {
-      utter.pitch = 1.25;
-      utter.rate = 0.88;
-    }
-  } else {
-    utter.pitch = 1.25;
-    utter.rate = 0.88;
   }
+  // Скорость 0.7x для детей, чтобы отчётливо слышать слоги и тоны
+  utter.rate = 0.7;
+  utter.pitch = 1.05;
 
   window.speechSynthesis.speak(utter);
 }
