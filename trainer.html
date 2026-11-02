@@ -15,7 +15,7 @@
     <!-- Top Sticky Navigation -->
     <header class="top-nav">
       <a href="index.html" class="btn-back-hub" title="Перейти на главную страницу">
-        <span style="font-size: 1.15rem;">←</span> Вернуться в личный кабинет
+        <span style="font-size: 1.25rem;">←</span> Вернуться в личный кабинет
       </a>
 
       <div class="app-brand">
@@ -27,7 +27,8 @@
       </div>
 
       <div class="nav-actions">
-        <button id="btnSpeed" class="btn-audio-speed" title="Скорость произношения">Скорость: 0.85x</button>
+        <span class="voice-badge" id="voiceIndicator">🎙️ Голос: Edge / Natural</span>
+        <button id="btnSpeed" class="btn-audio-speed" title="Скорость произношения">Скорость: 0.7x</button>
       </div>
     </header>
 
@@ -35,7 +36,7 @@
     <section class="hero-card">
       <div class="hero-info">
         <h1><span>📖</span> Личный тренажёр слов</h1>
-        <p>Изучай слова по темам уроков или тренируй экзаменационные форматы HSK 1: аудирование на слух, ловушки, быстрый блиц и угадывание тонов.</p>
+        <p>Изучай слова по темам уроков или тренируй экзаменационные форматы HSK 1: аудирование на слух, ловушки, быстрый блиц и угадывание тонов детским голосом 0.7x.</p>
       </div>
       <div class="stats-badges">
         <div class="stat-pill">
@@ -79,7 +80,7 @@
     <main id="viewTopics" class="mode-view">
       <div class="section-title-wrap">
         <h2 class="section-title"><span>📚</span> Темы из словарика Аскара</h2>
-        <span style="font-size: 0.9rem; color: var(--text-muted);">Выбери тему для тренировки:</span>
+        <span style="font-size: 0.95rem; color: var(--text-muted);">Выбери тему для тренировки:</span>
       </div>
       <div class="topics-grid" id="topicsGrid">
         <!-- Rendered by JS -->
@@ -93,8 +94,8 @@
           ← Все темы
         </button>
         <div id="topicDrillHeader" style="text-align: center;">
-          <h2 id="topicDrillTitle" style="font-family: var(--font-head); font-size: 1.25rem;">Название темы</h2>
-          <div id="topicDrillSubtitle" style="font-size: 0.85rem; color: var(--text-muted);">15 слов</div>
+          <h2 id="topicDrillTitle" style="font-family: var(--font-head); font-size: 1.35rem;">Название темы</h2>
+          <div id="topicDrillSubtitle" style="font-size: 0.9rem; color: var(--text-muted);">15 слов</div>
         </div>
         <div class="topic-subtabs">
           <button class="topic-subtab active" data-tab="list">Словарь</button>
@@ -121,7 +122,7 @@
           </div>
           <div class="flashcard-controls">
             <button class="btn-fc-action btn-fc-repeat" id="btnFcNext">Следующее слово →</button>
-            <button class="btn-fc-action btn-fc-know" id="btnFcAudio">🔊 Озвучить</button>
+            <button class="btn-fc-action btn-fc-know" id="btnFcAudio">🔊 Озвучить (0.7x)</button>
           </div>
         </div>
       </div>
@@ -152,7 +153,7 @@
           <!-- 4 option buttons -->
         </div>
         <button id="btnQuizSpeak" class="btn-back-topics" style="margin: 0 auto;">
-          🔊 Послушать слово
+          🔊 Послушать слово (0.7x)
         </button>
       </div>
     </section>
@@ -170,8 +171,8 @@
         <div class="quiz-question-box">
           <div class="quiz-audio-cue">🎧</div>
           <p class="quiz-prompt-text">Послушай произношение и выбери правильный перевод:</p>
-          <button id="btnListenReplay" class="btn-fc-action btn-fc-know" style="padding: 10px 20px;">
-            🔊 Послушать ещё раз
+          <button id="btnListenReplay" class="btn-fc-action btn-fc-know" style="padding: 12px 24px;">
+            🔊 Послушать ещё раз (0.7x)
           </button>
         </div>
         <div class="options-grid" id="listenOptions">
@@ -184,7 +185,7 @@
     <section id="viewTraps" class="mode-view" style="display: none;">
       <div class="section-title-wrap">
         <h2 class="section-title"><span>🎯</span> Ловушки и похожие слова</h2>
-        <span style="font-size: 0.9rem; color: var(--text-muted);">Разборы сложных пар с уроков Аскара</span>
+        <span style="font-size: 0.95rem; color: var(--text-muted);">Разборы сложных пар с уроков Аскара</span>
       </div>
       <div id="trapsContainer">
         <!-- Rendered by JS -->
@@ -200,10 +201,10 @@
         </div>
         <div class="quiz-question-box">
           <div class="quiz-audio-cue">🔊</div>
-          <div style="font-size: 2.2rem; font-weight: 800; font-family: var(--font-cn);" id="toneHzDisplay">？</div>
+          <div style="font-size: 2.6rem; font-weight: 800; font-family: var(--font-cn);" id="toneHzDisplay">？</div>
           <p class="quiz-prompt-text" id="tonePrompt">Слушай слог и определи, какой тон звучит:</p>
           <button id="btnToneReplay" class="btn-back-topics">
-            🔊 Повторить слог
+            🔊 Повторить слог (0.7x)
           </button>
         </div>
         <div class="tone-buttons-grid">
@@ -224,7 +225,7 @@
             <span class="tone-desc">4-й тон (Вниз)</span>
           </button>
         </div>
-        <div id="toneFeedback" style="margin-top: 18px; font-weight: 700; min-height: 24px;"></div>
+        <div id="toneFeedback" style="margin-top: 20px; font-weight: 800; min-height: 28px; font-size: 1.1rem;"></div>
       </div>
     </section>
 
@@ -237,16 +238,16 @@
         </div>
         <div id="blitzStartBox">
           <h2 style="font-family: var(--font-head); margin-bottom: 12px;">⚡ Режим «Блиц-Молния»</h2>
-          <p style="color: var(--text-muted); margin-bottom: 24px;">За 60 секунд отвечай: верно ли указан перевод для иероглифа. Быстро думай и ставь новые рекорды!</p>
-          <button id="btnStartBlitz" class="btn-fc-action btn-fc-know" style="font-size: 1.15rem; padding: 16px 36px;">
+          <p style="color: var(--text-muted); margin-bottom: 24px; font-size: 1.05rem;">За 60 секунд отвечай: верно ли указан перевод для иероглифа. Быстро думай и ставь новые рекорды!</p>
+          <button id="btnStartBlitz" class="btn-fc-action btn-fc-know" style="font-size: 1.2rem; padding: 18px 40px;">
             🚀 Начать Блиц!
           </button>
         </div>
         <div id="blitzActiveBox" style="display: none;">
           <div class="blitz-pair-box">
-            <div style="font-family: var(--font-cn); font-size: 3.8rem; font-weight: 700;" id="blitzHz">字</div>
-            <div style="font-size: 1.2rem; color: var(--primary); font-weight: 700; margin-bottom: 8px;" id="blitzPy">zì</div>
-            <div style="font-size: 1.5rem; font-weight: 800; color: #0f172a;" id="blitzRu">«иероглиф»</div>
+            <div style="font-family: var(--font-cn); font-size: 4.2rem; font-weight: 800;" id="blitzHz">字</div>
+            <div style="font-size: 1.3rem; color: var(--primary); font-weight: 800; margin-bottom: 10px;" id="blitzPy">zì</div>
+            <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a;" id="blitzRu">«иероглиф»</div>
           </div>
           <div class="blitz-decision-grid">
             <button class="btn-blitz-no" id="btnBlitzNo">❌ Неверно</button>
@@ -269,7 +270,129 @@
     (function() {
       let data = window.ASKAR_DATA_FALLBACK;
       let allWords = [];
-      let speechRate = 0.85;
+      let speechRate = 0.7; // DEFAULT 0.7x for children as requested!
+      let selectedVoice = null;
+
+      // PURE WEB AUDIO API CHIMES
+      let audioCtx = null;
+      function playChime(type) {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+          const now = audioCtx.currentTime;
+          if (type === 'success') {
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+              gain.gain.setValueAtTime(0.12, now + idx * 0.07);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.3);
+              osc.connect(gain);
+              gain.connect(audioCtx.destination);
+              osc.start(now + idx * 0.07);
+              osc.stop(now + idx * 0.07 + 0.3);
+            });
+          } else if (type === 'wrong') {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(320, now);
+            osc.frequency.exponentialRampToValueAtTime(180, now + 0.22);
+            gain.gain.setValueAtTime(0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 0.22);
+          }
+        } catch(e) {}
+      }
+
+      // SMART VOICE SELECTOR (EDGE CHILD VOICES PRIORITY)
+      function initVoiceSelector() {
+        if (!('speechSynthesis' in window)) return;
+
+        function updateVoice() {
+          const voices = window.speechSynthesis.getVoices();
+          if (!voices || voices.length === 0) return;
+
+          // 1. Edge Natural Child voices (Yunxi - boy, Xiaoxiao, Xiaoyi, Kangkang, Child)
+          const edgeChild = voices.find(v => 
+            v.lang.toLowerCase().startsWith('zh') && (
+              v.name.includes('Yunxi') ||
+              v.name.includes('Kangkang') ||
+              v.name.includes('Xiaoyi') ||
+              v.name.includes('Xiaoxiao') ||
+              v.name.includes('Child') ||
+              v.name.includes('Kids')
+            )
+          );
+
+          // 2. Any Natural / Online Edge Chinese voice
+          const edgeNatural = voices.find(v => 
+            v.lang.toLowerCase().startsWith('zh') && (
+              v.name.includes('Natural') || v.name.includes('Online')
+            )
+          );
+
+          // 3. Any standard zh-CN voice
+          const zhCn = voices.find(v => v.lang === 'zh-CN' || v.lang === 'cmn-Hans-CN');
+
+          // 4. Any Chinese voice
+          const anyZh = voices.find(v => v.lang.toLowerCase().startsWith('zh'));
+
+          // 5. Fallback
+          selectedVoice = edgeChild || edgeNatural || zhCn || anyZh || voices[0];
+
+          // Update badge in UI
+          const badge = document.getElementById('voiceIndicator');
+          if (badge && selectedVoice) {
+            let label = '🎙️ Голос: ';
+            if (selectedVoice.name.includes('Yunxi')) label += 'Edge Yunxi (Детский)';
+            else if (selectedVoice.name.includes('Xiaoxiao')) label += 'Edge Xiaoxiao (Детский)';
+            else if (selectedVoice.name.includes('Xiaoyi')) label += 'Edge Xiaoyi';
+            else if (selectedVoice.name.includes('Natural')) label += 'Edge Natural';
+            else if (selectedVoice.name.includes('Google')) label += 'Google Chinese';
+            else label += (selectedVoice.name.slice(0, 16) + '…');
+            badge.textContent = label;
+          }
+        }
+
+        updateVoice();
+        window.speechSynthesis.onvoiceschanged = updateVoice;
+      }
+
+      // Web Speech API speak function
+      function speak(text) {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(text);
+        if (selectedVoice) {
+          utter.voice = selectedVoice;
+          utter.lang = selectedVoice.lang || 'zh-CN';
+        } else {
+          utter.lang = 'zh-CN';
+        }
+        utter.rate = speechRate; // 0.7 by default!
+        utter.pitch = 1.05; // slightly friendly child tone
+        window.speechSynthesis.speak(utter);
+      }
+
+      // Audio Speed Toggle
+      const btnSpeed = document.getElementById('btnSpeed');
+      btnSpeed.addEventListener('click', () => {
+        if (speechRate === 0.7) {
+          speechRate = 0.85;
+          btnSpeed.textContent = 'Скорость: 0.85x';
+        } else if (speechRate === 0.85) {
+          speechRate = 1.0;
+          btnSpeed.textContent = 'Скорость: 1.0x (быстро)';
+        } else {
+          speechRate = 0.7;
+          btnSpeed.textContent = 'Скорость: 0.7x (для детей)';
+        }
+      });
 
       // Extract all words from topics
       function processData() {
@@ -292,31 +415,6 @@
         document.getElementById('statTotalWords').textContent = allWords.length;
         document.getElementById('statTopics').textContent = data.topics ? data.topics.length : 20;
       }
-
-      // Web Speech API
-      function speak(text) {
-        if (!('speechSynthesis' in window)) return;
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = 'zh-CN';
-        utter.rate = speechRate;
-        window.speechSynthesis.speak(utter);
-      }
-
-      // Audio Speed Toggle
-      const btnSpeed = document.getElementById('btnSpeed');
-      btnSpeed.addEventListener('click', () => {
-        if (speechRate === 0.85) {
-          speechRate = 1.0;
-          btnSpeed.textContent = 'Скорость: 1.0x';
-        } else if (speechRate === 1.0) {
-          speechRate = 0.7;
-          btnSpeed.textContent = 'Скорость: 0.7x (медленно)';
-        } else {
-          speechRate = 0.85;
-          btnSpeed.textContent = 'Скорость: 0.85x';
-        }
-      });
 
       // Show Toast
       function showToast(msg) {
@@ -406,7 +504,6 @@
         document.getElementById('topicDrillTitle').textContent = `${t.em || ''} ${t.t} (${t.cn || ''})`;
         document.getElementById('topicDrillSubtitle').textContent = `${t.w.length} слов из базы`;
 
-        // Switch to list subtab by default
         switchTopicSubtab('list');
         renderTopicWordList(t);
         setupFlashcard(t);
@@ -417,7 +514,6 @@
         views.topics.style.display = 'block';
       });
 
-      // Subtabs inside topic
       const topicSubtabs = document.querySelectorAll('.topic-subtab');
       topicSubtabs.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -448,7 +544,7 @@
               <span class="word-py">${w[1] || ''}</span>
               <span class="word-ru">${w[2] || ''}</span>
             </div>
-            <button class="btn-speak" title="Прослушать">🔊</button>
+            <button class="btn-speak" title="Прослушать (0.7x)">🔊</button>
           `;
           item.querySelector('.btn-speak').addEventListener('click', () => speak(w[0]));
           container.appendChild(item);
@@ -502,17 +598,17 @@
 
         function renderQ() {
           if (qIndex >= words.length) {
+            playChime('success');
             arena.innerHTML = `
-              <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
-              <h3 style="font-family: var(--font-head); font-size: 1.4rem; margin-bottom: 8px;">Тема пройдена!</h3>
-              <p style="color: var(--text-muted); margin-bottom: 20px;">Твой результат: <b>${score} из ${words.length}</b></p>
+              <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
+              <h3 style="font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 8px;">Тема пройдена!</h3>
+              <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 24px;">Твой результат: <b>${score} из ${words.length}</b></p>
               <button class="btn-fc-action btn-fc-know" onclick="startTopicTest(currentTopic)">Повторить тест ↺</button>
             `;
             return;
           }
 
           const cur = words[qIndex];
-          // Pick 3 distractors from allWords
           const distractors = allWords
             .filter(w => w.ru !== cur[2])
             .sort(() => Math.random() - 0.5)
@@ -530,7 +626,7 @@
               <div class="quiz-py">${cur[1]}</div>
             </div>
             <div class="options-grid" id="ttOptions"></div>
-            <button class="btn-back-topics" id="ttSpeak" style="margin: 0 auto;">🔊 Озвучить</button>
+            <button class="btn-back-topics" id="ttSpeak" style="margin: 0 auto;">🔊 Озвучить (0.7x)</button>
           `;
 
           document.getElementById('ttSpeak').addEventListener('click', () => speak(cur[0]));
@@ -547,13 +643,15 @@
               if (opt === cur[2]) {
                 btn.classList.add('correct');
                 score++;
+                playChime('success');
                 showToast('Правильно! ✓');
               } else {
                 btn.classList.add('wrong');
+                playChime('wrong');
                 allBtns.forEach(b => {
                   if (b.textContent === cur[2]) b.classList.add('correct');
                 });
-                showToast('Попробуй запомнить!');
+                showToast('Запомни это слово!');
               }
               setTimeout(() => {
                 qIndex++;
@@ -590,7 +688,6 @@
         document.getElementById('quizHz').textContent = currentQuizWord.hz;
         document.getElementById('quizPy').textContent = currentQuizWord.py;
 
-        // Distractors
         const distractors = allWords
           .filter(w => w.ru !== currentQuizWord.ru)
           .sort(() => Math.random() - 0.5)
@@ -610,10 +707,12 @@
             if (opt === currentQuizWord.ru) {
               btn.classList.add('correct');
               quizScore++;
+              playChime('success');
               document.getElementById('quizScore').textContent = `Счёт: ${quizScore}`;
               showToast('Молодец! 🎯');
             } else {
               btn.classList.add('wrong');
+              playChime('wrong');
               btns.forEach(b => {
                 if (b.textContent === currentQuizWord.ru) b.classList.add('correct');
               });
@@ -670,10 +769,12 @@
             if (opt === currentListenWord.ru) {
               btn.classList.add('correct');
               listenScore++;
+              playChime('success');
               document.getElementById('listenScore').textContent = `Верно: ${listenScore}`;
               showToast('Отличный слух! 🎧');
             } else {
               btn.classList.add('wrong');
+              playChime('wrong');
               btns.forEach(b => {
                 if (b.textContent === currentListenWord.ru) b.classList.add('correct');
               });
@@ -710,7 +811,7 @@
                   <div class="trap-word-hz">${w[0]}</div>
                   <div class="trap-word-py">${w[1]}</div>
                   <div class="trap-word-ru">${w[2]}</div>
-                  <div style="font-size: 0.8rem; color: var(--primary); margin-top: 6px;">🔊 Послушать</div>
+                  <div style="font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-top: 8px;">🔊 Послушать (0.7x)</div>
                 </div>
               `).join('')}
             </div>
@@ -771,11 +872,13 @@
           const feedback = document.getElementById('toneFeedback');
           if (chosenTone === currentToneItem.tone) {
             toneCorrect++;
-            feedback.style.color = 'var(--emerald)';
+            playChime('success');
+            feedback.style.color = 'var(--emerald-dark)';
             feedback.textContent = `Верно! ${currentToneItem.hz} (${currentToneItem.py}) — ${currentToneItem.tone}-й тон! 🎉`;
-            showToast('В точку!');
+            showToast('В точку! 🎯');
           } else {
             feedback.style.color = 'var(--rose)';
+            playChime('wrong');
             feedback.textContent = `Ошибка. ${currentToneItem.hz} (${currentToneItem.py}) — это ${currentToneItem.tone}-й тон!`;
           }
           document.getElementById('toneScore').textContent = `Верно: ${toneCorrect} / ${toneTotal}`;
@@ -833,9 +936,11 @@
         if (!blitzCurrentPair) return;
         if (choice === blitzCurrentPair.isCorrect) {
           blitzScoreCount += 10;
+          playChime('success');
           showToast('+10 очков! ⚡');
         } else {
           blitzScoreCount = Math.max(0, blitzScoreCount - 5);
+          playChime('wrong');
           showToast('-5 очков');
         }
         document.getElementById('blitzScore').textContent = blitzScoreCount;
@@ -849,10 +954,11 @@
         document.getElementById('blitzActiveBox').style.display = 'none';
         const startBox = document.getElementById('blitzStartBox');
         startBox.style.display = 'block';
+        playChime('success');
         startBox.innerHTML = `
-          <div style="font-size: 3rem; margin-bottom: 12px;">🏆</div>
+          <div style="font-size: 3.5rem; margin-bottom: 12px;">🏆</div>
           <h2 style="font-family: var(--font-head); margin-bottom: 8px;">Время вышло!</h2>
-          <p style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin-bottom: 20px;">
+          <p style="font-size: 1.35rem; font-weight: 800; color: var(--primary); margin-bottom: 24px;">
             Твой финальный счёт: ${blitzScoreCount} очков!
           </p>
           <button class="btn-fc-action btn-fc-know" onclick="location.reload()">Сыграть ещё раз ↺</button>
@@ -860,20 +966,21 @@
       }
 
       // ==========================================
-      // INITIALIZATION (FETCH REMOTE OR FALLBACK)
+      // INITIALIZATION
       // ==========================================
       async function init() {
+        initVoiceSelector();
+
         try {
           const res = await fetch('data/askar.json');
           if (res.ok) {
             const remoteData = await res.json();
             if (remoteData && remoteData.topics) {
               data = remoteData;
-              console.log('Loaded remote data/askar.json successfully.');
             }
           }
         } catch (e) {
-          console.warn('Using embedded data fallback:', e);
+          console.warn('Using embedded fallback data');
         }
 
         processData();
