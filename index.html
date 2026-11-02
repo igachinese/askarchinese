@@ -6,7 +6,7 @@
 <title>Аскар · Личный дашборд по китайскому языку | 阿斯凯</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&family=Nunito:wght@400;500;600;700;800;900&family=Unbounded:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500;700;900&family=Nunito:wght@400;500;600;700;800;900&family=Unbounded:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg-main: #f8fafc;
@@ -43,11 +43,12 @@
   --coral-border: #fecdd3;
 
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 8px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 12px 20px -3px rgba(15, 23, 42, 0.10), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-game: 0 6px 0 #cbd5e1;
   --radius-sm: 10px;
   --radius-md: 16px;
-  --radius-lg: 22px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 }
 
@@ -63,7 +64,7 @@ body {
   color: var(--text-main);
   font-family: 'Nunito', system-ui, -apple-system, sans-serif;
   line-height: 1.55;
-  padding: 24px 16px 60px;
+  padding: 20px 14px 60px;
 }
 
 .zh {
@@ -71,11 +72,11 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 980px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
 }
 
 /* Typography Headings */
@@ -84,7 +85,7 @@ h1, h2, h3, h4, .font-heading {
   letter-spacing: -0.02em;
 }
 
-/* Metric Badges - Strict Size & Neat Wrapping */
+/* Metric Badges - Strict Size & Neat Wrapping (~1.05rem) */
 .metric-badge {
   display: inline-flex;
   align-items: center;
@@ -135,9 +136,9 @@ h1, h2, h3, h4, .font-heading {
   flex-direction: column;
   gap: 20px;
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 24px;
   box-shadow: var(--shadow-md);
 }
 
@@ -146,8 +147,8 @@ h1, h2, h3, h4, .font-heading {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 16px;
+  gap: 10px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -156,7 +157,7 @@ h1, h2, h3, h4, .font-heading {
   align-items: center;
   gap: 8px;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--emerald-dark);
   background: var(--emerald-light);
   padding: 6px 14px;
@@ -164,43 +165,43 @@ h1, h2, h3, h4, .font-heading {
   border: 1px solid var(--emerald-border);
 }
 .status-dot {
-  width: 8px;
-  height: 8px;
+  width: 9px;
+  height: 9px;
   background: var(--emerald);
   border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
 }
 
 .profile-meta-top {
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-muted);
 }
 
 .profile-main {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .profile-avatar {
-  width: 84px;
-  height: 84px;
-  border-radius: 22px;
+  width: 86px;
+  height: 86px;
+  border-radius: 24px;
   background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-  border: 2px solid var(--emerald-border);
+  border: 3px solid var(--emerald-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.8rem;
+  font-size: 3rem;
   flex-shrink: 0;
   box-shadow: var(--shadow-sm);
 }
 
 .profile-info {
   flex: 1;
-  min-width: 260px;
+  min-width: 250px;
 }
 
 .profile-title-row {
@@ -211,23 +212,23 @@ h1, h2, h3, h4, .font-heading {
 }
 
 .profile-name {
-  font-size: 1.7rem;
-  font-weight: 800;
+  font-size: 1.75rem;
+  font-weight: 900;
   color: var(--text-main);
   line-height: 1.2;
 }
 
 .profile-hanzi {
-  font-size: 1.35rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   color: var(--emerald);
   letter-spacing: 0.05em;
 }
 
 .profile-desc {
   color: var(--text-muted);
-  font-size: 0.96rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 700;
   margin-top: 6px;
   display: flex;
   align-items: center;
@@ -236,60 +237,482 @@ h1, h2, h3, h4, .font-heading {
 }
 .desc-chip {
   background: var(--bg-card-subtle);
-  padding: 3px 10px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
   border: 1px solid var(--border);
 }
 
-/* Header Quick Actions */
+/* Header Quick Navigation (Chunky Kid-Friendly Buttons) */
 .quick-nav {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .quick-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  font-size: 0.9rem;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.84rem;
   font-weight: 700;
   color: var(--text-main);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
+  background: #ffffff;
+  border: 2px solid var(--border);
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   transition: all 0.15s ease;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 3px 0 var(--border);
 }
 .quick-btn:hover {
-  border-color: var(--emerald);
-  color: var(--emerald-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--border-focus);
+}
+.quick-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border-focus);
+}
+.quick-btn.game-btn {
   background: var(--emerald-light);
-  transform: translateY(-1px);
+  border-color: var(--emerald-border);
+  color: var(--emerald-dark);
+  box-shadow: 0 3px 0 #a7f3d0;
 }
-.quick-btn.primary {
-  background: var(--emerald);
-  color: #ffffff;
-  border-color: var(--emerald-dark);
+.quick-btn.talk-btn {
+  background: var(--blue-light);
+  border-color: var(--blue-border);
+  color: var(--blue-dark);
+  box-shadow: 0 3px 0 #bfdbfe;
 }
-.quick-btn.primary:hover {
-  background: var(--emerald-dark);
-  color: #ffffff;
+.quick-btn.zoom-btn {
+  background: var(--coral-light);
+  border-color: var(--coral-border);
+  color: var(--coral);
+  box-shadow: 0 3px 0 #fecdd3;
 }
 
-/* 2. Goal Banner */
+/* 2. SUPER-PROMINENT KID-FRIENDLY ACTION HUB */
+.kids-action-hub {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 3px solid #cbd5e1;
+  border-radius: var(--radius-lg);
+  padding: 26px 20px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.hub-headline {
+  text-align: center;
+}
+.hub-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.hub-sub {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Big Interactive Cards Grid */
+.big-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.big-action-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+.big-action-card:hover {
+  transform: translateY(-4px);
+}
+.big-action-card:active {
+  transform: translateY(2px);
+}
+
+/* Card Themes */
+.big-action-card.panda-theme {
+  border: 3px solid #86efac;
+  box-shadow: 0 8px 0 #4ade80, 0 12px 24px rgba(74, 222, 128, 0.2);
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+}
+.big-action-card.panda-theme:hover {
+  box-shadow: 0 12px 0 #4ade80, 0 16px 28px rgba(74, 222, 128, 0.3);
+}
+
+.big-action-card.talk-theme {
+  border: 3px solid #93c5fd;
+  box-shadow: 0 8px 0 #60a5fa, 0 12px 24px rgba(96, 165, 250, 0.2);
+  background: linear-gradient(145deg, #ffffff 0%, #eff6ff 100%);
+}
+.big-action-card.talk-theme:hover {
+  box-shadow: 0 12px 0 #60a5fa, 0 16px 28px rgba(96, 165, 250, 0.3);
+}
+
+.big-action-card.notion-theme {
+  border: 3px solid #fde047;
+  box-shadow: 0 8px 0 #eab308, 0 12px 24px rgba(234, 179, 8, 0.2);
+  background: linear-gradient(145deg, #ffffff 0%, #fefce8 100%);
+}
+.big-action-card.notion-theme:hover {
+  box-shadow: 0 12px 0 #eab308, 0 16px 28px rgba(234, 179, 8, 0.3);
+}
+
+.big-action-card.homework-theme {
+  border: 3px solid #d8b4fe;
+  box-shadow: 0 8px 0 #c084fc, 0 12px 24px rgba(192, 132, 252, 0.2);
+  background: linear-gradient(145deg, #ffffff 0%, #faf5ff 100%);
+}
+.big-action-card.homework-theme:hover {
+  box-shadow: 0 12px 0 #c084fc, 0 16px 28px rgba(192, 132, 252, 0.3);
+}
+
+.big-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 12px;
+  width: fit-content;
+}
+.badge-green { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+.badge-blue { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
+.badge-gold { background: #fef9c3; color: #854d0e; border: 1px solid #fde047; }
+.badge-purple { background: #f3e8ff; color: #6b21a8; border: 1px solid #e9d5ff; }
+
+.big-card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.big-card-icon {
+  font-size: 3.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.big-card-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+.big-card-sub {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* 3D Giant CTA Buttons */
+.big-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.96rem;
+  font-weight: 800;
+  padding: 14px 18px;
+  border-radius: 16px;
+  text-align: center;
+  color: #ffffff;
+  transition: all 0.1s ease;
+  margin-top: auto;
+}
+.btn-green-3d {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 5px 0 #047857;
+  border: 1px solid #34d399;
+}
+.big-action-card:hover .btn-green-3d {
+  background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
+}
+.btn-blue-3d {
+  background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow: 0 5px 0 #1d4ed8;
+  border: 1px solid #60a5fa;
+}
+.big-action-card:hover .btn-blue-3d {
+  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+}
+.btn-gold-3d {
+  background: linear-gradient(180deg, #eab308 0%, #ca8a04 100%);
+  box-shadow: 0 5px 0 #a16207;
+  border: 1px solid #fde047;
+  color: #422006;
+}
+.big-action-card:hover .btn-gold-3d {
+  background: linear-gradient(180deg, #fde047 0%, #eab308 100%);
+}
+.btn-purple-3d {
+  background: linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%);
+  box-shadow: 0 5px 0 #6d28d9;
+  border: 1px solid #a78bfa;
+}
+.big-action-card:hover .btn-purple-3d {
+  background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 100%);
+}
+
+/* 3. CURRENT HOMEWORK & NEXT LESSON HUB */
+.hub-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 768px) {
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lesson-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+  border: 2px solid var(--emerald-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.lesson-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.lesson-badge {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--emerald-dark);
+  background: var(--emerald-light);
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--emerald-border);
+}
+.lesson-datetime {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--text-main);
+  line-height: 1.25;
+}
+.lesson-topic-box {
+  background: #ffffff;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+.lesson-topic-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--emerald-dark);
+  margin-bottom: 6px;
+}
+.lesson-grammar {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.zoom-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+.zoom-big-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 16px 20px;
+  border-radius: 18px;
+  text-decoration: none;
+  box-shadow: 0 6px 0 #1e3a8a, 0 10px 20px rgba(29, 78, 216, 0.25);
+  border: 2px solid #60a5fa;
+  transition: all 0.15s ease;
+}
+.zoom-big-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 #1e3a8a, 0 14px 24px rgba(29, 78, 216, 0.35);
+}
+.zoom-big-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #1e3a8a;
+}
+.zoom-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+.copy-pill {
+  cursor: pointer;
+  background: var(--bg-card-subtle);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-weight: 800;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+.copy-pill:hover {
+  background: #e2e8f0;
+}
+
+/* Homework Checklist Card */
+.homework-card {
+  background: #ffffff;
+  border: 2px solid var(--purple-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+.hw-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.hw-counter {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--purple-dark);
+  background: var(--purple-light);
+  border: 1px solid var(--purple-border);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+.hw-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.hw-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  background: var(--bg-card-subtle);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+.hw-item:hover {
+  border-color: var(--purple-border);
+  background: #ffffff;
+}
+.hw-item.completed {
+  background: var(--emerald-light);
+  border-color: var(--emerald-border);
+}
+.hw-item.completed .hw-text {
+  text-decoration: line-through;
+  color: var(--emerald-dark);
+}
+.hw-checkbox {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  border: 2px solid #94a3b8;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 1rem;
+  font-weight: 900;
+  transition: all 0.15s ease;
+}
+.hw-item.completed .hw-checkbox {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #ffffff;
+}
+.hw-text {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+
+/* Celebration banner when all homework is done */
+#hwCelebration {
+  display: none;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  animation: popIn 0.3s ease;
+}
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 4. GOAL BANNER */
 .goal-banner {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   color: #ffffff;
   border-radius: var(--radius-lg);
-  padding: 28px;
+  padding: 26px;
   box-shadow: var(--shadow-md);
   border: 1px solid #334155;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   position: relative;
   overflow: hidden;
 }
@@ -322,7 +745,7 @@ h1, h2, h3, h4, .font-heading {
 }
 .goal-title {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1.3;
 }
@@ -335,14 +758,13 @@ h1, h2, h3, h4, .font-heading {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 4px;
 }
 .goal-progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.92rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #e2e8f0;
 }
 .progress-bar-bg {
@@ -357,30 +779,22 @@ h1, h2, h3, h4, .font-heading {
   border-radius: var(--radius-full);
   transition: width 0.6s ease;
 }
-.progress-bar-fill.emerald {
-  background: linear-gradient(90deg, #10b981, #34d399);
-}
-.progress-bar-fill.blue {
-  background: linear-gradient(90deg, #3b82f6, #60a5fa);
-}
-.progress-bar-fill.purple {
-  background: linear-gradient(90deg, #8b5cf6, #a78bfa);
-}
-.progress-bar-fill.amber {
-  background: linear-gradient(90deg, #f59e0b, #fbbf24);
-}
+.progress-bar-fill.emerald { background: linear-gradient(90deg, #10b981, #34d399); }
+.progress-bar-fill.blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+.progress-bar-fill.purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+.progress-bar-fill.amber { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
 
 .goal-highlights {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  padding-top: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  padding-top: 6px;
 }
 .goal-highlight-item {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
-  padding: 12px 14px;
+  padding: 10px 14px;
   font-size: 0.88rem;
   color: #e2e8f0;
   display: flex;
@@ -391,21 +805,15 @@ h1, h2, h3, h4, .font-heading {
   color: #ffffff;
 }
 
-/* 3. Progress Section (4 Metrics Cards) */
+/* 5. PROGRESS SECTION (4 CARDS) */
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.3rem;
+  font-weight: 800;
   color: var(--text-main);
   margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
-}
-.section-subtitle {
-  color: var(--text-muted);
-  font-size: 0.92rem;
-  margin-top: -8px;
-  margin-bottom: 16px;
 }
 
 .metrics-grid {
@@ -415,7 +823,7 @@ h1, h2, h3, h4, .font-heading {
 }
 .metric-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-md);
   padding: 18px;
   display: flex;
@@ -430,8 +838,8 @@ h1, h2, h3, h4, .font-heading {
   gap: 12px;
 }
 .metric-name {
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 0.96rem;
+  font-weight: 800;
   color: var(--text-main);
   line-height: 1.3;
 }
@@ -443,213 +851,13 @@ h1, h2, h3, h4, .font-heading {
   overflow: hidden;
 }
 .metric-desc {
-  font-size: 0.84rem;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-/* 4. Upcoming Lesson & Homework Hub */
-.hub-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-@media (max-width: 768px) {
-  .hub-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.lesson-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
-  border: 1px solid var(--emerald-border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: var(--shadow-sm);
-}
-.lesson-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-.lesson-badge {
-  font-size: 0.8rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--emerald-dark);
-  background: var(--emerald-light);
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--emerald-border);
-}
-.lesson-datetime {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-.lesson-topic-box {
-  background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 14px 16px;
-}
-.lesson-topic-title {
-  font-size: 0.98rem;
-  font-weight: 800;
-  color: var(--emerald-dark);
-  margin-bottom: 6px;
-}
-.lesson-grammar {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-
-.zoom-block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 4px;
-}
-.zoom-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: var(--blue);
-  color: #ffffff;
-  font-family: 'Unbounded', sans-serif;
-  font-size: 0.98rem;
-  font-weight: 700;
-  padding: 14px 20px;
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
-  transition: all 0.15s ease;
-}
-.zoom-btn:hover {
-  background: var(--blue-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
-}
-.zoom-btn:active {
-  transform: translateY(0);
-}
-.zoom-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 8px 14px;
-  font-size: 0.86rem;
-  color: var(--text-muted);
-}
-.copy-pill {
-  cursor: pointer;
-  background: var(--bg-card-subtle);
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  color: var(--text-main);
-  border: 1px solid var(--border);
-}
-.copy-pill:hover {
-  background: #e2e8f0;
-}
-
-/* Homework Checklist Card */
-.homework-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-shadow: var(--shadow-sm);
-}
-.hw-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
-.hw-counter {
-  font-size: 0.84rem;
-  font-weight: 800;
-  color: var(--purple-dark);
-  background: var(--purple-light);
-  border: 1px solid var(--purple-border);
-  padding: 5px 12px;
-  border-radius: var(--radius-full);
-}
-.hw-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.hw-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
-  background: var(--bg-card-subtle);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s ease;
-}
-.hw-item:hover {
-  border-color: var(--purple-border);
-  background: #ffffff;
-}
-.hw-item.completed {
-  background: var(--emerald-light);
-  border-color: var(--emerald-border);
-}
-.hw-item.completed .hw-text {
-  text-decoration: line-through;
-  color: var(--emerald-dark);
-}
-.hw-checkbox {
-  width: 20px;
-  height: 20px;
-  border-radius: 6px;
-  border: 2px solid #cbd5e1;
-  background: #ffffff;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  margin-top: 2px;
-  transition: all 0.15s ease;
-}
-.hw-item.completed .hw-checkbox {
-  background: var(--emerald);
-  border-color: var(--emerald);
-  color: #ffffff;
-}
-.hw-text {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: var(--text-muted);
   line-height: 1.45;
 }
-.hw-tip {
-  font-size: 0.82rem;
-  color: var(--text-light);
-  font-style: italic;
-  margin-top: 2px;
-}
 
-/* 5. Student Achievements */
+/* 6. ACHIEVEMENTS SECTION */
 .achievements-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -657,49 +865,48 @@ h1, h2, h3, h4, .font-heading {
 }
 .achievement-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-md);
   padding: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   box-shadow: var(--shadow-sm);
-  position: relative;
-  overflow: hidden;
 }
 .achievement-icon {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   margin-bottom: 2px;
 }
-.achievement-icon.green { background: var(--emerald-light); border: 1px solid var(--emerald-border); }
-.achievement-icon.blue { background: var(--blue-light); border: 1px solid var(--blue-border); }
-.achievement-icon.purple { background: var(--purple-light); border: 1px solid var(--purple-border); }
-.achievement-icon.amber { background: var(--amber-light); border: 1px solid var(--amber-border); }
+.achievement-icon.green { background: var(--emerald-light); border: 2px solid var(--emerald-border); }
+.achievement-icon.blue { background: var(--blue-light); border: 2px solid var(--blue-border); }
+.achievement-icon.purple { background: var(--purple-light); border: 2px solid var(--purple-border); }
+.achievement-icon.amber { background: var(--amber-light); border: 2px solid var(--amber-border); }
 
 .achievement-title {
-  font-size: 0.98rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 800;
   color: var(--text-main);
   line-height: 1.3;
 }
 .achievement-desc {
-  font-size: 0.85rem;
+  font-size: 0.86rem;
+  font-weight: 600;
   color: var(--text-muted);
   line-height: 1.45;
 }
 
-/* 6. Teacher's Report for Parents */
+/* 7. TEACHER'S REPORT FOR PARENTS */
 .report-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 26px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -712,13 +919,13 @@ h1, h2, h3, h4, .font-heading {
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  padding-bottom: 16px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
 }
 .report-lesson-tag {
   font-family: 'Unbounded', sans-serif;
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--emerald-dark);
   background: var(--emerald-light);
   padding: 6px 14px;
@@ -728,7 +935,7 @@ h1, h2, h3, h4, .font-heading {
 .report-date {
   font-size: 0.9rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .report-blocks {
@@ -740,15 +947,15 @@ h1, h2, h3, h4, .font-heading {
   background: var(--bg-card-subtle);
   border-radius: var(--radius-md);
   padding: 16px 18px;
-  border-left: 4px solid var(--emerald);
+  border-left: 5px solid var(--emerald);
 }
 .report-block.focus {
   border-left-color: var(--amber);
   background: var(--amber-light);
 }
 .report-block-title {
-  font-size: 0.94rem;
-  font-weight: 800;
+  font-size: 0.98rem;
+  font-weight: 900;
   color: var(--text-main);
   margin-bottom: 6px;
   display: flex;
@@ -756,9 +963,10 @@ h1, h2, h3, h4, .font-heading {
   gap: 8px;
 }
 .report-block-text {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.55;
+  font-weight: 600;
 }
 .report-block-text ul {
   margin-left: 20px;
@@ -770,7 +978,7 @@ h1, h2, h3, h4, .font-heading {
 
 /* Accordion for previous lessons */
 details.accordion {
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #ffffff;
@@ -779,8 +987,8 @@ details.accordion {
 }
 details.accordion summary {
   padding: 14px 18px;
-  font-weight: 700;
-  font-size: 0.94rem;
+  font-weight: 800;
+  font-size: 0.95rem;
   color: var(--text-main);
   cursor: pointer;
   list-style: none;
@@ -796,78 +1004,28 @@ details.accordion summary::-webkit-details-marker {
 details.accordion summary::after {
   content: "+";
   font-family: 'Unbounded', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--text-muted);
-  transition: transform 0.2s ease;
 }
 details.accordion[open] summary::after {
   content: "−";
 }
 details.accordion .accordion-content {
   padding: 18px;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.6;
   border-top: 1px solid var(--border);
   background: #ffffff;
 }
 
-/* 7. Interactive Trainers Section */
-.trainers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-.trainer-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-}
-.trainer-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--emerald);
-  box-shadow: var(--shadow-md);
-}
-.trainer-icon {
-  font-size: 2.2rem;
-  margin-bottom: 2px;
-}
-.trainer-title {
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-.trainer-desc {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.45;
-}
-.trainer-link-label {
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--emerald-dark);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: auto;
-}
-
-/* 8. Lesson Journal & Balance */
+/* 8. LESSON JOURNAL & BALANCE */
 .journal-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 26px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -876,7 +1034,7 @@ details.accordion .accordion-content {
 
 .balance-banner {
   background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-  border: 1px solid var(--emerald-border);
+  border: 2px solid var(--emerald-border);
   border-radius: var(--radius-md);
   padding: 18px 20px;
   display: flex;
@@ -891,34 +1049,34 @@ details.accordion .accordion-content {
   gap: 4px;
 }
 .balance-title {
-  font-size: 1.1rem;
-  font-weight: 800;
+  font-size: 1.15rem;
+  font-weight: 900;
   color: var(--emerald-dark);
 }
 .balance-sub {
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .table-responsive {
   overflow-x: auto;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-md);
 }
 .journal-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 0.88rem;
-  min-width: 580px;
+  font-size: 0.9rem;
+  min-width: 600px;
 }
 .journal-table th {
   background: var(--bg-card-subtle);
   padding: 12px 16px;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--text-muted);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
 }
 .journal-table td {
   padding: 12px 16px;
@@ -931,14 +1089,14 @@ details.accordion .accordion-content {
 }
 .journal-table tr.active-row {
   background: #f8fafc;
-  font-weight: 600;
+  font-weight: 700;
 }
 .status-pill {
   display: inline-block;
   padding: 4px 10px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
   white-space: nowrap;
 }
 .status-pill.done {
@@ -957,14 +1115,14 @@ details.accordion .accordion-content {
   border: 1px solid var(--border);
 }
 
-/* 9. Footer */
+/* 9. FOOTER */
 footer {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 20px;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--border);
   color: var(--text-muted);
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -972,20 +1130,21 @@ footer {
 }
 .footer-meta {
   color: var(--text-light);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 .teacher-secret-link {
   color: var(--text-light);
   text-decoration: none;
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
   transition: all 0.15s ease;
 }
 .teacher-secret-link:hover {
-  color: var(--text-muted);
-  background: var(--bg-card-subtle);
+  color: var(--text-main);
+  background: #e2e8f0;
 }
 
 /* Toast Notification for Copy */
@@ -1002,8 +1161,8 @@ footer {
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   opacity: 0;
   transition: opacity 0.3s, visibility 0.3s;
 }
@@ -1022,7 +1181,7 @@ footer {
     <div class="profile-top">
       <div class="profile-status">
         <span class="status-dot"></span>
-        <span>Абонемент №3 в процессе · Урок 5 из 10</span>
+        <span>Абонемент №3 · Пройдено 5 из 10 уроков</span>
       </div>
       <div class="profile-meta-top">
         Курс: Easy Steps to Chinese 1 + HSK 1
@@ -1039,36 +1198,218 @@ footer {
           <span class="profile-hanzi zh">阿斯凯 · Āsīkǎi</span>
         </div>
         <div class="profile-desc">
-          <span class="desc-chip">👦 7 лет (10.09)</span>
+          <span class="desc-chip">👦 7 лет (10 сентября)</span>
           <span class="desc-chip">🎒 1 класс</span>
           <span class="desc-chip">📍 Астана</span>
-          <span class="desc-chip">🏆 Детский HSK 1 / YCT 1</span>
+          <span class="desc-chip">🏆 Детский HSK 1</span>
         </div>
       </div>
     </div>
 
-    <!-- Quick Buttons in Header -->
+    <!-- Quick Buttons in Header (Chunky Kid-Friendly Buttons) -->
     <div class="quick-nav">
-      <a href="voprosy-askar.html" class="quick-btn">
-        <span>🗣️</span>
-        <span>Говорилка: Мама спрашивает</span>
-      </a>
-      <a href="console.html" class="quick-btn">
+      <a href="console.html" class="quick-btn game-btn">
         <span>🎮</span>
-        <span>Интерактивный урок</span>
+        <span>ИГРАТЬ: Семья</span>
+      </a>
+      <a href="voprosy-askar.html" class="quick-btn talk-btn">
+        <span>🗣️</span>
+        <span>ГОВОРИЛКА: С мамой</span>
       </a>
       <a href="https://app.notion.com/p/2e3a1a36889a4835ade41e7b874cf99e" target="_blank" rel="noopener" class="quick-btn">
         <span>📖</span>
         <span>Словарик в Notion</span>
       </a>
-      <a href="https://us05web.zoom.us/j/88669646666?pwd=g87qHdVP327JNggjW7Xb5o3mwyq18v.1" target="_blank" rel="noopener" class="quick-btn primary">
+      <a href="https://us05web.zoom.us/j/88669646666?pwd=g87qHdVP327JNggjW7Xb5o3mwyq18v.1" target="_blank" rel="noopener" class="quick-btn zoom-btn">
         <span>🎥</span>
         <span>Войти в Zoom</span>
       </a>
     </div>
   </header>
 
-  <!-- 2. GOAL BANNER -->
+  <!-- 2. SUPER-PROMINENT ACTION HUB FOR CHILD & PARENTS -->
+  <section class="kids-action-hub">
+    <div class="hub-headline">
+      <h2 class="hub-title">
+        <span>🚀</span>
+        <span>ТВОИ ЗАДАНИЯ И ТРЕНАЖЁРЫ</span>
+        <span>🎮</span>
+      </h2>
+      <p class="hub-sub">Выбирай карточку ниже и нажимай на неё, чтобы запустить игру или тренировку!</p>
+    </div>
+
+    <div class="big-cards-grid">
+
+      <!-- Card 1: Interactive Homework "Family" -->
+      <a href="console.html" class="big-action-card panda-theme">
+        <div>
+          <span class="big-card-badge badge-green">🐼 ИНТЕРАКТИВНОЕ ЗАДАНИЕ</span>
+          <div class="big-card-main">
+            <span class="big-card-icon">🐼</span>
+            <div>
+              <h3 class="big-card-title">Игра: «Моя семья»</h3>
+              <p class="big-card-sub">7 весёлых уровней: карточки с озвучкой, викторина на слух и соревнование с Пандой!</p>
+            </div>
+          </div>
+        </div>
+        <div class="big-cta-btn btn-green-3d">
+          <span>👉 НАЖМИ И ИГРАЙ</span>
+          <span>🎮</span>
+        </div>
+      </a>
+
+      <!-- Card 2: Speaking Trainer with Mom -->
+      <a href="voprosy-askar.html" class="big-action-card talk-theme">
+        <div>
+          <span class="big-card-badge badge-blue">🗣️ ТРЕНИРОВКА С МАМОЙ</span>
+          <div class="big-card-main">
+            <span class="big-card-icon">🎙️</span>
+            <div>
+              <h3 class="big-card-title">Говорилка с мамой</h3>
+              <p class="big-card-sub">Вопросы на слух: возраст, имя, семья, даты. Мама нажимает — Аскар отвечает по-китайски!</p>
+            </div>
+          </div>
+        </div>
+        <div class="big-cta-btn btn-blue-3d">
+          <span>👉 ЗАПУСТИТЬ ТРЕНАЖЁР</span>
+          <span>📢</span>
+        </div>
+      </a>
+
+      <!-- Card 3: Notion Vocabulary -->
+      <a href="https://app.notion.com/p/2e3a1a36889a4835ade41e7b874cf99e" target="_blank" rel="noopener" class="big-action-card notion-theme">
+        <div>
+          <span class="big-card-badge badge-gold">📖 БАЗА ЗНАНИЙ В NOTION</span>
+          <div class="big-card-main">
+            <span class="big-card-icon">📚</span>
+            <div>
+              <h3 class="big-card-title">Словарик Аскара</h3>
+              <p class="big-card-sub">Все изученные слова: профессии, футбол, шахматы, капибара, семья и секреты иероглифов.</p>
+            </div>
+          </div>
+        </div>
+        <div class="big-cta-btn btn-gold-3d">
+          <span>👉 ОТКРЫТЬ СЛОВАРИК</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+      <!-- Card 4: Notion Homework & Workbooks -->
+      <a href="https://app.notion.com/p/5fcf40e9ce1649cd87886e46560e335a" target="_blank" rel="noopener" class="big-action-card homework-theme">
+        <div>
+          <span class="big-card-badge badge-purple">📝 ТЕТРАДКА И КВЕСТЫ</span>
+          <div class="big-card-main">
+            <span class="big-card-icon">✏️</span>
+            <div>
+              <h3 class="big-card-title">Тетрадка и прописи</h3>
+              <p class="big-card-sub">Фотографии проверенных домашних прописей, звёзды за успехи и новые бланки заданий.</p>
+            </div>
+          </div>
+        </div>
+        <div class="big-cta-btn btn-purple-3d">
+          <span>👉 СМОТРЕТЬ ТЕТРАДКУ</span>
+          <span>↗</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- 3. UPCOMING LESSON & CURRENT HOMEWORK HUB -->
+  <section>
+    <h2 class="section-title">
+      <span>🗓️</span>
+      <span>Ближайший урок и домашнее задание</span>
+    </h2>
+    <div class="hub-grid">
+
+      <!-- Next Lesson -->
+      <div class="lesson-card">
+        <div class="lesson-card-header">
+          <span class="lesson-badge">⏳ Ближайший урок</span>
+          <span style="font-size:0.88rem;font-weight:800;color:var(--text-muted);">Урок 6 абонемента №3</span>
+        </div>
+
+        <div class="lesson-datetime">
+          08 ноября 2026 (вс) · 11:00 МСК
+        </div>
+        <div style="font-size:0.95rem;font-weight:700;color:var(--emerald-dark);margin-top:-6px;">
+          🕒 Время в Астане: 14:00 (Zoom онлайн)
+        </div>
+
+        <div class="lesson-topic-box">
+          <div class="lesson-topic-title">Тема 9 · «Профессии» 职业 (часть 2)</div>
+          <div class="lesson-grammar">
+            <b>Грамматика и практика:</b> Речевой конструктор <code>他是… / 她是…</code>, уверенный выбор связки <code>是 / 不是</code> в диалогах с вопросом на <code>吗</code>, автоматизм правила <code>你 → 我</code>.
+          </div>
+        </div>
+
+        <div class="zoom-block">
+          <a href="https://us05web.zoom.us/j/88669646666?pwd=g87qHdVP327JNggjW7Xb5o3mwyq18v.1" target="_blank" rel="noopener" class="zoom-big-btn">
+            <span>🎥</span>
+            <span>ВОЙТИ В ZOOM-КОНФЕРЕНЦИЮ</span>
+          </a>
+          <div class="zoom-meta">
+            <span>ID: <b>886 6964 6666</b> <span class="copy-pill" onclick="copyText('88669646666')">копировать</span></span>
+            <span>Код: <b>12345</b> <span class="copy-pill" onclick="copyText('12345')">копировать</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Homework Checklist -->
+      <div class="homework-card">
+        <div class="hw-header">
+          <div>
+            <h3 style="font-size:1.15rem;font-weight:900;color:var(--text-main);">Домашнее задание</h3>
+            <div style="font-size:0.88rem;font-weight:700;color:var(--text-muted);">к уроку 08 ноября 2026</div>
+          </div>
+          <span class="hw-counter" id="hwCounter">Выполнено 0 из 4</span>
+        </div>
+
+        <!-- Celebration banner -->
+        <div id="hwCelebration">
+          🎉 УРА! АСКАР ВЫПОЛНИЛ ВСЁ ДОМАШНЕЕ ЗАДАНИЕ! ТЫ СУПЕР-ЧЕМПИОН! 🏆🐼
+        </div>
+
+        <div class="hw-list" id="hwList">
+          <div class="hw-item" onclick="toggleHw(0)">
+            <div class="hw-checkbox" id="hwCheck0"></div>
+            <div class="hw-text">
+              🗣️ <b>Рассказ о себе без листочка</b>: закрепить фразы <code>我上一年级</code> (1 класс), <code>我是小学生</code>, <code>我住在哈萨克斯坦，阿斯塔纳</code>.
+            </div>
+          </div>
+
+          <div class="hw-item" onclick="toggleHw(1)">
+            <div class="hw-checkbox" id="hwCheck1"></div>
+            <div class="hw-text">
+              👦 <b>Рассказ про младшего братика</b>: сказать по-китайски как зовут и сколько лет (<code>他叫… 他…岁</code>) — квест от Панды!
+            </div>
+          </div>
+
+          <div class="hw-item" onclick="toggleHw(2)">
+            <div class="hw-checkbox" id="hwCheck2"></div>
+            <div class="hw-text">
+              🐼 <b>Челлендж стойки 扎马步 (zhǎmǎbù)</b>: посоревноваться с Пандой и простоять в стойке всадника дольше 13 секунд!
+            </div>
+          </div>
+
+          <div class="hw-item" onclick="toggleHw(3)">
+            <div class="hw-checkbox" id="hwCheck3"></div>
+            <div class="hw-text">
+              ⌨️ <b>По желанию:</b> напечатать на планшете китайской клавиатурой имя <code>阿斯凯</code> и слово «футбол» <code>足球</code>.
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:0.84rem;font-weight:700;color:var(--text-light);font-style:italic;">
+          💡 Нажимай пальчиком на пункты, чтобы отметить выполненные! Они сохраняются прямо здесь.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. GOAL BANNER -->
   <section class="goal-banner">
     <div class="goal-header">
       <div class="goal-title-wrap">
@@ -1105,9 +1446,12 @@ footer {
     </div>
   </section>
 
-  <!-- 3. PROGRESS SECTION (4 CARDS) -->
+  <!-- 5. PROGRESS SECTION (4 CARDS) -->
   <section>
-    <h2 class="section-title">📊 Прогресс обучения в цифрах</h2>
+    <h2 class="section-title">
+      <span>📊</span>
+      <span>Прогресс обучения в цифрах</span>
+    </h2>
     <div class="metrics-grid">
 
       <!-- Course Progress -->
@@ -1169,95 +1513,12 @@ footer {
     </div>
   </section>
 
-  <!-- 4. UPCOMING LESSON & HOMEWORK HUB -->
+  <!-- 6. ACHIEVEMENTS OF THE STUDENT -->
   <section>
-    <h2 class="section-title">🗓️ Ближайший урок и домашнее задание</h2>
-    <div class="hub-grid">
-
-      <!-- Next Lesson -->
-      <div class="lesson-card">
-        <div class="lesson-card-header">
-          <span class="lesson-badge">⏳ Ближайший урок</span>
-          <span style="font-size:0.86rem;font-weight:700;color:var(--text-muted);">Урок 6 абонемента №3</span>
-        </div>
-
-        <div class="lesson-datetime">
-          08 ноября 2026 (вс) · 11:00 МСК
-        </div>
-        <div style="font-size:0.9rem;color:var(--text-muted);margin-top:-8px;">
-          🕒 Время в Астане: 14:00 (Zoom онлайн)
-        </div>
-
-        <div class="lesson-topic-box">
-          <div class="lesson-topic-title">Тема 9 · «Профессии» 职业 (часть 2)</div>
-          <div class="lesson-grammar">
-            <b>Грамматика и практика:</b> Речевой конструктор <code>他是… / 她是…</code>, уверенный выбор связки <code>是 / 不是</code> в диалогах с вопросом на <code>吗</code>, автоматизм правила <code>你 → 我</code>.
-          </div>
-        </div>
-
-        <div class="zoom-block">
-          <a href="https://us05web.zoom.us/j/88669646666?pwd=g87qHdVP327JNggjW7Xb5o3mwyq18v.1" target="_blank" rel="noopener" class="zoom-btn">
-            <span>🎥</span>
-            <span>Войти в Zoom-конференцию</span>
-          </a>
-          <div class="zoom-meta">
-            <span>ID: <b>886 6964 6666</b> <span class="copy-pill" onclick="copyText('88669646666')">копировать</span></span>
-            <span>Код: <b>12345</b> <span class="copy-pill" onclick="copyText('12345')">копировать</span></span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Homework Checklist -->
-      <div class="homework-card">
-        <div class="hw-header">
-          <div>
-            <h3 style="font-size:1.1rem;font-weight:800;color:var(--text-main);">Домашнее задание</h3>
-            <div style="font-size:0.85rem;color:var(--text-muted);">к уроку 08 ноября 2026</div>
-          </div>
-          <span class="hw-counter" id="hwCounter">Выполнено 0 из 4</span>
-        </div>
-
-        <div class="hw-list" id="hwList">
-          <div class="hw-item" onclick="toggleHw(0)">
-            <div class="hw-checkbox" id="hwCheck0"></div>
-            <div class="hw-text">
-              🗣️ <b>Рассказ о себе без листочка</b>: закрепить фразы <code>我上一年级</code>, <code>我是小学生</code>, <code>我住在哈萨克斯坦，阿斯塔纳</code>.
-            </div>
-          </div>
-
-          <div class="hw-item" onclick="toggleHw(1)">
-            <div class="hw-checkbox" id="hwCheck1"></div>
-            <div class="hw-text">
-              👦 <b>Рассказ про младшего братика</b>: сказать по-китайски как зовут и сколько лет (<code>他叫… 他…岁</code>) — квест от Панды!
-            </div>
-          </div>
-
-          <div class="hw-item" onclick="toggleHw(2)">
-            <div class="hw-checkbox" id="hwCheck2"></div>
-            <div class="hw-text">
-              🐼 <b>Челлендж стойки 扎马步 (zhǎmǎbù)</b>: посоревноваться с Пандой и простоять в стойке всадника дольше 13 секунд.
-            </div>
-          </div>
-
-          <div class="hw-item" onclick="toggleHw(3)">
-            <div class="hw-checkbox" id="hwCheck3"></div>
-            <div class="hw-text">
-              ⌨️ <b>По желанию:</b> напечатать на планшете китайской клавиатурой имя <code>阿斯凯</code> и слово «футбол» <code>足球</code>.
-            </div>
-          </div>
-        </div>
-
-        <div class="hw-tip">
-          💡 Нажимайте на пункты, чтобы отмечать галочками. Прогресс сохраняется в вашем браузере.
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 5. ACHIEVEMENTS OF THE STUDENT -->
-  <section>
-    <h2 class="section-title">🏆 Достижения и сильные стороны Аскара</h2>
+    <h2 class="section-title">
+      <span>🏆</span>
+      <span>Достижения и сильные стороны Аскара</span>
+    </h2>
     <div class="achievements-grid">
 
       <div class="achievement-card">
@@ -1295,9 +1556,12 @@ footer {
     </div>
   </section>
 
-  <!-- 6. TEACHER'S REPORT FOR PARENTS -->
+  <!-- 7. TEACHER'S REPORT FOR PARENTS -->
   <section>
-    <h2 class="section-title">📋 Отчёт преподавателя для родителей</h2>
+    <h2 class="section-title">
+      <span>📋</span>
+      <span>Отчёт преподавателя для родителей</span>
+    </h2>
     <div class="report-card">
 
       <div class="report-header">
@@ -1410,77 +1674,12 @@ footer {
     </div>
   </section>
 
-  <!-- 7. INTERACTIVE TRAINERS SECTION -->
-  <section>
-    <h2 class="section-title">🎮 Интерактивные тренажёры и сервисы</h2>
-    <div class="trainers-grid">
-
-      <!-- Govorilka -->
-      <a href="voprosy-askar.html" class="trainer-card">
-        <div>
-          <div class="trainer-icon">🗣️</div>
-          <div class="trainer-title">Говорилка: Мама спрашивает</div>
-          <div class="trainer-desc" style="margin-top:6px;">
-            Интерактивный голосовой тренажёр для отработки быстрых ответов на слух дома вместе с мамой.
-          </div>
-        </div>
-        <div class="trainer-link-label">
-          <span>Открыть тренажёр</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Interactive Lesson / Family -->
-      <a href="console.html" class="trainer-card">
-        <div>
-          <div class="trainer-icon">🐼</div>
-          <div class="trainer-title">Интерактивный урок</div>
-          <div class="trainer-desc" style="margin-top:6px;">
-            Мини-игры, карточки слов, аудио-задания и соревнование с Пандой на экране.
-          </div>
-        </div>
-        <div class="trainer-link-label">
-          <span>Запустить урок</span>
-          <span>→</span>
-        </div>
-      </a>
-
-      <!-- Notion Vocabulary -->
-      <a href="https://app.notion.com/p/2e3a1a36889a4835ade41e7b874cf99e" target="_blank" rel="noopener" class="trainer-card">
-        <div>
-          <div class="trainer-icon">📖</div>
-          <div class="trainer-title">Словарик Аскара</div>
-          <div class="trainer-desc" style="margin-top:6px;">
-            Полная база всех пройденных слов по темам учебника с мнемониками, ассоциациями и примерами.
-          </div>
-        </div>
-        <div class="trainer-link-label">
-          <span>Открыть в Notion</span>
-          <span>↗</span>
-        </div>
-      </a>
-
-      <!-- Notion Homework -->
-      <a href="https://app.notion.com/p/5fcf40e9ce1649cd87886e46560e335a" target="_blank" rel="noopener" class="trainer-card">
-        <div>
-          <div class="trainer-icon">📝</div>
-          <div class="trainer-title">Трекер ДЗ и бланки</div>
-          <div class="trainer-desc" style="margin-top:6px;">
-            Хранилище домашних заданий в Notion, фото выполненных прописей и бланки квестов.
-          </div>
-        </div>
-        <div class="trainer-link-label">
-          <span>Открыть трекер</span>
-          <span>↗</span>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
   <!-- 8. LESSON JOURNAL & BALANCE -->
   <section>
-    <h2 class="section-title">📅 Журнал занятий и баланс</h2>
+    <h2 class="section-title">
+      <span>📅</span>
+      <span>Журнал занятий и баланс</span>
+    </h2>
     <div class="journal-card">
 
       <div class="balance-banner">
@@ -1492,7 +1691,7 @@ footer {
       </div>
 
       <div>
-        <h3 style="font-size:1.05rem;font-weight:800;color:var(--text-main);margin-bottom:12px;">Текущий абонемент №3</h3>
+        <h3 style="font-size:1.05rem;font-weight:900;color:var(--text-main);margin-bottom:12px;">Текущий абонемент №3</h3>
         <div class="table-responsive">
           <table class="journal-table">
             <thead>
@@ -1574,7 +1773,7 @@ footer {
 
   <!-- 9. FOOTER -->
   <footer>
-    <div style="font-weight:700;color:var(--text-main);">
+    <div style="font-weight:800;color:var(--text-main);">
       🎓 Преподаватель китайского языка · Индивидуальная программа Аскара
     </div>
     <div class="footer-meta">
@@ -1628,16 +1827,19 @@ function updateHwUI() {
   });
 
   const counter = document.getElementById('hwCounter');
+  const celeb = document.getElementById('hwCelebration');
   if (counter) {
     counter.textContent = 'Выполнено ' + doneCount + ' из ' + state.length;
     if (doneCount === state.length) {
       counter.style.background = '#ecfdf5';
       counter.style.color = '#047857';
       counter.style.borderColor = '#a7f3d0';
+      if (celeb) celeb.style.display = 'block';
     } else {
       counter.style.background = '#f5f3ff';
       counter.style.color = '#6d28d9';
       counter.style.borderColor = '#ddd6fe';
+      if (celeb) celeb.style.display = 'none';
     }
   }
 }
