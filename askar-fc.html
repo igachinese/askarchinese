@@ -1,0 +1,742 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Аскар FC: Профессии и Звёзды футбола | 阿斯凯 FC</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: sticky club header; home = season plan (4 lessons → modules); each module is one focused screen. The sticker album is the spine of the site. */
+:root{
+  --bg:#eef4ee;
+  --page:#ffffff;
+  --ink:#152a24;
+  --muted:#5a6f68;
+  --line:#cfe0d6;
+  --club:#123d2e;
+  --club-2:#1c5a43;
+  --grass:#3c8e4c;
+  --grass-2:#47a058;
+  --gold:#e8b21f;
+  --gold-soft:#fff3cc;
+  --red:#e0483a;
+  --red-d:#a92d22;
+  --teal:#17807e;
+  --ok:#2f9e5b;
+  --ok-soft:#ddf3e5;
+  --bad:#d6403f;
+  --bad-soft:#fde5e3;
+  --f-body:"Trebuchet MS","Segoe UI",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  --f-zh:"PingFang SC","Microsoft YaHei","Noto Sans SC","Hiragino Sans GB",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.4;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--club)}
+.zh{font-family:var(--f-zh);font-weight:700}
+.py{font-weight:700;color:var(--teal);font-size:.8em}
+body.nopy .py{display:none}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--club);color:#fff;
+  padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;box-shadow:0 4px 16px rgba(5,30,20,.3)}
+.badge{display:flex;align-items:center;gap:10px;background:none;border:0;color:#fff;padding:0;text-align:left}
+.badge svg{width:40px;height:40px;flex:none}
+.badge b{display:block;font-weight:900;font-size:1.05rem;line-height:1.1}
+.badge small{display:block;opacity:.75;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;font-weight:800}
+.hstat{display:flex;gap:10px;margin-left:auto;font-weight:900;align-items:center}
+.hstat span{background:rgba(255,255,255,.12);border-radius:10px;padding:4px 10px;font-variant-numeric:tabular-nums}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.tbtn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:10px;padding:6px 10px;font-weight:800;font-size:.82rem;white-space:nowrap}
+.tbtn[aria-pressed="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.warn{background:var(--gold-soft);color:#6b4b00;font-weight:700;font-size:.88rem;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid #f0d58a}
+
+main{max-width:980px;margin:0 auto;padding-block:18px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.screen{animation:in .3s ease both}
+@keyframes in{from{opacity:.35;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1.t{margin:0 0 4px;font-size:clamp(1.4rem,4.4vw,2rem);font-weight:900;text-wrap:balance}
+h1.t .zh{color:var(--red);margin-right:8px}
+.sub{color:var(--muted);font-weight:700;margin:0 0 14px}
+.back{background:transparent;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-weight:800;color:var(--muted)}
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--red);color:#fff;border:0;border-radius:14px;padding:13px 24px;font-weight:900;font-size:1.1rem;box-shadow:0 6px 0 var(--red-d);transition:transform .1s,box-shadow .1s}
+.cta:active{transform:translateY(4px);box-shadow:0 2px 0 var(--red-d)}
+.cta.green{background:var(--club-2);box-shadow:0 6px 0 var(--club)}
+.cta.green:active{box-shadow:0 2px 0 var(--club)}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.spacer{flex:1}
+
+/* home */
+.hero{background:linear-gradient(135deg,var(--club) 0%,var(--club-2) 100%);color:#fff;border-radius:22px;padding:22px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:center;overflow:hidden;position:relative}
+.hero h1{margin:0;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:900;text-wrap:balance}
+.hero h1 .zh{display:block;color:var(--gold);font-size:.7em;letter-spacing:.12em}
+.hero p{margin:8px 0 0;opacity:.9;font-weight:700;max-width:52ch}
+.hero .ball{font-size:5rem;line-height:1}
+.lessons{display:grid;gap:14px;margin-top:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
+.lesson{background:var(--page);border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(20,60,40,.08);min-width:0}
+.lesson h2{margin:0 0 2px;font-size:1.1rem;font-weight:900;display:flex;gap:8px;align-items:center}
+.lesson h2 .n{background:var(--club);color:var(--gold);border-radius:8px;padding:2px 8px;font-size:.8rem;letter-spacing:.06em}
+.lesson p{margin:0 0 10px;color:var(--muted);font-weight:700;font-size:.9rem}
+.mods{display:grid;gap:8px}
+.mod{display:flex;align-items:center;gap:12px;background:var(--bg);border:2px solid transparent;border-radius:14px;padding:10px 12px;text-align:left;width:100%}
+.mod:hover{border-color:var(--grass)}
+.mod .ic{font-size:1.8rem;flex:none;width:44px;text-align:center}
+.mod b{display:block;font-size:1rem}
+.mod span{display:block;color:var(--muted);font-size:.84rem;font-weight:700}
+.mod .sc{margin-left:auto;font-weight:900;color:var(--club-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* word cards */
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.wcard{background:var(--page);border:3px solid var(--line);border-radius:18px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;position:relative;min-width:0}
+.wcard:hover{border-color:var(--grass)}
+.wcard .emo{font-size:2.6rem;line-height:1.1}
+.wcard .zh{font-size:1.5rem}
+.wcard .ru{color:var(--muted);font-weight:700;font-size:.88rem}
+.wcard .tb{position:absolute;top:6px;right:8px;font-size:.62rem;font-weight:900;letter-spacing:.05em;color:#fff;background:var(--teal);border-radius:5px;padding:1px 5px}
+.wcard .tb.ex{background:var(--gold);color:var(--ink)}
+.wcard.flip .ru{display:none}
+.grammar{margin-top:18px;background:var(--page);border-radius:18px;padding:14px 16px;border-left:6px solid var(--gold)}
+.grammar h3{margin:0 0 8px;font-size:1rem}
+.gl{display:flex;gap:10px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+.gl:last-child{border-bottom:0}
+.gl .zh{font-size:1.25rem}
+.gl .ru{color:var(--muted);font-weight:700;font-size:.9rem}
+.sbtn{flex:none;width:40px;height:40px;border-radius:50%;border:0;background:var(--gold);font-size:1.1rem;box-shadow:0 3px 0 #b88a0e}
+.sbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #b88a0e}
+
+/* quiz */
+.qhead{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.qhead h1{margin:0;font-size:clamp(1.2rem,3.6vw,1.6rem);font-weight:900}
+.dots{display:flex;gap:5px;margin-left:auto;flex-wrap:wrap}
+.dot{width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid var(--line)}
+.dot.ok{background:var(--ok);border-color:var(--ok)}.dot.miss{background:var(--gold);border-color:var(--gold)}.dot.cur{border-color:var(--club);transform:scale(1.25)}
+.score{display:flex;gap:8px;align-items:center;margin-left:auto;font-weight:900;font-size:1.2rem;font-variant-numeric:tabular-nums}
+.score span{background:var(--club);color:#fff;border-radius:10px;padding:3px 10px}
+.prompt{background:var(--page);border-radius:20px;padding:14px 16px;box-shadow:0 8px 22px rgba(20,60,40,.1)}
+.prompt .ask{font-weight:900;color:var(--muted);font-size:.95rem}
+.prompt .scene{font-size:clamp(2.6rem,11vw,4rem);text-align:center;line-height:1.2;margin:6px 0}
+.qline{display:flex;align-items:center;gap:12px;margin-top:6px}
+.qline .face{font-size:2.4rem;flex:none;line-height:1}
+.qline .q{flex:1;min-width:0;font-size:clamp(1.3rem,4.6vw,1.9rem);line-height:1.25}
+.qline .q.hid{color:transparent;background:repeating-linear-gradient(90deg,var(--line) 0 16px,transparent 16px 24px);height:.9em;border-radius:6px;max-width:320px}
+.listen{flex:none;width:62px;height:62px;border-radius:50%;border:0;background:var(--gold);font-size:1.7rem;box-shadow:0 4px 0 #b88a0e;display:grid;place-items:center}
+.listen:active{transform:translateY(3px);box-shadow:0 1px 0 #b88a0e}
+.listen.pulse{animation:pulse 1.3s infinite}
+@keyframes pulse{0%{box-shadow:0 4px 0 #b88a0e,0 0 0 0 rgba(232,178,31,.6)}70%{box-shadow:0 4px 0 #b88a0e,0 0 0 16px rgba(232,178,31,0)}100%{box-shadow:0 4px 0 #b88a0e,0 0 0 0 rgba(232,178,31,0)}}
+.hint{margin-top:8px;color:var(--muted);font-weight:800;font-size:.9rem}
+.opts{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:14px}
+@media(min-width:760px){.opts.four{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.opt{background:var(--page);border:3px solid var(--line);border-radius:16px;padding:12px;min-height:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;min-width:0;transition:transform .12s,border-color .2s,background .2s}
+.opt:hover:not(:disabled){transform:translateY(-2px);border-color:var(--teal)}
+.opt .emo{font-size:2.6rem;line-height:1.1}
+.opt .zh{font-size:clamp(1.15rem,4vw,1.5rem);line-height:1.25}
+.opt .rev{display:none}
+.opts.done .opt .rev{display:block}
+.opt.ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.bad{border-color:var(--bad);background:var(--bad-soft);animation:shake .35s}
+.opts.done .opt:not(.ok){opacity:.5}
+.opt:disabled{cursor:default}
+.opt svg.jersey{width:84px;height:84px}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.after{margin-top:14px;background:var(--club);color:#fff;border-radius:18px;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.after .say{flex:1;min-width:200px}
+.after small{display:block;font-weight:800;opacity:.85}
+.after .zh{display:block;font-size:clamp(1.4rem,5vw,2rem);color:#ffe28a;line-height:1.25}
+.after .py{color:#bfeadb;font-size:.95rem}
+.after .ru{display:block;opacity:.9;font-weight:700}
+.after .mini{background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.35);color:#fff;border-radius:12px;padding:10px 14px;font-weight:800}
+.foot{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+
+/* penalty strip */
+.pitch{position:relative;height:130px;border-radius:16px;overflow:hidden;margin-top:12px;background:repeating-linear-gradient(90deg,var(--grass) 0 44px,var(--grass-2) 44px 88px)}
+.goal{position:absolute;left:50%;top:8px;width:min(230px,70%);height:76px;transform:translateX(-50%);border:5px solid #fff;border-bottom:0;border-radius:6px 6px 0 0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 10px),repeating-linear-gradient(-45deg,rgba(255,255,255,.28) 0 2px,transparent 2px 10px),rgba(10,40,25,.25)}
+.keeper{position:absolute;left:50%;bottom:44px;margin-left:-20px;font-size:2.5rem;line-height:1;transition:transform .45s cubic-bezier(.3,1.3,.5,1)}
+.pball{position:absolute;left:50%;bottom:6px;margin-left:-16px;font-size:2rem;line-height:1;transition:transform .5s cubic-bezier(.2,.8,.3,1)}
+.pbig{position:absolute;left:12px;bottom:8px;max-width:46%;color:#fff;font-weight:900;font-size:1.15rem;text-shadow:0 2px 6px rgba(0,0,0,.45);opacity:0;transition:opacity .25s}
+.pbig.on{opacity:1}
+
+/* album */
+.album{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.slot{position:relative;border-radius:18px;padding:10px;background:var(--page);border:3px dashed var(--line);display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;min-height:210px;min-width:0}
+.slot .num{position:absolute;top:8px;left:10px;font-weight:900;color:var(--muted);font-size:.8rem;font-variant-numeric:tabular-nums}
+.slot .flag{position:absolute;top:8px;right:8px;width:34px;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.slot svg.jersey{width:110px;height:110px;margin-top:10px}
+.slot .nm{font-size:1.25rem}
+.slot .ru{font-weight:800;color:var(--muted);font-size:.85rem}
+.slot.empty svg.jersey{filter:grayscale(1) opacity(.35)}
+.slot.empty .nm{color:#9fb3aa}
+.slot.glued{border:3px solid var(--gold);background:linear-gradient(160deg,#fffdf3 0%,#fff 55%,#fff6d6 100%);box-shadow:0 8px 20px rgba(160,120,10,.18)}
+.slot.glued::after{content:"";position:absolute;inset:0;border-radius:15px;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.65) 45%,transparent 60%);background-size:250% 100%;animation:shine 3.5s infinite}
+@keyframes shine{from{background-position:120% 0}to{background-position:-120% 0}}
+.slot .tag{font-size:.75rem;font-weight:900;color:var(--club-2);background:var(--ok-soft);border-radius:8px;padding:2px 8px}
+.slot.empty .tag{background:var(--gold-soft);color:#6b4b00}
+.progress{height:12px;background:var(--page);border-radius:8px;overflow:hidden;margin:4px 0 16px;border:1px solid var(--line)}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--grass))}
+
+/* dossier */
+.dos{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+.dos .pic{background:var(--page);border-radius:20px;padding:12px;text-align:center;box-shadow:0 8px 22px rgba(20,60,40,.1)}
+.dos .pic svg.jersey{width:170px;height:170px}
+.dos .pic .flag{width:60px;border-radius:5px;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.dos .pic .nm{font-size:1.6rem;display:block}
+.lines{background:var(--page);border-radius:20px;padding:10px 14px;box-shadow:0 8px 22px rgba(20,60,40,.1)}
+.ln{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.ln:last-child{border-bottom:0}
+.ln .vis{font-size:1.9rem;flex:none;width:96px;text-align:center;line-height:1.1}
+.ln .txt{flex:1;min-width:0}
+.ln .txt .zh{font-size:1.3rem}
+body.hidetxt .ln .txt .zh,body.hidetxt .ln .txt .py{filter:blur(7px)}
+.fact{margin-top:12px;background:var(--gold-soft);border-radius:14px;padding:10px 14px;font-weight:700}
+
+/* interview */
+.iv{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+.qrow{background:var(--page);border-radius:16px;padding:10px 12px;margin-bottom:10px;border:2px solid transparent}
+.qrow.need{border-color:var(--gold)}
+.qrow .qq{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.qrow .qq .zh{font-size:1.1rem}
+.qrow .qq .new{background:var(--red);color:#fff;font-size:.62rem;font-weight:900;padding:1px 6px;border-radius:5px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:2px solid var(--line);background:#fff;border-radius:12px;padding:5px 10px;display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.chip .zh{font-size:1.05rem}
+.chip .e{font-size:1.2rem}
+.chip.on{border-color:var(--ok);background:var(--ok-soft)}
+.mic{position:sticky;top:76px;background:var(--club);color:#fff;border-radius:20px;padding:16px}
+.mic h3{margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.mic .l{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,.2)}
+.mic .l .zh{font-size:1.15rem;color:#ffe28a}
+.mic .l .py{color:#bfeadb;display:block}
+.mic .l.empty{opacity:.45}
+
+/* end */
+.final{background:var(--page);border-radius:22px;padding:22px;text-align:center;box-shadow:0 10px 30px rgba(20,60,40,.12)}
+.final .cup{font-size:4rem;line-height:1}
+.final h1{margin:6px 0;font-size:clamp(1.5rem,5vw,2.2rem);font-weight:900;text-wrap:balance}
+.final .big{font-size:2.6rem;font-weight:900;font-variant-numeric:tabular-nums}
+.teacher{margin-top:16px;background:var(--bg);border-radius:14px;padding:12px 16px;text-align:left}
+.teacher h3{margin:0 0 6px;font-size:1rem}
+.teacher ul{margin:0;padding-left:20px;display:grid;gap:4px}
+.teacher li small{display:block;color:var(--muted);font-weight:700}
+.ov{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(5,30,20,.6);padding:20px}
+.stick{background:var(--page);border-radius:24px;padding:22px;text-align:center;max-width:360px;animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes pop{from{transform:scale(.3) rotate(-10deg);opacity:0}to{transform:none;opacity:1}}
+.stick svg.jersey{width:150px;height:150px}
+.stick h2{margin:6px 0 2px;font-size:1.5rem}
+
+@media(max-width:760px){.lessons{grid-template-columns:1fr}.dos,.iv{grid-template-columns:1fr}.mic{position:static}.hero{grid-template-columns:1fr}.hero .ball{display:none}}
+@media(max-width:480px){.badge small{display:none}.ln .vis{width:64px;font-size:1.5rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<header class="top">
+  <button class="badge" id="home" aria-label="На главную">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 L90 16 L86 60 Q80 84 50 96 Q20 84 14 60 L10 16 Z" fill="#e8b21f" stroke="#fff" stroke-width="4"/><path d="M50 14 L80 23 L77 58 Q72 76 50 86 Q28 76 23 58 L20 23 Z" fill="#123d2e"/><circle cx="50" cy="50" r="17" fill="#fff"/><path d="M50 38 L58 44 L55 54 L45 54 L42 44 Z" fill="#123d2e"/><text x="50" y="80" text-anchor="middle" font-size="11" font-weight="900" fill="#e8b21f" font-family="sans-serif">FC</text></svg>
+    <span><b><span class="zh">阿斯凯</span> FC</b><small>Профессии · семьи звёзд</small></span>
+  </button>
+  <div class="hstat"><span id="hStars" title="Звёзды за правильные ответы">⭐ 0</span><span id="hStick" title="Наклейки в альбоме">🃏 0/12</span></div>
+  <div class="tools"><a href="index.html" class="tbtn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.25); border:1.5px solid rgba(255,255,255,0.5); color:#fff; font-weight:800; padding:6px 14px; border-radius:10px; box-shadow:0 2px 0 rgba(0,0,0,0.2);">← В дашборд</a>
+    <button class="tbtn" id="tPy" aria-pressed="true">pīnyīn</button>
+    <button class="tbtn" id="tKid" aria-pressed="true">🧒 голос</button>
+    <button class="tbtn" id="tVoice" title="Сменить голос">🔁</button>
+    <button class="tbtn" id="tSlow" aria-pressed="false">🐢 慢</button>
+  </div>
+</header>
+<div class="warn" id="warn" hidden></div>
+<main id="app"></main>
+<div id="ov"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const app=$('#app'),ovEl=$('#ov');
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const zp=(zh,py)=>`<span class="zh">${esc(zh)}</span>${py?`<br><span class="py">${esc(py)}</span>`:''}`;
+
+/* ================= VOICE ================= */
+const synth=window.speechSynthesis||null;let voice=null,slow=false,kid=true,zhVoices=[],vi=0;
+function pickVoice(){
+  if(!synth)return;const vs=synth.getVoices();
+  const rank=v=>/yunxia/i.test(v.name)?0:/xiaoyi/i.test(v.name)?1:/xiaoxiao/i.test(v.name)?2:/yunxi(?![a-z])/i.test(v.name)?3:/zh[-_]CN/i.test(v.lang)?4:/^zh/i.test(v.lang)?5:9;
+  zhVoices=vs.filter(v=>rank(v)<9).sort((a,b)=>rank(a)-rank(b));
+  if(vi>=zhVoices.length)vi=0;voice=zhVoices[vi]||null;
+  const w=$('#warn');if(!vs.length)return;
+  if(!voice){w.textContent='На этом устройстве нет китайского голоса. Откройте страницу в Microsoft Edge (голос 云夏) или читайте фразы сами.';w.hidden=false}
+  else if(!/yunxia/i.test(voice.name)){w.textContent='Голос: '+voice.name+(kid?'. Детскость имитируем повышением тона. ':'. ')+'Самый детский голос (云夏) есть в Microsoft Edge.';w.hidden=false}
+  else w.hidden=true;
+  $('#tVoice').textContent='🔁 '+(voice?voice.name.replace(/Microsoft |Google | Online|\(Natural\)|\(.*?\)/g,'').trim().slice(0,14):'нет');
+}
+if(synth){pickVoice();synth.onvoiceschanged=pickVoice}
+else{const w=$('#warn');w.textContent='Браузер не умеет озвучивать текст. Читайте фразы сами.';w.hidden=false}
+function speak(text){
+  return new Promise(res=>{
+    if(!synth){res();return}
+    synth.cancel();
+    setTimeout(()=>{
+      const u=new SpeechSynthesisUtterance(text);u.lang='zh-CN';if(voice)u.voice=voice;
+      u.rate=slow?0.58:0.72;u.pitch=kid?(voice&&/yunxia/i.test(voice.name)?1.15:1.6):1;
+      let d=false;const fin=()=>{if(!d){d=true;res()}};u.onend=fin;u.onerror=fin;
+      setTimeout(fin,2500+text.length*(slow?520:330));synth.speak(u);
+    },70);
+  });
+}
+let ac=null;
+function tone(seq){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();let t=ac.currentTime;
+  seq.forEach(([f,d,type])=>{const o=ac.createOscillator(),g=ac.createGain();o.type=type||'sine';o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.18,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g).connect(ac.destination);o.start(t);o.stop(t+d+.02);t+=d*.8})}catch(e){}}
+const sOk=()=>tone([[660,.12],[880,.12],[1320,.26]]);
+const sBad=()=>tone([[220,.18,'triangle'],[165,.24,'triangle']]);
+const sWhistle=()=>tone([[1900,.16,'square'],[1900,.3,'square']]);
+const sStick=()=>tone([[523,.1],[659,.1],[784,.1],[1046,.3]]);
+
+/* ================= STORAGE ================= */
+const KEY='askarFC_v1';
+let SV={stars:0,glued:{},best:{}};
+try{const r=localStorage.getItem(KEY);if(r)SV=Object.assign(SV,JSON.parse(r))}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(SV))}catch(e){}}
+function hdr(){$('#hStars').textContent='⭐ '+SV.stars;$('#hStick').textContent='🃏 '+Object.keys(SV.glued).length+'/'+STARS.length}
+
+/* ================= DATA: PROFESSIONS ================= */
+const PR={
+ yisheng:{zh:'医生',py:'yīshēng',ru:'врач',e:'🧑‍⚕️🩺',tb:1},
+ hushi:{zh:'护士',py:'hùshi',ru:'медсестра',e:'👩‍⚕️💉',tb:1},
+ laoshi:{zh:'老师',py:'lǎoshī',ru:'учитель',e:'👩‍🏫📚',tb:1},
+ lvshi:{zh:'律师',py:'lǜshī',ru:'юрист, адвокат',e:'⚖️📜',tb:1},
+ siji:{zh:'司机',py:'sījī',ru:'водитель',e:'🧑🚌',tb:1},
+ shangren:{zh:'商人',py:'shāngrén',ru:'бизнесмен',e:'💼💰',tb:1},
+ jingli:{zh:'经理',py:'jīnglǐ',ru:'менеджер, начальник',e:'👔📊',tb:1},
+ mishu:{zh:'秘书',py:'mìshū',ru:'секретарь',e:'📞📝',tb:1},
+ jiaolian:{zh:'教练',py:'jiàoliàn',ru:'тренер',e:'📣📋',tb:0},
+ yundongyuan:{zh:'运动员',py:'yùndòngyuán',ru:'спортсмен',e:'🏃🏅',tb:0},
+ chushi:{zh:'厨师',py:'chúshī',ru:'повар',e:'🧑‍🍳🍲',tb:0},
+ gongren:{zh:'工人',py:'gōngrén',ru:'рабочий',e:'👷🔧',tb:0},
+ lifashi:{zh:'理发师',py:'lǐfàshī',ru:'парикмахер',e:'💇✂️',tb:0},
+ gongchengshi:{zh:'工程师',py:'gōngchéngshī',ru:'инженер',e:'🏗️📐',tb:0}
+};
+const PK=Object.keys(PR);
+const GRAM=[
+ ['你爸爸做什么工作？','Nǐ bàba zuò shénme gōngzuò?','Кем работает твой папа?'],
+ ['我爸爸是医生。','Wǒ bàba shì yīshēng.','Мой папа — врач.'],
+ ['我妈妈也是医生。','Wǒ māma yě shì yīshēng.','Моя мама тоже врач. (也 = тоже)'],
+ ['他是足球运动员。','Tā shì zúqiú yùndòngyuán.','Он футболист. (足球 + 运动员)'],
+ ['我想当教练。','Wǒ xiǎng dāng jiàoliàn.','Я хочу стать тренером.']
+];
+
+/* ================= DATA: STARS (facts checked: Wikipedia / biographies) ================= */
+const CT={pt:['葡萄牙','Pútáoyá','Португалия'],ar:['阿根廷','Āgēntíng','Аргентина'],fr:['法国','Fǎguó','Франция'],no:['挪威','Nuówēi','Норвегия'],br:['巴西','Bāxī','Бразилия'],gb:['英国','Yīngguó','Англия'],it:['意大利','Yìdàlì','Италия'],es:['西班牙','Xībānyá','Испания']};
+const STARS=[
+ {id:'cr7',zh:'C罗',py:'C Luó',ru:'Криштиану Роналду',c:'pt',num:7,k:['#c8102e','#046a38','#fff'],dad:null,mom:'chushi',sib:{g:1,j:2},kou:6,
+  fact:'Папа работал садовником и помогал с формой в маленьком футбольном клубе. Мама работала поваром и уборщицей. Криштиану — самый младший из четырёх детей.'},
+ {id:'messi',zh:'梅西',py:'Méixī',ru:'Лионель Месси',c:'ar',num:10,k:['#75aadb','#ffffff','#1c2a5a'],stripes:1,dad:'jingli',mom:'gongren',sib:{g:2,m:1},kou:6,
+  fact:'Папа был начальником отдела на сталелитейном заводе. Мама работала в мастерской, где делали магниты. Лео играл в футбол со старшими братьями Родриго и Матиасом.'},
+ {id:'mbappe',zh:'姆巴佩',py:'Mǔbāpèi',ru:'Килиан Мбаппе',c:'fr',num:10,k:['#1c2a5a','#ffffff','#e0483a'],dad:'jiaolian',mom:'yundongyuan',sib:{g:1,d:1},kou:5,
+  fact:'Папа — футбольный тренер, мама играла в гандбол. Младший брат Этан тоже футболист. Старший брат Жирес — приёмный, он тоже был футболистом.'},
+ {id:'haaland',zh:'哈兰德',py:'Hālándé',ru:'Эрлинг Холанд',c:'no',num:9,k:['#ba0c2f','#ffffff','#00205b'],dad:'yundongyuan',mom:'yundongyuan',sib:{g:1,j:1},kou:5,
+  fact:'Папа играл в футбол в английской Премьер-лиге, мама — чемпионка Норвегии по лёгкой атлетике. Старшие брат Астор и сестра Габриэль. У папы есть ещё две младшие дочки.'},
+ {id:'neymar',zh:'内马尔',py:'Nèimǎ\'ěr',ru:'Неймар',c:'br',num:10,k:['#ffdf00','#009c3b','#002776'],dad:'yundongyuan',mom:null,sib:{m:1},kou:4,
+  fact:'Папа тоже был футболистом, а потом стал помощником сына. Младшая сестра Рафаэлла родилась в 1996 году.'},
+ {id:'kaka',zh:'卡卡',py:'Kǎkǎ',ru:'Кака',c:'br',num:22,k:['#ffdf00','#009c3b','#002776'],dad:'gongchengshi',mom:'laoshi',sib:{d:1},kou:4,
+  fact:'Папа — инженер-строитель, мама — учительница начальных классов. Младший брат Дигау тоже стал футболистом.'},
+ {id:'ronaldinho',zh:'小罗',py:'Xiǎo Luó',ru:'Роналдиньо',c:'br',num:10,k:['#ffdf00','#009c3b','#002776'],dad:'gongren',mom:'hushi',sib:{g:1,j:1},kou:5,
+  fact:'Папа был сварщиком на верфи и играл в футбол. Мама продавала косметику, а потом выучилась на медсестру. Роналдиньо — младший из трёх детей.'},
+ {id:'beckham',zh:'贝克汉姆',py:'Bèikèhànmǔ',ru:'Дэвид Бекхэм',c:'gb',num:7,k:['#ffffff','#1c2a5a','#e0483a'],dad:'gongren',mom:'lifashi',sib:{j:1,m:1},kou:5,
+  fact:'Папа устанавливал кухни, мама работала парикмахером. У Дэвида старшая сестра Линн и младшая сестра Джоанна.'},
+ {id:'buffon',zh:'布冯',py:'Bùféng',ru:'Джанлуиджи Буффон',c:'it',num:1,k:['#3a3f47','#e8b21f','#ffffff'],dad:'laoshi',mom:'laoshi',sib:{j:2},kou:5,gk:1,
+  fact:'Мама метала диск, папа поднимал штангу, а потом оба стали учителями физкультуры. Сёстры играли в волейбол за сборную Италии. Буффон — легендарный вратарь, 门将!'},
+ {id:'pele',zh:'贝利',py:'Bèilì',ru:'Пеле',c:'br',num:10,k:['#ffdf00','#009c3b','#002776'],dad:'yundongyuan',mom:null,sib:null,kou:null,bro:true,
+  fact:'Папа Дондиньо тоже был футболистом. Младший брат Зока (на 2 года младше) тоже играл в футбол. Ещё у Пеле была сестра Мария Лусия.'},
+ {id:'zidane',zh:'齐达内',py:'Qídánèi',ru:'Зинедин Зидан',c:'fr',num:10,k:['#1c2a5a','#ffffff','#e0483a'],dad:'gongren',mom:null,sib:null,sibTxt:['四个哥哥姐姐','sì ge gēge jiějie'],kou:7,
+  fact:'Папа работал на складе и охранником в магазине, часто по ночам. Мама вела дом. Зинедин — самый младший из пяти детей.'},
+ {id:'yamal',zh:'亚马尔',py:'Yàmǎ\'ěr',ru:'Ламин Ямаль',c:'es',num:19,k:['#c60b1e','#ffc400','#1c2a5a'],dad:null,mom:null,sib:{d:1,m:1},kou:null,
+  fact:'Самая молодая звезда альбома! Папа из Марокко, мама из Экваториальной Гвинеи. У Ламина есть младшие брат и сестра.'}
+];
+const SN={1:['一','yí'],2:['两','liǎng'],3:['三','sān'],4:['四','sì']};
+const KN={4:['四','sì'],5:['五','wǔ'],6:['六','liù'],7:['七','qī'],3:['三','sān']};
+const SR={g:['哥哥','gēge'],j:['姐姐','jiějie'],d:['弟弟','dìdi'],m:['妹妹','mèimei']};
+function sibText(s){
+  if(s.sibTxt)return s.sibTxt;
+  if(!s.sib)return null;
+  const parts=['g','j','d','m'].filter(k=>s.sib[k]).map(k=>[SN[s.sib[k]][0]+'个'+SR[k][0],SN[s.sib[k]][1]+' ge '+SR[k][1]]);
+  return [parts.map(p=>p[0]).join('，'),parts.map(p=>p[1]).join(', ')];
+}
+function sibTextOf(sib){return sibText({sib})}
+/* first-person intro of a star */
+function intro(s){
+  const L=[];const C=CT[s.c];
+  L.push({vis:'👋',zh:`我叫${s.zh}。`,py:`Wǒ jiào ${s.py}.`});
+  L.push({vis:flagSvg(s.c,'height:30px'),zh:`我是${C[0]}人。`,py:`Wǒ shì ${C[1]} rén.`});
+  const st=sibText(s);
+  if(st)L.push({vis:sibVis(s),zh:`我有${st[0]}。`,py:`Wǒ yǒu ${st[1]}.`});
+  if(s.bro)L.push({vis:'👦⚽',zh:'我弟弟也是足球运动员。',py:'Wǒ dìdi yě shì zúqiú yùndòngyuán.'});
+  if(s.kou)L.push({vis:'🏠'+KN[s.kou][0],zh:`我家有${KN[s.kou][0]}口人。`,py:`Wǒ jiā yǒu ${KN[s.kou][1]} kǒu rén.`});
+  if(s.dad)L.push({vis:'👨 '+PR[s.dad].e,zh:`我爸爸是${PR[s.dad].zh}。`,py:`Wǒ bàba shì ${PR[s.dad].py}.`});
+  if(s.mom){const same=s.mom===s.dad;L.push({vis:'👩 '+PR[s.mom].e,zh:`我妈妈${same?'也':''}是${PR[s.mom].zh}。`,py:`Wǒ māma ${same?'yě ':''}shì ${PR[s.mom].py}.`})}
+  L.push({vis:'⚽',zh:'我是足球运动员！',py:'Wǒ shì zúqiú yùndòngyuán!'});
+  return L;
+}
+function sibVis(s){if(!s.sib)return '👨‍👩‍👧‍👦';const E={g:'👦',j:'👧',d:'👦',m:'👧'},Z={g:1,j:1,d:.7,m:.7};let h='';['g','j','d','m'].forEach(k=>{for(let i=0;i<(s.sib[k]||0);i++)h+=`<span style="font-size:${Z[k]}em">${E[k]}</span>`});return h}
+
+/* ================= ART ================= */
+function starPts(cx,cy,r,rot){let p=[];for(let i=0;i<10;i++){const a=Math.PI/5*i-Math.PI/2+(rot||0);const rr=i%2?r*.38:r;p.push((cx+rr*Math.cos(a)).toFixed(2)+','+(cy+rr*Math.sin(a)).toFixed(2))}return p.join(' ')}
+const FL={
+ pt:()=>`<rect width="30" height="20" fill="#da291c"/><rect width="12" height="20" fill="#046a38"/><circle cx="12" cy="10" r="4" fill="#ffe900"/><circle cx="12" cy="10" r="2.4" fill="#da291c"/>`,
+ ar:()=>`<rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#75aadb"/><rect y="13.33" width="30" height="6.67" fill="#75aadb"/><circle cx="15" cy="10" r="2" fill="#f6b40e"/>`,
+ fr:()=>`<rect width="30" height="20" fill="#fff"/><rect width="10" height="20" fill="#002395"/><rect x="20" width="10" height="20" fill="#ed2939"/>`,
+ no:()=>`<rect width="30" height="20" fill="#ba0c2f"/><path d="M11 0V20M0 10H30" stroke="#fff" stroke-width="5"/><path d="M11 0V20M0 10H30" stroke="#00205b" stroke-width="2.4"/>`,
+ br:()=>`<rect width="30" height="20" fill="#009c3b"/><polygon points="15,2.5 27,10 15,17.5 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.2" fill="#002776"/><path d="M11 9.4 Q15 8.2 19 10.4" stroke="#fff" stroke-width=".7" fill="none"/>`,
+ gb:()=>`<rect width="30" height="20" fill="#012169"/><path d="M0 0L30 20M30 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L30 20M30 0L0 20" stroke="#c8102e" stroke-width="1.4"/><path d="M15 0V20M0 10H30" stroke="#fff" stroke-width="6"/><path d="M15 0V20M0 10H30" stroke="#c8102e" stroke-width="3.4"/>`,
+ it:()=>`<rect width="30" height="20" fill="#fff"/><rect width="10" height="20" fill="#009246"/><rect x="20" width="10" height="20" fill="#ce2b37"/>`,
+ es:()=>`<rect width="30" height="20" fill="#c60b1e"/><rect y="5" width="30" height="10" fill="#ffc400"/>`
+};
+function flagSvg(c,style){return `<svg class="flag" viewBox="0 0 30 20" style="${style||''}" role="img" aria-label="${CT[c][2]}">${FL[c]()}<rect width="30" height="20" fill="none" stroke="rgba(0,0,0,.15)" stroke-width=".5"/></svg>`}
+let jid=0;
+function jersey(s){
+  const [a,b,n]=s.k;const id='j'+(++jid);
+  const shirt='M30 12 L42 6 Q50 13 58 6 L70 12 L93 27 L83 45 L72 39 L72 95 L28 95 L28 39 L17 45 L7 27 Z';
+  return `<svg class="jersey" viewBox="0 0 100 100" aria-hidden="true"><defs><clipPath id="${id}"><path d="${shirt}"/></clipPath></defs>
+  <path d="${shirt}" fill="${a}" stroke="rgba(0,0,0,.25)" stroke-width="1.5"/>
+  ${s.stripes?`<g clip-path="url(#${id})">${[34,46,58,70].map(x=>`<rect x="${x-3}" y="0" width="7" height="100" fill="${b}"/>`).join('')}</g>`:`<g clip-path="url(#${id})"><rect x="0" y="22" width="30" height="8" fill="${b}" transform="rotate(35 15 26)"/><rect x="70" y="22" width="30" height="8" fill="${b}" transform="rotate(-35 85 26)"/></g>`}
+  <path d="M42 6 Q50 13 58 6" stroke="${b}" stroke-width="3" fill="none"/>
+  ${s.gk?'<text x="50" y="34" text-anchor="middle" font-size="12">🧤</text>':''}
+  <text x="50" y="76" text-anchor="middle" font-size="32" font-weight="900" fill="${s.stripes?n:b}" stroke="${s.stripes?'#fff':'none'}" stroke-width="${s.stripes?1:0}" font-family="Trebuchet MS,Arial,sans-serif">${s.num}</text></svg>`;
+}
+
+/* ================= QUIZ ENGINE ================= */
+/* item: {ask, say, sayPy, show(bool: show question text), scene, face, cls:'four'|'', options:[{html, ok, why}], after:{zh,py,ru}, hint} */
+function quiz(cfg){
+  const {title,items,penalty,onDone,modId}=cfg;
+  let i=0,a=0,p=0;const res=[],miss=[];
+  const show=()=>{
+    const it=items[i];let tried=false,solved=false;
+    const opts=shuffle(it.options);
+    app.innerHTML=`<section class="screen">
+     <div class="qhead"><button class="back" id="bk">← Меню</button><h1>${title}</h1>
+      ${penalty?`<div class="score">🧒 <span id="sa">${a}</span> : <span id="sp">${p}</span> 🐼</div>`:`<div class="dots">${items.map((_,k)=>`<span class="dot ${res[k]===1?'ok':res[k]===2?'miss':''} ${k===i?'cur':''}"></span>`).join('')}</div>`}</div>
+     <div class="prompt"><div class="ask">${esc(it.ask)} <span style="float:right">${i+1}/${items.length}</span></div>
+      ${it.scene?`<div class="scene" aria-hidden="true">${it.scene}</div>`:''}
+      ${it.say?`<div class="qline"><span class="face">${it.face||'🐼'}</span><div class="q ${it.show?'':'hid'}" id="qt">${it.show?zp(it.say,it.sayPy):'?'}</div><button class="listen pulse" id="lis" aria-label="Послушать">🔊</button></div>`:''}
+      ${it.hint?`<div class="hint">${esc(it.hint)}</div>`:''}
+     </div>
+     ${penalty?'<div class="pitch"><div class="goal"></div><div class="keeper" id="kp">🐼</div><div class="pball" id="pb">⚽</div><div class="pbig" id="pg"></div></div>':''}
+     <div class="opts ${it.cls||''}" id="opts">${opts.map((o,k)=>`<button class="opt" data-k="${k}">${o.html}</button>`).join('')}</div>
+     <div id="aft"></div>
+    </section>`;
+    window.scrollTo(0,0);
+    $('#bk').onclick=()=>{synth&&synth.cancel();home()};
+    if(it.say){const lis=$('#lis');const play=()=>{lis.classList.remove('pulse');speak(it.say)};lis.onclick=play;setTimeout(play,380)}
+    const shoot=ok=>{if(!penalty)return;const b=$('#pb'),k=$('#kp'),g=$('#pg'),sd=Math.random()<.5?-1:1;
+      requestAnimationFrame(()=>{if(ok){b.style.transform=`translate(${sd*70}px,-84px) scale(.55)`;k.style.transform=`translateX(${-sd*56}px) rotate(${-sd*50}deg)`;g.textContent='ГОООЛ! ⚽'}
+      else{b.style.transform='translate(0,-52px) scale(.6)';k.style.transform='translateY(-14px) scale(1.25)';g.textContent='Панда отбила! 🧤'}g.classList.add('on')})};
+    app.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{
+      if(solved)return;const o=opts[+btn.dataset.k];
+      if(o.ok){
+        solved=true;btn.classList.add('ok');$('#opts').classList.add('done');app.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        if(!tried){res[i]=1;a++;SV.stars++;save();hdr();sOk();shoot(true)}else res[i]=2;
+        if(!it.show&&it.say){const q=$('#qt');q.classList.remove('hid');q.innerHTML=zp(it.say,it.sayPy)}
+        if(penalty){$('#sa').textContent=a;$('#sp').textContent=p}
+        const af=it.after;
+        if(af){
+          $('#aft').innerHTML=`<div class="after"><div class="say"><small>Скажи вслух!</small><span class="zh">${esc(af.zh)}</span><span class="py">${esc(af.py)}</span>${af.ru?`<span class="ru">${esc(af.ru)}</span>`:''}</div><button class="mini" id="ag">🔊 Ещё раз</button><button class="cta green" id="nx">${i+1<items.length?'Дальше →':'Итог →'}</button></div>`;
+          $('#ag').onclick=()=>speak(af.zh);$('#nx').onclick=next;speak(af.zh);
+          $('#aft').scrollIntoView({behavior:'smooth',block:'nearest'});
+        }else setTimeout(next,1200);
+      }else{
+        btn.classList.add('bad');btn.disabled=true;sBad();
+        if(!tried){tried=true;p++;shoot(false);if(penalty)$('#sp').textContent=p;
+          miss.push({q:it.say||it.ask,ans:(it.after&&it.after.zh)||'',picked:btn.innerText.replace(/\s+/g,' ').trim()})}
+        if(it.say)setTimeout(()=>speak(it.say),500);
+      }
+    });
+  };
+  const next=()=>{i++;if(i<items.length)show();else{
+    if(modId){SV.best[modId]=Math.max(SV.best[modId]||0,a);save()}
+    onDone?onDone({a,p,n:items.length,miss}):result({title,a,p,n:items.length,miss,penalty,again:cfg.again})}};
+  show();
+}
+function result(r){
+  const win=r.a>r.p;
+  const txt=`${r.title}: ${r.a} из ${r.n} с первой попытки\n`+(r.miss.length?r.miss.map(m=>`- ${m.q}${m.ans?' → '+m.ans:''}; выбрал: ${m.picked}`).join('\n'):'Ошибок нет.');
+  app.innerHTML=`<section class="screen"><div class="final">
+   <div class="cup">${r.penalty?(win?'🏆':r.a===r.p?'🤝':'🐼'):(r.a===r.n?'🏆':r.a>=r.n*.7?'🥇':'💪')}</div>
+   <h1>${r.penalty?(win?'Победа над Пандой!':r.a===r.p?'Ничья!':'Панда выиграла. Реванш?'):(r.a===r.n?'Идеально, чемпион!':'Хорошая тренировка!')}</h1>
+   <div class="big">${r.penalty?`${r.a} : ${r.p}`:`${r.a} / ${r.n}`}</div>
+   <div class="row" style="justify-content:center;margin-top:14px"><button class="cta" id="again">Ещё раз</button><button class="cta green" id="menu">В меню</button></div>
+   <div class="teacher"><h3>Для учителя: ошибки с первой попытки</h3>
+    ${r.miss.length?`<ul>${r.miss.map(m=>`<li><span class="zh">${esc(m.q)}</span>${m.ans?` → <span class="zh">${esc(m.ans)}</span>`:''}<small>выбрал: ${esc(m.picked)}</small></li>`).join('')}</ul>`:'<p style="margin:0;font-weight:700">Ошибок нет.</p>'}
+    <button class="back" id="cp" style="margin-top:10px">Скопировать для отчёта</button></div>
+  </div></section>`;
+  if(r.a>=r.n*.7)sStick();
+  $('#again').onclick=r.again;$('#menu').onclick=home;
+  $('#cp').onclick=async e=>{const b=e.currentTarget;try{await navigator.clipboard.writeText(txt);b.textContent='Скопировано ✓'}catch(err){b.textContent='Не удалось скопировать'}};
+}
+
+/* option builders */
+const profOpt=(k,ok,showText)=>({ok,html:`<span class="emo">${PR[k].e}</span>${showText?zp(PR[k].zh,PR[k].py):`<span class="rev">${zp(PR[k].zh,PR[k].py)}</span>`}`});
+const textOpt=(zh,py,ok)=>({ok,html:zp(zh,py)});
+const starOpt=(s,ok)=>({ok,html:`${jersey(s)}${zp(s.zh,s.py)}`});
+const distract=(k,n,pool)=>pick((pool||PK).filter(x=>x!==k),n);
+
+/* ================= MODULES ================= */
+/* 1. Cards */
+function cards(){
+  app.innerHTML=`<section class="screen">
+   <div class="row"><button class="back" id="bk">← Меню</button><span class="spacer"></span><button class="back" id="flip">Скрыть перевод</button></div>
+   <h1 class="t" style="margin-top:12px"><span class="zh">职业</span>Профессии</h1>
+   <p class="sub">Нажми на карточку, чтобы услышать слово. <b style="color:var(--teal)">УЧЕБНИК</b> — слова из урока 9, <b style="color:#9a7300">ФУТБОЛ</b> — слова для футбольных историй.</p>
+   <div class="cards">${PK.map(k=>`<button class="wcard" data-k="${k}"><span class="tb ${PR[k].tb?'':'ex'}">${PR[k].tb?'УЧЕБНИК':'ФУТБОЛ'}</span><span class="emo">${PR[k].e}</span>${zp(PR[k].zh,PR[k].py)}<span class="ru">${PR[k].ru}</span></button>`).join('')}</div>
+   <div class="grammar"><h3>Как сказать</h3>${GRAM.map((g,k)=>`<div class="gl"><button class="sbtn" data-g="${k}" aria-label="Послушать">🔊</button><div>${zp(g[0],g[1])}<div class="ru">${g[2]}</div></div></div>`).join('')}</div>
+  </section>`;
+  $('#bk').onclick=home;
+  let hidden=false;$('#flip').onclick=e=>{hidden=!hidden;app.querySelectorAll('.wcard').forEach(c=>c.classList.toggle('flip',hidden));e.currentTarget.textContent=hidden?'Показать перевод':'Скрыть перевод'};
+  app.querySelectorAll('.wcard').forEach(c=>c.onclick=()=>speak(PR[c.dataset.k].zh));
+  app.querySelectorAll('.sbtn').forEach(b=>b.onclick=()=>speak(GRAM[+b.dataset.g][0]));
+}
+
+/* 2. Who to call to the club */
+const CLUB=[
+ ['🤕⚽','Игрок ударился на тренировке. Кого позвать?','yisheng'],
+ ['💉🧑‍🤝‍🧑','Всей команде нужно сделать прививку','hushi'],
+ ['🚌🏟️','Нужно отвезти команду на стадион','siji'],
+ ['🍝😋','Команда проголодалась после матча','chushi'],
+ ['📣🏃','Кто проведёт тренировку?','jiaolian'],
+ ['📄✍️','Звезда подписывает контракт с клубом','lvshi'],
+ ['💇🏆','Перед финалом нужна крутая причёска','lifashi'],
+ ['📚✏️','Дети из футбольной академии учат математику','laoshi'],
+ ['💰🤝','Богатый человек хочет купить клуб','shangren'],
+ ['📞📅','Кто отвечает на звонки и ведёт расписание?','mishu'],
+ ['👔🏟️','Кто главный начальник в клубе?','jingli'],
+ ['🔨🧱','Нужно построить новую трибуну','gongren'],
+ ['🏗️📐','Кто нарисует план нового стадиона?','gongchengshi'],
+ ['⚽🥅','Кто выйдет на поле забивать голы?','yundongyuan']
+];
+function clubItems(n){return pick(CLUB,n).map(([sc,h,k])=>({ask:'Кого позвать в клуб?',scene:sc,hint:h,cls:'four',
+  options:[profOpt(k,true,true),...distract(k,3).map(x=>profOpt(x,false,true))],after:{zh:`我是${PR[k].zh}！`,py:`Wǒ shì ${PR[k].py}!`,ru:`Я ${PR[k].ru}!`}}))}
+function club(){quiz({title:'Кого позвать в клуб?',items:clubItems(10),modId:'club',again:club})}
+
+/* 3. Listening pass */
+function passItems(n){
+  const ks=pick(PK,n);
+  return ks.map((k,idx)=>{
+    const who=idx%3===0?null:(idx%3===1?['爸爸','bàba','👨']:['妈妈','māma','👩']);
+    const say=who?`我${who[0]}是${PR[k].zh}。`:PR[k].zh;
+    const sayPy=who?`Wǒ ${who[1]} shì ${PR[k].py}.`:PR[k].py;
+    return {ask:who?'Слушай: кем работает '+(who[0]==='爸爸'?'папа':'мама')+'?':'Слушай и найди картинку!',say,sayPy,show:false,face:who?who[2]:'🐼',cls:'four',
+      options:[profOpt(k,true,false),...distract(k,3).map(x=>profOpt(x,false,false))]};
+  });
+}
+function pass(){quiz({title:'Пас на слух',items:passItems(10),modId:'pass',again:pass})}
+
+/* 4. Album */
+function album(){
+  const g=Object.keys(SV.glued).length;
+  app.innerHTML=`<section class="screen">
+   <div class="row"><button class="back" id="bk">← Меню</button></div>
+   <h1 class="t" style="margin-top:12px"><span class="zh">贴纸册</span>Альбом звёзд</h1>
+   <p class="sub">Нажми на пустое место: звезда расскажет о себе по-китайски. Ответь на вопросы, и наклейка твоя! Собрано ${g} из ${STARS.length}.</p>
+   <div class="progress"><i style="width:${g/STARS.length*100}%"></i></div>
+   <div class="album">${STARS.map((s,k)=>{const gl=SV.glued[s.id];return `<button class="slot ${gl?'glued':'empty'}" data-k="${k}">
+     <span class="num">#${String(k+1).padStart(2,'0')}</span>${flagSvg(s.c)}${jersey(s)}
+     <span class="nm zh">${gl?s.zh:'？'}</span><span class="ru">${gl?s.ru:'Нажми, чтобы узнать'}</span><span class="tag">${gl?'✓ в альбоме':'досье'}</span></button>`}).join('')}</div>
+  </section>`;
+  $('#bk').onclick=home;
+  app.querySelectorAll('.slot').forEach(b=>b.onclick=()=>dossier(STARS[+b.dataset.k]));
+}
+function dossier(s){
+  const L=intro(s);const gl=SV.glued[s.id];
+  document.body.classList.toggle('hidetxt',!gl);
+  app.innerHTML=`<section class="screen">
+   <div class="row"><button class="back" id="bk">← Альбом</button><span class="spacer"></span><button class="back" id="tx">${gl?'Скрыть текст':'Показать текст'}</button></div>
+   <h1 class="t" style="margin-top:12px"><span class="zh">${s.zh}</span>${gl?esc(s.ru):'Досье звезды'}</h1>
+   <p class="sub">Слушай, что звезда рассказывает о себе. Картинки подсказывают.</p>
+   <div class="dos">
+    <div class="pic">${jersey(s)}<div>${flagSvg(s.c)}</div><span class="nm zh">${s.zh}</span><span class="py">${s.py}</span>
+     <div style="margin-top:10px"><button class="cta" id="all">▶ Слушать всё</button></div></div>
+    <div><div class="lines">${L.map((l,k)=>`<div class="ln"><span class="vis">${l.vis}</span><div class="txt">${zp(l.zh,l.py)}</div><button class="sbtn" data-l="${k}" aria-label="Послушать">🔊</button></div>`).join('')}</div>
+     ${gl?`<div class="fact">💡 ${esc(s.fact)}</div>`:''}
+     <div class="row" style="margin-top:14px;justify-content:flex-end"><button class="cta green" id="chk">${gl?'Пройти проверку ещё раз':'Проверка → получить наклейку'}</button></div></div>
+   </div></section>`;
+  $('#bk').onclick=()=>{document.body.classList.remove('hidetxt');album()};
+  $('#tx').onclick=e=>{const h=document.body.classList.toggle('hidetxt');e.currentTarget.textContent=h?'Показать текст':'Скрыть текст'};
+  app.querySelectorAll('.ln .sbtn').forEach(b=>b.onclick=()=>speak(L[+b.dataset.l].zh));
+  $('#all').onclick=()=>speak(L.map(l=>l.zh).join(''));
+  $('#chk').onclick=()=>{document.body.classList.remove('hidetxt');quiz({title:'Досье: '+s.zh,items:starItems(s),onDone:r=>glue(s,r)})};
+}
+function starItems(s){
+  const it=[];const C=CT[s.c];
+  const others=pick(Object.keys(CT).filter(c=>c!==s.c),3);
+  it.push({ask:'Из какой страны звезда?',say:`${s.zh}是哪国人？`,sayPy:`${s.py} shì nǎ guó rén?`,show:true,cls:'four',
+    options:[s.c,...others].map(c=>({ok:c===s.c,html:`${flagSvg(c,'width:72px')}${zp(CT[c][0]+'人',CT[c][1]+' rén')}`})),after:{zh:`他是${C[0]}人。`,py:`Tā shì ${C[1]} rén.`}});
+  const jobQ=(who,k)=>({ask:`Кем работает ${who==='爸爸'?'папа':'мама'} звезды?`,say:`${s.zh}的${who}做什么工作？`,sayPy:`${s.py} de ${who==='爸爸'?'bàba':'māma'} zuò shénme gōngzuò?`,show:true,cls:'four',
+    options:[profOpt(k,true,true),...distract(k,3).map(x=>profOpt(x,false,true))],after:{zh:`他${who}是${PR[k].zh}。`,py:`Tā ${who==='爸爸'?'bàba':'māma'} shì ${PR[k].py}.`}});
+  if(s.dad)it.push(jobQ('爸爸',s.dad));
+  if(s.mom&&s.mom!==s.dad)it.push(jobQ('妈妈',s.mom));
+  if(s.mom&&s.mom===s.dad)it.push({ask:'Кем работает мама?',say:`${s.zh}的妈妈做什么工作？`,sayPy:`${s.py} de māma zuò shénme gōngzuò?`,show:true,cls:'',
+    options:[textOpt(`他妈妈也是${PR[s.mom].zh}。`,`Tā māma yě shì ${PR[s.mom].py}.`,true),...distract(s.mom,3).map(x=>textOpt(`他妈妈是${PR[x].zh}。`,`Tā māma shì ${PR[x].py}.`,false))],
+    after:{zh:`他妈妈也是${PR[s.mom].zh}。`,py:`Tā māma yě shì ${PR[s.mom].py}.`,ru:'也 = тоже'}});
+  if(s.sib){
+    const t=sibText(s);const vars=sibVariants(s.sib);
+    it.push({ask:'Сколько у звезды братьев и сестёр?',say:`${s.zh}有兄弟姐妹吗？`,sayPy:`${s.py} yǒu xiōngdì jiěmèi ma?`,show:true,cls:'',
+      options:[textOpt(`他有${t[0]}。`,`Tā yǒu ${t[1]}.`,true),...vars.map(v=>{const x=sibTextOf(v);return textOpt(`他有${x[0]}。`,`Tā yǒu ${x[1]}.`,false)})],
+      after:{zh:`他有${t[0]}。`,py:`Tā yǒu ${t[1]}.`}});
+  }
+  if(s.kou)it.push({ask:'Сколько человек в семье звезды?',say:`${s.zh}家有几口人？`,sayPy:`${s.py} jiā yǒu jǐ kǒu rén?`,show:true,cls:'four',
+    options:shuffle([3,4,5,6,7].filter(n=>n!==s.kou)).slice(0,3).concat([s.kou]).map(n=>textOpt(KN[n][0]+'口人',KN[n][1]+' kǒu rén',n===s.kou)),
+    after:{zh:`他家有${KN[s.kou][0]}口人。`,py:`Tā jiā yǒu ${KN[s.kou][1]} kǒu rén.`}});
+  if(s.bro)it.push({ask:'Кем стал младший брат?',say:`${s.zh}的弟弟做什么工作？`,sayPy:`${s.py} de dìdi zuò shénme gōngzuò?`,show:true,cls:'four',
+    options:[profOpt('yundongyuan',true,true),...distract('yundongyuan',3).map(x=>profOpt(x,false,true))],after:{zh:'他弟弟也是足球运动员。',py:'Tā dìdi yě shì zúqiú yùndòngyuán.'}});
+  return it;
+}
+function sibVariants(sib){
+  const key=JSON.stringify(sib);const out=[];const seen=new Set([key]);
+  const cands=[{g:1},{j:1},{d:1},{m:1},{g:2},{j:2},{g:1,m:1},{j:1,d:1},{g:2,m:1},{g:1,j:2},{g:1,d:1},{j:1,m:1},{d:1,m:1},{g:1,j:1},{d:2},{m:2}];
+  shuffle(cands).forEach(c=>{const k=JSON.stringify(c);if(out.length<3&&!seen.has(k)){seen.add(k);out.push(c)}});
+  return out;
+}
+function glue(s,r){
+  const was=SV.glued[s.id];SV.glued[s.id]=1;save();hdr();sStick();
+  ovEl.innerHTML=`<div class="ov"><div class="stick">${jersey(s)}<h2><span class="zh">${s.zh}</span> · ${esc(s.ru)}</h2>
+   <p style="font-weight:800;color:var(--muted)">${was?'Наклейка уже в альбоме!':'Новая наклейка в альбоме! 🃏'} С первой попытки: ${r.a} из ${r.n}</p>
+   <div class="fact" style="text-align:left">💡 ${esc(s.fact)}</div>
+   <div class="row" style="justify-content:center;margin-top:14px"><button class="cta" id="ok">В альбом</button></div></div></div>`;
+  speak(`太棒了！${s.zh}在你的贴纸册里！`);
+  $('#ok').onclick=()=>{ovEl.innerHTML='';album()};
+}
+
+/* 5. Guess the star (listening, 3rd person clues) */
+function clues(s){
+  const C=CT[s.c],out=[{t:'c',zh:`他是${C[0]}人。`,py:`Tā shì ${C[1]} rén.`,m:x=>x.c===s.c}];
+  const st=sibText(s);
+  if(s.sib)out.push({t:'s',zh:`他有${st[0]}。`,py:`Tā yǒu ${st[1]}.`,m:x=>JSON.stringify(x.sib)===JSON.stringify(s.sib)});
+  if(s.dad)out.push({t:'d',zh:`他爸爸是${PR[s.dad].zh}。`,py:`Tā bàba shì ${PR[s.dad].py}.`,m:x=>x.dad===s.dad});
+  if(s.mom)out.push({t:'m',zh:`他妈妈是${PR[s.mom].zh}。`,py:`Tā māma shì ${PR[s.mom].py}.`,m:x=>x.mom===s.mom});
+  if(s.kou)out.push({t:'k',zh:`他家有${KN[s.kou][0]}口人。`,py:`Tā jiā yǒu ${KN[s.kou][1]} kǒu rén.`,m:x=>x.kou===s.kou});
+  if(s.bro)out.push({t:'b',zh:'他弟弟也是足球运动员。',py:'Tā dìdi yě shì zúqiú yùndòngyuán.',m:x=>!!x.bro});
+  return out;
+}
+function guessItems(n){
+  return pick(STARS,n).map(s=>{
+    const all=clues(s);let use=[all[0],...shuffle(all.slice(1)).slice(0,2)];
+    const others=STARS.filter(x=>x!==s);
+    let matching=others.filter(x=>use.every(c=>c.m(x)));
+    const rest=shuffle(all.filter(c=>!use.includes(c)));
+    while(matching.length&&rest.length){use.push(rest.shift());matching=others.filter(x=>use.every(c=>c.m(x)))}
+    const wrong=pick(others.filter(x=>!use.every(c=>c.m(x))),3);
+    return {ask:'Угадай звезду по подсказкам!',say:use.map(c=>c.zh).join(''),sayPy:use.map(c=>c.py).join(' '),show:false,cls:'four',
+      options:[starOpt(s,true),...wrong.map(x=>starOpt(x,false))],after:{zh:`他是${s.zh}！`,py:`Tā shì ${s.py}!`,ru:s.ru}};
+  });
+}
+function guess(){quiz({title:'Угадай звезду',items:guessItems(8),modId:'guess',again:guess})}
+
+/* 6. Star families penalty */
+function famItems(n){
+  const Q=[];
+  STARS.forEach(s=>{
+    if(s.sib)['g','j','d','m'].forEach(k=>{if(s.sib[k]&&Math.random()<.9)Q.push({s,type:'n',k})});
+    if(s.kou)Q.push({s,type:'kou'});
+    if(s.sib)Q.push({s,type:'has'});
+  });
+  return pick(Q,n).map(q=>{
+    const s=q.s;
+    if(q.type==='n'){const r=SR[q.k],c=s.sib[q.k];
+      return {ask:'Сколько у звезды…?',scene:jersey(s).replace('class="jersey"','class="jersey" style="width:90px;height:90px"'),say:`${s.zh}有几个${r[0]}？`,sayPy:`${s.py} yǒu jǐ ge ${r[1]}?`,show:true,cls:'four',
+        options:[1,2,3].map(x=>textOpt(SN[x][0]+'个'+r[0],SN[x][1]+' ge '+r[1],x===c)).concat([textOpt('没有','méiyǒu',false)]),
+        after:{zh:`他有${SN[c][0]}个${r[0]}。`,py:`Tā yǒu ${SN[c][1]} ge ${r[1]}.`}}}
+    if(q.type==='kou')return {ask:'Сколько человек в семье? (папа, мама и дети)',scene:jersey(s).replace('class="jersey"','class="jersey" style="width:90px;height:90px"'),say:`${s.zh}家有几口人？`,sayPy:`${s.py} jiā yǒu jǐ kǒu rén?`,show:true,cls:'four',
+      options:shuffle([3,4,5,6,7].filter(x=>x!==s.kou)).slice(0,3).concat([s.kou]).map(x=>textOpt(KN[x][0]+'口人',KN[x][1]+' kǒu rén',x===s.kou)),
+      after:{zh:`${s.zh}家有${KN[s.kou][0]}口人。`,py:`${s.py} jiā yǒu ${KN[s.kou][1]} kǒu rén.`}};
+    const t=sibText(s);
+    return {ask:'Кто есть у звезды?',scene:jersey(s).replace('class="jersey"','class="jersey" style="width:90px;height:90px"'),say:`${s.zh}有兄弟姐妹吗？`,sayPy:`${s.py} yǒu xiōngdì jiěmèi ma?`,show:true,cls:'',
+      options:[textOpt(`他有${t[0]}。`,`Tā yǒu ${t[1]}.`,true),...sibVariants(s.sib).map(v=>{const x=sibTextOf(v);return textOpt(`他有${x[0]}。`,`Tā yǒu ${x[1]}.`,false)})],
+      after:{zh:`他有${t[0]}。`,py:`Tā yǒu ${t[1]}.`}};
+  });
+}
+function fam(){quiz({title:'Пенальти: семьи звёзд',items:famItems(10),penalty:true,modId:'fam',again:fam})}
+
+/* 7. Interview */
+const IV=[
+ {id:'dad',q:['你爸爸做什么工作？','Nǐ bàba zuò shénme gōngzuò?'],opts:PK.map(k=>({k,e:PR[k].e,c:PR[k].zh,cp:PR[k].py}))},
+ {id:'mom',q:['你妈妈做什么工作？','Nǐ māma zuò shénme gōngzuò?'],opts:PK.map(k=>({k,e:PR[k].e,c:PR[k].zh,cp:PR[k].py}))},
+ {id:'sib',q:['你有兄弟姐妹吗？','Nǐ yǒu xiōngdì jiěmèi ma?'],opts:[['g','哥哥','gēge'],['j','姐姐','jiějie'],['d','弟弟','dìdi'],['m','妹妹','mèimei'],['0','没有','méiyǒu']].map(([k,c,cp])=>({k,c,cp}))},
+ {id:'kou',q:['你家有几口人？','Nǐ jiā yǒu jǐ kǒu rén?'],opts:[3,4,5,6].map(n=>({k:n,c:KN[n][0]+'口人',cp:KN[n][1]+' kǒu rén'}))},
+ {id:'star',q:['你喜欢哪个足球运动员？','Nǐ xǐhuan nǎge zúqiú yùndòngyuán?'],opts:STARS.map(s=>({k:s.id,c:s.zh,cp:s.py}))},
+ {id:'want',q:['你想当什么？','Nǐ xiǎng dāng shénme?'],isNew:1,opts:[['zq','足球运动员','zúqiú yùndòngyuán','⚽'],['jiaolian','教练','jiàoliàn','📣'],['yisheng','医生','yīshēng','🩺'],['laoshi','老师','lǎoshī','📚'],['gongchengshi','工程师','gōngchéngshī','🏗️']].map(([k,c,cp,e])=>({k,c,cp,e}))}
+];
+const IVS={};
+function ivLine(id){
+  const v=IVS[id];if(v==null)return null;const r=IV.find(x=>x.id===id);const o=r.opts.find(x=>x.k===v);
+  if(id==='dad')return [`我爸爸是${o.c}。`,`Wǒ bàba shì ${o.cp}.`];
+  if(id==='mom'){const same=IVS.dad===v;return [`我妈妈${same?'也':''}是${o.c}。`,`Wǒ māma ${same?'yě ':''}shì ${o.cp}.`]}
+  if(id==='sib')return v==='0'?['我没有兄弟姐妹。','Wǒ méiyǒu xiōngdì jiěmèi.']:[`我有一个${o.c}。`,`Wǒ yǒu yí ge ${o.cp}.`];
+  if(id==='kou')return [`我家有${o.c}。`,`Wǒ jiā yǒu ${o.cp}.`];
+  if(id==='star')return [`我喜欢${o.c}。`,`Wǒ xǐhuan ${o.cp}.`];
+  if(id==='want')return [`我想当${o.c}！`,`Wǒ xiǎng dāng ${o.cp}!`];
+}
+function interview(){
+  const draw=()=>{
+    const ready=IV.every(r=>IVS[r.id]!=null);
+    app.innerHTML=`<section class="screen">
+     <div class="row"><button class="back" id="bk">← Меню</button></div>
+     <h1 class="t" style="margin-top:12px"><span class="zh">采访</span>Интервью после матча</h1>
+     <p class="sub">Репортёр Панда берёт интервью у звезды «阿斯凯 FC». Нажми 🔊 и послушай вопрос, потом выбери ответ про себя.</p>
+     <div class="iv"><div>${IV.map(r=>`<div class="qrow ${IVS[r.id]==null?'need':''}"><div class="qq"><button class="sbtn" data-q="${r.id}" aria-label="Послушать вопрос">🔊</button><div>${zp(r.q[0],r.q[1])}</div>${r.isNew?'<span class="new">НОВОЕ</span>':''}</div>
+       <div class="chips">${r.opts.map(o=>`<button class="chip ${IVS[r.id]===o.k?'on':''}" data-r="${r.id}" data-k="${o.k}">${o.e?`<span class="e">${o.e}</span>`:''}<span class="zh">${o.c}</span><span class="py">${o.cp}</span></button>`).join('')}</div></div>`).join('')}</div>
+      <div class="mic"><h3>🎙️ В эфире: <span class="zh">阿斯凯</span></h3>
+       <div class="l"><span class="zh">大家好！我叫阿斯凯。</span><span class="py">Dàjiā hǎo! Wǒ jiào Āsīkǎi.</span></div>
+       ${IV.map(r=>{const l=ivLine(r.id);return l?`<div class="l"><span class="zh">${l[0]}</span><span class="py">${l[1]}</span></div>`:'<div class="l empty">……</div>'}).join('')}
+       <div class="row" style="margin-top:12px"><button class="cta" id="air" ${ready?'':'disabled style="opacity:.5"'}>▶ В эфир!</button></div></div>
+     </div></section>`;
+    $('#bk').onclick=home;
+    app.querySelectorAll('.qq .sbtn').forEach(b=>b.onclick=()=>speak(IV.find(r=>r.id===b.dataset.q).q[0]));
+    app.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const r=IV.find(x=>x.id===c.dataset.r);const k=r.opts.find(o=>String(o.k)===c.dataset.k).k;IVS[r.id]=k;const l=ivLine(r.id);speak(l[0]);const y=window.scrollY;draw();window.scrollTo(0,y)});
+    const air=$('#air');if(ready)air.onclick=()=>{sWhistle();speak('大家好！我叫阿斯凯。'+IV.map(r=>ivLine(r.id)[0]).join('')+'谢谢！')};
+  };
+  draw();
+}
+
+/* 8. Season final: mixed penalties */
+function final(){
+  const items=shuffle([...clubItems(3),...passItems(3),...famItems(3),...guessItems(3)]);
+  quiz({title:'Финал сезона',items,penalty:true,modId:'final',again:final});
+}
+
+/* ================= HOME ================= */
+const MODS={
+ cards:{ic:'🃏',t:'Раздевалка: профессии',s:'14 карточек со звуком + как спросить',fn:cards},
+ club:{ic:'🏟️',t:'Кого позвать в клуб?',s:'Ситуация в клубе → нужная профессия',fn:club,max:10},
+ pass:{ic:'👂',t:'Пас на слух',s:'Слушай и найди профессию на картинке',fn:pass,max:10},
+ album:{ic:'📒',t:'Альбом звёзд',s:'12 звёзд рассказывают о себе. Собери наклейки!',fn:album},
+ guess:{ic:'🕵️',t:'Угадай звезду',s:'Подсказки на слух: страна, семья, профессии',fn:guess,max:8},
+ fam:{ic:'🥅',t:'Пенальти: семьи звёзд',s:'Сколько братьев и сестёр? Сколько человек в семье?',fn:fam,max:10},
+ interview:{ic:'🎙️',t:'Интервью после матча',s:'Расскажи о своей семье и мечте',fn:interview},
+ final:{ic:'🏆',t:'Финал сезона против Панды',s:'Всё вперемешку, 12 пенальти',fn:final,max:12}
+};
+const PLAN=[
+ {n:'Урок 1',t:'Новые слова',d:'Знакомимся с профессиями и сразу играем.',m:['cards','club','pass']},
+ {n:'Урок 2',t:'Звёзды и их семьи',d:'Первые 6 наклеек, потом угадываем звёзд на слух.',m:['album','guess']},
+ {n:'Урок 3',t:'Семьи звёзд',d:'Дособираем альбом и бьём пенальти по семьям.',m:['album','fam']},
+ {n:'Урок 4',t:'Я — звезда!',d:'Интервью о своей семье и финал сезона.',m:['interview','final']}
+];
+function home(){
+  synth&&synth.cancel();document.body.classList.remove('hidetxt');
+  const g=Object.keys(SV.glued).length;
+  app.innerHTML=`<section class="screen">
+   <div class="hero"><div><h1><span class="zh">职业 · 足球 · 家庭</span>Футбольный клуб Аскара</h1>
+     <p>Кем работают мамы и папы Месси, Роналду и Мбаппе? Сколько у них братьев и сестёр? Собери альбом из 12 звёзд и выиграй сезон у Панды!</p></div>
+     <div class="ball" aria-hidden="true">⚽</div></div>
+   <div class="lessons">${PLAN.map(l=>`<div class="lesson"><h2><span class="n">${l.n}</span>${l.t}</h2><p>${l.d}</p>
+     <div class="mods">${l.m.map(id=>{const M=MODS[id];const sc=id==='album'?`${g}/${STARS.length}`:(M.max&&SV.best[id]!=null?`⭐ ${SV.best[id]}/${M.max}`:'');
+       return `<button class="mod" data-m="${id}"><span class="ic">${M.ic}</span><span><b>${M.t}</b><span>${M.s}</span></span><span class="sc">${sc}</span></button>`}).join('')}</div></div>`).join('')}</div>
+   <div class="row" style="margin-top:16px;justify-content:flex-end"><button class="back" id="reset">Сбросить прогресс</button></div>
+  </section>`;
+  app.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{tone([[523,.08],[784,.12]]);MODS[b.dataset.m].fn()});
+  let armed=false;
+  $('#reset').onclick=e=>{if(!armed){armed=true;e.currentTarget.textContent='Точно сбросить? Нажми ещё раз';return}SV={stars:0,glued:{},best:{}};save();hdr();home()};
+}
+
+$('#home').onclick=home;
+$('#tPy').onclick=e=>{const on=document.body.classList.toggle('nopy');e.currentTarget.setAttribute('aria-pressed',String(!on))};
+$('#tSlow').onclick=e=>{slow=!slow;e.currentTarget.setAttribute('aria-pressed',String(slow))};
+$('#tKid').onclick=e=>{kid=!kid;e.currentTarget.setAttribute('aria-pressed',String(kid));pickVoice();speak('你好！我是熊猫！')};
+$('#tVoice').onclick=()=>{if(zhVoices.length){vi=(vi+1)%zhVoices.length;pickVoice();speak('你好！我是熊猫！')}};
+hdr();home();
+})();
+</script>
+
+</body></html>
