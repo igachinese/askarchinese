@@ -223,6 +223,46 @@ body.hidetxt .ln .txt .zh,body.hidetxt .ln .txt .py{filter:blur(7px)}
 @media(max-width:760px){.lessons{grid-template-columns:1fr}.dos,.iv{grid-template-columns:1fr}.mic{position:static}.hero{grid-template-columns:1fr}.hero .ball{display:none}}
 @media(max-width:480px){.badge small{display:none}.ln .vis{width:64px;font-size:1.5rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ================= DIVISION LADDER & KIDS GAMES ================= */
+.div-selector-wrap{background:#fff;border-radius:20px;padding:16px 20px;margin:18px 0;box-shadow:0 6px 18px rgba(20,60,40,.08);border:2px solid var(--line)}
+.div-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.div-head h2{margin:0;font-size:1.15rem;font-weight:900;display:flex;align-items:center;gap:8px}
+.div-pills{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+.div-pill{flex:none;background:#f1f7f3;border:2px solid var(--line);border-radius:14px;padding:8px 14px;cursor:pointer;font-weight:800;font-size:.9rem;display:flex;align-items:center;gap:6px;transition:all .15s}
+.div-pill:hover{border-color:var(--grass);transform:translateY(-1px)}
+.div-pill.active{background:var(--club);color:#fff;border-color:var(--gold);box-shadow:0 3px 0 var(--gold)}
+
+.div-banner{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);border:2px solid #86efac;border-radius:16px;padding:14px 18px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.div-banner .tit{font-weight:900;font-size:1.05rem;color:#14532d;display:flex;align-items:center;gap:6px}
+.div-banner .desc{font-size:.88rem;color:#166534;font-weight:700}
+
+.div-games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-top:14px}
+.div-game-card{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;box-shadow:0 3px 0 var(--line);transition:all .15s}
+.div-game-card:hover{border-color:var(--club-2);transform:translateY(-2px);box-shadow:0 6px 12px rgba(20,60,40,.1)}
+.div-game-card:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.div-game-card .ic{font-size:28px;line-height:1}
+.div-game-card b{font-size:.95rem;font-weight:900;color:var(--ink)}
+.div-game-card small{font-size:.78rem;color:var(--muted);font-weight:700}
+
+/* MEMORY MATCH */
+.mem-board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:580px;margin:20px auto}
+@media(max-width:520px){.mem-board{grid-template-columns:repeat(3,1fr);gap:8px}}
+.mem-card{aspect-ratio:1;background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%);border:2.5px solid var(--line);border-radius:16px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;box-shadow:0 4px 0 var(--line);transition:transform .2s;text-align:center;padding:4px}
+.mem-card:hover{transform:translateY(-2px);border-color:var(--gold)}
+.mem-card.flipped{background:#fff;border-color:var(--club)}
+.mem-card.matched{background:var(--ok-soft)!important;border-color:var(--ok)!important;box-shadow:0 3px 0 var(--ok)!important;pointer-events:none}
+.mem-card .zh{font-size:1.6rem;line-height:1.1;color:var(--club)}
+.mem-card .py{font-size:.8rem;color:var(--teal)}
+.mem-card .ru{font-size:.85rem;color:var(--ink);font-weight:800}
+
+/* DRIBBLE PITCH */
+.dribble-pitch{background:linear-gradient(180deg,#15803d 0%,#16a34a 100%);border-radius:18px;border:3px solid #14532d;padding:24px 20px;color:#fff;text-align:center;margin:18px 0;position:relative;min-height:340px;display:flex;flex-direction:column;justify-content:space-between}
+.dribble-target{background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:10px 22px;border-radius:999px;border:2px solid rgba(255,255,255,.4);display:inline-flex;align-items:center;gap:12px;margin:0 auto}
+.dribble-cones{display:flex;justify-content:center;gap:18px;margin-top:20px}
+.cone-btn{background:#fff;border:3px solid var(--gold);border-radius:16px;padding:16px 20px;cursor:pointer;color:var(--ink);font-weight:900;font-size:1.15rem;box-shadow:0 4px 0 #b45309;transition:all .15s;flex:1;max-width:220px}
+.cone-btn:hover{transform:scale(1.04)}
+.cone-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #b45309}
 </style>
 
 <header class="top">
@@ -308,7 +348,10 @@ const PR={
  chushi:{zh:'厨师',py:'chúshī',ru:'повар',e:'🧑‍🍳🍲',tb:0},
  gongren:{zh:'工人',py:'gōngrén',ru:'рабочий',e:'👷🔧',tb:0},
  lifashi:{zh:'理发师',py:'lǐfàshī',ru:'парикмахер',e:'💇✂️',tb:0},
- gongchengshi:{zh:'工程师',py:'gōngchéngshī',ru:'инженер',e:'🏗️📐',tb:0}
+ gongchengshi:{zh:'工程师',py:'gōngchéngshī',ru:'инженер',e:'🏗️📐',tb:0},
+  pangxie:{zh:'螃蟹',py:'pángxiè',ru:'краб-бизнесмен',e:'🦀💼',tb:0},
+  shifu:{zh:'师傅',py:'shīfu',ru:'мастер Шифу',e:'🥋✨',tb:0},
+  zhamabu:{zh:'扎马步',py:'zhǎmǎbù',ru:'стойка всадника',e:'🥋⏱️',tb:0}
 };
 const PK=Object.keys(PR);
 const GRAM=[
@@ -713,21 +756,402 @@ const PLAN=[
  {n:'Урок 3',t:'Семьи звёзд',d:'Дособираем альбом и бьём пенальти по семьям.',m:['album','fam']},
  {n:'Урок 4',t:'Я — звезда!',d:'Интервью о своей семье и финал сезона.',m:['interview','final']}
 ];
+
+/* ========================================================
+   DIVISIONS: 4 BITE-SIZED LEAGUES (3-4 WORDS EACH) FOR 7-YEAR OLD
+   ======================================================== */
+const DIVISIONS = [
+  { id:'d1', num:'1', n:'Дивизион 1', t:'Основа клуба', e:'🟢', d:'Врач, Учитель, Юрист, Бизнесмен (4 слова)', ks:['yisheng','laoshi','lvshi','shangren'] },
+  { id:'d2', num:'2', n:'Дивизион 2', t:'Футбольное поле', e:'🔵', d:'Тренер, Спортсмен, Водитель (3 слова)', ks:['jiaolian','yundongyuan','siji'] },
+  { id:'d3', num:'3', n:'Дивизион 3', t:'Штаб команды', e:'🟣', d:'Директор, Секретарь, Медсестра (3 слова)', ks:['jingli','mishu','hushi'] },
+  { id:'d4', num:'4', n:'Дивизион 4', t:'Мастера арены', e:'🟡', d:'Повар, Строитель, Инженер, Парикмахер (4 слова)', ks:['chushi','gongren','gongchengshi','lifashi'] },
+  { id:'vip', num:'★', n:'VIP Раздевалка', t:'Секрет Аскара', e:'🥋', d:'Краб 🦀, Мастер Шифу 🥋, Стойка всадника 扎马步', ks:['pangxie','shifu','zhamabu'] }
+];
+let curDiv = 'd1';
+
+function getCurDivObj() {
+  return DIVISIONS.find(d => d.id === curDiv) || DIVISIONS[0];
+}
+
+/* CARDS WITH DIVISION FILTER */
+function cards(filterDivId) {
+  const activeDiv = filterDivId || curDiv || 'all';
+  const keys = (activeDiv === 'all') ? PK : (DIVISIONS.find(d => d.id === activeDiv) || DIVISIONS[0]).ks;
+
+  app.innerHTML = `<section class="screen">
+   <div class="row">
+     <button class="back" id="bk">← В меню</button>
+     <span class="spacer"></span>
+     <button class="back" id="flip">Скрыть перевод</button>
+   </div>
+   <h1 class="t" style="margin-top:12px"><span class="zh">职业</span>Раздевалка профессий</h1>
+   <p class="sub">Выбирай дивизион по 3-4 слова, чтобы учить легко и без спешки!</p>
+
+   <div class="div-pills" style="margin-bottom:16px;">
+     <button class="div-pill ${activeDiv==='all'?'active':''}" data-f="all">🌟 Все 14 слов</button>
+     ${DIVISIONS.map(d => `<button class="div-pill ${activeDiv===d.id?'active':''}" data-f="${d.id}">${d.e} ${d.n}</button>`).join('')}
+   </div>
+
+   <div class="cards">
+     ${keys.map(k => `
+       <button class="wcard" data-k="${k}">
+         <span class="tb ${PR[k].tb?'':'ex'}">${PR[k].tb?'УЧЕБНИК':'КЛУБ'}</span>
+         <span class="emo">${PR[k].e}</span>
+         ${zp(PR[k].zh, PR[k].py)}
+         <span class="ru">${PR[k].ru}</span>
+       </button>
+     `).join('')}
+   </div>
+
+   <div class="grammar">
+     <h3>Как сказать</h3>
+     ${GRAM.map((g,k) => `
+       <div class="gl">
+         <button class="sbtn" data-g="${k}" aria-label="Послушать">🔊</button>
+         <div><span class="zh">${g[0]}</span><br><span class="py">${g[1]}</span><br><span class="ru">${g[2]}</span></div>
+       </div>
+     `).join('')}
+   </div>
+  </section>`;
+
+  $('#bk').onclick = home;
+  $('#flip').onclick = e => {
+    const on = document.body.classList.toggle('hidetxt');
+    e.currentTarget.textContent = on ? 'Показать перевод' : 'Скрыть перевод';
+  };
+  app.querySelectorAll('.wcard').forEach(b => b.onclick = () => {
+    tone([[660,.08],[880,.12]]);
+    speak(PR[b.dataset.k].zh);
+  });
+  app.querySelectorAll('.sbtn').forEach(b => b.onclick = () => {
+    tone([[523,.08]]);
+    speak(GRAM[+b.dataset.g][0]);
+  });
+  app.querySelectorAll('.div-pill').forEach(b => b.onclick = () => {
+    cards(b.dataset.f);
+  });
+}
+
+/* MINI-GAME: ПАРНЫЕ БУТТЫ (MEMORY MATCH) */
+function memoryGame(divId) {
+  const divObj = DIVISIONS.find(d => d.id === (divId || curDiv)) || DIVISIONS[0];
+  const list = divObj.ks.map(k => ({ k, ...PR[k] }));
+
+  // Create pairs
+  let cardsData = [];
+  list.forEach((item, idx) => {
+    cardsData.push({ id: idx, type: 'zh', text: item.zh, py: item.py, item });
+    cardsData.push({ id: idx, type: 'ru', text: item.ru, e: item.e, item });
+  });
+  cardsData = shuffle(cardsData);
+
+  let flipped = [];
+  let matchedCount = 0;
+
+  app.innerHTML = `<section class="screen">
+    <div class="row">
+      <button class="back" id="bk">← В меню</button>
+      <span class="spacer"></span>
+      <span style="font-weight:900; color:var(--club);">${divObj.e} ${divObj.n}</span>
+    </div>
+    <h1 class="t" style="margin-top:12px"><span class="zh">配对</span>Парные бутсы (Мемори)</h1>
+    <p class="sub">Найди все ${list.length} пары карточек: иероглиф ↔ русский перевод!</p>
+
+    <div class="mem-board" id="memBoard">
+      ${cardsData.map((c, i) => `
+        <div class="mem-card" data-i="${i}">
+          <span style="font-size:2rem;">⚽</span>
+        </div>
+      `).join('')}
+    </div>
+  </section>`;
+
+  $('#bk').onclick = home;
+
+  const cardEls = app.querySelectorAll('.mem-card');
+  cardEls.forEach(el => {
+    el.onclick = () => {
+      const idx = +el.dataset.i;
+      const c = cardsData[idx];
+      if (el.classList.contains('flipped') || el.classList.contains('matched') || flipped.length >= 2) return;
+
+      sOk();
+      el.classList.add('flipped');
+      if (c.type === 'zh') {
+        el.innerHTML = `<span class="zh">${c.text}</span><span class="py">${c.py}</span>`;
+        speak(c.text);
+      } else {
+        el.innerHTML = `<span style="font-size:1.5rem;margin-bottom:2px;">${c.e}</span><span class="ru">${c.text}</span>`;
+      }
+      flipped.push({ card: c, el });
+
+      if (flipped.length === 2) {
+        const [f1, f2] = flipped;
+        if (f1.card.id === f2.card.id) {
+          // Matched!
+          setTimeout(() => {
+            sStick();
+            f1.el.classList.add('matched');
+            f2.el.classList.add('matched');
+            matchedCount++;
+            SV.stars = (SV.stars || 0) + 1;
+            save(); hdr();
+            flipped = [];
+            if (matchedCount === list.length) {
+              sWhistle();
+              setTimeout(() => {
+                alert('🎉 Чемпион! Все пары найдены! +2 Звезды ⭐');
+                home();
+              }, 400);
+            }
+          }, 450);
+        } else {
+          // Mismatch
+          setTimeout(() => {
+            sBad();
+            f1.el.classList.remove('flipped');
+            f2.el.classList.remove('flipped');
+            f1.innerHTML = '<span style="font-size:2rem;">⚽</span>';
+            f2.innerHTML = '<span style="font-size:2rem;">⚽</span>';
+            flipped = [];
+          }, 850);
+        }
+      }
+    };
+  });
+}
+
+/* MINI-GAME: ДРИБЛИНГ МИМО ПАНДЫ (DRIBBLE RUN) */
+function dribbleGame(divId) {
+  const divObj = DIVISIONS.find(d => d.id === (divId || curDiv)) || DIVISIONS[0];
+  const list = divObj.ks.map(k => ({ k, ...PR[k] }));
+  let step = 0;
+  const totalSteps = Math.min(4, list.length);
+  const qList = shuffle(list).slice(0, totalSteps);
+
+  function nextDribble() {
+    if (step >= totalSteps) {
+      sWhistle();
+      sStick();
+      app.innerHTML = `<section class="screen final">
+        <div class="cup">🏆</div>
+        <h1>Аскар обвёл Панду и забил гол!</h1>
+        <p class="sub">Идеальный дриблинг в ${divObj.n}! +2 Звезды ⭐</p>
+        <button class="cta" id="finOk">В меню клуба →</button>
+      </section>`;
+      SV.stars = (SV.stars || 0) + 2;
+      save(); hdr();
+      $('#finOk').onclick = home;
+      return;
+    }
+
+    const cur = qList[step];
+    // Distractor
+    const others = list.filter(x => x.k !== cur.k);
+    const distractor = others.length ? shuffle(others)[0] : { zh:'足球', py:'zúqiú', ru:'футбол', e:'⚽' };
+    const options = shuffle([cur, distractor]);
+
+    app.innerHTML = `<section class="screen">
+      <div class="row">
+        <button class="back" id="bk">← В меню</button>
+        <span class="spacer"></span>
+        <span style="font-weight:900;color:var(--club);">Дриблинг: ${step+1}/${totalSteps}</span>
+      </div>
+
+      <div class="dribble-pitch">
+        <div class="dribble-target">
+          <button class="listen" id="btnLis" style="background:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer;">🔊</button>
+          <div>
+            <div style="font-size:.8rem;color:#bbf7d0;font-weight:800;">ПАС ТРЕНЕРА (СЛУШАЙ):</div>
+            <div style="font-size:1.4rem;font-weight:900;color:#fde047;" class="zh">${cur.zh}</div>
+          </div>
+        </div>
+
+        <div style="font-size:72px;line-height:1;margin:10px 0;" id="pandaKeeper">🐼</div>
+
+        <div style="font-weight:900;font-size:1rem;color:#fff;">Обведи защитника — выбери верную фишку:</div>
+
+        <div class="dribble-cones">
+          ${options.map((o, idx) => `
+            <button class="cone-btn" data-k="${o.k}">
+              <div style="font-size:24px;margin-bottom:4px;">${o.e}</div>
+              <div>${o.ru}</div>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    </section>`;
+
+    $('#bk').onclick = home;
+    $('#btnLis').onclick = () => speak(cur.zh);
+    speak(cur.zh);
+
+    app.querySelectorAll('.cone-btn').forEach(b => {
+      b.onclick = () => {
+        if (b.dataset.k === cur.k) {
+          sOk();
+          tone([[880,.1],[1100,.15],[1320,.25]]);
+          $('#pandaKeeper').textContent = '💫😵';
+          b.style.background = 'var(--ok-soft)';
+          b.style.borderColor = 'var(--ok)';
+          setTimeout(() => {
+            step++;
+            nextDribble();
+          }, 700);
+        } else {
+          sBad();
+          b.style.background = 'var(--bad-soft)';
+          b.style.borderColor = 'var(--bad)';
+          speak(cur.zh);
+        }
+      };
+    });
+  }
+
+  nextDribble();
+}
+
+/* MINI-GAME: ПЕНАЛЬТИ ДИВИЗИОНА (3-4 УДАРА) */
+function penaltyDiv(divId) {
+  const divObj = DIVISIONS.find(d => d.id === (divId || curDiv)) || DIVISIONS[0];
+  const keys = divObj.ks;
+  const items = keys.map(k => {
+    return {
+      ask: 'Слушай и забивай гол!',
+      say: PR[k].zh,
+      sayPy: PR[k].py,
+      show: true,
+      face: '⚽',
+      options: [
+        profOpt(k, true, false),
+        ...distract(k, 2).map(x => profOpt(x, false, false))
+      ]
+    };
+  });
+
+  quiz({
+    title: `Пенальти: ${divObj.n}`,
+    items: shuffle(items),
+    penalty: true,
+    modId: 'pen_' + divObj.id,
+    again: () => penaltyDiv(divId)
+  });
+}
 function home(){
   synth&&synth.cancel();document.body.classList.remove('hidetxt');
   const g=Object.keys(SV.glued).length;
+  const curD = getCurDivObj();
+
   app.innerHTML=`<section class="screen">
-   <div class="hero"><div><h1><span class="zh">职业 · 足球 · 家庭</span>Футбольный клуб Аскара</h1>
-     <p>Кем работают мамы и папы Месси, Роналду и Мбаппе? Сколько у них братьев и сестёр? Собери альбом из 12 звёзд и выиграй сезон у Панды!</p></div>
-     <div class="ball" aria-hidden="true">⚽</div></div>
-   <div class="lessons">${PLAN.map(l=>`<div class="lesson"><h2><span class="n">${l.n}</span>${l.t}</h2><p>${l.d}</p>
-     <div class="mods">${l.m.map(id=>{const M=MODS[id];const sc=id==='album'?`${g}/${STARS.length}`:(M.max&&SV.best[id]!=null?`⭐ ${SV.best[id]}/${M.max}`:'');
-       return `<button class="mod" data-m="${id}"><span class="ic">${M.ic}</span><span><b>${M.t}</b><span>${M.s}</span></span><span class="sc">${sc}</span></button>`}).join('')}</div></div>`).join('')}</div>
-   <div class="row" style="margin-top:16px;justify-content:flex-end"><button class="back" id="reset">Сбросить прогресс</button></div>
+   <div class="hero">
+     <div>
+       <h1><span class="zh">职业 · 足球 · 家庭</span>Футбольный клуб Аскара</h1>
+       <p>Игры по 3-4 слова для 7 лет: выбирай дивизион, забивай пенальти, финти мимо Панды и собирай альбом 12 звёзд!</p>
+     </div>
+     <div class="ball" aria-hidden="true">⚽</div>
+   </div>
+
+   <!-- DIVISION LADDER (СЛОВА НЕ ПАДАЮТ КОМОМ) -->
+   <div class="div-selector-wrap">
+     <div class="div-head">
+       <h2><span>🏆</span> Выбери Лигу (по 3-4 слова за раунд):</h2>
+       <span style="font-size:.82rem;font-weight:800;color:var(--muted);">Без спешки и перегруза</span>
+     </div>
+
+     <div class="div-pills">
+       ${DIVISIONS.map(d => `
+         <button class="div-pill ${curDiv===d.id?'active':''}" data-d="${d.id}">
+           <span>${d.e}</span> <b>${d.n}</b>
+         </button>
+       `).join('')}
+     </div>
+
+     <div class="div-banner">
+       <div>
+         <div class="tit">${curD.e} ${curD.n}: «${curD.t}»</div>
+         <div class="desc">${curD.d}</div>
+       </div>
+       <div style="font-weight:900;color:#14532d;font-size:.9rem;">
+         ⭐ Награда: <b>${curD.cup}</b>
+       </div>
+     </div>
+
+     <div class="div-games-grid">
+       <button class="div-game-card" id="btnDivCards">
+         <span class="ic">🎴</span>
+         <b>Раздевалка</b>
+         <small>Познакомься со словами (${curD.ks.length} шт)</small>
+       </button>
+
+       <button class="div-game-card" id="btnDivPenalty" style="border-color:#86efac;background:#f0fdf4;">
+         <span class="ic">⚽</span>
+         <b style="color:#15803d;">Пенальти Панде</b>
+         <small>Забей 4 гола по словам лиги</small>
+       </button>
+
+       <button class="div-game-card" id="btnDivMemory">
+         <span class="ic">🃏</span>
+         <b>Парные бутсы</b>
+         <small>Найди пары (мемори ${curD.ks.length} пар)</small>
+       </button>
+
+       <button class="div-game-card" id="btnDivDribble" style="border-color:#fde047;background:#fffdf0;">
+         <span class="ic">🏃</span>
+         <b style="color:#b45309;">Дриблинг</b>
+         <small>Обведи защитника финтом</small>
+       </button>
+     </div>
+   </div>
+
+   <!-- BIG SEASON TOURNAMENT -->
+   <div style="margin:22px 0 10px;font-weight:900;font-size:1.15rem;color:var(--club);display:flex;align-items:center;gap:8px;">
+     <span>🌟</span> Большой Чемпионат Клуба (Все звёзды и семья):
+   </div>
+
+   <div class="lessons">
+     ${PLAN.map(l=>`
+       <div class="lesson">
+         <h2><span class="n">${l.n}</span>${l.t}</h2>
+         <p>${l.d}</p>
+         <div class="mods">
+           ${l.m.map(id=>{
+             const M=MODS[id];
+             const sc=id==='album'?`${g}/${STARS.length}`:(M.max&&SV.best[id]!=null?`⭐ ${SV.best[id]}/${M.max}`:'');
+             return `<button class="mod" data-m="${id}"><span class="ic">${M.ic}</span><span><b>${M.t}</b><span>${M.s}</span></span><span class="sc">${sc}</span></button>`;
+           }).join('')}
+         </div>
+       </div>
+     `).join('')}
+   </div>
+
+   <div class="row" style="margin-top:16px;justify-content:flex-end">
+     <button class="back" id="reset">Сбросить прогресс</button>
+   </div>
   </section>`;
+
+  // Events for Division Pills
+  app.querySelectorAll('.div-pill').forEach(b => {
+    b.onclick = () => {
+      sOk();
+      curDiv = b.dataset.d;
+      home();
+    };
+  });
+
+  // Events for Division Mini-Games
+  $('#btnDivCards').onclick = () => cards(curDiv);
+  $('#btnDivPenalty').onclick = () => penaltyDiv(curDiv);
+  $('#btnDivMemory').onclick = () => memoryGame(curDiv);
+  $('#btnDivDribble').onclick = () => dribbleGame(curDiv);
+
+  // Big season mods
   app.querySelectorAll('.mod').forEach(b=>b.onclick=()=>{tone([[523,.08],[784,.12]]);MODS[b.dataset.m].fn()});
+
   let armed=false;
-  $('#reset').onclick=e=>{if(!armed){armed=true;e.currentTarget.textContent='Точно сбросить? Нажми ещё раз';return}SV={stars:0,glued:{},best:{}};save();hdr();home()};
+  $('#reset').onclick=e=>{
+    if(!armed){armed=true;e.currentTarget.textContent='Точно сбросить? Нажми ещё раз';return}
+    SV={stars:0,glued:{},best:{}};save();hdr();home();
+  };
 }
 
 $('#home').onclick=home;
