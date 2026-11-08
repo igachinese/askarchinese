@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Игроленд Аскара · Игры по китайскому языку | 阿斯凯</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700;900&family=Nunito:wght@600;700;800;900&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fcfbf7;
+  --grid-line: rgba(203, 213, 225, 0.45);
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  
+  --grass: #22c55e;
+  --grass-dark: #15803d;
+  --sky: #38bdf8;
+  --sky-dark: #0284c7;
+  --gold: #f59e0b;
+  --gold-dark: #b45309;
+  --rose: #f43f5e;
+  --rose-dark: #be123c;
+  --purple: #a855f7;
+  --purple-dark: #7e22ce;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+
+  --border: #e2e8f0;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  
+  --font-main: 'Nunito', sans-serif;
+  --font-head: 'Unbounded', sans-serif;
+  --font-cn: 'Noto Sans SC', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 26px 26px;
+  color: var(--text);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  padding: 16px 14px 60px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  position: sticky;
+  top: 10px;
+  z-index: 50;
+  margin-bottom: 20px;
+}
+
+.btn-back-hub {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #1e293b;
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 10px 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  box-shadow: 0 3px 0 #cbd5e1;
+  transition: all 0.15s;
+}
+
+.btn-back-hub:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.btn-back-hub:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #cbd5e1;
+}
+
+.player-score {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.score-pill {
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+  color: #92400e;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ARCADE MENU HERO */
+.hero-arcade {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 26px 30px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(49, 46, 129, 0.25);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.hero-arcade::after {
+  content: "🎮";
+  position: absolute;
+  right: 15px;
+  bottom: -15px;
+  font-size: 130px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-arcade h1 {
+  font-family: var(--font-head);
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  color: #fde047;
+}
+
+.hero-arcade p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+  font-weight: 600;
+  max-width: 580px;
+}
+
+/* GAME SELECTOR TABS */
+.game-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.game-card-btn {
+  background: #ffffff;
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 4px 0 var(--border);
+  text-align: left;
+}
+
+.game-card-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--blue);
+  box-shadow: 0 6px 0 var(--blue);
+}
+
+.game-card-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--border);
+}
+
+.game-card-btn.active {
+  border-color: var(--blue);
+  background: #eff6ff;
+  box-shadow: 0 4px 0 var(--blue);
+  transform: translateY(-2px);
+}
+
+.game-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.game-info-title {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0f172a;
+}
+
+.game-info-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* GAME ARENAS */
+.game-arena {
+  background: #ffffff;
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  margin-bottom: 30px;
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====================================================
+   GAME 1: PENALTY SHOOTOUT (ПЕНАЛЬТИ ПАНДЕ)
+   ==================================================== */
+.pitch-container {
+  background: linear-gradient(180deg, #15803d 0%, #16a34a 100%);
+  border-radius: var(--radius-md);
+  border: 3px solid #14532d;
+  padding: 20px;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.goal-post {
+  width: 240px;
+  height: 120px;
+  border: 6px solid #ffffff;
+  border-bottom: none;
+  margin: 0 auto 10px;
+  position: relative;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 10px, transparent 10px, transparent 20px);
+}
+
+.panda-keeper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 64px;
+  line-height: 1;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.panda-keeper.dive-left {
+  left: 20%;
+  transform: translateX(-50%) rotate(-35deg);
+}
+
+.panda-keeper.dive-right {
+  left: 80%;
+  transform: translateX(-50%) rotate(35deg);
+}
+
+.panda-keeper.stunned {
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.penalty-question {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-align: center;
+  margin: 0 auto 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.penalty-word-hz {
+  font-family: var(--font-cn);
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #fde047;
+}
+
+.penalty-word-py {
+  font-size: 1.15rem;
+  color: #93c5fd;
+  font-weight: 800;
+}
+
+.penalty-balls-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.ball-btn {
+  background: #ffffff;
+  border: 3px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 16px 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #94a3b8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s;
+}
+
+.ball-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: var(--gold);
+}
+
+.ball-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #94a3b8;
+}
+
+.ball-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.ball-text {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  text-align: center;
+}
+
+/* ====================================================
+   GAME 2: MEMORY MATCH (НАЙДИ ПАРУ)
+   ==================================================== */
+.memory-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.theme-pill-btn {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.15s;
+}
+
+.theme-pill-btn.active {
+  background: var(--blue);
+  color: #ffffff;
+  border-color: var(--blue-dark);
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (max-width: 540px) {
+  .memory-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+}
+
+.card-tile {
+  aspect-ratio: 1;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2.5px solid var(--blue-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0 #bfdbfe;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-align: center;
+  padding: 6px;
+}
+
+.card-tile:hover {
+  transform: translateY(-2px);
+  border-color: var(--blue);
+}
+
+.card-tile.flipped {
+  background: #ffffff;
+  border-color: var(--blue);
+  transform: scale(1.03);
+}
+
+.card-tile.matched {
+  background: #ecfdf5 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 0 #10b981 !important;
+  pointer-events: none;
+  animation: matchBounce 0.4s ease;
+}
+
+@keyframes matchBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+.card-back-icon {
+  font-size: 32px;
+}
+
+.card-front-hz {
+  font-family: var(--font-cn);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #1e1b4b;
+  line-height: 1.1;
+}
+
+.card-front-py {
+  font-size: 0.85rem;
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.card-front-ru {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #334155;
+}
+
+/* ====================================================
+   GAME 3: BALLOON POP (ЛОПАЙ ШАРИКИ)
+   ==================================================== */
+.balloon-sky {
+  background: linear-gradient(180deg, #bae6fd 0%, #e0f2fe 100%);
+  border-radius: var(--radius-md);
+  border: 2px solid #7dd3fc;
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.balloon-prompt-box {
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid #38bdf8;
+  border-radius: 999px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+}
+
+.balloon-field {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  min-height: 240px;
+  padding-bottom: 20px;
+}
+
+.balloon {
+  width: 110px;
+  height: 130px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset -8px -8px 0 rgba(0,0,0,0.1), 0 8px 18px rgba(0,0,0,0.15);
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: floatBalloon 3s ease-in-out infinite alternate;
+}
+
+.balloon:nth-child(2) { animation-delay: 0.7s; }
+.balloon:nth-child(3) { animation-delay: 1.4s; }
+.balloon:nth-child(4) { animation-delay: 2.1s; }
+
+@keyframes floatBalloon {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-16px); }
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 10px solid inherit;
+}
+
+.balloon:hover {
+  transform: scale(1.08) translateY(-10px);
+}
+
+.balloon:active {
+  transform: scale(0.92);
+}
+
+.b-pink { background: #fda4af; }
+.b-blue { background: #93c5fd; }
+.b-green { background: #86efac; }
+.b-yellow { background: #fde047; }
+
+.balloon-hz {
+  font-family: var(--font-cn);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #1e1b4b;
+}
+
+.balloon-ru {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #334155;
+}
+
+/* ====================================================
+   GAME 4: KUNG FU TONE CLASH (ДУЭЛЬ ТОНОВ)
+   ==================================================== */
+.dojo-arena {
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border: 2px solid #fecdd3;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dojo-fighters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+.fighter-card {
+  text-align: center;
+}
+
+.fighter-avatar {
+  font-size: 64px;
+  line-height: 1;
+}
+
+.fighter-hp {
+  background: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.tone-shields-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+@media (max-width: 560px) {
+  .tone-shields-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.shield-btn {
+  background: #ffffff;
+  border: 2.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--border);
+  transition: all 0.15s;
+}
+
+.shield-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--rose);
+  box-shadow: 0 6px 0 var(--rose);
+}
+
+.shield-symbol {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--rose);
+  line-height: 1;
+}
+
+.shield-desc {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+/* CELEBRATION TOAST */
+.game-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: #0f172a;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 100;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.game-toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+#canvasFx {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 150;
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvasFx"></canvas>
+
+<div class="wrapper">
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <a href="index.html" class="btn-back-hub">
+      <span style="font-size: 1.2rem;">←</span> В личный кабинет
+    </a>
+
+    <div class="player-score">
+      <div class="score-pill" title="Набранные звёзды">
+        ⭐ <span id="starCounter">12</span>
+      </div>
+      <div class="score-pill" style="background: #f0fdf4; border-color: #bbf7d0; color: #166534;" title="Голы Панде">
+        ⚽ <span id="goalCounter">3 : 0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ARCADE HERO -->
+  <section class="hero-arcade">
+    <div>
+      <h1>🎮 Игроленд Аскара</h1>
+      <p>Мини-игры китайского языка для 7 лет: забивай пенальти Панде, находи парные карточки, лопай шарики и блокируй удары тонов!</p>
+    </div>
+    <div style="font-size: 0.85rem; font-weight: 800; background: rgba(255,255,255,0.18); padding: 8px 16px; border-radius: 999px;">
+      🎙️ Голос: Microsoft Edge (0.72x)
+    </div>
+  </section>
+
+  <!-- GAME SELECTOR TABS -->
+  <nav class="game-selector">
+    <button class="game-card-btn active" data-game="penalty">
+      <div class="game-icon-box" style="background: #dcfce7; color: #15803d;">⚽</div>
+      <div>
+        <div class="game-info-title">Пенальти Панде</div>
+        <div class="game-info-desc">Забей гол словом</div>
+      </div>
+    </button>
+
+    <button class="game-card-btn" data-game="memory">
+      <div class="game-icon-box" style="background: #e0e7ff; color: #4338ca;">🃏</div>
+      <div>
+        <div class="game-info-title">Найди пару</div>
+        <div class="game-info-desc">Карточки-мемори</div>
+      </div>
+    </button>
+
+    <button class="game-card-btn" data-game="balloons">
+      <div class="game-icon-box" style="background: #e0f2fe; color: #0284c7;">🎈</div>
+      <div>
+        <div class="game-info-title">Лопай шарики</div>
+        <div class="game-info-desc">Слушай и лопай</div>
+      </div>
+    </button>
+
+    <button class="game-card-btn" data-game="kungfu">
+      <div class="game-icon-box" style="background: #ffe4e6; color: #be123c;">🥋</div>
+      <div>
+        <div class="game-info-title">Кунг-фу Тоны</div>
+        <div class="game-info-desc">Щиты 4 тонов</div>
+      </div>
+    </button>
+  </nav>
+
+  <!-- ====================================================
+       ARENA 1: PENALTY SHOOTOUT
+       ==================================================== -->
+  <main id="arenaPenalty" class="game-arena">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+      <h2 style="font-family: var(--font-head); font-size: 1.25rem;">⚽ Пенальти против Панды</h2>
+      <span style="font-size: 0.9rem; font-weight: 800; color: var(--grass-dark);">Слушай слово и забивай гол!</span>
+    </div>
+
+    <div class="pitch-container">
+      <div class="goal-post">
+        <div class="panda-keeper" id="pandaKeeper">🐼</div>
+      </div>
+
+      <div class="penalty-question">
+        <div class="penalty-word-hz" id="penHz">医生</div>
+        <div class="penalty-word-py" id="penPy">yīshēng</div>
+      </div>
+
+      <div class="penalty-balls-grid" id="penBalls">
+        <!-- 3 Ball options rendered by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ====================================================
+       ARENA 2: MEMORY MATCH
+       ==================================================== -->
+  <section id="arenaMemory" class="game-arena" style="display: none;">
+    <div class="memory-controls">
+      <h2 style="font-family: var(--font-head); font-size: 1.25rem;">🃏 Найди пару (Мемори)</h2>
+      <div style="display: flex; gap: 8px;" id="memThemePills">
+        <button class="theme-pill-btn active" data-theme="prof">Профессии 💼</button>
+        <button class="theme-pill-btn" data-theme="family">Семья 👨‍👩‍👧</button>
+        <button class="theme-pill-btn" data-theme="animals">Звери 🦀</button>
+        <button class="theme-pill-btn" data-theme="numbers">Числа 🔢</button>
+      </div>
+    </div>
+
+    <div class="memory-grid" id="memoryGrid">
+      <!-- 6 or 8 cards rendered by JS -->
+    </div>
+  </section>
+
+  <!-- ====================================================
+       ARENA 3: BALLOON POP
+       ==================================================== -->
+  <section id="arenaBalloons" class="game-arena" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+      <h2 style="font-family: var(--font-head); font-size: 1.25rem;">🎈 Воздушные шарики</h2>
+      <span style="font-size: 0.9rem; font-weight: 800; color: var(--sky-dark);">Слушай слово и лопай правильный шарик!</span>
+    </div>
+
+    <div class="balloon-sky">
+      <div class="balloon-prompt-box">
+        <button class="btn-back-hub" id="btnBalloonReplay" style="padding: 6px 14px; font-size: 0.85rem;">
+          🔊 Слушать ещё раз
+        </button>
+        <div style="font-weight: 800; font-size: 1.15rem; color: #0284c7;" id="balloonTargetHint">
+          «Найди краба»
+        </div>
+      </div>
+
+      <div class="balloon-field" id="balloonField">
+        <!-- 4 balloons rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================
+       ARENA 4: KUNG FU TONE CLASH
+       ==================================================== -->
+  <section id="arenaKungfu" class="game-arena" style="display: none;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+      <h2 style="font-family: var(--font-head); font-size: 1.25rem;">🥋 Кунг-фу битва тонов</h2>
+      <span style="font-size: 0.9rem; font-weight: 800; color: var(--rose-dark);">Панда атакует звуком — блокируй верным тоном!</span>
+    </div>
+
+    <div class="dojo-arena">
+      <div class="dojo-fighters">
+        <div class="fighter-card">
+          <div class="fighter-avatar">👦</div>
+          <div style="font-weight: 900; margin-top: 4px;">Аскар</div>
+          <div class="fighter-hp" id="askarHp">❤️❤️❤️</div>
+        </div>
+        <div style="font-family: var(--font-head); font-size: 1.8rem; font-weight: 900; color: var(--rose);">VS</div>
+        <div class="fighter-card">
+          <div class="fighter-avatar" id="pandaFighter">🐼</div>
+          <div style="font-weight: 900; margin-top: 4px;">Панда</div>
+          <div class="fighter-hp" id="pandaHp">❤️❤️❤️</div>
+        </div>
+      </div>
+
+      <div style="background: #ffffff; border: 2px solid #fecdd3; padding: 14px 28px; border-radius: 999px; text-align: center; margin-bottom: 20px;">
+        <span style="font-size: 0.9rem; color: #9f1239; font-weight: 800;">АТАКА ПАНДЫ:</span>
+        <span style="font-family: var(--font-cn); font-size: 2.8rem; font-weight: 900; margin: 0 12px;" id="toneSyllable">mǎ</span>
+        <button class="btn-back-hub" id="btnToneClashReplay" style="padding: 4px 10px; font-size: 0.8rem;">🔊</button>
+      </div>
+
+      <div class="tone-shields-grid">
+        <button class="shield-btn" data-tone="1">
+          <div class="shield-symbol">—</div>
+          <div class="shield-desc">1-й тон (Ровный)</div>
+        </button>
+        <button class="shield-btn" data-tone="2">
+          <div class="shield-symbol">↗</div>
+          <div class="shield-desc">2-й тон (Вверх)</div>
+        </button>
+        <button class="shield-btn" data-tone="3">
+          <div class="shield-symbol">∨</div>
+          <div class="shield-desc">3-й тон (Ямка)</div>
+        </button>
+        <button class="shield-btn" data-tone="4">
+          <div class="shield-symbol">↘</div>
+          <div class="shield-desc">4-й тон (Вниз)</div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="game-toast" id="gameToast">ГОООЛ! ⚽</div>
+
+<script>
+(function() {
+  // ================= WEB AUDIO API SYNTH CHIMES =================
+  let audioCtx = null;
+  function getAudioCtx() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }
+
+  function playFx(type) {
+    try {
+      const ctx = getAudioCtx();
+      const now = ctx.currentTime;
+      if (type === 'goal') {
+        // Bass thump + whistle + triumphant chords
+        [220, 440, 660, 880].forEach((f, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(f, now + i * 0.08);
+          gain.gain.setValueAtTime(0.18, now + i * 0.08);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.08);
+          osc.stop(now + i * 0.08 + 0.35);
+        });
+      } else if (type === 'pop') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, now);
+        osc.frequency.exponentialRampToValueAtTime(150, now + 0.08);
+        gain.gain.setValueAtTime(0.2, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.08);
+      } else if (type === 'flip') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        gain.gain.setValueAtTime(0.08, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.05);
+      } else if (type === 'hit') {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(260, now);
+        osc.frequency.exponentialRampToValueAtTime(100, now + 0.15);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      }
+    } catch(e) {}
+  }
+
+  // ================= CONFETTI & PARTICLES =================
+  function blastFx() {
+    const canvas = document.getElementById('canvasFx');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const parts = [];
+    const colors = ['#f59e0b', '#22c55e', '#3b82f6', '#ec4899', '#a855f7'];
+    for (let i = 0; i < 60; i++) {
+      parts.push({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        vx: (Math.random() - 0.5) * 14,
+        vy: (Math.random() - 0.5) * 14 - 3,
+        size: Math.random() * 8 + 4,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        life: 1
+      });
+    }
+
+    let f = 0;
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      parts.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.3; // gravity
+        p.life -= 0.015;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, p.size, p.size);
+      });
+      f++;
+      if (f < 70) requestAnimationFrame(loop);
+      else ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+    loop();
+  }
+
+  // ================= TTS VOICE (EDGE CHILD VOICE 0.72x) =================
+  let zhVoice = null;
+  function initVoice() {
+    if (!('speechSynthesis' in window)) return;
+    function update() {
+      const vs = window.speechSynthesis.getVoices();
+      if (!vs.length) return;
+      zhVoice = vs.find(v => v.lang.toLowerCase().startsWith('zh') && (/yunxi|xiaoxiao|xiaoyi|kangkang|child/i.test(v.name))) ||
+                vs.find(v => v.lang.toLowerCase().startsWith('zh') && (/natural|online/i.test(v.name))) ||
+                vs.find(v => v.lang === 'zh-CN') ||
+                vs.find(v => v.lang.toLowerCase().startsWith('zh')) ||
+                vs[0];
+    }
+    update();
+    window.speechSynthesis.onvoiceschanged = update;
+  }
+  initVoice();
+
+  function speak(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    if (zhVoice) {
+      u.voice = zhVoice;
+      u.lang = zhVoice.lang || 'zh-CN';
+    } else {
+      u.lang = 'zh-CN';
+    }
+    u.rate = 0.72; // slow child pace
+    u.pitch = 1.08;
+    window.speechSynthesis.speak(u);
+  }
+
+  // Toast
+  function toast(msg) {
+    const t = document.getElementById('gameToast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1500);
+  }
+
+  // Navigation Tabs
+  const gameTabs = document.querySelectorAll('.game-card-btn');
+  const arenas = {
+    penalty: document.getElementById('arenaPenalty'),
+    memory: document.getElementById('arenaMemory'),
+    balloons: document.getElementById('arenaBalloons'),
+    kungfu: document.getElementById('arenaKungfu')
+  };
+
+  gameTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      gameTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const g = tab.dataset.game;
+      Object.values(arenas).forEach(a => a.style.display = 'none');
+      if (arenas[g]) arenas[g].style.display = 'flex';
+
+      if (g === 'penalty') initPenalty();
+      if (g === 'memory') initMemory();
+      if (g === 'balloons') initBalloons();
+      if (g === 'kungfu') initKungfu();
+    });
+  });
+
+  // Global Stars & Goals
+  let totalStars = 12;
+  let askarGoals = 3;
+  let pandaGoals = 0;
+
+  function addStar() {
+    totalStars++;
+    document.getElementById('starCounter').textContent = totalStars;
+    toast('+1 Звезда! ⭐');
+  }
+
+  // ====================================================
+  // GAME 1: PENALTY SHOOTOUT
+  // ====================================================
+  const penaltyVocab = [
+    { hz: '医生', py: 'yīshēng', ru: 'Врач' },
+    { hz: '律师', py: 'lǜshī', ru: 'Юрист' },
+    { hz: '老师', py: 'lǎoshī', ru: 'Учитель' },
+    { hz: '商人', py: 'shāngrén', ru: 'Бизнесмен' },
+    { hz: '司机', py: 'sījī', ru: 'Водитель' },
+    { hz: '经理', py: 'jīnglǐ', ru: 'Менеджер' },
+    { hz: '师傅', py: 'shīfu', ru: 'Мастер' },
+    { hz: '螃蟹', py: 'pángxiè', ru: 'Краб' },
+    { hz: '足球', py: 'zúqiú', ru: 'Футбол' },
+    { hz: '爸爸', py: 'bàba', ru: 'Папа' }
+  ];
+
+  let currentPenWord = null;
+
+  function initPenalty() {
+    const cur = penaltyVocab[Math.floor(Math.random() * penaltyVocab.length)];
+    currentPenWord = cur;
+    document.getElementById('penHz').textContent = cur.hz;
+    document.getElementById('penPy').textContent = cur.py;
+
+    const keeper = document.getElementById('pandaKeeper');
+    keeper.className = 'panda-keeper';
+
+    // Distractors
+    const dist = penaltyVocab.filter(w => w.ru !== cur.ru).sort(() => Math.random() - 0.5).slice(0, 2).map(w => w.ru);
+    const options = [cur.ru, ...dist].sort(() => Math.random() - 0.5);
+
+    const ballsWrap = document.getElementById('penBalls');
+    ballsWrap.innerHTML = '';
+    options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'ball-btn';
+      btn.innerHTML = `
+        <span class="ball-icon">⚽</span>
+        <span class="ball-text">${opt}</span>
+      `;
+      btn.addEventListener('click', () => {
+        if (opt === cur.ru) {
+          // GOAL!
+          playFx('goal');
+          blastFx();
+          toast('ГООООЛ! ⚽🎉');
+          keeper.classList.add(Math.random() > 0.5 ? 'dive-left' : 'dive-right');
+          askarGoals++;
+          document.getElementById('goalCounter').textContent = `${askarGoals} : ${pandaGoals}`;
+          addStar();
+          setTimeout(initPenalty, 1200);
+        } else {
+          playFx('hit');
+          toast('Мимо! Попробуй ещё!');
+        }
+      });
+      ballsWrap.appendChild(btn);
+    });
+
+    speak(cur.hz);
+  }
+
+  // ====================================================
+  // GAME 2: MEMORY MATCH
+  // ====================================================
+  const memoryThemes = {
+    prof: [
+      { hz: '医生', py: 'yīshēng', ru: 'Врач 🩺' },
+      { hz: '律师', py: 'lǜshī', ru: 'Юрист ⚖️' },
+      { hz: '商人', py: 'shāngrén', ru: 'Бизнесмен 💼' },
+      { hz: '师傅', py: 'shīfu', ru: 'Мастер 🥋' }
+    ],
+    family: [
+      { hz: '爸爸', py: 'bàba', ru: 'Папа 👨' },
+      { hz: '妈妈', py: 'māma', ru: 'Мама 👩' },
+      { hz: '哥哥', py: 'gēge', ru: 'Ст. брат 👦' },
+      { hz: '弟弟', py: 'dìdi', ru: 'Мл. брат 🧒' }
+    ],
+    animals: [
+      { hz: '螃蟹', py: 'pángxiè', ru: 'Краб 🦀' },
+      { hz: '水豚', py: 'shuǐtún', ru: 'Капибара 🦫' },
+      { hz: '大象', py: 'dàxiàng', ru: 'Слон 🐘' },
+      { hz: '龙', py: 'lóng', ru: 'Дракон 🐉' }
+    ],
+    numbers: [
+      { hz: '一', py: 'yī', ru: 'Один (1)' },
+      { hz: '五', py: 'wǔ', ru: 'Пять (5)' },
+      { hz: '八', py: 'bā', ru: 'Восемь (8)' },
+      { hz: '十', py: 'shí', ru: 'Десять (10)' }
+    ]
+  };
+
+  let currentMemTheme = 'prof';
+  let flippedCards = [];
+  let matchedPairs = 0;
+
+  function initMemory() {
+    const list = memoryThemes[currentMemTheme];
+    matchedPairs = 0;
+    flippedCards = [];
+
+    // Create 8 cards (4 pairs: Chinese card & Russian card)
+    const cards = [];
+    list.forEach((item, idx) => {
+      cards.push({ id: idx, type: 'zh', text: item.hz, py: item.py, raw: item });
+      cards.push({ id: idx, type: 'ru', text: item.ru, raw: item });
+    });
+    cards.sort(() => Math.random() - 0.5);
+
+    const grid = document.getElementById('memoryGrid');
+    grid.innerHTML = '';
+    cards.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'card-tile';
+      el.innerHTML = '<span class="card-back-icon">🐼</span>';
+      el.addEventListener('click', () => {
+        if (el.classList.contains('flipped') || el.classList.contains('matched') || flippedCards.length >= 2) return;
+
+        playFx('flip');
+        el.classList.add('flipped');
+        if (c.type === 'zh') {
+          el.innerHTML = `<span class="card-front-hz">${c.text}</span><span class="card-front-py">${c.py}</span>`;
+          speak(c.text);
+        } else {
+          el.innerHTML = `<span class="card-front-ru">${c.text}</span>`;
+        }
+        flippedCards.push({ card: c, el });
+
+        if (flippedCards.length === 2) {
+          const [first, second] = flippedCards;
+          if (first.card.id === second.card.id) {
+            // MATCH!
+            setTimeout(() => {
+              playFx('goal');
+              first.el.classList.add('matched');
+              second.el.classList.add('matched');
+              matchedPairs++;
+              flippedCards = [];
+              addStar();
+              if (matchedPairs === list.length) {
+                blastFx();
+                toast('🎉 Ура! Все пары найдены!');
+              }
+            }, 500);
+          } else {
+            // MISMATCH
+            setTimeout(() => {
+              first.el.classList.remove('flipped');
+              second.el.classList.remove('flipped');
+              first.el.innerHTML = '<span class="card-back-icon">🐼</span>';
+              second.el.innerHTML = '<span class="card-back-icon">🐼</span>';
+              flippedCards = [];
+            }, 800);
+          }
+        }
+      });
+      grid.appendChild(el);
+    });
+  }
+
+  document.querySelectorAll('#memThemePills button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#memThemePills button').forEach(p => p.classList.remove('active'));
+      b.classList.add('active');
+      currentMemTheme = b.dataset.theme;
+      initMemory();
+    });
+  });
+
+  // ====================================================
+  // GAME 3: BALLOONS POP
+  // ====================================================
+  const balloonVocab = [
+    { hz: '螃蟹', py: 'pángxiè', ru: 'краба' },
+    { hz: '师傅', py: 'shīfu', ru: 'мастера' },
+    { hz: '医生', py: 'yīshēng', ru: 'врача' },
+    { hz: '足球', py: 'zúqiú', ru: 'футбол' },
+    { hz: '苹果', py: 'píngguǒ', ru: 'яблоко' },
+    { hz: '水', py: 'shuǐ', ru: 'воду' },
+    { hz: '扎马步', py: 'zhǎmǎbù', 'ru': 'стойку всадника' }
+  ];
+
+  let currentBalloonTarget = null;
+  const bColors = ['b-pink', 'b-blue', 'b-green', 'b-yellow'];
+
+  function initBalloons() {
+    const target = balloonVocab[Math.floor(Math.random() * balloonVocab.length)];
+    currentBalloonTarget = target;
+    document.getElementById('balloonTargetHint').textContent = `«Найди ${target.ru}»`;
+
+    const dist = balloonVocab.filter(w => w.hz !== target.hz).sort(() => Math.random() - 0.5).slice(0, 3);
+    const set = [target, ...dist].sort(() => Math.random() - 0.5);
+
+    const field = document.getElementById('balloonField');
+    field.innerHTML = '';
+    set.forEach((item, idx) => {
+      const b = document.createElement('div');
+      b.className = `balloon ${bColors[idx % bColors.length]}`;
+      b.innerHTML = `
+        <span class="balloon-hz">${item.hz}</span>
+        <span class="balloon-ru">${item.py}</span>
+      `;
+      b.addEventListener('click', () => {
+        if (item.hz === target.hz) {
+          playFx('pop');
+          blastFx();
+          toast('БАМ! 💥 Правильно!');
+          b.style.transform = 'scale(1.5)';
+          b.style.opacity = '0';
+          addStar();
+          setTimeout(initBalloons, 800);
+        } else {
+          playFx('hit');
+          toast('Это другое слово, слушай внимательно!');
+        }
+      });
+      field.appendChild(b);
+    });
+
+    speak(target.hz);
+  }
+
+  document.getElementById('btnBalloonReplay').addEventListener('click', () => {
+    if (currentBalloonTarget) speak(currentBalloonTarget.hz);
+  });
+
+  // ====================================================
+  // GAME 4: KUNG FU TONE CLASH
+  // ====================================================
+  const toneSyllables = [
+    { hz: '妈', py: 'mā', tone: 1 },
+    { hz: '麻', py: 'má', tone: 2 },
+    { hz: '马', py: 'mǎ', tone: 3 },
+    { hz: '骂', py: 'mà', tone: 4 },
+    { hz: '一', py: 'yī', tone: 1 },
+    { hz: '球', py: 'qiú', tone: 2 },
+    { hz: '九', py: 'jiǔ', tone: 3 },
+    { hz: '四', py: 'sì', tone: 4 }
+  ];
+
+  let currentToneSyllable = null;
+  let pandaHealth = 3;
+
+  function initKungfu() {
+    currentToneSyllable = toneSyllables[Math.floor(Math.random() * toneSyllables.length)];
+    document.getElementById('toneSyllable').textContent = currentToneSyllable.py;
+    speak(currentToneSyllable.hz);
+  }
+
+  document.querySelectorAll('.shield-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const picked = parseInt(btn.dataset.tone);
+      if (picked === currentToneSyllable.tone) {
+        playFx('hit');
+        blastFx();
+        toast('БЛОК! Панда получила удар! 🥋💥');
+        pandaHealth--;
+        const hearts = ['💀', '❤️', '❤️❤️', '❤️❤️❤️'];
+        document.getElementById('pandaHp').textContent = hearts[Math.max(0, pandaHealth)];
+
+        const panda = document.getElementById('pandaFighter');
+        panda.style.transform = 'rotate(-30deg) scale(0.9)';
+        setTimeout(() => panda.style.transform = 'none', 300);
+
+        if (pandaHealth <= 0) {
+          playFx('goal');
+          toast('🏆 ПОБЕДА! Панда в нокауте!');
+          addStar();
+          pandaHealth = 3;
+          document.getElementById('pandaHp').textContent = '❤️❤️❤️';
+        }
+        setTimeout(initKungfu, 900);
+      } else {
+        playFx('hit');
+        toast(`Мимо! Это был ${currentToneSyllable.tone}-й тон!`);
+      }
+    });
+  });
+
+  document.getElementById('btnToneClashReplay').addEventListener('click', () => {
+    if (currentToneSyllable) speak(currentToneSyllable.hz);
+  });
+
+  // Start first game
+  initPenalty();
+})();
+</script>
+</body>
+</html>
