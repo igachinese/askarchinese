@@ -34,34 +34,7 @@
   try{const raw=JSON.parse(localStorage.getItem(KEY)||'null');progress=raw&&typeof raw.words==='object'&&Array.isArray(raw.rounds)?{...freshProgress(),...raw}:freshProgress()}catch{progress=freshProgress();persistent=false}
   function save(){try{localStorage.setItem(KEY,JSON.stringify(progress))}catch{persistent=false}$('device-note').innerHTML=persistent?'Прогресс хранится в этом браузере. Персональные отчёты и баланс уроков — в <a href="index.html#parents">личном кабинете</a>.':'Браузер не разрешает сохранять прогресс. Можно заниматься; результаты будут доступны до закрытия страницы.'}
   const day=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Moscow'}).format(new Date());
-  const GRAMMAR=[
-    {topics:['t9','me','base'],ru:'Он врач.',tokens:['他','是','医生'],blank:1,choices:['是','有','在'],rule:'Кто кем является: кто + 是 + профессия.'},
-    {topics:['t9','t7'],ru:'Моя мама — учитель.',tokens:['我','妈妈','是','老师'],blank:2,choices:['是','有','吗'],rule:'是 связывает человека и его профессию.'},
-    {topics:['t9','base'],ru:'Я не юрист.',tokens:['我','不','是','律师'],blank:1,choices:['不','没','也'],rule:'Отрицаем профессию: 不是 — «не является».'},
-    {topics:['t9','t7'],ru:'Мой папа врач.',tokens:['我','爸爸','是','医生'],blank:2,choices:['是','有','几'],rule:'Человек + 是 + профессия.'},
-    {topics:['t7','t7x','me'],ru:'В моей семье четыре человека.',tokens:['我家','有','四','口','人'],blank:3,choices:['口','个','岁'],rule:'Когда считаем членов семьи, используем 口.'},
-    {topics:['t7','me'],ru:'У меня есть младший брат.',tokens:['我','有','一个','弟弟'],blank:1,choices:['有','是','在'],rule:'有 означает «есть, иметь».'},
-    {topics:['t7','brother'],ru:'У меня нет старшей сестры.',tokens:['我','没有','姐姐'],blank:1,choices:['没有','不是','不'],rule:'«Нет кого-то или чего-то» — 没有.'},
-    {topics:['t7','t7x','me'],ru:'Сколько человек в твоей семье?',tokens:['你家','有','几','口','人'],blank:2,choices:['几','谁','哪儿'],rule:'几 — «сколько», когда ожидаем небольшое число.'},
-    {topics:['me','t3','base'],ru:'Как тебя зовут?',tokens:['你','叫','什么','名字'],blank:2,choices:['什么','几','谁'],rule:'你叫什么名字？ — готовый вопрос «Как тебя зовут?».'},
-    {topics:['me','t3','base'],ru:'Меня зовут Аскар.',tokens:['我','叫','阿斯凯'],blank:0,choices:['我','你','他'],rule:'Когда спрашивают 你… («ты»), про себя отвечаем 我… («я»).'},
-    {topics:['t5','t2','me'],ru:'Мне семь лет.',tokens:['我','七','岁'],blank:2,choices:['岁','人','口'],rule:'Возраст: кто + число + 岁. 是 здесь не нужно.'},
-    {topics:['t5','me'],ru:'Сколько тебе лет?',tokens:['你','几','岁'],blank:1,choices:['几','谁','哪儿'],rule:'你几岁？ — вопрос о возрасте ребёнка.'},
-    {topics:['countries','cities','me'],ru:'Я живу в Астане.',tokens:['我','住在','阿斯塔纳'],blank:1,choices:['住在','喜欢','叫'],rule:'住在 + место — «жить где-то».'},
-    {topics:['countries','cities'],ru:'Где ты живёшь?',tokens:['你','住在','哪儿'],blank:2,choices:['哪儿','谁','几岁'],rule:'哪儿 — «где». Оно стоит на месте ответа о месте.'},
-    {topics:['football','base'],ru:'Я люблю футбол.',tokens:['我','喜欢','足球'],blank:1,choices:['喜欢','叫','是'],rule:'喜欢 + что-то — «нравится, люблю».'},
-    {topics:['football','base'],ru:'Я тоже люблю футбол.',tokens:['我','也','喜欢','足球'],blank:1,choices:['也','吗','的'],rule:'也 («тоже») ставим перед действием.'},
-    {topics:['football','things'],ru:'У меня есть мяч.',tokens:['我','有','球'],blank:1,choices:['有','是','叫'],rule:'有 — «есть, иметь». 我有球 — «У меня есть мяч».'},
-    {topics:['t10'],ru:'Который сейчас час?',tokens:['现在','几','点'],blank:2,choices:['点','岁','口'],rule:'几点 — «который час». 现在 — «сейчас».'},
-    {topics:['t10','t2'],ru:'Сейчас два часа.',tokens:['现在','两','点'],blank:1,choices:['两','二','也'],rule:'Перед 点 («час») говорим 两点, а не 二点.'},
-    {topics:['water','things'],ru:'Я пью воду.',tokens:['我','喝','水'],blank:1,choices:['喝','吃','是'],rule:'喝 — «пить», 吃 — «есть».'},
-    {topics:['things','lego'],ru:'Я ем яблоко.',tokens:['我','吃','苹果'],blank:1,choices:['吃','喝','住'],rule:'Кто + действие + предмет: 我吃苹果.'},
-    {topics:['chess'],ru:'Конь ходит.',tokens:['马','走'],blank:1,choices:['走','喝','是'],rule:'走 — «ходить». В шахматах — делать ход.'},
-    {topics:['t8','base'],ru:'Я ученик.',tokens:['我','是','学生'],blank:1,choices:['是','有','在'],rule:'我是学生 — «Я ученик».'},
-    {topics:['brother','t7'],ru:'Это мой младший брат.',tokens:['他','是','我','弟弟'],blank:0,choices:['他','我','你'],rule:'他 — «он». Говорим о другом человеке.'},
-    {topics:['t4','base'],ru:'Сегодня воскресенье.',tokens:['今天','是','星期天'],blank:0,choices:['今天','今年','明天'],rule:'今天 — «сегодня», 今年 — «в этом году».'},
-    {topics:['t6','base'],ru:'Какой у тебя номер телефона?',tokens:['你的','电话号码','是','多少'],blank:3,choices:['多少','几岁','哪儿'],rule:'多少 спрашивает число или количество. 几岁 — только возраст.'}
-  ];
+  let GRAMMAR=[]; // Loaded only from this student’s local exercise bank.
   const MODES=[
     {id:'cards',group:'words',name:'Сначала познакомимся',short:'Карточки',desc:'Послушай слово, открой перевод и скажи его вслух.',icon:'cards',time:'5 слов',tag:'Лучше начать здесь'},
     {id:'choice',group:'words',name:'Угадай перевод',short:'Перевод',desc:'Посмотри на иероглифы и найди значение по-русски.',icon:'book',time:'До 6 вопросов',tag:'Запоминаем слова'},
@@ -102,7 +75,7 @@
     const t=getTopic(id);selectedTopic=t.id;setView('topic-view');$('breadcrumb-current').textContent=t.title;
     $('topic-title').textContent=t.title;$('topic-meta').textContent=wordsCount(t.words.length)+' · '+t.cn+' · выбери один короткий раунд';$('topic-emoji').innerHTML=`<img class="topic-detail-art" src="assets/topics/${esc(t.id)}.webp" alt="" width="104" height="104">`;
     buildFilters($('mode-filters'),groups,modeGroup,value=>{modeGroup=value;renderTopic(id)});
-    $('mode-grid').innerHTML=MODES.filter(m=>modeGroup==='all'||m.group===modeGroup).map(modeMarkup).join('');connectModes($('mode-grid'),t.id);
+    $('mode-grid').innerHTML=MODES.filter(m=>(modeGroup==='all'||m.group===modeGroup)&&(!['sentence','gap'].includes(m.id)||GRAMMAR.some(q=>q.topics.includes(t.id)))).map(modeMarkup).join('');connectModes($('mode-grid'),t.id);
     $('dictionary-title').textContent='Словарик темы · '+wordsCount(t.words.length);$('word-list').innerHTML=t.words.map(wordCard).join('');bindWordAudio($('word-list'));
     $('topic-start').onclick=()=>launch(t.id,'cards');
   }
@@ -137,11 +110,11 @@
     $('session-count').textContent=s.mode==='sprint'?'60 секунд':s.mode==='memory'?s.matched+' / '+s.total+' пар':Math.min(completed+1,s.total)+' / '+s.total;
     $('session-track-fill').style.width=Math.min(100,completed/s.total*100)+'%';
   }
-  const tones=[['妈','mā',1],['麻','má',2],['马','mǎ',3],['骂','mà',4],['八','bā',1],['十','shí',2],['五','wǔ',3],['四','sì',4],['哥','gē',1],['国','guó',2],['水','shuǐ',3],['弟','dì',4]];
+  function ownTones(){const marks=['āēīōūǖ','áéíóúǘ','ǎěǐǒǔǚ','àèìòùǜ'];return allWords.filter(w=>[...w.hz].length===1).map(w=>({...w,tone:marks.findIndex(m=>[...w.py].some(c=>m.includes(c)))+1})).filter(w=>w.tone)}
   function makeQueue(s){
     let pool=s.pool;
-    if(s.mode==='sentence'||s.mode==='gap'){const rows=GRAMMAR.filter(q=>q.topics.includes(s.topic.id));s.generalGrammar=!rows.length;return shuffle(rows.length?rows:GRAMMAR.filter(q=>q.topics.includes('base'))).slice(0,5)}
-    if(s.mode==='tones')return shuffle(tones).slice(0,6).map(([hz,py,tone])=>({hz,py,tone}));
+    if(s.mode==='sentence'||s.mode==='gap'){const rows=GRAMMAR.filter(q=>q.topics.includes(s.topic.id));s.generalGrammar=false;return shuffle(rows).slice(0,5)}
+    if(s.mode==='tones')return shuffle(ownTones()).slice(0,6);
     if(s.mode==='traps'){
       const pairs=data.traps.filter(t=>t.w.some(w=>s.pool.some(x=>x.hz===w[0])));s.generalTraps=!pairs.length;
       return shuffle(pairs.length?pairs:data.traps).slice(0,6).map(t=>({trap:t,word:normalizeWords(t.w)[Math.floor(Math.random()*t.w.length)]}));
@@ -154,6 +127,7 @@
     const review=opts.review?weakWords():null;if(opts.review&&!review.length){location.hash='progress';return}
     const s=session={id:sessionSerial,topic,mode,pool:review?.length?review:topic.words,review:Boolean(review),index:0,correct:0,attempts:0,mistakes:[],locked:false,done:false,mission:Boolean(opts.mission)};
     s.queue=makeQueue(s);s.total=s.queue.length;
+    if(!s.total){location.hash='topic/'+topic.id;return}
     setView('session-view');$('breadcrumb-current').textContent=MODES.find(m=>m.id===mode).short;$('session-next').hidden=true;$('session-feedback').hidden=true;
     $('show-pinyin').closest('label').hidden=['listen','tones','memory','sentence','gap'].includes(mode);
     $('exercise-arena').className='card exercise-arena';
@@ -352,6 +326,11 @@
       const response=await fetch('data/askar.json');if(!response.ok)throw Error('dictionary');data=await response.json();
       if(!Array.isArray(data.topics)||!data.topics.length)throw Error('empty');
       topics=data.topics.map(t=>({id:t.id,title:t.t,cn:t.cn,em:t.em||'📖',lesson:t.lesson,words:normalizeWords(t.w)}));allWords=normalizeWords(data.topics.flatMap(t=>t.w));wordMap=new Map(allWords.map(w=>[w.hz,w]));
+      const grammarResponse=await fetch('data/grammar.json');if(!grammarResponse.ok)throw Error('grammar');
+      const bank=await grammarResponse.json();if(bank.student!=='askar'||bank.source!=='data/askar.json')throw Error('Wrong student exercise bank');
+      const vocabulary=new Set([...allWords.map(w=>w.hz),...bank.foundation]);
+      function knownToken(text){const reachable=new Set([0]);for(let i=0;i<text.length;i++)if(reachable.has(i))for(const word of vocabulary)if(text.startsWith(word,i))reachable.add(i+word.length);return reachable.has(text.length)}
+      GRAMMAR=bank.exercises.filter(q=>q.topics.length&&q.topics.every(id=>topics.some(t=>t.id===id))&&q.tokens.concat(q.choices).every(knownToken));
       $('topic-total').textContent=topics.length+' тем · '+allWords.length+' слов';
       function initCategory(){buildFilters($('category-filters'),categories,category,value=>{category=value;initCategory();renderTopics()});renderTopics()}
       initCategory();$('app-loading').hidden=true;save();route();
