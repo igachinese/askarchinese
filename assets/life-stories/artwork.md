@@ -24,3 +24,26 @@ Generated with the built-in image generation tool. Optimized as a whole WebP atl
 ## Prompt
 
 Four equal square panels in a precise 2x2 grid, no gutters. Premium children's adventure storybook watercolor and fine ink on ivory paper, jade, amber and indigo. A friendly round panda child in simple jade jacket is hero. TOP LEFT: panda at a small football practice with friendly animal teammates, ball and goal, encouraging atmosphere. TOP RIGHT: panda at a sunny picnic birthday party with cake, small gift and cup of water, friends sharing snacks. BOTTOM LEFT: panda and friend playing chess at wooden table, carefully illustrated generic chess pieces, cozy club. BOTTOM RIGHT: panda asking friendly animal professionals for help in a small town square, teacher holding books, doctor with stethoscope, driver near parked minibus. Each complete scene safely centered in exact square, no cut off faces. No text, letters, numbers, speech bubbles, watermark. Asset for Chinese vocabulary real life situations game.
+
+## Семья, школа и повседневные диалоги
+
+Новые кадры сгенерированы по обложкам тренажёров в стилистике Chinese Storybook Ink & Wash. Каждый WebP содержит 16 сцен в сетке 4×4.
+
+### life-more-1.webp
+
+1. Встреча у школьных ворот
+2. Планируем день встречи
+3. Семейное фото дома
+4. Показываем семейный альбом
+5. Знакомство в библиотеке
+6. На занятии в классе
+7. День рождения брата
+8. Разговор о номере телефона
+9. Медсестра у входа в клинику
+10. Развилка у магазина
+11. На выставке о Китае
+12. На прогулке в океанариуме
+13. Ужин с друзьями
+14. Фигурки на ярмарке
+15. Случайность на пикнике
+16. Разговор в шахматном клубе
