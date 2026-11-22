@@ -58,13 +58,18 @@ button{font:inherit;cursor:pointer}button:disabled{background:var(--sidebar);col
   .material-roles { grid-template-columns: minmax(0,1fr); }
   .material-character { display: none; }
 }</style>
-  <script defer src="../speech.js"></script>
+  <link rel="stylesheet" href="lesson-studio-play.css?v=1">
+  <script type="application/json" id="lesson-play-data">{"slug":"press-room","title":"Прямой эфир после матча","lead":"Послушай игрока, проверь три факта и собери реплику для эфира.","alt":"Футболист за микрофоном на пресс-конференции после матча","finish":"Карточка игрока готова к эфиру","collection":"Что пойдёт в эфир","final":"Теперь ответь как другой игрок. Выбери новый город и любимый спорт, затем добавь второе умение через 也会.","model":"大家好！我住在上海。我最喜欢篮球。我会踢足球，也会说汉语。","stages":[{"title":"Город игрока","prompt":"Начни карточку для эфира. В каком городе живёт игрок?","clue":{"zh":"大家好！我住在上海。今天我们球队有比赛。","py":"Dàjiā hǎo! Wǒ zhù zài Shànghǎi. Jīntiān wǒmen qiúduì yǒu bǐsài.","ru":"Всем привет! Я живу в Шанхае. Сегодня у нашей команды матч."},"answer":"shanghai","choices":[{"id":"beijing","label":"北京","feedback":"Послушай, какой город идёт сразу после 住在.","py":"Běijīng"},{"id":"shanghai","label":"上海","feedback":"","py":"Shànghǎi"},{"id":"tianjin","label":"天津","feedback":"После 住在 слышны два слога. Сравни названия городов ещё раз.","py":"Tiānjīn"}],"fact":["Город","上海"],"success":"住在上海 — «живу в Шанхае»."},{"title":"Любимый спорт","prompt":"В заголовке поместится один вид спорта. Какой игрок назвал любимым?","clue":{"zh":"我最喜欢篮球，我也喜欢足球。","py":"Wǒ zuì xǐhuan lánqiú, wǒ yě xǐhuan zúqiú.","ru":"Больше всего я люблю баскетбол. Мне также нравится футбол."},"answer":"basket","choices":[{"id":"football","label":"足球","feedback":"Футбол он тоже любит. Слово 最 выделяет то, что он любит больше всего.","py":"zúqiú"},{"id":"tennis","label":"网球","feedback":"В реплике два вида спорта. Переслушай, что идёт после 最喜欢.","py":"wǎngqiú"},{"id":"basket","label":"篮球","feedback":"","py":"lánqiú"}],"fact":["Любимый спорт","篮球"],"success":"最喜欢篮球 — «больше всего любит баскетбол»."},{"type":"assemble","title":"Микрофон у тебя","prompt":"Собери реплику для эфира «Я умею играть в футбол и говорить по-китайски».","tokens":[["me","我"],["football","会踢足球"],["and","，也会"],["chinese","说汉语"],["love","最喜欢"]],"solution":["me","football","and","chinese"],"example":{"zh":"我会踢足球，也会说汉语。","py":"Wǒ huì tī zúqiú, yě huì shuō Hànyǔ."},"hint":"Начни с 我会. После первого умения поставь 也会 и назови второе.","fact":["Реплика для эфира","我会踢足球，也会说汉语。"],"success":"也会 соединяет два умения."},{"title":"Счёт для заголовка","prompt":"Игрок рассказывает о матче. Сколько голов он забил?","clue":{"zh":"今天有比赛，我进了两个球！","py":"Jīntiān yǒu bǐsài, wǒ jìn le liǎng ge qiú!","ru":"Сегодня был матч, и я забил два гола!"},"answer":"two","choices":[{"id":"one","label":"一个球","feedback":"После 进了 слышно 两. Найди вариант с двумя голами.","py":"yí ge qiú"},{"id":"two","label":"两个球","feedback":"","py":"liǎng ge qiú"},{"id":"three","label":"三个球","feedback":"Сравни звучание 三 и 两. Какое число сказал игрок?","py":"sān ge qiú"}],"fact":["Голы","两个球"],"success":"进了两个球 — «забил два гола»."}],"listeningFile":"listening"}</script>
   <script type="application/json" id="lesson-data">{"name":"Аскар","title":"Пресс-конференция Кубка звёзд","intro":"Возьми интервью у футболиста, а потом сам ответь на три вопроса журналиста по-китайски.","pinyin":true,"theme":"field","words":[["球队","qiúduì","команда"],["比赛","bǐsài","матч"],["进球","jìn qiú","забить гол"],["最","zuì","больше всего, самый"],["也","yě","тоже"],["住在","zhù zài","жить в"]],"patterns":[["你最喜欢什么运动？","Nǐ zuì xǐhuan shénme yùndòng?","Какой вид спорта ты любишь больше всего?"],["我最喜欢足球。","Wǒ zuì xǐhuan zúqiú.","Больше всего я люблю футбол."],["我会踢足球，也会说英语。","Wǒ huì tī zúqiú, yě huì shuō Yīngyǔ.","Я умею играть в футбол и говорить по-английски."]],"dialogue":[["Журналист","你好！你住在哪里？","Nǐ hǎo! Nǐ zhù zài nǎlǐ?","Привет! Где ты живёшь?"],["Игрок","我住在北京。","Wǒ zhù zài Běijīng.","Я живу в Пекине."],["Журналист","你最喜欢什么运动？","Nǐ zuì xǐhuan shénme yùndòng?","Какой вид спорта ты любишь больше всего?"],["Игрок","我最喜欢足球！我也喜欢篮球。","Wǒ zuì xǐhuan zúqiú! Wǒ yě xǐhuan lánqiú.","Больше всего я люблю футбол! Мне ещё нравится баскетбол."],["Журналист","你会说英语吗？","Nǐ huì shuō Yīngyǔ ma?","Умеешь говорить по-английски?"],["Игрок","会！我会说英语，也会说汉语。","Huì! Wǒ huì shuō Yīngyǔ, yě huì shuō Hànyǔ.","Да! Я умею говорить и по-английски, и по-китайски."]],"quiz":[{"question":"Журналист хочет узнать, где живёт игрок. Какой вопрос он задаст?","options":[["你住在哪里？","Nǐ zhù zài nǎlǐ?"],["你会踢足球吗？","Nǐ huì tī zúqiú ma?"],["你最喜欢什么运动？","Nǐ zuì xǐhuan shénme yùndòng?"]],"answer":0,"reason":"住在哪里 (zhù zài nǎlǐ) спрашивает о месте жительства."},{"question":"Игрок говорит, что умеет и играть в футбол, и говорить по-китайски. Как он это скажет?","options":[["我会踢足球，也会说汉语。","Wǒ huì tī zúqiú, yě huì shuō Hànyǔ."],["我最喜欢足球。","Wǒ zuì xǐhuan zúqiú."],["我住在北京。","Wǒ zhù zài Běijīng."]],"answer":0,"reason":"也会 (yě huì) добавляет второе умение."},{"question":"Игрок сказал 我最喜欢篮球 (Wǒ zuì xǐhuan lánqiú). Что он любит больше всего?","options":[["Китайский язык"],["Баскетбол"],["Футбол"]],"answer":1,"reason":"篮球 (lánqiú) означает «баскетбол»."}],"listening":["В каком городе живёт игрок?","Какой вид спорта он любит больше всего?","На каком ещё языке он умеет говорить?"],"roleplay":{"intro":"Выбери вымышленного игрока. Журналист задаёт три вопроса, а игрок отвечает полными фразами. Затем поменяйтесь ролями.","cards":[{"title":"Игрок №7","facts":["Город · Пекин","Любимый спорт · футбол","Умеет говорить по-китайски и по-английски"]},{"title":"Игрок №10","facts":["Город · Шанхай","Любимый спорт · баскетбол","Умеет говорить по-английски и по-китайски"]}],"challenge":"Усложнение для второго раунда. Журналист спрашивает, как прошёл матч. Ответь 今天有比赛。我进了一个球！ (Jīntiān yǒu bǐsài. Wǒ jìn le yí ge qiú!) — «Сегодня был матч. Я забил один гол!»"},"homework":"Запиши интервью с воображаемым игроком на 30–45 секунд или разыграй его с кем-то дома. Задай три вопроса и ответь на них от лица игрока. В одном ответе используй 最 (zuì), в другом — 也 (yě).","back":"../index.html","listenText":["大家好！我住在上海。我最喜欢篮球。我会说英语，也会说汉语。","Dàjiā hǎo! Wǒ zhù zài Shànghǎi. Wǒ zuì xǐhuan lánqiú. Wǒ huì shuō Yīngyǔ, yě huì shuō Hànyǔ."]}</script>
 </head>
 <body>
   <a class="skip" href="#lesson-material">Перейти к уроку</a>
   <main id="lesson-material"><noscript>Включи JavaScript, чтобы открыть задания урока.</noscript></main>
-  <script type="module">const lesson = JSON.parse(document.querySelector("#lesson-data").textContent);
+  <script type="module">
+import {lessonAudio, startLessonGame} from "./lesson-studio-play.js?v=1";
+
+const play = JSON.parse(document.querySelector("#lesson-play-data").textContent);
+const lesson = JSON.parse(document.querySelector("#lesson-data").textContent);
 const page = document.querySelector("#lesson-material");
 const esc = value => String(value ?? "").replace(/[&<>"']/g, char =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
@@ -113,8 +118,9 @@ page.innerHTML = `<header class="material-top">
     <div><p class="caption">${esc(lesson.name)} · 60 минут</p><h1>${esc(lesson.title)}</h1><p>${esc(lesson.intro)}</p></div>
     <span lang="zh" class="material-character" aria-hidden="true">${{ field: "球", station: "站", routine: "日" }[lesson.theme]}</span>
   </section>
-  <nav aria-label="Разделы урока" class="material-nav">${lesson.warmup ? '<a href="#warmup">Разминка</a>' : ""}<a href="#phrases">Слова и фразы</a><a href="#dialogue">Диалог</a>
+  <nav aria-label="Разделы урока" class="material-nav"><a href="#lesson-play">Игра</a>${lesson.warmup ? '<a href="#warmup">Разминка</a>' : ""}<a href="#phrases">Слова и фразы</a><a href="#dialogue">Диалог</a>
     <a href="#practice">Практика</a><a href="#listening">На слух</a><a href="#speaking">По ролям</a><a href="#homework">Домашнее</a></nav>
+  <section class="lesson-play" id="lesson-play" aria-labelledby="lesson-play-title"></section>
   ${warmup()}
   ${block("phrases", "Слова и фразы", `<div class="material-words">${lesson.words.map(phrase).join("")}</div>
     <div class="material-patterns">${lesson.patterns.map(phrase).join("")}</div>`)}
@@ -122,8 +128,7 @@ page.innerHTML = `<header class="material-top">
     `<div><strong>${esc(speaker)}</strong>${phrase(line)}</div>`).join("")}</div>`)}
   ${block("practice", "Выбери подходящую фразу", quiz())}
   ${block("listening", "Послушай и ответь", `<p>Послушай реплику дважды и ответь на вопросы.</p>
-    <div class="actions material-listen-actions"><button type="button" class="button primary" id="lesson-listen">Прослушать текст</button>
-      <p class="caption" role="status" id="lesson-listen-status"></p></div>
+    <div class="material-listen-actions" id="lesson-listen"></div>
     ${list(lesson.listening)}
     <details class="material-transcript"><summary>Текст для чтения</summary>${phrase(lesson.listenText)}</details>`)}
   ${block("speaking", "Сыграйте по ролям", `<p>${esc(lesson.roleplay.intro)}</p>
@@ -166,21 +171,19 @@ pinyin?.addEventListener("click", () => {
   const hidden = page.classList.toggle("material-no-pinyin");
   pinyin.setAttribute("aria-pressed", String(!hidden));
 });
-const listenButton = document.querySelector("#lesson-listen");
-const listenStatus = document.querySelector("#lesson-listen-status");
-listenButton.addEventListener("click", async () => {
-  const voices = window.LearningSpeech ?? window.AskarSpeech;
-  listenButton.disabled = true;
-  listenStatus.textContent = "Запускаем озвучку…";
-  try {
-    const played = await voices?.speak(lesson.listenText[0]);
-    listenStatus.textContent = played ? "Готово. Можно прослушать ещё раз." : "Китайский голос недоступен. Открой текст для чтения.";
-  } catch {
-    listenStatus.textContent = "Озвучка не запустилась. Открой текст для чтения.";
-  } finally {
-    listenButton.disabled = false;
-  }
-});
+const listeningSlot = document.querySelector("#lesson-listen");
+const player = lessonAudio(play, play.listeningFile, "Озвучка для аудирования");
+listeningSlot.append(player);
+player.addEventListener("error", () => {
+  const status = document.createElement("p");
+  status.className = "caption";
+  status.setAttribute("role", "status");
+  status.textContent = "Аудио не загрузилось. Текст доступен ниже.";
+  listeningSlot.append(status);
+  document.querySelector("#listening details").open = true;
+}, {once: true});
+
+startLessonGame(document.querySelector("#lesson-play"), play);
 </script>
 </body>
 </html>
