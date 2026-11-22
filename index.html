@@ -30,6 +30,11 @@
 
 .status-badge-postponed{display:inline-block;border-radius:6px;padding:3px 8px;background:#fef3c7;color:#92400e;font-weight:700;font-size:10px}
 
+
+.new-lesson-banner{display:flex;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding:16px 20px;margin:0 0 20px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--soft)}
+.new-lesson-banner .new-lesson-label{color:var(--accent-dark);font-size:14px;font-weight:800;margin-bottom:4px}
+.new-lesson-banner h2{font-size:19px;color:var(--ink);line-height:1.25}.new-lesson-banner .btn{flex-shrink:0;font-size:13px}
+@media(max-width:420px){.new-lesson-banner{padding:13px 14px;margin-bottom:15px}.new-lesson-banner h2{font-size:17px}}
 </style></head>
 
 <body data-theme="forest"><a class="skip" href="#main">Перейти к содержимому</a>
@@ -38,7 +43,11 @@
 
 <main class="workspace" id="main"><header class="topbar"><div class="breadcrumbs">Личный кабинет<span>/</span><b>Обзор</b></div><div class="top-right"><span class="today-label" id="today-date">Ноябрь 2026</span><span class="avatar" aria-label="Аскар">А</span></div></header>
 
-<section id="overview" data-section aria-labelledby="welcome-title"><div class="intro"><div><h1 id="welcome-title">Привет, Аскар!</h1><p>Твоя команда уже здесь. Готов к маленькой победе?</p></div><span class="level-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/></svg>HSK 1 · мой путь</span></div><div class="hero-row"><div class="hero"><img class="hero-img" src="assets/dashboard-hero.webp" alt="" width="1200" height="800" fetchpriority="high"><div class="hero-copy"><div class="eyebrow">ТВОЯ МИССИЯ</div><h2>Китайский —<br>командная игра.</h2><p class="hero-desc">Открой звёзд мирового футбола в «Кубке звёзд» и собери полный альбом наклеек!</p><a class="btn" href="askar-fc.html#stars">Открыть «Кубок звёзд»<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a></div><span class="hero-note">Панда в твоей команде</span></div>
+<section id="overview" data-section aria-labelledby="welcome-title"><div class="intro"><div><h1 id="welcome-title">Привет, Аскар!</h1><p>Твоя команда уже здесь. Готов к маленькой победе?</p></div><span class="level-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/></svg>HSK 1 · мой путь</span></div><aside class="new-lesson-banner" id="new-student-lesson" aria-labelledby="new-student-lesson-title">
+    <div><p class="new-lesson-label">Новый урок</p><h2 id="new-student-lesson-title">Пресс-конференция Кубка звёзд</h2></div>
+    <a class="btn" href="lessons/2026-11-22-press-room.html">Открыть урок</a>
+  </aside>
+<div class="hero-row"><div class="hero"><img class="hero-img" src="assets/dashboard-hero.webp" alt="" width="1200" height="800" fetchpriority="high"><div class="hero-copy"><div class="eyebrow">ТВОЯ МИССИЯ</div><h2>Китайский —<br>командная игра.</h2><p class="hero-desc">Открой звёзд мирового футбола в «Кубке звёзд» и собери полный альбом наклеек!</p><a class="btn" href="askar-fc.html#stars">Открыть «Кубок звёзд»<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a></div><span class="hero-note">Панда в твоей команде</span></div>
 
 <div class="card lesson-card"><h2 class="card-kicker"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="12" height="14" rx="3"/><path d="m15 10 6-4v12l-6-4"/></svg><span id="lesson-heading">Ближайший урок</span></h2><div class="lesson-when" id="lesson-date">22 ноября 2026</div><div class="lesson-time">17:00<small>МСК · 19:00 Астана</small></div><h3 class="lesson-topic">Кубок звёзд, закрепление фраз и Лига Чемпионов</h3><div class="lesson-number">Урок 7 · абонемент №3</div><p class="lesson-note" id="lesson-note" hidden></p><a class="btn btn-light" href="#zoom-instructions"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="12" height="14" rx="3"/><path d="m15 10 6-4v12l-6-4"/></svg>Как войти в урок</a><div class="zoom-help" id="zoom-instructions"><b>Ссылка на встречу пока не добавлена.</b><p>Возьмите ссылку у преподавателя в переписке перед уроком.</p></div></div></div></section>
 
