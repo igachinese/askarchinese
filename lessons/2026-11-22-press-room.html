@@ -3,57 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#143431">
-  <title>Футбольный кубок · Китайский для Аскара</title>
-  <link rel="stylesheet" href="press-room-mini.css">
-  <script type="module" src="press-room-mini.js"></script>
+  <meta name="theme-color" content="#27604e">
+  <title>Футбольный кубок · Китайский</title>
+  <link rel="stylesheet" href="lesson-studio-v2.css">
+  <link rel="preload" as="image" href="media/press-room/studio/hero.webp">
+  <script type="application/json" id="lesson-content">{"file":"2026-11-22-press-room.html","slug":"press-room","name":"Аскар","title":"Футбольный кубок","hero":"Юный футболист на поле даёт интервью после матча","accent":"#27604e","intro":"Матч закончился. Найди мячи, забей пенальти и ответь у микрофона.","go":"На поле","theme":"Футбол","finish":"Кубок твой!","success":"Ты понял слова на слух и ответил как игрок.","hook":{"zh":"你好！你喜欢足球吗？","py":"nǐ hǎo  nǐ xǐ huan zú qiú ma","ru":"Привет! Любишь футбол?","voice":"host"},"words":[{"id":"football","zh":"足球","py":"zú qiú","ru":"футбол","parts":"足 — стопа, 球 — мяч. Представь, как нога толкает мяч."},{"id":"basketball","zh":"篮球","py":"lán qiú","ru":"баскетбол","parts":"篮 — корзина, 球 — мяч. Мяч летит в корзину."},{"id":"goal","zh":"进球","py":"jìn qiú","ru":"забить гол","parts":"进 — войти, 球 — мяч. Мяч входит в ворота."}],"tones":[{"clip":"football","index":0,"tone":2,"why":"В zú голос поднимается, как мяч от ноги."},{"clip":"goal","index":0,"tone":4,"why":"В jìn голос идёт вниз коротко и уверенно."}],"secret":{"clip":"greeting","body":"你好 пишем nǐ hǎo (3 + 3). В живой речи первый слог поднимается: ní hǎo. Повтори слитно. В 一个球 一 звучит yí перед 个.","extra":"ballone"},"phrases":{"greeting":{"zh":"你好！","py":"nǐ hǎo","ru":"Привет!"},"me":{"zh":"我","py":"wǒ","ru":"я"},"like":{"zh":"喜欢","py":"xǐ huan","ru":"люблю"},"scored":{"zh":"进了","py":"jìn le","ru":"забил"},"ballone":{"zh":"一个球","py":"yí ge qiú","ru":"один мяч"},"a1":{"zh":"我喜欢足球。","py":"wǒ xǐ huan zú qiú","ru":"Я люблю футбол."},"a2":{"zh":"我喜欢篮球。","py":"wǒ xǐ huan lán qiú","ru":"Я люблю баскетбол."},"one":{"zh":"我进了一个球！","py":"wǒ jìn le yí ge qiú","ru":"Я забил один гол!"},"two":{"zh":"我进了两个球！","py":"wǒ jìn le liǎng ge qiú","ru":"Я забил два гола!"},"three":{"zh":"我进了三个球！","py":"wǒ jìn le sān ge qiú","ru":"Я забил три гола!"},"which":{"zh":"你喜欢什么运动？","py":"nǐ xǐ huan shén me yùn dòng","ru":"Какой спорт ты любишь?","voice":"host"},"howmany":{"zh":"你进了几个球？","py":"nǐ jìn le jǐ ge qiú","ru":"Сколько голов ты забил?","voice":"host"}},"bonus":{"type":"goals","title":"Пробей пенальти","prompt":"Сколько голов? Выбери ворота и пробей.","rounds":[{"clip":"two","answer":2,"choices":[3,2,1]},{"clip":"one","answer":1,"choices":[1,3,2]},{"clip":"three","answer":3,"choices":[2,1,3]}]},"builds":[{"key":"hobby","task":"Скажи, что любишь футбол.","pieces":["me","like","football"],"full":"a1"},{"key":"goal","task":"Скажи, что забил один гол.","pieces":["me","scored","ballone"],"full":"one"}],"roles":[{"question":"which","task":"Выбери любимый спорт. Ответь журналисту вслух.","models":["a1","a2"]},{"question":"howmany","task":"Представь, что только что забил. Сколько голов?","models":["one","two"]}],"teacher":{"can":"На слух отличает 足球, 篮球, 进球, говорит 我喜欢… и отвечает на один вопрос о матче.","warm":"Покажите ногой удар, рукой бросок в корзину. Пусть Аскар назовёт действие и сам даст сигнал к началу игры.","extra":"Сыграйте второй раунд с 我最喜欢足球 или 我也喜欢篮球. Добавляйте одну новую конструкцию за раз.","sound":"В zú не заменяйте z русским «з». Сделайте короткую непридыхательную аффрикату. В 喜欢 второй слог легче и короче. В 你好 свяжите два слога и поднимите первый.","home":"Дома пусть кто-то спросит 你喜欢什么运动？, а Аскар ответит одной фразой."},"praise":{"great":{"zh":"太棒了！","py":"tài bàng le","ru":"Здорово!"},"nice":{"zh":"真厉害！","py":"zhēn lì hai","ru":"Вот это да!"},"again":{"zh":"加油，再试一次！","py":"jiā yóu  zài shì yí cì","ru":"Давай, попробуй ещё раз!"},"passed":{"zh":"做得好！","py":"zuò de hǎo","ru":"Хорошая работа!"},"ready":{"zh":"继续加油！","py":"jì xù jiā yóu","ru":"Продолжай в том же духе!"}}}</script>
+  <script type="module" src="lesson-studio-v2.js"></script>
 </head>
-<body>
-  <a class="skip" href="#lesson-play">К игре</a>
+<body style="--accent: #27604e">
+  <a class="skip" href="#lesson-play">Перейти к уроку</a>
   <main>
-    <nav class="top" aria-label="Урок">
+    <header class="top">
       <a href="../index.html">← К урокам</a>
-      <a href="#warmup">Разминка</a>
-    </nav>
-    <header class="cover">
-      <div class="cover-copy">
-        <p>Аскар, твой выход!</p>
-        <h1>Футбольный кубок</h1>
-        <p>Найди мячи, пробей по воротам и дай интервью на китайском.</p>
-        <a class="button button-gold" href="#lesson-play">Играть</a>
-      </div>
-      <img src="media/press-room/scene.webp" width="1280" height="720" alt="Футболист с микрофоном в зале для интервью">
+      <span class="theme">Аскар · Китайский</span>
     </header>
-
-    <section class="card" id="warmup" aria-labelledby="warmup-title">
-      <h2 id="warmup-title">Разминка</h2>
-      <p>Нажми на картинку, послушай и повтори.</p>
-      <div class="picture-grid">
-        <button class="tile" type="button" data-audio="football">
-          <span class="picture" aria-hidden="true">⚽</span>
-          <strong lang="zh">足球</strong><span class="pinyin">zúqiú</span><span>футбол</span>
-        </button>
-        <button class="tile" type="button" data-audio="basketball">
-          <span class="picture" aria-hidden="true">🏀</span>
-          <strong lang="zh">篮球</strong><span class="pinyin">lánqiú</span><span>баскетбол</span>
-        </button>
-        <button class="tile" type="button" data-audio="goal">
-          <span class="picture" aria-hidden="true">🥅</span>
-          <strong lang="zh">进球</strong><span class="pinyin">jìn qiú</span><span>забить гол</span>
-        </button>
+    <div class="toolbar">
+      <nav class="steps" aria-label="Пять этапов урока"></nav>
+      <progress class="progress" id="stage-progress" max="5" value="0" aria-label="Прогресс урока"></progress>
+      <div class="settings">
+        <label for="mode">Подсказки</label>
+        <select id="mode">
+          <option value="pinyin">Пиньинь + иероглифы</option>
+          <option value="hanzi">Только иероглифы</option>
+          <option value="sound">Только звук (профи)</option>
+        </select>
+        <button class="btn secondary" id="tone-color" type="button" aria-pressed="true">Цвет тонов</button>
+        <button class="btn secondary teacher-trigger" id="teacher-open" type="button" title="Клавиша T">Преподавателю</button>
       </div>
-      <p class="status" id="warmup-status" role="status"></p>
+      <p id="audio-notice" class="status" role="status"></p>
+    </div>
+    <section class="stage" id="lesson-play" tabindex="-1" aria-label="Футбольный кубок">
+      <noscript>Включи JavaScript, чтобы открыть задания урока.</noscript>
     </section>
-
-    <section class="card game" id="lesson-play" aria-label="Футбольный кубок">
-      <noscript>Включи JavaScript, чтобы сыграть.</noscript>
-    </section>
-
-    <details class="card teacher">
-      <summary>Для урока с преподавателем</summary>
-      <p>Послушайте три слова, а затем сыграйте без подсказок. После игры поменяйтесь ролями: Аскар спрашивает <span lang="zh">你喜欢什么运动？</span> (Nǐ xǐhuan shénme yùndòng?), а преподаватель отвечает.</p>
-      <p>Если легко, добавьте <span lang="zh">最</span> (zuì) «больше всего» и <span lang="zh">也</span> (yě) «тоже» по одному. Например, <span lang="zh">我最喜欢足球。我也喜欢篮球。</span></p>
-    </details>
   </main>
+  <dialog id="teacher-panel" aria-labelledby="teacher-title">
+    <h2 id="teacher-title">Шторка преподавателя</h2>
+    <p><strong>Цель урока</strong><br>На слух отличает 足球, 篮球, 进球, говорит 我喜欢… и отвечает на один вопрос о матче.</p>
+    <p><strong>Устный разогрев</strong><br>Покажите ногой удар, рукой бросок в корзину. Пусть Аскар назовёт действие и сам даст сигнал к началу игры.</p>
+    <p><strong>Если легко</strong><br>Сыграйте второй раунд с 我最喜欢足球 или 我也喜欢篮球. Добавляйте одну новую конструкцию за раз.</p>
+    <p><strong>На что обратить внимание в произношении</strong><br>В zú не заменяйте z русским «з». Сделайте короткую непридыхательную аффрикату. В 喜欢 второй слог легче и короче. В 你好 свяжите два слога и поднимите первый.</p>
+    <p><strong>После урока</strong><br>Дома пусть кто-то спросит 你喜欢什么运动？, а Аскар ответит одной фразой.</p>
+    <form method="dialog"><button class="btn" autofocus>Закрыть</button></form>
+  </dialog>
 </body>
 </html>
