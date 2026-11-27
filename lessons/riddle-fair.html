@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ярмарка загадок · Аскар</title>
+  <link rel="stylesheet" href="lesson-studio-v2.css">
+  <link rel="stylesheet" href="lesson-nov27.css">
+  <script type="module" src="riddle-fair.js"></script>
+</head>
+<body style="--accent:#8c3f23">
+  <main>
+    <nav class="top" aria-label="Навигация урока"><a href="../index.html">← В кабинет</a>
+      <a href="#lanterns">К загадкам</a>
+    </nav>
+    <header class="cover-lesson">
+      <img src="media/riddle-fair/hero.webp" width="1280" height="720" alt="Панда с фонариком на вечерней ярмарке">
+      <div class="cover-copy">
+        <p class="eyebrow">猜谜语 · Урок Аскара</p>
+        <h1>Ярмарка загадок</h1>
+        <p>Под каждым фонариком спряталась загадка. Послушай и угадай знакомое слово.</p>
+      </div>
+    </header>
+    <section class="sheet lesson-block" id="lanterns" aria-labelledby="lantern-title">
+      <h2 id="lantern-title">Зажги пять фонариков</h2>
+      <p id="riddle-progress" role="status">0 из 5</p>
+      <div id="riddle-tabs" class="riddles-tabs" aria-label="Загадки"></div>
+      <div id="riddle-screen" class="riddle-screen"></div>
+      <noscript>Включи JavaScript, чтобы открыть фонарики.</noscript>
+    </section>
+    <section id="your-riddle" class="sheet lesson-block" aria-labelledby="your-riddle-title">
+      <h2 id="your-riddle-title">Теперь загадываешь ты</h2>
+      <p>Выбери знакомое слово. Дай две подсказки, чтобы преподаватель догадался.</p>
+      <p class="listen-line" lang="zh">我有……。我会……。我是什么？</p>
+      <p>Можно показать одну подсказку жестом. Поменяйтесь ролями и загадайте ещё раз.</p>
+    </section>
+    <details class="notes lesson-block"><summary>Сценарий для преподавателя</summary>
+      <p><strong>Разогрев · 5 минут.</strong> Покажите жестом, как идти влево и вправо. Пусть Аскар сам назовёт 左 и 右. Вспомните 球门, 球员 и 门将, показывая роли.</p>
+      <p><strong>Ярмарка · 20 минут.</strong> Дайте услышать загадку и время на ответ вслух. Если трудно, откройте одну русскую подсказку, затем картинки. После разгадки попросите показать или назвать улику. Возвращайтесь к словам через пару раундов.</p>
+      <p><strong>Поменяйтесь ролями · 10–15 минут.</strong> Сыграйте с предметами комнаты. Аскар выбирает разгадку и диктует две простые подсказки. В финале попросите назвать по памяти три разгадки.</p>
+      <p>Источники адаптаций <a href="https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/jyly/hlhdyxx/202508/t20250821_720581.html">яблоко</a>, <a href="https://www.aoshu.com/e/20150603/556ebf8d75e44.shtml">краб</a>, <a href="https://jy.k12res.com/space/uploads/resource/doc/20230520/646842aef04ca.docx.pdf">слон</a>. Загадки про телефон и вратаря составлены для этого урока.</p>
+    </details>
+    <p id="lesson-audio-status" class="status listen-status" role="status"></p>
+  </main>
+</body>
+</html>
