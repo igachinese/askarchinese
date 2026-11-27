@@ -1,13 +1,18 @@
+import {setupFootball} from './riddle-football.js?v=football';
 const unit = 'riddle-fair';
 let player;
 const notice = document.querySelector('#lesson-audio-status');
-function speak(clip) {
+function speak(clip, {effect = false, reveal} = {}) {
   player?.pause();
-  const current = new Audio(`media/${unit}/studio/${clip}.mp3`);
+  const directory = effect ? 'effects' : 'studio';
+  const current = new Audio(`media/${unit}/${directory}/${clip}.mp3`);
   player = current;
   notice.textContent = '';
+  current.addEventListener('ended', () => { if (player === current) reveal?.(); }, {once:true});
   current.play().catch(error => {
-    if (player === current && error.name !== 'AbortError') notice.textContent = 'Запись не загрузилась. Открой текст рядом с заданием.';
+    if (player !== current || error.name === 'AbortError') return;
+    notice.textContent = 'Запись не загрузилась. Открой текст рядом с заданием.';
+    reveal?.();
   });
 }
 window.addEventListener('pagehide', () => player?.pause());
@@ -26,6 +31,7 @@ let current = 0;
 
 function render(focus = false) {
   player?.pause();
+  player = undefined;
   const riddle = riddles[current];
   const finished = solved.has(riddle.id);
   progress.textContent = solved.size === riddles.length
@@ -42,8 +48,8 @@ function render(focus = false) {
     <details class="riddle-hint hint"><summary>Открыть подсказку</summary><p>${riddle.hint}</p>
       <details class="hint"><summary>Текст загадки</summary><p class="listen-line" lang="zh">${riddle.text}</p></details>
     </details>
-    <button class="btn secondary pictures-toggle" type="button" aria-controls="riddle-choices" aria-expanded="${finished}">${finished ? 'Спрятать картинки' : 'Показать картинки'}</button>
-    <div id="riddle-choices" class="riddle-options" ${finished ? '' : 'hidden'}>
+    <button class="btn secondary pictures-toggle" type="button" aria-controls="riddle-choices" aria-expanded="false" ${finished ? 'hidden' : ''}>Показать картинки</button>
+    <div id="riddle-choices" class="riddle-options" hidden>
       ${riddle.choices.map(id => {
         const item = riddles.find(record => record.id === id);
         return `<button class="riddle-option" type="button" data-guess="${id}" aria-label="${item.ru}"
@@ -53,9 +59,11 @@ function render(focus = false) {
     </div>
     <p class="status riddle-feedback" role="status"></p>
     <div class="answer-box" ${finished ? '' : 'hidden'}>
+      <img src="media/${unit}/${riddle.id}.webp" width="384" height="384" alt="">
       <p lang="zh">是${riddle.zh}！</p><p>${riddle.py} · ${riddle.ru}</p>
       <div class="actions"><button class="btn secondary" type="button" data-riddle-audio="${riddle.id}word">Послушать ответ</button>
-        <a class="btn secondary" href="#your-riddle" ${solved.size === riddles.length ? '' : 'hidden'}>Загадать самому</a></div>
+        <button class="btn secondary" type="button" data-riddle-effect="${riddle.id}">Повторить звук</button>
+        <a class="btn secondary" href="#football" ${solved.size === riddles.length ? '': 'hidden'}>На футбол</a></div>
     </div>
   </div>`;
   if (focus) panel.querySelector('h3').focus();
@@ -69,12 +77,23 @@ tabs.addEventListener('click', event => {
 panel.addEventListener('click', event => {
   const button = event.target.closest('button');
   if (!button) return;
-  if (button.dataset.riddleAudio) { speak(button.dataset.riddleAudio); return; }
   const choices = panel.querySelector('#riddle-choices');
-  if (button.classList.contains('pictures-toggle')) {
-    choices.hidden = !choices.hidden;
-    button.setAttribute('aria-expanded', String(!choices.hidden));
-    button.textContent = choices.hidden ? 'Показать картинки' : 'Спрятать картинки';
+  const pictures = panel.querySelector('.pictures-toggle');
+  function showPictures(show) {
+    choices.hidden = !show;
+    pictures.setAttribute('aria-expanded', String(show));
+    pictures.textContent = show ? 'Спрятать картинки' : 'Показать картинки';
+  }
+  if (button.dataset.riddleAudio) {
+    speak(button.dataset.riddleAudio, {reveal:pictures.hidden ? undefined : () => showPictures(true)});
+    return;
+  }
+  if (button.dataset.riddleEffect) {
+    speak(button.dataset.riddleEffect, {effect:true});
+    return;
+  }
+  if (button === pictures) {
+    showPictures(choices.hidden);
     return;
   }
   if (!button.dataset.guess) return;
@@ -82,9 +101,11 @@ panel.addEventListener('click', event => {
   if (button.dataset.guess === riddle.id) {
     solved.add(riddle.id);
     render();
+    speak(riddle.id, {effect:true});
     panel.querySelector('[data-riddle-audio$="word"]').focus({preventScroll:true});
   } else {
     panel.querySelector('.riddle-feedback').textContent = 'Попробуй ещё раз. Можно открыть подсказку.';
   }
 });
 render();
+setupFootball(riddles, speak);

@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ярмарка загадок · Аскар</title>
   <link rel="stylesheet" href="lesson-studio-v2.css">
-  <link rel="stylesheet" href="lesson-nov27.css">
-  <script type="module" src="riddle-fair.js"></script>
+  <link rel="stylesheet" href="lesson-nov27.css?v=football">
+  <script type="module" src="riddle-fair.js?v=football"></script>
 </head>
 <body style="--accent:#8c3f23">
   <main>
     <nav class="top" aria-label="Навигация урока"><a href="../index.html">← В кабинет</a>
       <a href="#lanterns">К загадкам</a>
+      <a href="#football">К футболу</a>
     </nav>
     <header class="cover-lesson">
       <img src="media/riddle-fair/hero.webp" width="1280" height="720" alt="Панда с фонариком на вечерней ярмарке">
@@ -34,10 +35,34 @@
       <p class="listen-line" lang="zh">我有……。我会……。我是什么？</p>
       <p>Можно показать одну подсказку жестом. Поменяйтесь ролями и загадайте ещё раз.</p>
     </section>
+    <section class="sheet lesson-block" id="football" aria-labelledby="football-title">
+      <h2 id="football-title">Футбол на слух</h2>
+      <p>Слушай слово. Веди мяч к воротам с нужной картинкой, обходи защитника и бей, когда вратарь отойдёт.</p>
+      <p class="translation" id="field-help">На компьютере используй стрелки и пробел. На телефоне удерживай кнопки под полем.</p>
+      <div class="field-score"><strong id="field-score">Голы: 0 из 5</strong><span id="field-round"></span></div>
+      <canvas id="field" width="720" height="440" tabindex="0" aria-label="Футбольное поле" aria-describedby="field-help"></canvas>
+      <div class="field-controls">
+        <div class="actions">
+          <button id="field-start" class="btn" type="button">Начать матч</button>
+          <button id="field-listen" class="btn secondary" type="button" hidden>Послушать слово</button>
+        </div>
+        <div class="field-pad" aria-label="Управление футболистом">
+          <button type="button" data-move="up" aria-label="Двигаться вперёд">↑</button>
+          <button type="button" data-move="left" aria-label="Двигаться влево">←</button>
+          <button type="button" data-move="down" aria-label="Двигаться назад">↓</button>
+          <button type="button" data-move="right" aria-label="Двигаться вправо">→</button>
+          <button type="button" id="field-shoot" class="btn" disabled>Удар</button>
+        </div>
+      </div>
+      <p class="status" id="field-status" role="status"></p>
+      <details class="hint" id="field-text" hidden><summary>Подсказка к слову</summary><p id="field-word"></p></details>
+      <noscript>Включи JavaScript, чтобы играть.</noscript>
+    </section>
     <details class="notes lesson-block"><summary>Сценарий для преподавателя</summary>
       <p><strong>Разогрев · 5 минут.</strong> Покажите жестом, как идти влево и вправо. Пусть Аскар сам назовёт 左 и 右. Вспомните 球门, 球员 и 门将, показывая роли.</p>
       <p><strong>Ярмарка · 20 минут.</strong> Дайте услышать загадку и время на ответ вслух. Если трудно, откройте одну русскую подсказку, затем картинки. После разгадки попросите показать или назвать улику. Возвращайтесь к словам через пару раундов.</p>
       <p><strong>Поменяйтесь ролями · 10–15 минут.</strong> Сыграйте с предметами комнаты. Аскар выбирает разгадку и диктует две простые подсказки. В финале попросите назвать по памяти три разгадки.</p>
+      <p><strong>Футбол · 10 минут.</strong> Повторите пять слов на слух. Попросите Аскара назвать цель до удара.</p>
       <p>Источники адаптаций <a href="https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/jyly/hlhdyxx/202508/t20250821_720581.html">яблоко</a>, <a href="https://www.aoshu.com/e/20150603/556ebf8d75e44.shtml">краб</a>, <a href="https://jy.k12res.com/space/uploads/resource/doc/20230520/646842aef04ca.docx.pdf">слон</a>. Загадки про телефон и вратаря составлены для этого урока.</p>
     </details>
     <p id="lesson-audio-status" class="status listen-status" role="status"></p>
