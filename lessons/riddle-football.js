@@ -39,6 +39,11 @@ export function setupFootball(riddles, speak) {
   const ctx = field.getContext('2d');
   const start = document.querySelector('#field-start');
   const listen = document.querySelector('#field-listen');
+  const replay = document.querySelector('#field-replay');
+  const target = document.querySelector('#field-target');
+  const targets = document.querySelector('#field-targets');
+  const language = document.querySelector('#field-language');
+  const directionButtons = [...document.querySelectorAll('.field-pad [data-move]')];
   const kick = document.querySelector('#field-shoot');
   const status = document.querySelector('#field-status');
   const score = document.querySelector('#field-score');
@@ -70,6 +75,11 @@ export function setupFootball(riddles, speak) {
   let elapsed = 0;
   let previous = 0;
   let animation = 0;
+  let active = false;
+  let selectedGoal = -1;
+  let attemptedWord = false;
+  let firstCorrect = 0;
+  let identified = 0;
 
   function effect(id) {
     const sound=fx[id];
@@ -103,6 +113,12 @@ export function setupFootball(riddles, speak) {
       for (let grid=18;grid<80;grid+=13) {ctx.moveTo(x-79,grid);ctx.lineTo(x+79,grid);}
       ctx.stroke();
       if (image?.complete && image.naturalWidth) ctx.drawImage(image,x-30,14,60,60);
+      if (phase !== 'identify' && index === selectedGoal) {
+        ctx.strokeStyle = '#ffdc84';
+        ctx.lineWidth = 5;
+        ctx.strokeRect(x-80,10,160,69);
+        ctx.lineWidth = 2;
+      }
     }
     drawPlayer(ctx,goalie.x,goalie.y,'#de8c35',true);
     drawPlayer(ctx,defense.x,defense.y,'#db5865');
@@ -126,6 +142,8 @@ export function setupFootball(riddles, speak) {
     motions.clear();
   }
   function nextFrame(now) {
+    animation = 0;
+    if (!active) return;
     const dt=previous ? Math.min((now-previous)/1000,.042) : 0;
     previous=now;
     elapsed+=dt;
@@ -140,6 +158,7 @@ export function setupFootball(riddles, speak) {
       player.y=bounded(player.y+dy*step,175,400);
       if (near(player,defense,27)) {
         resetPosition();
+        stopMotion();
         status.textContent='Защитник перехватил мяч. Обойди его сбоку.';
       }
     }
@@ -150,7 +169,7 @@ export function setupFootball(riddles, speak) {
         miss('Вратарь поймал мяч. Дождись, пока он отойдёт в сторону.');
       } else if (shot.y<=76) {
         if (shot.id===riddle.id) win();
-        else miss('Мяч попал в другие ворота. Переслушай слово и найди нужную картинку.');
+        else miss('Мяч попал в другие ворота. Для удара встань напротив ворот с золотой рамкой.');
       }
     }
     paint();
@@ -161,6 +180,7 @@ export function setupFootball(riddles, speak) {
   function miss(message) {
     phase='dribble';
     resetPosition();
+    stopMotion();
     kick.disabled=false;
     status.textContent=message;
   }
@@ -174,35 +194,79 @@ export function setupFootball(riddles, speak) {
     start.textContent=phase==='complete'?'Сыграть ещё раз':'Следующее слово';
     start.hidden=false;
     kick.disabled=true;
+    replay.hidden=true;
+    for (const button of directionButtons) button.disabled=true;
     start.focus({preventScroll:true});
   }
   function playWord() {
-    if (phase==='dribble' || phase==='shot') speak(riddle.id+'word');
+    if (['identify','dribble','shot'].includes(phase)) speak(riddle.id+'word');
+  }
+  function resumeAnimation() {
+    previous=0;
+    if (active && !animation && ['dribble','shot'].includes(phase)) animation=requestAnimationFrame(nextFrame);
   }
   function begin() {
-    if (phase==='complete') roundIndex=0;
+    if (phase==='complete') {
+      roundIndex=0;
+      firstCorrect=0;
+      identified=0;
+      language.textContent='';
+    }
     riddle=choices.get(gamePlan[roundIndex]);
     resetPosition();
     stopMotion();
+    attemptedWord=false;
+    selectedGoal=-1;
     hints.hidden=false;
     hints.open=false;
     word.textContent=riddle.zh+' · '+riddle.py+' · '+riddle.ru;
     field.setAttribute('aria-label','Футбольное поле. Ворота слева направо: '+riddle.choices.map(id=>choices.get(id).ru).join(', '));
     score.textContent='Голы: '+roundIndex+' из '+gamePlan.length;
     roundLabel.textContent='Слово '+(roundIndex+1)+' из '+gamePlan.length;
-    phase='dribble';
-    kick.disabled=false;
+    phase='identify';
+    kick.disabled=true;
+    for (const button of directionButtons) button.disabled=true;
     start.hidden=true;
-    listen.hidden=false;
-    status.textContent='Веди мяч и выбери ворота.';
+    replay.hidden=true;
+    target.hidden=false;
+    targets.innerHTML=riddle.choices.map((id,index)=>{
+      const item=choices.get(id);
+      return `<button class="riddle-option" type="button" data-goal="${index}" aria-label="${item.ru}">
+        <img src="media/riddle-fair/${id}.webp" alt="" width="384" height="384"></button>`;
+    }).join('');
+    status.textContent='Выбери картинку, которую услышал.';
     if (roundIndex===0) effect('whistle');
     playWord();
-    previous=0;
-    if (!animation) animation=requestAnimationFrame(nextFrame);
-    field.focus({preventScroll:true});
+    paint();
+    listen.focus({preventScroll:true});
+    target.scrollIntoView({block:'nearest'});
   }
+  targets.addEventListener('click', event => {
+    const button=event.target.closest('[data-goal]');
+    if (!button || phase!=='identify') return;
+    const index=Number(button.dataset.goal);
+    if (riddle.choices[index]!==riddle.id) {
+      attemptedWord=true;
+      status.textContent='Послушай слово ещё раз и попробуй другую картинку.';
+      return;
+    }
+    if (!attemptedWord) firstCorrect++;
+    identified++;
+    language.textContent='С первого выбора: '+firstCorrect+' из '+identified+' слов';
+    selectedGoal=index;
+    target.hidden=true;
+    replay.hidden=false;
+    for (const control of directionButtons) control.disabled=false;
+    kick.disabled=false;
+    phase='dribble';
+    status.textContent='Верно! Нужные ворота '+['слева','по центру','справа'][index]+'. Веди мяч к ним.';
+    paint();
+    resumeAnimation();
+    field.focus({preventScroll:true});
+    field.scrollIntoView({block:'nearest'});
+  });
   function shoot() {
-    if (phase!=='dribble') return;
+    if (phase!=='dribble' || !active) return;
     const lane=goals.findIndex(center=>Math.abs(center-player.x)<=72);
     if (player.y>305 || lane<0) {
       status.textContent='Подойди ближе и встань напротив ворот с нужной картинкой.';
@@ -214,6 +278,7 @@ export function setupFootball(riddles, speak) {
     effect('kick');
   }
   field.addEventListener('keydown',event => {
+    if (!active || phase!=='dribble') return;
     const direction=keys[event.key];
     if (direction || event.code==='Space') event.preventDefault();
     if (direction) motions.add(direction);
@@ -224,7 +289,7 @@ export function setupFootball(riddles, speak) {
   window.addEventListener('blur',stopMotion);
   document.addEventListener('visibilitychange',()=>{ if(document.hidden) stopMotion(); });
   window.addEventListener('pagehide',()=>{ stopMotion();for (const sound of Object.values(fx)) sound.pause(); });
-  for (const control of document.querySelectorAll('.field-pad [data-move]')) {
+  for (const control of directionButtons) {
     const direction=control.dataset.move;
     control.addEventListener('pointerdown',event=>{
       event.preventDefault();
@@ -243,6 +308,20 @@ export function setupFootball(riddles, speak) {
   }
   start.addEventListener('click',begin);
   listen.addEventListener('click',playWord);
+  replay.addEventListener('click',playWord);
   kick.addEventListener('click',shoot);
   paint();
+  return {
+    setActive(value) {
+      active=value;
+      if (active) {
+        resumeAnimation();
+        return;
+      }
+      if (animation) cancelAnimationFrame(animation);
+      animation=0;
+      stopMotion();
+      for (const sound of Object.values(fx)) sound.pause();
+    }
+  };
 }

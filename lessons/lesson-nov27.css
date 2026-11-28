@@ -55,3 +55,13 @@ main { max-width: 67rem; }
 .field-pad { display:flex; gap:.32rem; flex-wrap:wrap; }
 .field-pad [data-move] { touch-action:none; user-select:none; min-width:2.6rem; min-height:2.7rem; font-size:1.2rem; font-weight:750; border:1px solid var(--line); border-radius:.6rem; background:var(--tint); color:var(--ink); }
 .field-pad [data-move]:active { background:var(--accent); color:white; }
+.field-pad [data-move]:disabled { opacity:.55; }
+.field-target { padding:.75rem; border:1px solid var(--line); border-radius:.75rem; background:var(--tint); }
+.field-target > * + * { margin-top:.5rem; }
+#field-targets,.riddle-options#warm-pics,.riddle-options#secret-pics { max-width:36rem; }
+.field-language { color:var(--muted); font-weight:650; }
+.field-language:empty { display:none; }
+.riddle-option[aria-pressed=true],#clue-check [data-correct] { border-color:var(--accent); background:var(--tint); }
+.riddle-option[data-correct]:disabled { opacity:1; }
+#field-status { min-height:2.5em; }
+#field,#field-target { scroll-margin-block:4.4rem 5rem; }

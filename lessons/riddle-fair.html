@@ -5,67 +5,111 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ярмарка загадок · Аскар</title>
   <link rel="stylesheet" href="lesson-studio-v2.css">
-  <link rel="stylesheet" href="lesson-nov27.css?v=football">
-  <script type="module" src="riddle-fair.js?v=football"></script>
+  <link rel="stylesheet" href="lesson-nov27.css?v=route">
+  <link rel="stylesheet" href="lesson-route.css">
+  <script type="module" src="riddle-fair.js?v=route"></script>
 </head>
 <body style="--accent:#8c3f23">
-  <main>
-    <nav class="top" aria-label="Навигация урока"><a href="../index.html">← В кабинет</a>
-      <a href="#lanterns">К загадкам</a>
-      <a href="#football">К футболу</a>
-    </nav>
-    <header class="cover-lesson">
-      <img src="media/riddle-fair/hero.webp" width="1280" height="720" alt="Панда с фонариком на вечерней ярмарке">
-      <div class="cover-copy">
-        <p class="eyebrow">猜谜语 · Урок Аскара</p>
-        <h1>Ярмарка загадок</h1>
-        <p>Под каждым фонариком спряталась загадка. Послушай и угадай знакомое слово.</p>
+<main>
+  <nav class="top" aria-label="Навигация урока">
+    <a href="../index.html">В кабинет</a><button class="btn secondary" type="button" id="lesson-teacher-open">Сценарий урока</button>
+  </nav>
+  <h1 class="journey-title">Ярмарка загадок</h1>
+  <nav id="lesson-route" aria-label="Этапы урока" hidden>
+    <ol><li><a href="#warmup" data-stage>Разминка</a></li><li><a href="#clues" data-stage>Улики</a></li>
+      <li><a href="#lanterns" data-stage>Загадки</a></li><li><a href="#your-riddle" data-stage>Твоя загадка</a></li>
+      <li><a href="#football" data-stage>Футбол</a></li><li><a href="#review" data-stage>Итог</a></li></ol>
+    <progress id="lesson-progress" value="1" max="6" aria-label="Позиция в уроке"></progress>
+  </nav>
+  <p id="lesson-audio-status" class="status listen-status" role="status"></p>
+  <header class="cover-lesson" id="lesson-cover">
+    <img src="media/riddle-fair/hero.webp" width="1280" height="720" alt="Панда с фонариком на вечерней ярмарке">
+    <div class="cover-copy"><p>Угадай слова под фонариками. Потом эти же слова помогут тебе на футбольном поле.</p></div>
+  </header>
+  <section class="sheet lesson-block" id="warmup" aria-labelledby="warmup-title">
+    <h2 id="warmup-title">Услышь и покажи</h2>
+    <p>Сначала назови по-китайски любую картинку. Затем послушай знакомое слово и найди его.</p>
+    <div class="actions"><button class="btn" type="button" id="warm-listen">Слушать слово</button><span id="warm-round"></span></div>
+    <div class="riddle-options" id="warm-pics"></div>
+    <p class="status" id="warm-status" role="status"></p>
+    <button class="btn secondary" type="button" id="warm-next" hidden>Второе слово</button>
+    <p>Разомнись перед матчем. Покажи рукой <span lang="zh">左</span> и <span lang="zh">右</span>.</p>
+  </section>
+  <section class="sheet lesson-block" id="clues" aria-labelledby="clues-title">
+    <h2 id="clues-title">Как устроена загадка?</h2>
+    <div class="lessons-columns">
+      <article class="lesson-cell"><h3 lang="zh">我有一个球。</h3><p>У меня есть мяч. <strong lang="zh">我有</strong> помогает описать, что есть у героя.</p></article>
+      <article class="lesson-cell"><h3 lang="zh">我会跑。</h3><p>Я умею бегать. <strong lang="zh">我会</strong> помогает назвать действие.</p></article>
+    </div>
+    <p>Покажи жестом, как ловишь мяч. Как сказать «Я умею ловить мяч»?</p>
+    <div class="actions" id="clue-check">
+      <button class="btn secondary" type="button" data-clue="have" lang="zh">我有</button>
+      <button class="btn secondary" type="button" data-clue="can" lang="zh">我会</button>
+    </div>
+    <p class="status" id="clue-status" role="status"></p>
+  </section>
+  <section class="sheet lesson-block" id="lanterns" aria-labelledby="lantern-title">
+    <h2 id="lantern-title">Зажги пять фонариков</h2>
+    <p id="riddle-progress" role="status">0 из 5</p>
+    <div id="riddle-tabs" class="riddles-tabs" aria-label="Загадки"></div>
+    <div id="riddle-screen" class="riddle-screen"></div>
+  </section>
+  <section class="sheet lesson-block" id="your-riddle" aria-labelledby="your-riddle-title">
+    <h2 id="your-riddle-title">Теперь загадываешь ты</h2>
+    <p>Выбери картинку тайком от преподавателя и дай две подсказки. Одну можно показать жестом.</p>
+    <div class="riddle-options" id="secret-pics"></div>
+    <p id="secret-status" class="status" role="status"></p>
+    <details class="hint"><summary>Как начать</summary><p lang="zh" class="listen-line">我有……。我会……。我是什么？</p><p>Можно дать две подсказки о внешности или действии. Поменяйтесь ролями после ответа.</p></details>
+  </section>
+  <section class="sheet lesson-block" id="football" aria-labelledby="football-title">
+    <h2 id="football-title">Футбол на слух</h2>
+    <p>Послушай слово и найди ворота. Затем веди мяч, обойди защитника и выбери момент для удара.</p>
+    <p class="translation" id="field-help">На компьютере используй стрелки и пробел. На телефоне удерживай кнопки под полем.</p>
+    <div class="field-score"><strong id="field-score">Голы: 0 из 5</strong><span id="field-round"></span></div>
+    <div class="field-target" id="field-target" hidden>
+      <h3>Где нужная картинка?</h3>
+      <button id="field-listen" class="btn secondary" type="button">Послушать слово</button>
+      <div id="field-targets" class="riddle-options"></div>
+    </div>
+    <p class="status" id="field-status" role="status"></p>
+    <canvas id="field" width="720" height="440" tabindex="0" aria-label="Футбольное поле" aria-describedby="field-help"></canvas>
+    <div class="field-controls">
+      <div class="actions"><button id="field-start" class="btn" type="button">Начать матч</button><button id="field-replay" class="btn secondary" type="button" hidden>Повторить слово</button></div>
+      <div class="field-pad" aria-label="Управление футболистом">
+        <button type="button" data-move="up" aria-label="Двигаться вперёд" disabled>↑</button>
+        <button type="button" data-move="left" aria-label="Двигаться влево" disabled>←</button>
+        <button type="button" data-move="down" aria-label="Двигаться назад" disabled>↓</button>
+        <button type="button" data-move="right" aria-label="Двигаться вправо" disabled>→</button>
+        <button type="button" id="field-shoot" class="btn" disabled>Удар</button>
       </div>
-    </header>
-    <section class="sheet lesson-block" id="lanterns" aria-labelledby="lantern-title">
-      <h2 id="lantern-title">Зажги пять фонариков</h2>
-      <p id="riddle-progress" role="status">0 из 5</p>
-      <div id="riddle-tabs" class="riddles-tabs" aria-label="Загадки"></div>
-      <div id="riddle-screen" class="riddle-screen"></div>
-      <noscript>Включи JavaScript, чтобы открыть фонарики.</noscript>
-    </section>
-    <section id="your-riddle" class="sheet lesson-block" aria-labelledby="your-riddle-title">
-      <h2 id="your-riddle-title">Теперь загадываешь ты</h2>
-      <p>Выбери знакомое слово. Дай две подсказки, чтобы преподаватель догадался.</p>
-      <p class="listen-line" lang="zh">我有……。我会……。我是什么？</p>
-      <p>Можно показать одну подсказку жестом. Поменяйтесь ролями и загадайте ещё раз.</p>
-    </section>
-    <section class="sheet lesson-block" id="football" aria-labelledby="football-title">
-      <h2 id="football-title">Футбол на слух</h2>
-      <p>Слушай слово. Веди мяч к воротам с нужной картинкой, обходи защитника и бей, когда вратарь отойдёт.</p>
-      <p class="translation" id="field-help">На компьютере используй стрелки и пробел. На телефоне удерживай кнопки под полем.</p>
-      <div class="field-score"><strong id="field-score">Голы: 0 из 5</strong><span id="field-round"></span></div>
-      <canvas id="field" width="720" height="440" tabindex="0" aria-label="Футбольное поле" aria-describedby="field-help"></canvas>
-      <div class="field-controls">
-        <div class="actions">
-          <button id="field-start" class="btn" type="button">Начать матч</button>
-          <button id="field-listen" class="btn secondary" type="button" hidden>Послушать слово</button>
-        </div>
-        <div class="field-pad" aria-label="Управление футболистом">
-          <button type="button" data-move="up" aria-label="Двигаться вперёд">↑</button>
-          <button type="button" data-move="left" aria-label="Двигаться влево">←</button>
-          <button type="button" data-move="down" aria-label="Двигаться назад">↓</button>
-          <button type="button" data-move="right" aria-label="Двигаться вправо">→</button>
-          <button type="button" id="field-shoot" class="btn" disabled>Удар</button>
-        </div>
-      </div>
-      <p class="status" id="field-status" role="status"></p>
-      <details class="hint" id="field-text" hidden><summary>Подсказка к слову</summary><p id="field-word"></p></details>
-      <noscript>Включи JavaScript, чтобы играть.</noscript>
-    </section>
-    <details class="notes lesson-block"><summary>Сценарий для преподавателя</summary>
-      <p><strong>Разогрев · 5 минут.</strong> Покажите жестом, как идти влево и вправо. Пусть Аскар сам назовёт 左 и 右. Вспомните 球门, 球员 и 门将, показывая роли.</p>
-      <p><strong>Ярмарка · 20 минут.</strong> Дайте услышать загадку и время на ответ вслух. Если трудно, откройте одну русскую подсказку, затем картинки. После разгадки попросите показать или назвать улику. Возвращайтесь к словам через пару раундов.</p>
-      <p><strong>Поменяйтесь ролями · 10–15 минут.</strong> Сыграйте с предметами комнаты. Аскар выбирает разгадку и диктует две простые подсказки. В финале попросите назвать по памяти три разгадки.</p>
-      <p><strong>Футбол · 10 минут.</strong> Повторите пять слов на слух. Попросите Аскара назвать цель до удара.</p>
-      <p>Источники адаптаций <a href="https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/jyly/hlhdyxx/202508/t20250821_720581.html">яблоко</a>, <a href="https://www.aoshu.com/e/20150603/556ebf8d75e44.shtml">краб</a>, <a href="https://jy.k12res.com/space/uploads/resource/doc/20230520/646842aef04ca.docx.pdf">слон</a>. Загадки про телефон и вратаря составлены для этого урока.</p>
-    </details>
-    <p id="lesson-audio-status" class="status listen-status" role="status"></p>
-  </main>
+    </div>
+    <p id="field-language" class="field-language"></p>
+    <details class="hint" id="field-text" hidden><summary>Подсказка к слову</summary><p id="field-word"></p></details>
+  </section>
+  <section class="sheet lesson-block" id="review" aria-labelledby="review-title">
+    <h2 id="review-title">Последний фонарик</h2>
+    <p>Услышь знакомую загадку ещё раз. Назови ответ по-китайски без картинки.</p>
+    <button class="btn" type="button" data-riddle-audio="elephant">Слушать загадку</button>
+    <details class="hint"><summary>Проверить себя</summary><p lang="zh">大象</p><button class="btn secondary" type="button" data-riddle-audio="elephantword">Послушать</button></details>
+    <p>Вспомни ещё одну разгадку и придумай для неё подсказку с <span lang="zh">我有</span> или <span lang="zh">我会</span>.</p>
+    <p id="fair-summary" class="status" role="status"></p>
+  </section>
+  <nav id="lesson-footer" aria-label="Предыдущий и следующий этап" hidden>
+    <button class="btn secondary" type="button" id="lesson-back">Назад</button><p id="lesson-count" aria-live="polite"></p>
+    <button class="btn" type="button" id="lesson-next">Дальше</button><a id="lesson-home" class="btn" href="../index.html" hidden>В кабинет</a>
+  </nav>
+  <dialog class="notes" id="lesson-teacher" aria-labelledby="teacher-title">
+    <form method="dialog"><button class="btn secondary" type="submit">Закрыть</button></form>
+    <h2 id="teacher-title">Сценарий урока</h2>
+    <p><strong>5 мин · разминка.</strong> Два слова на слух, затем жесты 左 и 右.</p>
+    <p><strong>5 мин · улики.</strong> Произнесите 我有… и 我会… с предметом и жестом. Попросите Аскара самому дать один пример.</p>
+    <p><strong>15 мин · загадки.</strong> Дайте время сказать ответ вслух. Картинки откроются после паузы. Возьмите три фонарика, остальные используйте при наличии времени.</p>
+    <p><strong>10 мин · своя загадка.</strong> Аскар загадывает, преподаватель угадывает. При затруднении подсказку можно показать жестом.</p>
+    <p><strong>10 мин · футбол.</strong> Сначала назовите или покажите нужные ворота. После выбора начинается движение. Если устаёт, остановитесь после двух-трёх слов.</p>
+    <p><strong>5 мин · итог.</strong> Вспомнить две разгадки и повторить одну подсказку по-китайски.</p>
+    <p>Источники загадок <a href="https://www.hbhr.gov.cn/hrqxxgk/xxgkml/ggqsydwxxgk/jyly/hlhdyxx/202508/t20250821_720581.html">яблоко</a>, <a href="https://www.aoshu.com/e/20150603/556ebf8d75e44.shtml">краб</a>, <a href="https://jy.k12res.com/space/uploads/resource/doc/20230520/646842aef04ca.docx.pdf">слон</a>.</p>
+  </dialog>
+  <noscript><p>Для звука, загадок и футбола включи JavaScript.</p></noscript>
+</main>
 </body>
 </html>

@@ -1,21 +1,32 @@
-import {setupFootball} from './riddle-football.js?v=football';
+import {setupFootball} from './riddle-football.js?v=route';
+import {setupLessonRoute} from './lesson-route.js';
 const unit = 'riddle-fair';
 let player;
+let revealTimer;
 const notice = document.querySelector('#lesson-audio-status');
-function speak(clip, {effect = false, reveal} = {}) {
+function stopAudio() {
+  clearTimeout(revealTimer);
   player?.pause();
+  player = undefined;
+}
+function speak(clip, {effect = false, reveal} = {}) {
+  stopAudio();
   const directory = effect ? 'effects' : 'studio';
   const current = new Audio(`media/${unit}/${directory}/${clip}.mp3`);
   player = current;
   notice.textContent = '';
-  current.addEventListener('ended', () => { if (player === current) reveal?.(); }, {once:true});
+  current.addEventListener('ended', () => {
+    if (reveal && player === current) revealTimer = setTimeout(() => {
+      if (player === current) reveal();
+    }, 1800);
+  }, {once:true});
   current.play().catch(error => {
     if (player !== current || error.name === 'AbortError') return;
     notice.textContent = 'Запись не загрузилась. Открой текст рядом с заданием.';
     reveal?.();
   });
 }
-window.addEventListener('pagehide', () => player?.pause());
+window.addEventListener('pagehide', stopAudio);
 const riddles = [
   {"id": "apple", "zh": "苹果", "py": "píngguǒ", "ru": "яблоко", "hint": "Смотри на дерево: кожура бывает красной или зелёной.", "choices": ["phone", "apple", "crab"], "text": "我长在树上。我的皮有时候是红的，有时候是绿的。我是什么？"},
   {"id": "crab", "zh": "螃蟹", "py": "pángxiè", "ru": "краб", "hint": "Покажи руками «ножницы» и шагни вбок.", "choices": ["crab", "goalie", "elephant"], "text": "我会往左走，也会往右走。我有两把大剪刀。我是什么？"},
@@ -30,8 +41,7 @@ const solved = new Set();
 let current = 0;
 
 function render(focus = false) {
-  player?.pause();
-  player = undefined;
+  stopAudio();
   const riddle = riddles[current];
   const finished = solved.has(riddle.id);
   progress.textContent = solved.size === riddles.length
@@ -63,7 +73,8 @@ function render(focus = false) {
       <p lang="zh">是${riddle.zh}！</p><p>${riddle.py} · ${riddle.ru}</p>
       <div class="actions"><button class="btn secondary" type="button" data-riddle-audio="${riddle.id}word">Послушать ответ</button>
         <button class="btn secondary" type="button" data-riddle-effect="${riddle.id}">Повторить звук</button>
-        <a class="btn secondary" href="#football" ${solved.size === riddles.length ? '': 'hidden'}>На футбол</a></div>
+        <button class="btn" type="button" data-next-riddle ${solved.size === riddles.length ? 'hidden': ''}>Следующий фонарик</button>
+        <a class="btn" href="#your-riddle" ${solved.size === riddles.length ? '': 'hidden'}>Загадай сам</a></div>
     </div>
   </div>`;
   if (focus) panel.querySelector('h3').focus();
@@ -85,7 +96,7 @@ panel.addEventListener('click', event => {
     pictures.textContent = show ? 'Спрятать картинки' : 'Показать картинки';
   }
   if (button.dataset.riddleAudio) {
-    speak(button.dataset.riddleAudio, {reveal:pictures.hidden ? undefined : () => showPictures(true)});
+    speak(button.dataset.riddleAudio, {reveal:pictures.hidden || !choices.hidden ? undefined : () => showPictures(true)});
     return;
   }
   if (button.dataset.riddleEffect) {
@@ -93,7 +104,19 @@ panel.addEventListener('click', event => {
     return;
   }
   if (button === pictures) {
+    clearTimeout(revealTimer);
     showPictures(choices.hidden);
+    return;
+  }
+  if (button.hasAttribute('data-next-riddle')) {
+    const count = riddles.length;
+    for (let offset=1; offset<count; offset++) {
+      const next = (current+offset)%count;
+      if (solved.has(riddles[next].id)) continue;
+      current = next;
+      render(true);
+      break;
+    }
     return;
   }
   if (!button.dataset.guess) return;
@@ -108,4 +131,73 @@ panel.addEventListener('click', event => {
   }
 });
 render();
-setupFootball(riddles, speak);
+
+function pictureButton(item, dataKey) {
+  return `<button class="riddle-option" type="button" data-${dataKey}="${item.id}" aria-pressed="false" aria-label="${item.ru}">
+    <img src="media/${unit}/${item.id}.webp" alt="" width="384" height="384"></button>`;
+}
+const byId = id => riddles.find(item=>item.id===id);
+const familiar = ['elephant','apple','phone'].map(byId);
+const warm = document.querySelector('#warm-pics');
+const warmListen = document.querySelector('#warm-listen');
+const warmStatus = document.querySelector('#warm-status');
+const warmNext = document.querySelector('#warm-next');
+const warmTargets = ['apple','phone'];
+let warmIndex = 0;
+function renderWarmup() {
+  warm.innerHTML = familiar.map(item=>pictureButton(item,'warm')).join('');
+  document.querySelector('#warm-round').textContent = (warmIndex+1)+' из '+warmTargets.length;
+  warmStatus.textContent = '';
+  warmNext.hidden = true;
+}
+warmListen.addEventListener('click',()=>speak(warmTargets[warmIndex]+'word'));
+warm.addEventListener('click', event => {
+  const picked = event.target.closest('[data-warm]');
+  if (!picked) return;
+  const target = byId(warmTargets[warmIndex]);
+  const correct = picked.dataset.warm === target.id;
+  warmStatus.textContent = correct ? 'Верно! Повтори '+target.zh+' вслух.' : 'Послушай ещё раз и выбери другую картинку.';
+  for (const option of warm.querySelectorAll('button')) option.setAttribute('aria-pressed',String(option === picked));
+  if (correct) {
+    picked.dataset.correct = '';
+    for (const option of warm.querySelectorAll('button')) option.disabled = true;
+    warmNext.hidden = warmIndex === warmTargets.length-1;
+  }
+});
+warmNext.addEventListener('click',()=>{
+  warmIndex++;
+  renderWarmup();
+  warmListen.focus();
+});
+renderWarmup();
+
+document.querySelector('#clue-check').addEventListener('click', event=>{
+  const choice = event.target.closest('[data-clue]');
+  if (!choice) return;
+  const correct = choice.dataset.clue === 'can';
+  document.querySelector('#clue-status').textContent = correct
+    ? 'Верно! 我会接球。 Скажи и покажи, как ловишь мяч.'
+    : 'Поймать мяч — действие. Как сказать «я умею»?';
+  for (const button of event.currentTarget.querySelectorAll('button')) button.toggleAttribute('data-correct',button === choice && correct);
+});
+
+const secret = document.querySelector('#secret-pics');
+secret.innerHTML = ['apple','crab','goalie'].map(id=>pictureButton(byId(id),'secret')).join('');
+secret.addEventListener('click',event=>{
+  const picked = event.target.closest('[data-secret]');
+  if (!picked) return;
+  for (const button of secret.querySelectorAll('button')) button.setAttribute('aria-pressed',String(button === picked));
+  document.querySelector('#secret-status').textContent = 'Картинка выбрана. Дай две подсказки и дождись ответа.';
+});
+document.querySelector('#review').addEventListener('click',event=>{
+  const button = event.target.closest('[data-riddle-audio]');
+  if (button) speak(button.dataset.riddleAudio);
+});
+const football = setupFootball(riddles,speak);
+setupLessonRoute({stopAudio,onStage(id) {
+  football?.setActive(id === 'football');
+  if (id === 'review') {
+    document.querySelector('#fair-summary').textContent = solved.size
+      ? 'Ты зажёг фонарики: '+solved.size+' из '+riddles.length+'.' : '';
+  }
+}});
